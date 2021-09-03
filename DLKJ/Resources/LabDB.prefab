@@ -1,0 +1,254 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &206461371766598936
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6762198483215412204}
+  - component: {fileID: 3888030014219071801}
+  m_Layer: 0
+  m_Name: LabDB
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6762198483215412204
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206461371766598936}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3888030014219071801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206461371766598936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f7df62448a391849bea70e2bfaafa5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  labs:
+  - ID: 1
+    icon: {fileID: 21300000, guid: 04f842b4df7d3754b8ca01b30fc49710, type: 3}
+    labName: "\u4E8C\u7AEF\u53E3\u5FAE\u6CE2\u7F51\u7EDC\u53C2\u91CF\u6D4B\u91CF"
+    labDesc: LabDesc1
+    score: 100
+    audioClip: {fileID: 0}
+    spacing: 0.5
+    autoMoveSpeed: 1
+    originPosition: {x: -0.29, y: 1.0326, z: 1.505}
+    defaultComponents:
+    - {fileID: 1667232460207234984, guid: 9310f18920ad2bb44a272d15a8934fe5, type: 3}
+    - {fileID: 2872388454102490671, guid: 138a69f919a109b47a36ad4c7e794c1e, type: 3}
+    - {fileID: 1396622047791104849, guid: 9e9f021fe7f865b44b1a614b86751d6d, type: 3}
+    - {fileID: 6160732753793878566, guid: 08bd461d317849348a7e283c0ea65675, type: 3}
+    - {fileID: 422642413207688284, guid: 2eebec1e05c8ddf47b202726a2e0d16e, type: 3}
+    - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
+    - {fileID: 1501026121586326834, guid: 3b26854f5e5bfc143bc00b3785ba3443, type: 3}
+    - {fileID: 3991816612479598473, guid: 2e3ee03a007b3f64ea48e50730084565, type: 3}
+    steps:
+    - ID: -1
+      points: 10
+      dropPoints: -2
+      stepName: "\u9009\u62E9\u5668\u4EF6"
+      valueType: 100
+      completedState: 0
+      keyItems:
+      - {fileID: 1667232460207234984, guid: 9310f18920ad2bb44a272d15a8934fe5, type: 3}
+      - {fileID: 3991816612479598473, guid: 2e3ee03a007b3f64ea48e50730084565, type: 3}
+      - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
+      - {fileID: 1396622047791104849, guid: 9e9f021fe7f865b44b1a614b86751d6d, type: 3}
+      - {fileID: 2872388454102490671, guid: 138a69f919a109b47a36ad4c7e794c1e, type: 3}
+    - ID: -1
+      points: 10
+      dropPoints: -2
+      stepName: "\u57FA\u7840\u6CE2\u5BFC\u7CFB\u7EDF\u5668\u4EF6\u8FDE\u63A5"
+      valueType: 100
+      completedState: 0
+      keyItems:
+      - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
+      - {fileID: 1501026121586326834, guid: 3b26854f5e5bfc143bc00b3785ba3443, type: 3}
+      - {fileID: 3991816612479598473, guid: 2e3ee03a007b3f64ea48e50730084565, type: 3}
+      - {fileID: 1667232460207234984, guid: 9310f18920ad2bb44a272d15a8934fe5, type: 3}
+    - ID: -1
+      points: 15
+      dropPoints: -2
+      stepName: "\u5BFB\u627E\u7B49\u6548\u622A\u9762\u548C\u6C42\u6CE2\u957F"
+      valueType: 100
+      completedState: 0
+      keyItems: []
+    - ID: -1
+      points: 20
+      dropPoints: -2
+      stepName: "\u4E8C\u7AEF\u53E32\u7AEF\u77ED\u8DEF\u60C5\u51B5"
+      valueType: 100
+      completedState: 0
+      keyItems:
+      - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
+      - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
+    - ID: -1
+      points: 15
+      dropPoints: -2
+      stepName: "\u6B63\u786E\u4F7F\u7528\u53EF\u53D8\u77ED\u8DEF\u5668"
+      valueType: 100
+      completedState: 0
+      keyItems: []
+    - ID: -1
+      points: 15
+      dropPoints: -2
+      stepName: "\u4E8C\u7AEF\u53E32\u7AEF\u5F00\u8DEF\u60C5\u51B5"
+      valueType: 100
+      completedState: 0
+      keyItems: []
+    - ID: -1
+      points: 15
+      dropPoints: -2
+      stepName: "\u4E8C\u7AEF\u53E32\u7AEF\u5339\u914D\u60C5\u51B5"
+      valueType: 100
+      completedState: 0
+      keyItems: []
+    currentStepIndex: 0
+    currentStep:
+      ID: -1
+      points: 10
+      dropPoints: -2
+      stepName: "\u9009\u62E9\u5668\u4EF6"
+      valueType: 100
+      completedState: 0
+      keyItems:
+      - {fileID: 1667232460207234984, guid: 9310f18920ad2bb44a272d15a8934fe5, type: 3}
+      - {fileID: 3991816612479598473, guid: 2e3ee03a007b3f64ea48e50730084565, type: 3}
+      - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
+      - {fileID: 1396622047791104849, guid: 9e9f021fe7f865b44b1a614b86751d6d, type: 3}
+      - {fileID: 2872388454102490671, guid: 138a69f919a109b47a36ad4c7e794c1e, type: 3}
+  - ID: 2
+    icon: {fileID: 21300000, guid: 04f842b4df7d3754b8ca01b30fc49710, type: 3}
+    labName: "\u8D1F\u8F7D\u963B\u6297\u6D4B\u91CF"
+    labDesc: LabDesc2
+    score: 100
+    audioClip: {fileID: 0}
+    spacing: 1
+    autoMoveSpeed: 1
+    originPosition: {x: 0, y: 0, z: 0}
+    defaultComponents:
+    - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
+    - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
+    - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
+    - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
+    - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
+    - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
+    steps:
+    - ID: -1
+      points: 10
+      dropPoints: -2
+      stepName: 
+      valueType: 100
+      completedState: 0
+      keyItems: []
+    - ID: -1
+      points: 15
+      dropPoints: -2
+      stepName: 
+      valueType: 100
+      completedState: 0
+      keyItems: []
+    - ID: -1
+      points: 20
+      dropPoints: -2
+      stepName: 
+      valueType: 100
+      completedState: 0
+      keyItems: []
+    - ID: -1
+      points: 15
+      dropPoints: -2
+      stepName: 
+      valueType: 100
+      completedState: 0
+      keyItems: []
+    - ID: -1
+      points: 15
+      dropPoints: -2
+      stepName: 
+      valueType: 100
+      completedState: 0
+      keyItems: []
+    currentStepIndex: 0
+    currentStep:
+      ID: -1
+      points: 0
+      dropPoints: 0
+      stepName: 
+      valueType: 100
+      completedState: 0
+      keyItems: []
+  - ID: 3
+    icon: {fileID: 21300000, guid: 04f842b4df7d3754b8ca01b30fc49710, type: 3}
+    labName: " \u8D1F\u8F7D\u963B\u6297\u5339\u914D\u548C\u5B9A\u5411\u8026\u5408\u5668\u7279\u6027\u7684\u6D4B\u91CF"
+    labDesc: LabDesc3
+    score: 100
+    audioClip: {fileID: 0}
+    spacing: 1
+    autoMoveSpeed: 1
+    originPosition: {x: 0, y: 0, z: 0}
+    defaultComponents:
+    - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
+    - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
+    - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
+    - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
+    - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
+    - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
+    steps:
+    - ID: -1
+      points: 10
+      dropPoints: -2
+      stepName: 
+      valueType: 100
+      completedState: 0
+      keyItems: []
+    - ID: -1
+      points: 15
+      dropPoints: -2
+      stepName: 
+      valueType: 100
+      completedState: 0
+      keyItems: []
+    - ID: -1
+      points: 20
+      dropPoints: -2
+      stepName: 
+      valueType: 100
+      completedState: 0
+      keyItems: []
+    - ID: -1
+      points: 15
+      dropPoints: -2
+      stepName: 
+      valueType: 100
+      completedState: 0
+      keyItems: []
+    currentStepIndex: 0
+    currentStep:
+      ID: -1
+      points: 0
+      dropPoints: 0
+      stepName: 
+      valueType: 100
+      completedState: 0
+      keyItems: []
