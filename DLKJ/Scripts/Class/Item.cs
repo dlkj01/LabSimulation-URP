@@ -11,13 +11,13 @@ namespace DLKJ
     {
         public int ID = -1;
         public string itemName = "";
-        public Texture2D icon ;
+        public Texture2D icon;
         public RenderTexture renderTexture;
         public bool moveable = true;
         public LibraryType libraryType = LibraryType.None;
 
 
-        [SerializeField]public List<Link> ports = new List<Link>();
+        [SerializeField] public List<Link> ports = new List<Link>();
         public List<Condition> linkConditions = new List<Condition>();
         public Link linkPort = null;
 
@@ -56,7 +56,8 @@ namespace DLKJ
             EventManager.OnDetectionEvent -= UpdateTriggerState;
         }
 
-        void SetDragable(bool state) {
+        void SetDragable(bool state)
+        {
             dragAble = state;
             if (boxCollider)
             {
@@ -71,7 +72,7 @@ namespace DLKJ
 
             if (magicCoroutine != null) StopCoroutine(magicCoroutine);
             magicCoroutine = StartCoroutine(Move(target));
-           // magicCoroutine = StartCoroutine(MoveToTarget(target));
+            // magicCoroutine = StartCoroutine(MoveToTarget(target));
         }
 
         IEnumerator Move(TargetPort target)
@@ -82,7 +83,7 @@ namespace DLKJ
             while (reDistance > target.distance)// 0.005243f
             {
                 reDistance = Vector3.Distance(target.selfPort.position, target.targetPort.transform.position);
-                 //transform.position = Vector3.Lerp(transform.position, target.targetPosition, Time.deltaTime * target.speed);
+                //transform.position = Vector3.Lerp(transform.position, target.targetPosition, Time.deltaTime * target.speed);
                 Vector3 moveVector = target.targetPort.transform.position - target.selfPort.position;
                 transform.Translate(moveVector * 1 * Time.deltaTime, Space.World);
                 yield return new WaitForFixedUpdate();
@@ -97,7 +98,7 @@ namespace DLKJ
             if (target.linkNextOne)
             {
                 EventManager.OnLinkNext();
-            } 
+            }
         }
 
         public bool CorrectLink(Link targetPort)
@@ -144,7 +145,7 @@ namespace DLKJ
             }
         }
 
-
+        private Vector2 dir;
         public void OnMouseDown()
         {
             dragAble = true;
@@ -157,8 +158,7 @@ namespace DLKJ
             }
 
             dist = Camera.main.WorldToScreenPoint(transform.position);
-            mouseDownX = Input.mousePosition.x - dist.x;
-            mouseDownY = Input.mousePosition.y - dist.y;
+            dir = new Vector2(Input.mousePosition.x - dist.x, Input.mousePosition.y - dist.y);
         }
 
         public void OnMouseUp()
@@ -173,7 +173,7 @@ namespace DLKJ
             TriggerDetection(true);
         }
 
-        private float eulers= 0;
+        private float eulers = 0;
         public void OnMouseDrag()
         {
             if (dragAble && moveable)
@@ -184,7 +184,7 @@ namespace DLKJ
                     BroadcastMessage("InitiateDetection", ports[0].ID, SendMessageOptions.DontRequireReceiver);
                     TriggerDetection(false);
                 }
-               //transform.position = MyScreenToworld(Input.mousePosition, transform);
+                //transform.position = MyScreenToworld(Input.mousePosition, transform);
                 transform.position = ScreenToWorld();
 
                 if (Input.GetKeyDown(KeyCode.R))
@@ -220,7 +220,7 @@ namespace DLKJ
 
         Vector3 ScreenToWorld()
         {
-            Vector3 curPos = new Vector3(Input.mousePosition.x - mouseDownX, Input.mousePosition.y - mouseDownX, dist.z);
+            Vector3 curPos = new Vector3(Input.mousePosition.x - dir.x, Input.mousePosition.y - dir.y, dist.z);
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(curPos);
             worldPos = new Vector3(Mathf.Clamp(worldPos.x, SceneManager.GetInstance().min.x, SceneManager.GetInstance().max.x),
                                     Mathf.Clamp(worldPos.y, SceneManager.GetInstance().min.y, SceneManager.GetInstance().max.y),
@@ -235,7 +235,7 @@ namespace DLKJ
         //public Transform TAssambleObject;
         private IEnumerator MoveToTarget(TargetPort targetPort)
         {
-            tMark  = targetPort.selfPort.transform;
+            tMark = targetPort.selfPort.transform;
             mMark = targetPort.targetPort.transform;
             tMark.parent.transform.localRotation = Quaternion.identity;
             if (mMark.localRotation.z == -tMark.localRotation.z)
@@ -268,7 +268,7 @@ namespace DLKJ
                 yield return new WaitForSeconds(0.001f);
             }
         }
-        public void UpdateTriggerState(int itemID,int portID,bool isTrigger)
+        public void UpdateTriggerState(int itemID, int portID, bool isTrigger)
         {
             if (itemID != ID) return;
             for (int i = 0; i < ports.Count; i++)
@@ -276,7 +276,7 @@ namespace DLKJ
                 if (portID == ports[i].ID)
                 {
                     ports[i].SetTriggerState(isTrigger);
-                }             
+                }
             }
         }
 
