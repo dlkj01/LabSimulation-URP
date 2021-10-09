@@ -5,12 +5,20 @@ namespace DLKJ
 {
     public class MathTest : MonoBehaviour
     {
+        private void Start()
+        {
+            MathTool.Init();
+        }
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                Debug.Log(MathTool.µ»–ßΩÿ√Ê(100, 0.5f, 8.5f, 0.2f));
-            }
+            //if (Input.GetKeyDown(KeyCode.Alpha1))
+            //{
+            //    Debug.Log(MathTool.FZKZPP(0.2f, 0.4f, 0.5f));
+            //}
+            //if (Input.GetKeyDown(KeyCode.Alpha2))
+            //{
+            //    MathTool.Init();
+            //}
         }
     }
 }
