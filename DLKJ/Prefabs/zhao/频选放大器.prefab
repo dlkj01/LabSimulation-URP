@@ -780,6 +780,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
+  ItemName: 
 --- !u!1 &3444310844684856251
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,13 +903,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3702338579723679407}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.28401542, y: 0, z: 0, w: 0.95881975}
   m_LocalPosition: {x: 0.1559497, y: 0.024617793, z: -0.034308538}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4185786054272896374}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -33, y: 0, z: 0}
 --- !u!33 &4385413895517392020
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1635,6 +1636,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
+  ItemName: 
 --- !u!1 &6424486349110914554
 GameObject:
   m_ObjectHideFlags: 0
@@ -1808,6 +1810,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6427169177130965301}
+  - component: {fileID: 1875818827817789467}
   m_Layer: 0
   m_Name: Pointer
   m_TagString: Untagged
@@ -1822,14 +1825,33 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6427169177130965302}
-  m_LocalRotation: {x: -0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalRotation: {x: -0.36650118, y: 0, z: 0, w: 0.9304176}
   m_LocalPosition: {x: 0.1535, y: -0.0312, z: -0.1213}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1587701513759335892}
   m_Father: {fileID: 4185786054272896374}
   m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: -45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -43, y: 0, z: 0}
+--- !u!114 &1875818827817789467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6427169177130965302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9a90750aafdea147b13ef7032f93339, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentAngle: -43
+  rotateSpeed: 5
+  minValue: 0
+  maxValue: 100
+  minAngle: -43
+  maxAngle: 43
+  rotationType: 1
 --- !u!1 &6427169177373554476
 GameObject:
   m_ObjectHideFlags: 0
@@ -2701,6 +2723,9 @@ MonoBehaviour:
     EndMovePoint: 0
     StartMovePoint: 0
     StepLength: 0
+    StartAngle: 0
+    EndAngle: 0
+    currentAngle: 0
   - instrumentButton: {fileID: 6700768529746733617}
     conbinationList: []
     clickState: 1
@@ -2713,6 +2738,9 @@ MonoBehaviour:
     EndMovePoint: 0
     StartMovePoint: 0
     StepLength: 0
+    StartAngle: 0
+    EndAngle: 0
+    currentAngle: 0
   - instrumentButton: {fileID: 7481975236817150811}
     conbinationList: []
     clickState: 1
@@ -2725,6 +2753,9 @@ MonoBehaviour:
     EndMovePoint: 0
     StartMovePoint: 0
     StepLength: 0
+    StartAngle: 0
+    EndAngle: 0
+    currentAngle: 0
   - instrumentButton: {fileID: 8911597034805417940}
     conbinationList: []
     clickState: 1
@@ -2737,6 +2768,9 @@ MonoBehaviour:
     EndMovePoint: 0
     StartMovePoint: 0
     StepLength: 0
+    StartAngle: 0
+    EndAngle: 0
+    currentAngle: 0
   - instrumentButton: {fileID: 4540013262241815258}
     conbinationList: []
     clickState: 1
@@ -2749,6 +2783,9 @@ MonoBehaviour:
     EndMovePoint: 0
     StartMovePoint: 0
     StepLength: 0
+    StartAngle: 0
+    EndAngle: 0
+    currentAngle: 0
   - instrumentButton: {fileID: 5863905391799312110}
     conbinationList: []
     clickState: 1
@@ -2761,6 +2798,9 @@ MonoBehaviour:
     EndMovePoint: 0
     StartMovePoint: 0
     StepLength: 0
+    StartAngle: 0
+    EndAngle: 0
+    currentAngle: 0
   - instrumentButton: {fileID: 546082746835063672}
     conbinationList: []
     clickState: 1
@@ -2773,6 +2813,9 @@ MonoBehaviour:
     EndMovePoint: 0
     StartMovePoint: 0
     StepLength: 0
+    StartAngle: 0
+    EndAngle: 0
+    currentAngle: 0
   - instrumentButton: {fileID: 8861910854385574905}
     conbinationList: []
     clickState: 1
@@ -2785,6 +2828,9 @@ MonoBehaviour:
     EndMovePoint: 0
     StartMovePoint: 0
     StepLength: 0
+    StartAngle: 0
+    EndAngle: 0
+    currentAngle: 0
   - instrumentButton: {fileID: 6767552577049865971}
     conbinationList: []
     clickState: 1
@@ -2797,6 +2843,9 @@ MonoBehaviour:
     EndMovePoint: 0
     StartMovePoint: 0
     StepLength: 0
+    StartAngle: 0
+    EndAngle: 0
+    currentAngle: 0
   - instrumentButton: {fileID: 3741608910811344451}
     conbinationList: []
     clickState: 1
@@ -2809,6 +2858,9 @@ MonoBehaviour:
     EndMovePoint: 0
     StartMovePoint: 0
     StepLength: 0
+    StartAngle: 0
+    EndAngle: 0
+    currentAngle: 0
   - instrumentButton: {fileID: 5651818210982610795}
     conbinationList: []
     clickState: 1
@@ -2821,6 +2873,9 @@ MonoBehaviour:
     EndMovePoint: 0
     StartMovePoint: 0
     StepLength: 0
+    StartAngle: 0
+    EndAngle: 0
+    currentAngle: 0
   - instrumentButton: {fileID: 6608423717461449145}
     conbinationList: []
     clickState: 1
@@ -2833,6 +2888,9 @@ MonoBehaviour:
     EndMovePoint: 0
     StartMovePoint: 0
     StepLength: 0
+    StartAngle: 0
+    EndAngle: 0
+    currentAngle: 0
   - instrumentButton: {fileID: 5396985235336750185}
     conbinationList: []
     clickState: 1
@@ -2840,11 +2898,14 @@ MonoBehaviour:
     instrumentButtonType: 1
     rotary: 0
     rotatyDirection: 1
-    MaxValue: 100
-    MinValue: 0
+    MaxValue: 1000
+    MinValue: 10
     EndMovePoint: 0
     StartMovePoint: 0
-    StepLength: 100
+    StepLength: 70
+    StartAngle: -33
+    EndAngle: 38
+    currentAngle: -33
   - instrumentButton: {fileID: 6437791387953629520}
     conbinationList: []
     clickState: 1
@@ -2857,6 +2918,9 @@ MonoBehaviour:
     EndMovePoint: 0
     StartMovePoint: 0
     StepLength: 100
+    StartAngle: 0
+    EndAngle: 0
+    currentAngle: 0
   - instrumentButton: {fileID: 7353312473257479881}
     conbinationList: []
     clickState: 1
@@ -2869,6 +2933,9 @@ MonoBehaviour:
     EndMovePoint: 0
     StartMovePoint: 0
     StepLength: 100
+    StartAngle: 0
+    EndAngle: 0
+    currentAngle: 0
   - instrumentButton: {fileID: 5837766757628233727}
     conbinationList: []
     clickState: 1
@@ -2881,6 +2948,9 @@ MonoBehaviour:
     EndMovePoint: 0
     StartMovePoint: 0
     StepLength: 100
+    StartAngle: 0
+    EndAngle: 0
+    currentAngle: 0
 --- !u!65 &8876801840887813406
 BoxCollider:
   m_ObjectHideFlags: 0

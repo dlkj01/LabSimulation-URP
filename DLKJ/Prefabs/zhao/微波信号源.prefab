@@ -487,6 +487,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
+  ItemName: 
 --- !u!1 &3932528136504124155
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,13 +514,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3932528136504124155}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.28401542, y: 0, z: 0, w: 0.95881975}
   m_LocalPosition: {x: 0.15344347, y: -0.008380069, z: 0.0299}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 918422858357229598}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -33, y: 0, z: 0}
 --- !u!33 &805203819586708456
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -687,6 +688,9 @@ MonoBehaviour:
     EndMovePoint: 0
     StartMovePoint: 0
     StepLength: 100
+    StartAngle: 0
+    EndAngle: 0
+    currentAngle: 0
   - instrumentButton: {fileID: 1622630317215731366}
     conbinationList: []
     clickState: 1
@@ -699,6 +703,9 @@ MonoBehaviour:
     EndMovePoint: 0
     StartMovePoint: 0
     StepLength: 0
+    StartAngle: 0
+    EndAngle: 0
+    currentAngle: 0
   - instrumentButton: {fileID: 8466322375461474319}
     conbinationList: []
     clickState: 1
@@ -711,6 +718,9 @@ MonoBehaviour:
     EndMovePoint: 0
     StartMovePoint: 0
     StepLength: 1
+    StartAngle: 0
+    EndAngle: 0
+    currentAngle: 0
   - instrumentButton: {fileID: 7590066869274233023}
     conbinationList: []
     clickState: 1
@@ -718,11 +728,14 @@ MonoBehaviour:
     instrumentButtonType: 1
     rotary: 0
     rotatyDirection: 1
-    MaxValue: 100
-    MinValue: 0
+    MaxValue: 12.5
+    MinValue: 8.2
     EndMovePoint: 0
     StartMovePoint: 0
-    StepLength: 100
+    StepLength: 45
+    StartAngle: -33
+    EndAngle: 12
+    currentAngle: -33
 --- !u!65 &4249890044101196745
 BoxCollider:
   m_ObjectHideFlags: 0

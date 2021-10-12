@@ -2,54 +2,73 @@ using System;
 using UnityEngine;
 namespace DLKJ
 {
-    public static class MathTool
+    /// <summary>
+    /// 公式数据
+    /// </summary>
+    public struct FormulaData
     {
-        private const float j = 1;
+        public float A; /*= 10*///电压10mv-1000mv 初始化后不变
+        public float F; /*= 8.2f*///频率8.2-12.5  初始化后不变
+        public float δ;//控制衰减器取值[0,1] 初始化后不变
+        public float distanceZ;//z的位置距离三厘米测量线最后侧距离
+    }
+    public class MathTool
+    {
+        //   private const float j = 1;
         private const float a = 0.02286f;
-        private static float A = 10;//电压10mv-1000mv 初始化后不变
-        public static float F = 8.2f;//频率8.2-12.5  初始化后不变
-        private static float δ = 0;//控制衰减器取值[0,1] 初始化后不变
-        private static double β;//贝特
+        public static float A { get; set; } /*= 10*///电压10mv-1000mv 初始化后不变
+        public static float F { get; set; } /*= 8.2f*///频率8.2-12.5  初始化后不变
+        public static float δ { get; set; }//控制衰减器取值[0,1] 初始化后不变
+        public static float distanceZ { get; set; }//z的位置距离三厘米测量线最后侧距离
+        private static double EDKKBDLQβ;//二端口+可变断路器的贝特
         private static float X = 0;//取值范围[-200,200] 初始化后不变
         private static float R = 0;//取值范围[0,200] 初始化后不变
         private static float ZL = 0;//ZL=R+jX
 
-        public static void Init()
+        public static void Init(/*FormulaData data*/)
         {
+            //A = data.A;
+            //F = data.F;
+            //δ = data.δ;
+            //distanceZ = data.distanceZ;
             RandomDataInit();
         }
         public static void RandomDataInit()
         {
-            F = UnityEngine.Random.Range(8.2f, 12.5f);
-            A = UnityEngine.Random.Range(10f, 1000f);
-            δ = UnityEngine.Random.Range(0f, 1f); //Random(0.00f, 1.00f);
+            //  F = UnityEngine.Random.Range(8.2f, 12.5f);
+            //  A = UnityEngine.Random.Range(10f, 1000f);
+            //  δ = UnityEngine.Random.Range(0f, 1f); //Random(0.00f, 1.00f);
             X = UnityEngine.Random.Range(-200f, 200f);
             R = UnityEngine.Random.Range(0f, 200f);
             ZL = R + X;
-            β = Getβ();
-
             FA = UnityEngine.Random.Range(0f, 100f);
             FB = UnityEngine.Random.Range(0f, 100f);
             FC = UnityEngine.Random.Range(0f, 100f);
             FD = UnityEngine.Random.Range(0f, 1f);
+            Shan0 = UnityEngine.Random.Range(0, 2 * Mathf.PI);
+            RuDuanLuQi = UnityEngine.Random.Range(0.0024f, 0.0365f);
             ShanA = UnityEngine.Random.Range(0, 2 * Mathf.PI);
             ShanB = UnityEngine.Random.Range(0, 2 * Mathf.PI);
             ShanC = UnityEngine.Random.Range(0, 2 * Mathf.PI);
             ShanD = UnityEngine.Random.Range(0, 2 * Mathf.PI);
+            EDKKBDLQβ = GetEDKKBDLQβ();
         }
-
+        public static void Reset()
+        {
+            A = 0;
+            F = 0;
+            δ = 0;
+            distanceZ = 0;
+        }
         /// <summary>
         /// 公式一、(1)
         /// 三厘米测量线终端直接接短路板(不接二端口网络时)
         /// </summary>
-        /// <param name="A">电压[10-1000]</param>
-        /// <param name="δ">控制衰减器取值[0,1]</param>
-        /// <param name="f">频率范围[8.2,12.5]Ghz</param>
         /// <param name="z">当前测量位置与三厘米测量线最右端距离</param>
         /// <returns></returns>
         public static double SLMCLXZDDLB(float z)
         {
-            double U = δ * Math.Abs(A) * Math.Abs((Math.Sin(β * z)));
+            double U = δ * Math.Abs(A) * Math.Abs((Math.Sin(Getβ() * z)));
             return U;
         }
 
@@ -74,7 +93,7 @@ namespace DLKJ
         private static float ShanD;
         public static double 二端口网络S参数测量(float z)
         {
-            double β = MathTool.β;
+            double β = MathTool.Getβ();
             return 0;
         }
         #endregion
@@ -105,7 +124,7 @@ namespace DLKJ
         {
             double T1 = FA;
             double Shan1 = ShanA;
-            double U = δ * Math.Abs(A) * Math.Sqrt(1 + Math.Abs(Math.Pow(T1, 2)) + 2 * Math.Abs(T1) * Math.Cos(2 * β * z - Shan1));
+            double U = δ * Math.Abs(A) * Math.Sqrt(1 + Math.Abs(Math.Pow(T1, 2)) + 2 * Math.Abs(T1) * Math.Cos(2 * Getβ() * z - Shan1));
             return U;
         }
 
@@ -141,7 +160,7 @@ namespace DLKJ
         /// <returns></returns>
         private static double FuZaiZuLiangKangHengFormula(double resultT, double resultShan, float z)
         {
-            double U = δ * Math.Abs(A) * Math.Sqrt(1 + Math.Pow(Math.Abs(resultT), 2) + 2 * Math.Abs(resultT) * Math.Cos(2 * β * z - resultShan));
+            double U = δ * Math.Abs(A) * Math.Sqrt(1 + Math.Pow(Math.Abs(resultT), 2) + 2 * Math.Abs(resultT) * Math.Cos(2 * Getβ() * z - resultShan));
             return U;
         }
 
@@ -170,20 +189,60 @@ namespace DLKJ
 
 
 
-        //private static float 山0;
-        ///// <summary>
-        ///// 二端口可变短路器
-        ///// </summary>
-        ///// <returns></returns>
-        //public static double ErDuanKouKeBianDuanLuQi()
-        //{
+        private static float Shan0;
+        private static float RuDuanLuQi;
+        /// <summary>
+        /// 二端口可变短路器
+        /// </summary>
+        /// <param name="zd">可变断路器中波导长度</param>
+        /// <param name="z">连通的矩形波导长度</param>
+        /// <returns></returns>
+        public static double ErDuanKouKeBianDuanLuQi(float zd, float z)
+        {
+            return FuZaiZuLiangKangHengFormula(GetT1_EDKKBDLQ(zd), CalculateShan(GetTl_a_EDKKBDLQ(zd), GetTl_b_EDKKBDLQ(zd)), z); ;
+        }
 
-        //}
 
+        /// <summary>
+        /// 二端口可变断路器T1_a算法
+        /// </summary>
+        /// <returns></returns>
+        private static double GetTl_a_EDKKBDLQ(float zd)
+        {
+            double shanD = EDKKBDLQβ * zd + Shan0;
+            double addLeft = FA * Math.Cos(ShanA);
+            double topLeft = Math.Pow(FB, 2) * Math.Cos(2 * ShanB + shanD) * (1 - FC * Math.Cos(ShanC + shanD));
+            double topRight = Math.Pow(FB, 2) * FC * Math.Sin(2 * ShanB + shanD) * Math.Sin(ShanC + shanD);
+            double downLeft = Math.Pow((1 - FC * Math.Cos(ShanC + shanD)), 2);
+            double downRight = Math.Pow(FC, 2) * Math.Pow(Math.Sin(ShanC + shanD), 2);
+            return addLeft + (topLeft - topRight) / (downLeft + downRight);
+        }
+        /// <summary>
+        /// 二端口可变断路器T1_b算法
+        /// </summary>
+        /// <returns></returns>
+        private static double GetTl_b_EDKKBDLQ(float zd)
+        {
+            double shanD = EDKKBDLQβ * zd + Shan0;
+            double addLeft = FA * Math.Sin(ShanA);
+            double topLeft = Math.Pow(FB, 2) * Math.Sin(2 * ShanB + shanD) * (1 - FC * Math.Cos(ShanC + shanD));
+            double topRight = Math.Pow(FB, 2) * FC * Math.Cos(2 * ShanB + shanD) * Math.Sin(ShanC + shanD);
+            double downLeft = Math.Pow((1 - FC * Math.Cos(ShanC + shanD)), 2);
+            double downRight = Math.Pow(FC, 2) * Math.Pow(Math.Sin(ShanC + shanD), 2);
+            return addLeft + (topLeft + topRight) / (downLeft + downRight);
+        }
 
+        private static double GetT1_EDKKBDLQ(float zd)
+        {
+            return Math.Sqrt(Math.Pow(GetTl_a_EDKKBDLQ(zd), 2) + Math.Pow(GetTl_b_EDKKBDLQ(zd), 2));
+        }
 
-
-
+        private static double GetEDKKBDLQβ()
+        {
+            double ruc = 2 * a;
+            double β = 2 * Math.PI / RuDuanLuQi * Math.Sqrt(1 - RuDuanLuQi / ruc);
+            return β;
+        }
 
 
         /// <summary>
@@ -203,20 +262,20 @@ namespace DLKJ
         }
         private static double Yin_a(float l)
         {
-            double topLeft = R * (200 * (Math.Pow(R, 2) + Math.Pow(X, 2) + X * Math.Tan(β * l)));
-            double topRight = R * (200 * (Math.Pow(R, 2) + Math.Pow(X, 2) * Math.Tan(β * l - X) * Math.Tan(β * l)));
+            double topLeft = R * (200 * (Math.Pow(R, 2) + Math.Pow(X, 2) + X * Math.Tan(Getβ() * l)));
+            double topRight = R * (200 * (Math.Pow(R, 2) + Math.Pow(X, 2) * Math.Tan(Getβ() * l - X) * Math.Tan(Getβ() * l)));
             double Top = topLeft + topRight;
-            double down = Math.Pow((200 * (Math.Pow(R, 2) + Math.Pow(X, 2)) + X * Math.Tan(β * l)), 2) + Math.Pow(R, 2) * (Math.Pow(Math.Tan(β * l), 2));
+            double down = Math.Pow((200 * (Math.Pow(R, 2) + Math.Pow(X, 2)) + X * Math.Tan(Getβ() * l)), 2) + Math.Pow(R, 2) * (Math.Pow(Math.Tan(Getβ() * l), 2));
             return Top / down;
         }
 
         private static double Yin_b(float l, float d)
         {
-            double topLeft = (200 * (Math.Pow(R, 2) + Math.Pow(X, 2) + X * Math.Tan(β * l)));
-            double topRight = R * (200 * (Math.Pow(R, 2) + Math.Pow(X, 2) * Math.Tan(β * l - X) * Math.Tan(β * l)));
+            double topLeft = (200 * (Math.Pow(R, 2) + Math.Pow(X, 2) + X * Math.Tan(Getβ() * l)));
+            double topRight = R * (200 * (Math.Pow(R, 2) + Math.Pow(X, 2) * Math.Tan(Getβ() * l - X) * Math.Tan(Getβ() * l)));
             double Top = topLeft + topRight;
-            double down = Math.Pow((200 * (Math.Pow(R, 2) + Math.Pow(X, 2)) + X * Math.Tan(β * l)), 2) + Math.Pow(R, 2) * (Math.Pow(Math.Tan(β * l), 2));
-            return Top / down + Math.Tan(β * d);
+            double down = Math.Pow((200 * (Math.Pow(R, 2) + Math.Pow(X, 2)) + X * Math.Tan(Getβ() * l)), 2) + Math.Pow(R, 2) * (Math.Pow(Math.Tan(Getβ() * l), 2));
+            return Top / down + Math.Tan(Getβ() * d);
         }
 
         /// <summary>

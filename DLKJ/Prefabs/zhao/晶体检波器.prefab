@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1cf0a0508e0a4d349b0ff884958b45a0, type: 2}
+  - {fileID: 2100000, guid: decde5c3d49bcee46a3244f3a149f945, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -156,7 +156,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1cf0a0508e0a4d349b0ff884958b45a0, type: 2}
+  - {fileID: 2100000, guid: decde5c3d49bcee46a3244f3a149f945, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -252,7 +252,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1cf0a0508e0a4d349b0ff884958b45a0, type: 2}
+  - {fileID: 2100000, guid: decde5c3d49bcee46a3244f3a149f945, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -342,6 +342,7 @@ MonoBehaviour:
   libraryType: 2
   ports:
   - {fileID: 466683739413998691}
+  - {fileID: 8371688223682987384}
   linkConditions:
   - data:
       itemID: 3
@@ -397,6 +398,9 @@ MonoBehaviour:
     EndMovePoint: 0
     StartMovePoint: 0
     StepLength: 0
+    StartAngle: 0
+    EndAngle: 0
+    currentAngle: 0
   - instrumentButton: {fileID: 5203846356673954655}
     conbinationList: []
     clickState: 0
@@ -409,6 +413,9 @@ MonoBehaviour:
     EndMovePoint: 0
     StartMovePoint: 0
     StepLength: 0
+    StartAngle: 0
+    EndAngle: 0
+    currentAngle: 0
   - instrumentButton: {fileID: 6378198686851651384}
     conbinationList: []
     clickState: 0
@@ -421,6 +428,9 @@ MonoBehaviour:
     EndMovePoint: 0
     StartMovePoint: 0
     StepLength: 0
+    StartAngle: 0
+    EndAngle: 0
+    currentAngle: 0
   - instrumentButton: {fileID: 5303789719066904607}
     conbinationList: []
     clickState: 0
@@ -433,6 +443,9 @@ MonoBehaviour:
     EndMovePoint: 0
     StartMovePoint: 0
     StepLength: 0
+    StartAngle: 0
+    EndAngle: 0
+    currentAngle: 0
   - instrumentButton: {fileID: 981179643771979906}
     conbinationList: []
     clickState: 0
@@ -445,6 +458,9 @@ MonoBehaviour:
     EndMovePoint: 0
     StartMovePoint: 0
     StepLength: 0
+    StartAngle: 0
+    EndAngle: 0
+    currentAngle: 0
 --- !u!1 &5442965496475986501
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,8 +799,9 @@ GameObject:
   - component: {fileID: 804146672374896338}
   - component: {fileID: 1336433829274557358}
   - component: {fileID: 2236338892373258016}
+  - component: {fileID: 8371688223682987384}
   m_Layer: 0
-  m_Name: "\u5BF9\u8C61015"
+  m_Name: Port2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -831,7 +848,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1cf0a0508e0a4d349b0ff884958b45a0, type: 2}
+  - {fileID: 2100000, guid: decde5c3d49bcee46a3244f3a149f945, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -867,6 +884,27 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2434244368701526625, guid: 69c78a7864a9229438302925c3147bf1, type: 3}
+--- !u!114 &8371688223682987384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6767076807811751652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 052523ce2510adc448b2463175d0d955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dragAble: 0
+  ID: -1
+  scope: 0.02
+  moveSpeed: 1
+  portCollider: {fileID: 2236338892373258016}
+  offset: {x: 0, y: 0, z: 0}
+  meshRenderer: {fileID: 0}
+  blidingObject: {fileID: 0}
+  ItemName: 
 --- !u!1 &6815062334223723979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,6 +1172,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
+  ItemName: 
 --- !u!64 &6178728787518737448
 MeshCollider:
   m_ObjectHideFlags: 0

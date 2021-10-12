@@ -62,6 +62,8 @@ MonoBehaviour:
     - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
     - {fileID: 1501026121586326834, guid: 3b26854f5e5bfc143bc00b3785ba3443, type: 3}
     - {fileID: 3991816612479598473, guid: 2e3ee03a007b3f64ea48e50730084565, type: 3}
+    - {fileID: 2541731738071094316, guid: 4765c982d46142d4c8ec4441a4bc5460, type: 3}
+    - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
     steps:
     - ID: -1
       points: 10

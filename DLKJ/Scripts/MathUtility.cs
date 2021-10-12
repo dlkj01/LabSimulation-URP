@@ -22,14 +22,26 @@ namespace DLKJ
             {
                 return (int)tempInstrumentBtn.clickState;
             }
+            else if (tempInstrumentBtn.instrumentButtonType == InstrumentButton.InstrumentButtonType.Rotary)
+            {
+                return (tempInstrumentBtn.MinValue + (tempInstrumentBtn.MaxValue - tempInstrumentBtn.MinValue) / (tempInstrumentBtn.EndAngle - tempInstrumentBtn.StartAngle) * (tempInstrumentBtn.currentAngle - tempInstrumentBtn.StartAngle));
+            }
             else//如果是操作旋钮则返回当前步长所对应的值
             {
-                return (tempInstrumentBtn.MinValue + (tempInstrumentBtn.MaxValue - tempInstrumentBtn.MinValue) / tempInstrumentBtn.StepLength * tempInstrumentBtn.rotary);
+                return (tempInstrumentBtn.MinValue + (tempInstrumentBtn.MaxValue - tempInstrumentBtn.MinValue) / tempInstrumentBtn.StepLength /** tempInstrumentBtn.rotary*/);
             }
 
         }
 
-
+        /// <summary>
+        /// 获取三厘米测量线尺子距离开始的长度
+        /// </summary>
+        /// <returns></returns>
+        public static float GetSanLiMiCeLiangXianDistance(InstrumentButton tempInstrumentBtn)
+        {
+            float length = GetCurrentValue(tempInstrumentBtn);
+            return length - tempInstrumentBtn.MinValue;
+        }
 
 
 
@@ -46,13 +58,16 @@ namespace DLKJ
         /// <returns>The combined friction value.</returns>
         public static float FrictionValue(PhysicMaterial material1, PhysicMaterial material2, bool dynamicFriction)
         {
-            if (material1.frictionCombine == PhysicMaterialCombine.Maximum || material2.frictionCombine == PhysicMaterialCombine.Maximum) {
+            if (material1.frictionCombine == PhysicMaterialCombine.Maximum || material2.frictionCombine == PhysicMaterialCombine.Maximum)
+            {
                 return dynamicFriction ? Mathf.Max(material1.dynamicFriction, material2.dynamicFriction) : Mathf.Max(material1.staticFriction, material2.staticFriction);
             }
-            if (material1.frictionCombine == PhysicMaterialCombine.Minimum || material2.frictionCombine == PhysicMaterialCombine.Minimum) {
+            if (material1.frictionCombine == PhysicMaterialCombine.Minimum || material2.frictionCombine == PhysicMaterialCombine.Minimum)
+            {
                 return dynamicFriction ? Mathf.Min(material1.dynamicFriction, material2.dynamicFriction) : Mathf.Min(material1.staticFriction, material2.staticFriction);
             }
-            if (material1.frictionCombine == PhysicMaterialCombine.Multiply || material2.frictionCombine == PhysicMaterialCombine.Multiply) {
+            if (material1.frictionCombine == PhysicMaterialCombine.Multiply || material2.frictionCombine == PhysicMaterialCombine.Multiply)
+            {
                 return dynamicFriction ? (material1.dynamicFriction * material2.dynamicFriction) : (material1.staticFriction * material2.staticFriction);
             }
             return dynamicFriction ? ((material1.dynamicFriction + material2.dynamicFriction) / 2) : ((material1.staticFriction + material2.staticFriction) / 2); // Average combine.
@@ -66,13 +81,16 @@ namespace DLKJ
         /// <returns>The combined bounciness value.</returns>
         public static float BouncinessValue(PhysicMaterial material1, PhysicMaterial material2)
         {
-            if (material1.bounceCombine == PhysicMaterialCombine.Maximum || material2.bounceCombine == PhysicMaterialCombine.Maximum) {
+            if (material1.bounceCombine == PhysicMaterialCombine.Maximum || material2.bounceCombine == PhysicMaterialCombine.Maximum)
+            {
                 return Mathf.Max(material1.bounciness, material2.bounciness);
             }
-            if (material1.bounceCombine == PhysicMaterialCombine.Minimum || material2.bounceCombine == PhysicMaterialCombine.Minimum) {
+            if (material1.bounceCombine == PhysicMaterialCombine.Minimum || material2.bounceCombine == PhysicMaterialCombine.Minimum)
+            {
                 return Mathf.Min(material1.bounciness, material2.bounciness);
             }
-            if (material1.bounceCombine == PhysicMaterialCombine.Multiply || material2.bounceCombine == PhysicMaterialCombine.Multiply) {
+            if (material1.bounceCombine == PhysicMaterialCombine.Multiply || material2.bounceCombine == PhysicMaterialCombine.Multiply)
+            {
                 return (material1.bounciness * material2.bounciness);
             }
             return (material1.bounciness + material2.bounciness) / 2; // Average combine.
@@ -189,11 +207,16 @@ namespace DLKJ
         public static Vector3 CapsuleColliderDirection(CapsuleCollider capsuleCollider)
         {
             Vector3 direction;
-            if (capsuleCollider.direction == 1) { // Y-Axis.
+            if (capsuleCollider.direction == 1)
+            { // Y-Axis.
                 direction = Vector3.up;
-            } else if (capsuleCollider.direction == 2) { // Z-Axis.
+            }
+            else if (capsuleCollider.direction == 2)
+            { // Z-Axis.
                 direction = Vector3.forward;
-            } else { // X-Axis.
+            }
+            else
+            { // X-Axis.
                 direction = Vector3.right;
             }
             return direction;
@@ -206,10 +229,12 @@ namespace DLKJ
         /// <returns>An angle between -180 and 180 degrees.</returns>
         public static float ClampInnerAngle(float angle)
         {
-            if (angle < -180) {
+            if (angle < -180)
+            {
                 angle += 360;
             }
-            if (angle > 180) {
+            if (angle > 180)
+            {
                 angle -= 360;
             }
             return angle;
@@ -222,10 +247,12 @@ namespace DLKJ
         /// <returns>An angle between 0 and 360 degrees.</returns>
         public static float ClampAngle(float angle)
         {
-            if (angle < 0) {
+            if (angle < 0)
+            {
                 angle += 360;
             }
-            if (angle > 360) {
+            if (angle > 360)
+            {
                 angle -= 360;
             }
             return angle;
@@ -242,13 +269,16 @@ namespace DLKJ
         {
             var minDiff = ClampInnerAngle(min - angle);
             var maxDiff = ClampInnerAngle(angle - max);
-            if (Mathf.Abs(minDiff) < Mathf.Abs(maxDiff)) {
-                if (minDiff <= 0) {
+            if (Mathf.Abs(minDiff) < Mathf.Abs(maxDiff))
+            {
+                if (minDiff <= 0)
+                {
                     return angle;
                 }
                 return min;
             }
-            if (maxDiff <= 0) {
+            if (maxDiff <= 0)
+            {
                 return angle;
             }
             return max;
@@ -266,13 +296,16 @@ namespace DLKJ
         {
             var minDiff = ClampInnerAngle(min - angle);
             var maxDiff = ClampInnerAngle(angle - max);
-            if (Mathf.Abs(minDiff) < Mathf.Abs(maxDiff)) {
-                if (ClampInnerAngle(min - (angle + deltaAngle)) <= 0) {
+            if (Mathf.Abs(minDiff) < Mathf.Abs(maxDiff))
+            {
+                if (ClampInnerAngle(min - (angle + deltaAngle)) <= 0)
+                {
                     return (angle + deltaAngle);
                 }
                 return min;
             }
-            if (ClampInnerAngle((angle + deltaAngle) - max) <= 0) {
+            if (ClampInnerAngle((angle + deltaAngle) - max) <= 0)
+            {
                 return (angle + deltaAngle);
             }
             return max;
@@ -309,7 +342,8 @@ namespace DLKJ
         public static Matrix4x4 ApplyRotationToChildMatrices(Transform current, Transform root, Quaternion deltaRotation)
         {
             // Recursively multiply the matrices as long as the current Transform is not at the root.
-            if (current != root) {
+            if (current != root)
+            {
                 return ApplyRotationToChildMatrices(current.parent, root, deltaRotation) * Matrix4x4.TRS(current.localPosition, current.localRotation, current.localScale);
             }
             // At the root of the tree, apply the delta to the rotation and return the matrix.
@@ -328,9 +362,12 @@ namespace DLKJ
         /// <returns>The closest point on the collider.</returns>
         public static Vector3 ClosestPointOnCollider(Transform transform, Collider collider, Vector3 point, Vector3 moveDirection, bool sphereCheck, bool lowerPoint)
         {
-            if (collider is CapsuleCollider) {
+            if (collider is CapsuleCollider)
+            {
                 return ClosestPointOnCapsule(transform, collider as CapsuleCollider, point, moveDirection, sphereCheck, lowerPoint);
-            } else { // SphereCollider.
+            }
+            else
+            { // SphereCollider.
                 var sphereCollider = collider as SphereCollider;
                 return ClosestPointOnSphere(transform, point, collider.transform.TransformPoint(sphereCollider.center), sphereCollider.radius * ColliderRadiusMultiplier(collider), sphereCheck, lowerPoint);
             }
@@ -349,11 +386,16 @@ namespace DLKJ
         private static Vector3 ClosestPointOnCapsule(Transform transform, CapsuleCollider capsuleCollider, Vector3 point, Vector3 moveDirection, bool sphereCheck, bool lowerPoint)
         {
             Vector3 capsuleDirection;
-            if (capsuleCollider.direction == 1) { // Y-Axis.
+            if (capsuleCollider.direction == 1)
+            { // Y-Axis.
                 capsuleDirection = capsuleCollider.transform.up;
-            } else if (capsuleCollider.direction == 2) { // Z-Axis.
+            }
+            else if (capsuleCollider.direction == 2)
+            { // Z-Axis.
                 capsuleDirection = capsuleCollider.transform.forward;
-            } else { // X-Axis.
+            }
+            else
+            { // X-Axis.
                 capsuleDirection = capsuleCollider.transform.right;
             }
             var heightMultiplier = CapsuleColliderHeightMultiplier(capsuleCollider);
@@ -371,24 +413,31 @@ namespace DLKJ
             var pointStartDirection = point - start;
             var endStartDirection = end - start;
             var segment = (Vector3.Dot(pointStartDirection, endStartDirection) / Vector3.Dot(endStartDirection, endStartDirection));
-            if (segment >= 0 && segment <= 1) { // On cylinder.
+            if (segment >= 0 && segment <= 1)
+            { // On cylinder.
                 // If the point is on the segment then the collision point is within the collider.
                 var closestPoint = start + segment * endStartDirection;
                 var pointDirection = (point - closestPoint).normalized * capsuleCollider.radius * radiusMultiplier;
-                if (lowerPoint) {
+                if (lowerPoint)
+                {
                     // If the direction is above the collider then inverse the direction. This will prevent the closest point being on top of the collider when it should be on the bottom.
                     var localCylinderDirection = transform.InverseTransformDirection(pointDirection);
-                    if (localCylinderDirection.y > 0) {
+                    if (localCylinderDirection.y > 0)
+                    {
                         localCylinderDirection.y *= -1;
                         pointDirection = transform.TransformDirection(localCylinderDirection);
                     }
                 }
                 return closestPoint + pointDirection;
-            } else { // On sphere.
-                if (lowerPoint) {
+            }
+            else
+            { // On sphere.
+                if (lowerPoint)
+                {
                     // If the direction is above the collider then inverse the direction. This will prevent the closest point being on top of the collider when it should be on the bottom.
                     var localHitDirection = transform.InverseTransformDirection(hitDirection);
-                    if (localHitDirection.y > 0) {
+                    if (localHitDirection.y > 0)
+                    {
                         localHitDirection.y *= -1;
                         hitDirection = transform.TransformDirection(localHitDirection);
                     }
@@ -412,26 +461,34 @@ namespace DLKJ
         {
             var position = Vector3.zero;
             var localDirection = InverseTransformPoint(sphereCenter, transform.rotation, point);
-            if (sphereCheck || localDirection.y > radius) {
+            if (sphereCheck || localDirection.y > radius)
+            {
                 // Use the standard closest point on a sphere algorithm.
                 var direction = (point - sphereCenter).normalized;
-                if (lowerPoint) {
+                if (lowerPoint)
+                {
                     // If the direction is above the collider then inverse the direction. This will prevent the closest point being on top of the collider when it should be on the bottom.
                     var localSphereDirection = transform.InverseTransformDirection(direction);
-                    if (localSphereDirection.y > 0) {
+                    if (localSphereDirection.y > 0)
+                    {
                         localSphereDirection.y *= -1;
                         direction = transform.TransformDirection(localSphereDirection);
                     }
                 }
                 position = sphereCenter + (direction * radius);
-            } else {
+            }
+            else
+            {
                 // Use the Pythagorean theorem to determine the point. This won't return the closest point but it will return the point that the collider should adjust to.
                 // Ignore the local y value because the Pythagorean theorem is used to determine the y position.
                 localDirection.y = 0;
                 var magnitude = localDirection.magnitude;
-                if (magnitude < radius) {
+                if (magnitude < radius)
+                {
                     position = sphereCenter - transform.up * Mathf.Sqrt((radius * radius) - (magnitude * magnitude));
-                } else {
+                }
+                else
+                {
                     position = sphereCenter - transform.up * radius;
                 }
             }
@@ -448,14 +505,18 @@ namespace DLKJ
         {
             // Use the cached transform for quick lookup.
             Transform transform;
-            if (!m_ColliderTransformMap.TryGetValue(capsuleCollider, out transform)) {
+            if (!m_ColliderTransformMap.TryGetValue(capsuleCollider, out transform))
+            {
                 transform = capsuleCollider.transform;
                 m_ColliderTransformMap.Add(capsuleCollider, transform);
             }
 
-            if (capsuleCollider.direction == 1) { // Y-axis.
+            if (capsuleCollider.direction == 1)
+            { // Y-axis.
                 return transform.lossyScale.y;
-            } else if (capsuleCollider.direction == 2) { // Z-axis.
+            }
+            else if (capsuleCollider.direction == 2)
+            { // Z-axis.
                 return transform.lossyScale.z;
             }
             return transform.lossyScale.x;
@@ -470,21 +531,28 @@ namespace DLKJ
         {
             // Use the cached transform for quick lookup.
             Transform transform;
-            if (!m_ColliderTransformMap.TryGetValue(collider, out transform)) {
+            if (!m_ColliderTransformMap.TryGetValue(collider, out transform))
+            {
                 transform = collider.transform;
                 m_ColliderTransformMap.Add(collider, transform);
             }
 
             var lossyScale = transform.lossyScale;
-            if (collider is CapsuleCollider) {
+            if (collider is CapsuleCollider)
+            {
                 var capsuleCollider = collider as CapsuleCollider;
-                if (capsuleCollider.direction == 1) { // Y-axis.
+                if (capsuleCollider.direction == 1)
+                { // Y-axis.
                     return Mathf.Max(lossyScale.x, lossyScale.z);
-                } else if (capsuleCollider.direction == 2) { // Z-axis.
+                }
+                else if (capsuleCollider.direction == 2)
+                { // Z-axis.
                     return Mathf.Max(lossyScale.x, lossyScale.y);
                 }
                 return Mathf.Max(lossyScale.y, lossyScale.z);
-            } else { // SphereCollider.
+            }
+            else
+            { // SphereCollider.
                 return Mathf.Max(lossyScale.x, Mathf.Max(lossyScale.y, lossyScale.z));
             }
         }

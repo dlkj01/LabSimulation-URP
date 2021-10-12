@@ -184,9 +184,12 @@ MonoBehaviour:
     rotatyDirection: 1
     MaxValue: 100
     MinValue: 0
-    EndMovePoint: 0.078
+    EndMovePoint: 0.0787
     StartMovePoint: 0
     StepLength: 100
+    StartAngle: 90
+    EndAngle: 414
+    currentAngle: 90
 --- !u!65 &1321811347792619668
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -198,7 +201,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.0456065, y: 0.046152055, z: 0.17347752}
+  m_Size: {x: 0.031406537, y: 0.03369209, z: 0.17347752}
   m_Center: {x: -0.0018993748, y: 0.0015437901, z: -0.029577516}
 --- !u!1 &2850232029905219042
 GameObject:
@@ -308,13 +311,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4923478521572925816}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2860940328171006926}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!33 &794155566823364967
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -590,3 +593,4 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
+  ItemName: 

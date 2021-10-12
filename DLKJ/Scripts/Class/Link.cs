@@ -26,9 +26,10 @@ namespace DLKJ
         private Vector3 dist;
         private float mouseDownX;
         private float mouseDownY;
-
+        [HideInInspector] public string ItemName;
         private void Awake()
         {
+            ItemName = GetComponentInParent<Item>().itemName;
             if (portCollider == null) portCollider = transform.GetComponent<MeshCollider>();
             if (meshRenderer == null) meshRenderer = transform.GetComponent<MeshRenderer>();
         }

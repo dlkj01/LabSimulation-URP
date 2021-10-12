@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using static DLKJ.InstrumentAction.InstrumentButton;
+
 namespace DLKJ
 {
     public partial class InstrumentAction : MonoBehaviour
     {
         [Header("Pointer Settings")]
-        public Transform pointer;
-
+        //  public Transform pointer;
+        [HideInInspector] public Pointer pointer;//指针
         [Header("Power Material")]
         [SerializeField] Material powerMaterial;
         [SerializeField] Color onColor;
@@ -74,20 +76,20 @@ namespace DLKJ
         {
             if (pointer != null)
             {
-                switch (rotationType)
-                {
-                    case RotationType.Y_AxisRotation:
-                        pointer.localRotation = Quaternion.Lerp(pointer.localRotation, Quaternion.Euler(Vector3.up * (ReturnAngle(StepLength) % 360)), Time.deltaTime * RotationSpeed);
-                        break;
-                    case RotationType.X_AxisRotation:
-                        pointer.localRotation = Quaternion.Lerp(pointer.localRotation, Quaternion.Euler(Vector3.right * (ReturnAngle(StepLength) % 360)), Time.deltaTime * RotationSpeed);
-                        break;
-                    case RotationType.Z_AxisRotation:
-                        pointer.localRotation = Quaternion.Lerp(pointer.localRotation, Quaternion.Euler(Vector3.forward * (ReturnAngle(StepLength) % 360)), Time.deltaTime * RotationSpeed);
-                        break;
-                    default:
-                        break;
-                }
+                //switch (rotationType)
+                //{
+                //    case RotationType.Y_AxisRotation:
+                //        pointer.localRotation = Quaternion.Lerp(pointer.localRotation, Quaternion.Euler(Vector3.up * (ReturnAngle(StepLength) % 360)), Time.deltaTime * RotationSpeed);
+                //        break;
+                //    case RotationType.X_AxisRotation:
+                //        pointer.localRotation = Quaternion.Lerp(pointer.localRotation, Quaternion.Euler(Vector3.right * (ReturnAngle(StepLength) % 360)), Time.deltaTime * RotationSpeed);
+                //        break;
+                //    case RotationType.Z_AxisRotation:
+                //        pointer.localRotation = Quaternion.Lerp(pointer.localRotation, Quaternion.Euler(Vector3.forward * (ReturnAngle(StepLength) % 360)), Time.deltaTime * RotationSpeed);
+                //        break;
+                //    default:
+                //        break;
+                //}
             }
         }
 
@@ -101,7 +103,24 @@ namespace DLKJ
             for (int i = 0; i < instrumentButton.Count; i++)
             {
                 instrumentButton[i].OnMouseButtonClickEvent += instrumentButtonFunc;
+                ///初始化角度
+                //switch (instrumentButton[i].btnRotationType)
+                //{
+                //    case BtnRotationType.X_AxisRotation:
+                //        instrumentButton[i].rotary = instrumentButton[i].instrumentButton.localEulerAngles.x;
+                //        break;
+                //    case BtnRotationType.Y_AxisRotation:
+                //        instrumentButton[i].rotary = instrumentButton[i].instrumentButton.localEulerAngles.y;
+                //        break;
+                //    case BtnRotationType.Z_AxisRotation:
+                //        instrumentButton[i].rotary = instrumentButton[i].instrumentButton.localEulerAngles.z;
+                //        break;
+                //    default:
+                //        break;
+                //}
+
             }
+            pointer = GetComponentInChildren<Pointer>();
         }
 
         /// <summary>
@@ -127,18 +146,28 @@ namespace DLKJ
                             if (MathUtility.GetCurrentValue(tempInstrumentBtn) == 0)
                             {
                                 powerMaterial.color = onColor;
+                                MathTest.Instance.FormulaInit();
                             }
                             else
                             {
                                 powerMaterial.color = offColor;
+                                MathTest.Instance.Active(false);
+                                if (pointer != null)
+                                    pointer.SetAngle(0);
+
                             }
                         }
+
                         break;
                     case "ElectricCurrentBtn":
                         break;
                     case "VoltageBtn":
                         break;
                     case "FrequencyBtn":
+                        //给频率赋值
+                        MathTool.F = MathUtility.GetCurrentValue(tempInstrumentBtn);
+                        //  MathTool.F = MathUtility.GetCurrentValue(tempInstrumentBtn);
+                        Debug.Log(MathTool.F);
                         break;
                     #endregion
                     #region 频选放大器
@@ -177,6 +206,8 @@ namespace DLKJ
                         }
                         break;
                     case "RotaryBtnVoltage":
+                        //给电压赋值
+                        MathTool.A = MathUtility.GetCurrentValue(tempInstrumentBtn);
                         //SetStepLength(instrumentButton.Find(x => x.instrumentButton.name == "RotaryBtnVoltage") == null ? 0 : instrumentButton.Find(x => x.instrumentButton.name == "RotaryBtnVoltage").rotary);
                         break;
                     case "RotaryBtnFrequency":
@@ -189,6 +220,7 @@ namespace DLKJ
                     #region 三厘米测量线
                     case "FrequencySelectKnob":
                         Debug.Log("三厘米测量线 游标");
+                        MathTool.distanceZ = MathUtility.GetSanLiMiCeLiangXianDistance(tempInstrumentBtn);
                         ToggleTheKnobToMoveTheCursor(tempInstrumentBtn);
                         break;
                     #endregion
@@ -207,6 +239,7 @@ namespace DLKJ
                     #region 可变衰减器
                     case "Kebianshaijianqi":
                         Debug.Log("可变衰减器 旋钮");
+                        MathTool.δ = MathUtility.GetCurrentValue(tempInstrumentBtn);
                         VariableAttenuatorRatary(tempInstrumentBtn);
                         break;
                     #endregion
@@ -250,9 +283,19 @@ namespace DLKJ
         {
             if (tempInstrumentBtn.conbinationList.Count > 0)
             {
-                float offset = tempInstrumentBtn.rotary * GetPerStepMoveDistance(tempInstrumentBtn);
+                float offset = GetPerStepMoveDistance(tempInstrumentBtn);
                 Transform tempTransform = tempInstrumentBtn.conbinationList.Find(x => x.name == "Body");
-                tempTransform.localPosition = new Vector3(tempInstrumentBtn.StartMovePoint + offset, tempTransform.localPosition.y, tempTransform.localPosition.z);
+                if (tempTransform.localPosition.x + offset > tempInstrumentBtn.StartMovePoint)
+                {
+                    tempTransform.localPosition = new Vector3(tempInstrumentBtn.StartMovePoint, tempTransform.localPosition.y, tempTransform.localPosition.z);
+                    return;
+                }
+                if (tempTransform.localPosition.x + offset < tempInstrumentBtn.EndMovePoint)
+                {
+                    tempTransform.localPosition = new Vector3(tempInstrumentBtn.EndMovePoint, tempTransform.localPosition.y, tempTransform.localPosition.z);
+                    return;
+                }
+                tempTransform.localPosition = new Vector3(tempTransform.localPosition.x + offset, tempTransform.localPosition.y, tempTransform.localPosition.z);
             }
         }
 
@@ -261,9 +304,19 @@ namespace DLKJ
         {
             if (tempInstrumentBtn.conbinationList.Count > 0)
             {
-                float offset = tempInstrumentBtn.rotary * GetPerStepMoveDistance(tempInstrumentBtn);
+                float offset = /*tempInstrumentBtn.rotary * */GetPerStepMoveDistance(tempInstrumentBtn);
                 Transform tempTransform = tempInstrumentBtn.conbinationList.Find(x => x.name == "PPLDGear");
-                tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempInstrumentBtn.StartMovePoint + offset, tempTransform.localPosition.z);
+                if (tempTransform.localPosition.z + offset > tempInstrumentBtn.EndMovePoint)
+                {
+                    tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempTransform.localPosition.y, tempInstrumentBtn.EndMovePoint);
+                    return;
+                }
+                if (tempTransform.localPosition.z + offset < tempInstrumentBtn.StartMovePoint)
+                {
+                    tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempTransform.localPosition.y, tempInstrumentBtn.StartMovePoint);
+                    return;
+                }
+                tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempTransform.localPosition.y, tempTransform.localPosition.z + offset);
             }
         }
 
@@ -275,10 +328,19 @@ namespace DLKJ
         {
             if (tempInstrumentBtn.conbinationList.Count > 0)
             {
-                float offset = tempInstrumentBtn.rotary * GetPerStepMoveDistance(tempInstrumentBtn);
-                Debug.Log(offset);
                 Transform tempTransform = tempInstrumentBtn.conbinationList.Find(x => x.name == "Kebianshaijianqi");
-                tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempInstrumentBtn.StartMovePoint + offset, tempTransform.localPosition.z);
+                float offset = GetPerStepMoveDistance(tempInstrumentBtn);
+                if (tempTransform.localPosition.y + offset > tempInstrumentBtn.EndMovePoint)
+                {
+                    tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempInstrumentBtn.EndMovePoint, tempTransform.localPosition.z);
+                    return;
+                }
+                if (tempTransform.localPosition.y + offset < tempInstrumentBtn.StartMovePoint)
+                {
+                    tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempInstrumentBtn.StartMovePoint, tempTransform.localPosition.z);
+                    return;
+                }
+                tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempTransform.localPosition.y + offset, tempTransform.localPosition.z);
             }
         }
         #endregion
@@ -310,7 +372,12 @@ namespace DLKJ
         /// <returns></returns>
         private float GetPerStepMoveDistance(InstrumentButton tempInstrumentBtn)
         {
-            return (tempInstrumentBtn.EndMovePoint - tempInstrumentBtn.StartMovePoint) / tempInstrumentBtn.StepLength;
+            float result = (tempInstrumentBtn.EndMovePoint - tempInstrumentBtn.StartMovePoint) / tempInstrumentBtn.StepLength;
+            if (Input.GetKey(KeyCode.LeftControl))
+            {
+                result = -result;
+            }
+            return result;
         }
 
 
@@ -320,10 +387,20 @@ namespace DLKJ
             if (tempInstrumentBtn.conbinationList.Count > 0)
             {
                 //拿到旋钮 移动刻度值
-                float offset = tempInstrumentBtn.rotary * GetPerStepMoveDistance(tempInstrumentBtn);
-                Debug.Log(offset);
+                float offset = /*tempInstrumentBtn.rotary **/ GetPerStepMoveDistance(tempInstrumentBtn);
                 Transform tempTransform = tempInstrumentBtn.conbinationList.Find(x => x.name == "Cursor");
-                tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempTransform.localPosition.y, tempInstrumentBtn.StartMovePoint + offset);
+                if (tempTransform.localPosition.z + offset < tempInstrumentBtn.EndMovePoint)
+                {
+                    tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempTransform.localPosition.y, tempInstrumentBtn.EndMovePoint);
+                    return;
+                }
+                if (tempTransform.localPosition.z + offset > tempInstrumentBtn.StartMovePoint)
+                {
+                    tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempTransform.localPosition.y, tempInstrumentBtn.StartMovePoint);
+                    return;
+                }
+                tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempTransform.localPosition.y, tempTransform.localPosition.z + offset);
+
             }
         }
 
@@ -333,10 +410,19 @@ namespace DLKJ
         {
             if (tempInstrumentBtn.conbinationList.Count > 0)
             {
-                float offset = tempInstrumentBtn.rotary * GetPerStepMoveDistance(tempInstrumentBtn);
-                Debug.Log(offset);
+                float offset = GetPerStepMoveDistance(tempInstrumentBtn);
                 Transform tempTransform = tempInstrumentBtn.conbinationList.Find(x => x.name == "kebianduanluqi4");
-                tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempTransform.localPosition.y, tempInstrumentBtn.StartMovePoint + offset);
+                if (tempTransform.localPosition.z + offset > tempInstrumentBtn.EndMovePoint)
+                {
+                    tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempTransform.localPosition.y, tempInstrumentBtn.EndMovePoint);
+                    return;
+                }
+                if (tempTransform.localPosition.z + offset < tempInstrumentBtn.StartMovePoint)
+                {
+                    tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempTransform.localPosition.y, tempInstrumentBtn.StartMovePoint);
+                    return;
+                }
+                tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempTransform.localPosition.y, tempTransform.localPosition.z + offset);
             }
 
         }
@@ -349,7 +435,11 @@ namespace DLKJ
             PointerRotate();
         }
 
-
+        private void Update()
+        {
+            if (pointer != null)
+                pointer.PointerRotate();
+        }
 
 
 

@@ -36,6 +36,8 @@ namespace DLKJ
         private float mouseDownY;
 
         private BoxCollider boxCollider;
+
+        [HideInInspector] private List<string> LinkNames;//连接着的设备
         private void Awake()
         {
             boxCollider = transform.GetComponent<BoxCollider>();
@@ -88,8 +90,8 @@ namespace DLKJ
                 transform.Translate(moveVector * 1 * Time.deltaTime, Space.World);
                 yield return new WaitForFixedUpdate();
             }
-            SetDragable(true);
 
+            SetDragable(true);
             if (CorrectLink(target.targetPort))  //检查连接的是否是正确目标的端口
             {
                 linkPort = target.targetPort;
@@ -331,6 +333,5 @@ namespace DLKJ
             }
             return ports[0];
         }
-
     }
 }

@@ -62,13 +62,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 454329408307170163}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.86602545, z: 0, w: 0.49999994}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8715331600549341241}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 120, z: 0}
 --- !u!33 &5540434562350855521
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -236,6 +236,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
+  ItemName: 
 --- !u!64 &4124593957168285602
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -319,30 +320,36 @@ MonoBehaviour:
   instrumentButton:
   - instrumentButton: {fileID: 9177283942144516176}
     conbinationList:
-    - {fileID: 0}
+    - {fileID: 9177283942144516176}
     clickState: 0
-    btnRotationType: 0
+    btnRotationType: 2
     instrumentButtonType: 1
     rotary: 0
     rotatyDirection: 1
     MaxValue: 100
     MinValue: 0
-    EndMovePoint: 0.006
-    StartMovePoint: 0.004
+    EndMovePoint: 0.062
+    StartMovePoint: 0.044
     StepLength: 100
+    StartAngle: 20
+    EndAngle: 344
+    currentAngle: 20
   - instrumentButton: {fileID: 4360821696943992864}
     conbinationList:
-    - {fileID: 0}
+    - {fileID: 409599474756249463}
     clickState: 0
-    btnRotationType: 1
+    btnRotationType: 0
     instrumentButtonType: 1
     rotary: 50
     rotatyDirection: -1
-    MaxValue: 100
+    MaxValue: 13.7
     MinValue: 0
-    EndMovePoint: 0.0553
-    StartMovePoint: -0.0498
+    EndMovePoint: -0.057
+    StartMovePoint: 0.057
     StepLength: 100
+    StartAngle: 0
+    EndAngle: 240
+    currentAngle: 120
 --- !u!114 &5992136170398547697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,14 +407,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2099789829049546335}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0009432286, z: 0.052274685}
+  m_LocalRotation: {x: 0, y: 0, z: 0.17364816, w: 0.9848078}
+  m_LocalPosition: {x: 0, y: 0.00094, z: 0.044}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6859930445779514695}
   m_Father: {fileID: 409599474756249463}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 20}
 --- !u!33 &3084980051156730742
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -574,6 +581,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
+  ItemName: 
 --- !u!64 &5662044321859699374
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -694,7 +702,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6670551173051214814}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.000780154, z: 0.038111545}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1111,7 +1119,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8284229509510052826}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.025401961, z: 0.00032112002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1145,7 +1153,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8994817420433385277}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: -0.0003211241, z: 0.00094325055}
+  m_LocalPosition: {x: 0, y: -0.0003211241, z: 0.00094325055}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9177283942144516176}

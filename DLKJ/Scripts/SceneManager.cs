@@ -21,7 +21,6 @@ namespace DLKJ
         private Dictionary<int, Item> scrollItemObjectDic = new Dictionary<int, Item>();
         public List<Item> labItems = new List<Item>();
 
-
         public Lab currentLab;
         public bool IsEntryScence = false;
 
@@ -36,7 +35,7 @@ namespace DLKJ
             }
             return instance;
         }
-         
+
         private void OnEnable()
         {
             EventManager.OnUsingItemsEvent += OnUsingItem;
@@ -54,8 +53,8 @@ namespace DLKJ
         {
             labItems.Clear();
             labItems.AddRange(items);
-            if(currentLab.currentStep.completedState == CompletedState.Finish) currentLab.NextStep();
-            UIManager.GetInstance().StepTips(currentLab.steps[currentLab.currentStepIndex]) ;
+            if (currentLab.currentStep.completedState == CompletedState.Finish) currentLab.NextStep();
+            UIManager.GetInstance().StepTips(currentLab.steps[currentLab.currentStepIndex]);
 
             ItemDB itemDB = DBManager.GetInstance().GetDB<ItemDB>();
             for (int i = 0; i < labItems.Count; i++)
@@ -73,7 +72,7 @@ namespace DLKJ
                     selfPort.transform.SetParent(targetPort.transform);
                     selfPort.transform.localPosition = labItems[i].portDefaultPosition;
                     selfPort.transform.localRotation = Quaternion.Euler(labItems[i].portDefaultEuler);
-                } 
+                }
 
                 BoxCollider boxCollider;
                 if (labItems[i].transform.TryGetComponent(out boxCollider))
@@ -107,7 +106,7 @@ namespace DLKJ
 
         public bool VerifyBasicLink()
         {
-           return currentLab.VerifyBasicLink();
+            return currentLab.VerifyBasicLink();
         }
 
         public void UpdateItemMoveable(bool able)
@@ -136,7 +135,7 @@ namespace DLKJ
                 }
                 else
                 {
-                    if (i>origin)
+                    if (i > origin)
                     {
                         item.transform.position = new Vector3(currentLab.originPosition.x, currentLab.originPosition.y,
                             currentLab.originPosition.z - currentLab.spacing * (i - origin));
@@ -217,8 +216,18 @@ namespace DLKJ
             }
             return null;
         }
+        public Item GetItemByName(string itemName)
+        {
+            for (int i = 0; i < labItems.Count; i++)
+            {
+                if (itemName == labItems[i].itemName)
+                {
+                    return labItems[i];
+                }
+            }
+            return null;
 
-
+        }
 
     }
 }

@@ -686,6 +686,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
+  ItemName: 
 --- !u!1 &2738115408573011017
 GameObject:
   m_ObjectHideFlags: 0
@@ -1272,8 +1273,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.15074567, y: 0.12109226, z: 0.22348589}
-  m_Center: {x: 0.0050803726, y: -0.008361071, z: -0.0022448602}
+  m_Size: {x: 0.12769237, y: 0.12109226, z: 0.22348589}
+  m_Center: {x: -0.006446287, y: -0.008361071, z: -0.00224486}
 --- !u!114 &3255070367430676618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1307,6 +1308,9 @@ MonoBehaviour:
     EndMovePoint: -0.0407
     StartMovePoint: 0.0407
     StepLength: 100
+    StartAngle: 0
+    EndAngle: 360
+    currentAngle: 0
 --- !u!114 &5987007629197133435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1825,6 +1829,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
+  ItemName: 
 --- !u!1 &4528001792604029327
 GameObject:
   m_ObjectHideFlags: 0
@@ -2038,6 +2043,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
+  ItemName: 
 --- !u!1 &5133596488056636501
 GameObject:
   m_ObjectHideFlags: 0
@@ -2827,3 +2833,4 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
+  ItemName: 

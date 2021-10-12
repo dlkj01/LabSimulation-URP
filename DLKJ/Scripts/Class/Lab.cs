@@ -186,10 +186,13 @@ namespace DLKJ {
             for (int i = 0; i < keyItems.Count; i++)
             {
                 Item basic = SceneManager.GetInstance().GetLabItemByID(keyItems[i].ID);
-                if (basic.linkPort == null)
+                if (basic!=null)
                 {
-                    completed = false;
-                    return completed;
+                    if (basic.linkPort == null)
+                    {
+                        completed = false;
+                        return completed;
+                    }
                 }
             }
             return completed;

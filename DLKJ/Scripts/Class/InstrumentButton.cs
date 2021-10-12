@@ -11,7 +11,7 @@ namespace DLKJ
         {
             public enum ClickBtnState { Press, Lift };
             public enum BtnRotationType { Y_AxisRotation, X_AxisRotation, Z_AxisRotation }
-            public enum InstrumentButtonType { Power, Rotary, Click };
+            public enum InstrumentButtonType { Power, Rotary, Click, Translate };
             public Transform instrumentButton;
             public List<Transform> conbinationList = new List<Transform>();
             public ClickBtnState clickState;
@@ -40,9 +40,16 @@ namespace DLKJ
             /// </summary>
             public float StepLength = 0;
 
+            /// <summary>
+            /// 最小旋转角度
+            /// </summary>
+            public float StartAngle;
+            /// <summary>
+            /// 最大旋转角度
+            /// </summary>
+            public float EndAngle;
 
-
-
+            public float currentAngle = 0;
 
 
             public delegate void OnMouseButtonClick(string buttonName);
@@ -85,20 +92,25 @@ namespace DLKJ
 
                         if (Input.GetKey(KeyCode.LeftControl))
                         {
-                            if (rotary <= 0)
+                            if (currentAngle - currentAngle + 0.001f <= StartAngle)
                             {
+                                currentAngle = StartAngle;
+                                InstrumentButtonTypeSwitch(btnRotationType);
                                 return;
                             }
-                            rotary -= 1;
+
+                            currentAngle -= (EndAngle - StartAngle) / StepLength /*rotatyDirection*/;
                             InstrumentButtonTypeSwitch(btnRotationType);
                         }
                         else
                         {
-                            if (rotary >= StepLength)
+                            if (currentAngle + 0.001f >= EndAngle)
                             {
+                                currentAngle = EndAngle;
+                                InstrumentButtonTypeSwitch(btnRotationType);
                                 return;
                             }
-                            rotary += 1;
+                            currentAngle += (EndAngle - StartAngle) / StepLength;
                             InstrumentButtonTypeSwitch(btnRotationType);
                         }
                         break;
@@ -118,13 +130,13 @@ namespace DLKJ
                 switch (btnRotationType)
                 {
                     case BtnRotationType.Y_AxisRotation:
-                        instrumentButton.localRotation = Quaternion.Euler(0, rotatyDirection * rotary * 3.6f, 0);
+                        instrumentButton.localRotation = Quaternion.Euler(0, currentAngle * rotatyDirection  /** 3.6f*/, 0);
                         break;
                     case BtnRotationType.X_AxisRotation:
-                        instrumentButton.localRotation = Quaternion.Euler(rotatyDirection * rotary * 3.6f, 0, 0);
+                        instrumentButton.localRotation = Quaternion.Euler(currentAngle * rotatyDirection  /** 3.6f*/, 0, 0);
                         break;
                     case BtnRotationType.Z_AxisRotation:
-                        instrumentButton.localRotation = Quaternion.Euler(0, 0, rotatyDirection * rotary * 3.6f);
+                        instrumentButton.localRotation = Quaternion.Euler(0, 0, currentAngle * rotatyDirection  /** 3.6f*/);
                         break;
                     default:
                         Debug.Log("数据出现异常");
@@ -144,20 +156,24 @@ namespace DLKJ
                     case InstrumentButtonType.Rotary:
                         if (Input.GetKey(KeyCode.LeftControl))
                         {
-                            if (rotary <= 0)
+                            if (Mathf.Approximately(currentAngle, StartAngle) || currentAngle <= StartAngle)
                             {
+                                currentAngle = StartAngle;
+                                InstrumentButtonTypeSwitch(btnRotationType);
                                 return;
                             }
-                            rotary -= 1;
+                            currentAngle -= (EndAngle - StartAngle) / StepLength /*rotatyDirection*/;
                             InstrumentButtonTypeSwitch(btnRotationType);
                         }
                         else
                         {
-                            if (rotary >= 100)
+                            if (Mathf.Approximately(currentAngle, EndAngle) || currentAngle >= EndAngle)
                             {
+                                currentAngle = EndAngle;
+                                InstrumentButtonTypeSwitch(btnRotationType);
                                 return;
                             }
-                            rotary += 1;
+                            currentAngle += (EndAngle - StartAngle) / StepLength /*rotatyDirection*/;
                             InstrumentButtonTypeSwitch(btnRotationType);
                         }
                         break;
@@ -169,8 +185,6 @@ namespace DLKJ
                     default:
                         break;
                 }
-
-
             }
 
         }
