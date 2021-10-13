@@ -1846,6 +1846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentAngle: -43
+  testValue: 30
   rotateSpeed: 5
   minValue: 0
   maxValue: 100
@@ -2703,7 +2704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51856be06bb55ea4aa6c75d7feb6d667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointer: {fileID: 6427169177130965301}
+  pointer: {fileID: 0}
   powerMaterial: {fileID: 2100000, guid: 0aa6c1897f735b34c83e957bd46fe0a2, type: 2}
   onColor: {r: 1, g: 0, b: 0, a: 1}
   offColor: {r: 0.14901961, g: 0.14901961, b: 0.14901961, a: 1}

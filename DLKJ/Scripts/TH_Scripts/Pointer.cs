@@ -10,6 +10,7 @@ namespace DLKJ
         public float testValue = 30;
         public void SetAngle(float value)
         {
+            if (float.IsNaN(value)) return;
             float range = maxValue - minValue;
             float everyAngle = (maxAngle - minAngle) / range;
             currentAngle = everyAngle * (value) + minAngle;

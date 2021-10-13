@@ -220,7 +220,7 @@ namespace DLKJ
                     #region 三厘米测量线
                     case "FrequencySelectKnob":
                         Debug.Log("三厘米测量线 游标");
-                        MathTool.distanceZ = MathUtility.GetSanLiMiCeLiangXianDistance(tempInstrumentBtn);
+                        MathTool.distanceZ = MathUtility.GetDistance(tempInstrumentBtn);
                         ToggleTheKnobToMoveTheCursor(tempInstrumentBtn);
                         break;
                     #endregion
@@ -233,6 +233,7 @@ namespace DLKJ
                     #region 可变短路器
                     case "kebianduanluqi4":
                         Debug.Log("可变短路器 尺子");
+                        MathTool.RuDuanLuQi = MathUtility.GetCurrentValue(tempInstrumentBtn);
                         RotaryVariableCircuitBreaker(tempInstrumentBtn);
                         break;
                     #endregion

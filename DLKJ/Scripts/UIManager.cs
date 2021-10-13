@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
+using System.Collections;
 
 namespace DLKJ
 {
@@ -76,7 +78,7 @@ namespace DLKJ
 
         public void ShowExperimentSelectedPanel()
         {
-            if (experimentSelectedPanelPrefab&& experimentSelectedPanel == null)
+            if (experimentSelectedPanelPrefab && experimentSelectedPanel == null)
             {
                 experimentSelectedPanel = InstantiateObject(experimentSelectedPanelPrefab);
                 experimentSelectedPanel.Initialized();
@@ -102,7 +104,7 @@ namespace DLKJ
                 SceneManager.GetInstance().currentLab.TriggerScore();
 
 
-                if (SceneManager.GetInstance().currentLab.currentStep.GetScore()<=0)
+                if (SceneManager.GetInstance().currentLab.currentStep.GetScore() <= 0)
                 {
                     Debug.Log("分数扣没，直接给出正确答案");
                     verifyButton.interactable = false;
@@ -120,9 +122,9 @@ namespace DLKJ
             return newObject;
         }
 
-        
+
     }
 
-   
+
 
 }

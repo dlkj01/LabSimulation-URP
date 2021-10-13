@@ -24,7 +24,8 @@ namespace DLKJ
         private static float X = 0;//取值范围[-200,200] 初始化后不变
         private static float R = 0;//取值范围[0,200] 初始化后不变
         private static float ZL = 0;//ZL=R+jX
-
+        public static float couplingFactorA;//耦合度输入端电压模A
+        public static float couplingFactorC;//耦合度C
         public static void Init(/*FormulaData data*/)
         {
             //A = data.A;
@@ -45,8 +46,12 @@ namespace DLKJ
             FB = UnityEngine.Random.Range(0f, 100f);
             FC = UnityEngine.Random.Range(0f, 100f);
             FD = UnityEngine.Random.Range(0f, 1f);
+            do
+            {
+                Shan0 = UnityEngine.Random.Range(0f, 2f * Mathf.PI);
+            } while (Shan0 <= 0 || Shan0 > 2 * Mathf.PI);
             Shan0 = UnityEngine.Random.Range(0, 2 * Mathf.PI);
-            RuDuanLuQi = UnityEngine.Random.Range(0.0024f, 0.0365f);
+            //     RuDuanLuQi = UnityEngine.Random.Range(0.0024f, 0.0365f);
             ShanA = UnityEngine.Random.Range(0, 2 * Mathf.PI);
             ShanB = UnityEngine.Random.Range(0, 2 * Mathf.PI);
             ShanC = UnityEngine.Random.Range(0, 2 * Mathf.PI);
@@ -60,6 +65,18 @@ namespace DLKJ
             δ = 0;
             distanceZ = 0;
         }
+
+
+        /// <summary>
+        /// 二端口网络S参数测量
+        /// </summary>
+        /// <returns></returns>
+        //public static double EDKWLSCSCL(float z)
+        //{
+
+        //}
+        #region 方法
+        #region 公式一&公式二、找等效截面
         /// <summary>
         /// 公式一、(1)
         /// 三厘米测量线终端直接接短路板(不接二端口网络时)
@@ -71,18 +88,9 @@ namespace DLKJ
             double U = δ * Math.Abs(A) * Math.Abs((Math.Sin(Getβ() * z)));
             return U;
         }
+        #endregion
 
-        /// <summary>
-        /// 二端口网络S参数测量
-        /// </summary>
-        /// <returns></returns>
-        //public static double EDKWLSCSCL(float z)
-        //{
-
-        //}
-
-
-        #region 二端口网络S参数测量
+        #region 实验一、二端口网络S参数测量()
         private static float FA;
         private static float FB;
         private static float FC;
@@ -91,14 +99,9 @@ namespace DLKJ
         private static float ShanB;
         private static float ShanC;
         private static float ShanD;
-        public static double 二端口网络S参数测量(float z)
-        {
-            double β = MathTool.Getβ();
-            return 0;
-        }
         #endregion
 
-
+        #region 实验一、接二端口和短路版
         /// <summary>
         /// 公式一、(3)
         /// 接二端口和短路版
@@ -112,8 +115,9 @@ namespace DLKJ
             //int T2 = -1;
             return FuZaiZuLiangKangHengFormula(GetTl(), CalculateShan(GetTl_a(), GetTl_b()), z);
         }
+        #endregion
 
-
+        #region 实验一、二端口和匹配负载
         /// <summary>
         /// 公式一、(4)
         /// 二端口和匹配负载
@@ -127,7 +131,24 @@ namespace DLKJ
             double U = δ * Math.Abs(A) * Math.Sqrt(1 + Math.Abs(Math.Pow(T1, 2)) + 2 * Math.Abs(T1) * Math.Cos(2 * Getβ() * z - Shan1));
             return U;
         }
+        #endregion
 
+        #region 实验一、二端口可变短路器
+        private static float Shan0;
+        public static float RuDuanLuQi;
+        /// <summary>
+        /// 二端口可变短路器
+        /// </summary>
+        /// <param name="zd">可变断路器中波导长度</param>
+        /// <param name="z">连通的矩形波导长度</param>
+        /// <returns></returns>
+        public static double ErDuanKouKeBianDuanLuQi(float zd, float z)
+        {
+            return FuZaiZuLiangKangHengFormula(GetT1_EDKKBDLQ(zd), CalculateShan(GetTl_a_EDKKBDLQ(zd), GetTl_b_EDKKBDLQ(zd)), z); ;
+        }
+        #endregion
+
+        #region 实验二、负载阻抗测量
         /// <summary>
         /// 负载阻抗测量第一个公式
         /// </summary>
@@ -137,7 +158,9 @@ namespace DLKJ
         {
             return FuZaiZuLiangKangHengFormula(GetTL(), CalculateShan(GetTL_a(), GetTL_b()), z);
         }
+        #endregion
 
+        #region 实验二、负载阻抗搭配
         /// <summary>
         /// 负载抗组匹配
         /// </summary>
@@ -149,8 +172,23 @@ namespace DLKJ
         {
             return FuZaiZuLiangKangHengFormula(GetFZZKPPTL(l, d), CalculateShan(GetFZZKPPTL_a(l, d), GetFZZKPPTL_b(l, d)), z);
         }
+        #endregion
 
+        #region 实验三、定向耦合器的耦合度测量
+        /// <summary>
+        /// 定向耦合器耦合度测量
+        /// </summary>
+        /// <returns></returns>
+        public static double CouplingFactorObserved()
+        {
+            double U3 = Math.Abs(couplingFactorA) / Math.Sqrt(Math.Pow(10, couplingFactorC / 20));
+            return U3;
+        }
+        #endregion
 
+        #endregion
+
+        #region 公式封装
         /// <summary>
         /// 
         /// </summary>
@@ -163,6 +201,7 @@ namespace DLKJ
             double U = δ * Math.Abs(A) * Math.Sqrt(1 + Math.Pow(Math.Abs(resultT), 2) + 2 * Math.Abs(resultT) * Math.Cos(2 * Getβ() * z - resultShan));
             return U;
         }
+
 
         /// <summary>
         /// 像横着的山的符号的算法
@@ -189,18 +228,7 @@ namespace DLKJ
 
 
 
-        private static float Shan0;
-        private static float RuDuanLuQi;
-        /// <summary>
-        /// 二端口可变短路器
-        /// </summary>
-        /// <param name="zd">可变断路器中波导长度</param>
-        /// <param name="z">连通的矩形波导长度</param>
-        /// <returns></returns>
-        public static double ErDuanKouKeBianDuanLuQi(float zd, float z)
-        {
-            return FuZaiZuLiangKangHengFormula(GetT1_EDKKBDLQ(zd), CalculateShan(GetTl_a_EDKKBDLQ(zd), GetTl_b_EDKKBDLQ(zd)), z); ;
-        }
+
 
 
         /// <summary>
@@ -209,7 +237,7 @@ namespace DLKJ
         /// <returns></returns>
         private static double GetTl_a_EDKKBDLQ(float zd)
         {
-            double shanD = EDKKBDLQβ * zd + Shan0;
+            double shanD = GetEDKKBDLQβ() * zd + Shan0;
             double addLeft = FA * Math.Cos(ShanA);
             double topLeft = Math.Pow(FB, 2) * Math.Cos(2 * ShanB + shanD) * (1 - FC * Math.Cos(ShanC + shanD));
             double topRight = Math.Pow(FB, 2) * FC * Math.Sin(2 * ShanB + shanD) * Math.Sin(ShanC + shanD);
@@ -223,7 +251,7 @@ namespace DLKJ
         /// <returns></returns>
         private static double GetTl_b_EDKKBDLQ(float zd)
         {
-            double shanD = EDKKBDLQβ * zd + Shan0;
+            double shanD = GetEDKKBDLQβ() * zd + Shan0;
             double addLeft = FA * Math.Sin(ShanA);
             double topLeft = Math.Pow(FB, 2) * Math.Sin(2 * ShanB + shanD) * (1 - FC * Math.Cos(ShanC + shanD));
             double topRight = Math.Pow(FB, 2) * FC * Math.Cos(2 * ShanB + shanD) * Math.Sin(ShanC + shanD);
@@ -356,5 +384,6 @@ namespace DLKJ
         {
             return Math.Sqrt(Math.Pow(GetTL_a(), 2) + Math.Pow(GetTL_b(), 2));
         }
+        #endregion
     }
 }

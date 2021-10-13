@@ -34,10 +34,10 @@ namespace DLKJ
         }
 
         /// <summary>
-        /// 获取三厘米测量线尺子距离开始的长度
+        /// 获取尺子0开始距离开始到尺子位置的距离
         /// </summary>
         /// <returns></returns>
-        public static float GetSanLiMiCeLiangXianDistance(InstrumentButton tempInstrumentBtn)
+        public static float GetDistance(InstrumentButton tempInstrumentBtn)
         {
             float length = GetCurrentValue(tempInstrumentBtn);
             return length - tempInstrumentBtn.MinValue;

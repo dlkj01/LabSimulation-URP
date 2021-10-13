@@ -34,10 +34,7 @@ namespace DLKJ
         private Vector3 dist;
         private float mouseDownX;
         private float mouseDownY;
-
         private BoxCollider boxCollider;
-
-        [HideInInspector] private List<string> LinkNames;//连接着的设备
         private void Awake()
         {
             boxCollider = transform.GetComponent<BoxCollider>();

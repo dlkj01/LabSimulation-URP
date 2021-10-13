@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5426485696816747422}
   - component: {fileID: 8668472943409019273}
   - component: {fileID: 1375742539526828508}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Port1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,6 +117,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
+  ItemName: 
 --- !u!1 &1499922275886961855
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,7 +131,7 @@ GameObject:
   - component: {fileID: 9175016598568054628}
   - component: {fileID: 3701129533177890367}
   - component: {fileID: 2032310457606161029}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Port2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,6 +221,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
+  ItemName: 
 --- !u!64 &2032310457606161029
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -390,6 +392,9 @@ MonoBehaviour:
     EndMovePoint: -0.01049
     StartMovePoint: -0.00079
     StepLength: 100
+    StartAngle: 0
+    EndAngle: 0
+    currentAngle: 0
 --- !u!114 &9096104713619213982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,7 +420,19 @@ MonoBehaviour:
   - data:
       itemID: 3
       portsID: 1
-      correct: 1
+      correct: 0
+      value: 0
+      weight: 0
+  - data:
+      itemID: 6
+      portsID: 0
+      correct: 0
+      value: 0
+      weight: 0
+  - data:
+      itemID: 5
+      portsID: 0
+      correct: 0
       value: 0
       weight: 0
   linkPort: {fileID: 0}

@@ -92,7 +92,7 @@ namespace DLKJ
 
                         if (Input.GetKey(KeyCode.LeftControl))
                         {
-                            if (currentAngle - currentAngle + 0.001f <= StartAngle)
+                            if (Mathf.Approximately(currentAngle, StartAngle) || currentAngle - 0.001f <= StartAngle)
                             {
                                 currentAngle = StartAngle;
                                 InstrumentButtonTypeSwitch(btnRotationType);
@@ -104,7 +104,7 @@ namespace DLKJ
                         }
                         else
                         {
-                            if (currentAngle + 0.001f >= EndAngle)
+                            if (Mathf.Approximately(currentAngle, EndAngle) || currentAngle + 0.001f >= EndAngle)
                             {
                                 currentAngle = EndAngle;
                                 InstrumentButtonTypeSwitch(btnRotationType);
@@ -156,7 +156,7 @@ namespace DLKJ
                     case InstrumentButtonType.Rotary:
                         if (Input.GetKey(KeyCode.LeftControl))
                         {
-                            if (Mathf.Approximately(currentAngle, StartAngle) || currentAngle <= StartAngle)
+                            if (Mathf.Approximately(currentAngle, StartAngle) || currentAngle - 0.001f <= StartAngle)
                             {
                                 currentAngle = StartAngle;
                                 InstrumentButtonTypeSwitch(btnRotationType);
@@ -167,7 +167,7 @@ namespace DLKJ
                         }
                         else
                         {
-                            if (Mathf.Approximately(currentAngle, EndAngle) || currentAngle >= EndAngle)
+                            if (Mathf.Approximately(currentAngle, EndAngle) || currentAngle + 0.001f >= EndAngle)
                             {
                                 currentAngle = EndAngle;
                                 InstrumentButtonTypeSwitch(btnRotationType);
