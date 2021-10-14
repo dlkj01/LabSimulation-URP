@@ -15,6 +15,12 @@ namespace DLKJ
         [SerializeField] Material powerMaterial;
         [SerializeField] Color onColor;
         [SerializeField] Color offColor;
+
+        [Header("Numbers Bits")]
+        [SerializeField] List<MeshRenderer> numbers = new List<MeshRenderer>();
+        [Header("Frequency")]
+        [SerializeField] List<Texture2D> numberTextures = new List<Texture2D>();
+
         public enum RotationType { Y_AxisRotation, X_AxisRotation, Z_AxisRotation };
         public RotationType rotationType = RotationType.X_AxisRotation;
         /// <summary>
@@ -93,6 +99,10 @@ namespace DLKJ
             }
         }
 
+        private MaterialPropertyBlock mpb;
+
+
+
         private void Awake()
         {
             if (powerMaterial)
@@ -121,6 +131,8 @@ namespace DLKJ
 
             }
             pointer = GetComponentInChildren<Pointer>();
+            mpb = new MaterialPropertyBlock();
+
         }
 
         /// <summary>
@@ -443,7 +455,23 @@ namespace DLKJ
         }
 
 
+        public void UpdateNumber()
+        {
+            Debug.Log("ÆµÂÊÖµ:"+ MathTool.F);
+            if (MathTool.F>0)
+            {
+                for (int i = 0; i < numbers.Count; i++)
+                {
+                    numbers[i].GetPropertyBlock(mpb);
+                    mpb.SetTexture("_MainTex", numberTextures[0]);
+                    numbers[i].SetPropertyBlock(mpb);
+                }
+            }
+            else
+            {
 
+            }
+        }
 
 
 
