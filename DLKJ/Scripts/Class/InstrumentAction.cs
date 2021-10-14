@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -105,6 +106,7 @@ namespace DLKJ
 
         private void Awake()
         {
+            mpb = new MaterialPropertyBlock();
             if (powerMaterial)
             {
                 powerMaterial.color = offColor;
@@ -455,10 +457,99 @@ namespace DLKJ
         }
 
 
-        public void UpdateNumber()
+        public void UpdateNumber(float frequencyValue)
         {
-            Debug.Log("频率值:"+ MathTool.F);
-            if (MathTool.F>0)
+            Debug.Log("频率值:"+ frequencyValue);
+            int value0 = 0;
+            int value1 = 0;
+            int value2 = 0;
+            int value3 = 0;
+
+            if (frequencyValue > 0)
+            {
+                float value = frequencyValue;
+
+                if (frequencyValue < 1)
+                {
+                    value = value * 100;
+                    string vslueStr = value.ToString();
+                    string[] arry = vslueStr.Split('.');
+
+                    string first = arry[0].Substring(0, 1);
+                    string second = arry[0].Substring(1, 1);
+                    //Debug.Log("first:" + first + "   second:" + second);
+
+                    value0 = 0;
+                    value1 = 0;
+                    value2 = int.Parse(first);
+                    value3 = int.Parse(second);
+                }
+                else if (1 <= frequencyValue && frequencyValue < 10)
+                {
+                    value = value * 100;
+                    string vslueStr = value.ToString();
+                    string[] arry = vslueStr.Split('.');
+
+                    string first = arry[0].Substring(0, 1);
+                    string second = arry[0].Substring(1, 1);
+                    string third = arry[0].Substring(2, 1);
+                    //Debug.Log("first:" + first + "   second:" + second+ "    third:" + third);
+
+                    value0 = 0;
+                    value1 = int.Parse(first);
+                    value2 = int.Parse(second);
+                    value3 = int.Parse(third);
+                }
+                else if (10 <= frequencyValue && frequencyValue < 100)
+                {
+                    value = value * 100;
+                    string vslueStr = value.ToString();
+                    string[] arry = vslueStr.Split('.');
+
+                    string first = arry[0].Substring(0, 1);
+                    string second = arry[0].Substring(1, 1);
+                    string third = arry[0].Substring(2, 1);
+                    string forth = arry[0].Substring(3, 1);
+                    //Debug.Log("first:" + first + "   second:" + second+ "    third:" + third+ "  forth:" + forth);
+
+                    value0 = int.Parse(first);
+                    value1 = int.Parse(second);
+                    value2 = int.Parse(third);
+                    value3 = int.Parse(forth);
+                }
+
+                for (int i = 0; i < numbers.Count; i++)
+                {
+                    numbers[i].GetPropertyBlock(mpb);
+                    switch (i)
+                    {
+                        case 0:
+                            {
+                                mpb.SetTexture("_MainTex", numberTextures[value0]);
+                            }
+                            break;
+                        case 1:
+                            {
+                                mpb.SetTexture("_MainTex", numberTextures[value1]);
+                            }
+                            break;
+                        case 2:
+                            {
+                                mpb.SetTexture("_MainTex", numberTextures[value2]);
+                            }
+                            break;
+                        case 3:
+                            {
+                                mpb.SetTexture("_MainTex", numberTextures[value3]);
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    numbers[i].SetPropertyBlock(mpb);
+                }
+            }
+            else
             {
                 for (int i = 0; i < numbers.Count; i++)
                 {
@@ -467,20 +558,7 @@ namespace DLKJ
                     numbers[i].SetPropertyBlock(mpb);
                 }
             }
-            else
-            {
-
-            }
         }
-
-
-
-
-
-
-
-
-
 
     }
 }
