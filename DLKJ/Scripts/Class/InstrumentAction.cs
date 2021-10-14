@@ -13,7 +13,7 @@ namespace DLKJ
         //  public Transform pointer;
         [HideInInspector] public Pointer pointer;//÷∏’Î
         [Header("Power Material")]
-        [SerializeField] Material powerMaterial;
+        [SerializeField] List<Material> powerMaterials = new List<Material>();
         [SerializeField] Color onColor;
         [SerializeField] Color offColor;
 
@@ -107,9 +107,9 @@ namespace DLKJ
         private void Awake()
         {
             mpb = new MaterialPropertyBlock();
-            if (powerMaterial)
+            for (int i = 0; i < powerMaterials.Count; i++)
             {
-                powerMaterial.color = offColor;
+                powerMaterials[i].color = offColor;
             }
 
             for (int i = 0; i < instrumentButton.Count; i++)
@@ -159,12 +159,18 @@ namespace DLKJ
                         {
                             if (MathUtility.GetCurrentValue(tempInstrumentBtn) == 0)
                             {
-                                powerMaterial.color = onColor;
+                                for (int i = 0; i < powerMaterials.Count; i++)
+                                {
+                                    powerMaterials[i].color = onColor;
+                                }
                                 MathTest.Instance.FormulaInit();
                             }
                             else
                             {
-                                powerMaterial.color = offColor;
+                                for (int i = 0; i < powerMaterials.Count; i++)
+                                {
+                                    powerMaterials[i].color = offColor;
+                                }
                                 MathTest.Instance.Active(false);
                                 if (pointer != null)
                                     pointer.SetAngle(0);
@@ -212,11 +218,17 @@ namespace DLKJ
                         {
                             if (MathUtility.GetCurrentValue(tempInstrumentBtn) == 0)
                             {
-                                powerMaterial.color = onColor;
+                                for (int i = 0; i < powerMaterials.Count; i++)
+                                {
+                                    powerMaterials[i].color = onColor;
+                                }
                             }
                             else
                             {
-                                powerMaterial.color = offColor;
+                                for (int i = 0; i < powerMaterials.Count; i++)
+                                {
+                                    powerMaterials[i].color = offColor;
+                                }
                             }
                         }
                         break;
