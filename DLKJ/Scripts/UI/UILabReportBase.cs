@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.EventSystems;
 public struct UserDate
 {
     public string userName;
@@ -81,6 +81,7 @@ public struct LabReport3Data
 
 public class UILabReportBase : MonoBehaviour
 {
+    public GameObject SaveButton;
     public GameObject CloseButton;
     public GameObject ChangePageButton;
     [SerializeField] protected InputField nameInputField;
@@ -101,8 +102,12 @@ public class UILabReportBase : MonoBehaviour
             canvasGroup = gameObject.AddComponent<CanvasGroup>();
         canvasGroup.alpha = 0;
         canvasGroup.blocksRaycasts = false;
+        UIEventListener.GetUIEventListener(SaveButton).PointerClick += (P) => { SaveData(); };
         UIEventListener.GetUIEventListener(CloseButton).PointerClick += (P) => { SetVisibale(false); };
-        UIEventListener.GetUIEventListener(ChangePageButton).PointerClick += (P) => { ChangePage(); };
+        UIEventListener.GetUIEventListener(ChangePageButton).PointerClick += (P) =>
+        {
+            ChangePage(P);
+        };
     }
     public void SetVisibale(bool state)
     {
@@ -114,9 +119,13 @@ public class UILabReportBase : MonoBehaviour
             StopCoroutine(coroutine);
         coroutine = StartCoroutine(SetVisibleDelay(state));
     }
-    public void ChangePage()
+    public void ChangePage(PointerEventData data)
     {
         bool state = page1.activeSelf;
+        if (state == true)
+            data.pointerPress.transform.localEulerAngles = new Vector3(0, 0, 0);
+        else
+            data.pointerPress.transform.localEulerAngles = new Vector3(0, 0, 180);
         page1.SetActive(!state);
         page2.SetActive(state);
     }
