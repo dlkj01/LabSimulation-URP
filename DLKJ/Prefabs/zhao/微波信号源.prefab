@@ -711,6 +711,7 @@ MonoBehaviour:
     StartAngle: 0
     EndAngle: 0
     currentAngle: 0
+    x: 0
   - instrumentButton: {fileID: 1622630317215731366}
     conbinationList: []
     clickState: 1
@@ -726,6 +727,7 @@ MonoBehaviour:
     StartAngle: 0
     EndAngle: 0
     currentAngle: 0
+    x: 0
   - instrumentButton: {fileID: 8466322375461474319}
     conbinationList: []
     clickState: 1
@@ -741,6 +743,7 @@ MonoBehaviour:
     StartAngle: 0
     EndAngle: 0
     currentAngle: 0
+    x: 0.1534435
   - instrumentButton: {fileID: 7590066869274233023}
     conbinationList: []
     clickState: 1
@@ -756,6 +759,7 @@ MonoBehaviour:
     StartAngle: -33
     EndAngle: 12
     currentAngle: -33
+    x: 0
 --- !u!65 &4249890044101196745
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -30,7 +30,7 @@ namespace DLKJ
         {
             MathTool.Init();
             ShiYan1();
-            isInit = true;
+            Active(true);
         }
         public void Active(bool state)
         {
@@ -154,7 +154,11 @@ namespace DLKJ
         private InstrumentButton GetInstrumentButton(string deviceName, string buttonName)
         {
             Item item = SceneManager.GetInstance().GetItemByName(deviceName);
+            if (item == null)
+                return null;
             InstrumentAction instrumentAction = item.GetComponent<InstrumentAction>();
+            if (instrumentAction == null)
+                return null;
             keBianDuanLuQiBtn = instrumentAction.instrumentButton.Find(x => x.instrumentButton.name == buttonName);
             return keBianDuanLuQiBtn;
         }

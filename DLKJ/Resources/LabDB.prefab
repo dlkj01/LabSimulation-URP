@@ -63,11 +63,9 @@ MonoBehaviour:
     - {fileID: 1501026121586326834, guid: 3b26854f5e5bfc143bc00b3785ba3443, type: 3}
     - {fileID: 3991816612479598473, guid: 2e3ee03a007b3f64ea48e50730084565, type: 3}
     - {fileID: 2541731738071094316, guid: 4765c982d46142d4c8ec4441a4bc5460, type: 3}
-    - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
     - {fileID: 8066662230590069131, guid: 9c121467226dbbe4aa1c978552fb3d6d, type: 3}
     - {fileID: 9096104713619213982, guid: 7fb131266e0fd84468ed5af27fb5bd1f, type: 3}
     - {fileID: 6215187212563577928, guid: 37d9002f115cadc4183454e2c1a992ee, type: 3}
-    - {fileID: 2541731738071094316, guid: 4765c982d46142d4c8ec4441a4bc5460, type: 3}
     steps:
     - ID: -1
       points: 10
@@ -93,7 +91,7 @@ MonoBehaviour:
       - {fileID: 3991816612479598473, guid: 2e3ee03a007b3f64ea48e50730084565, type: 3}
       - {fileID: 1667232460207234984, guid: 9310f18920ad2bb44a272d15a8934fe5, type: 3}
     - ID: -1
-      points: 15
+      points: 20
       dropPoints: -2
       stepName: "\u5BFB\u627E\u7B49\u6548\u622A\u9762\u548C\u6C42\u6CE2\u957F"
       valueType: 100
@@ -103,33 +101,30 @@ MonoBehaviour:
     - ID: -1
       points: 20
       dropPoints: -2
-      stepName: "\u4E8C\u7AEF\u53E32\u7AEF\u77ED\u8DEF\u60C5\u51B5"
+      stepName: "\u4E8C\u7AEF\u53E32\u77ED\u8DEF\u7248"
       valueType: 100
       completedState: 0
       keyItems:
-      - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
-      - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
+      - {fileID: 9096104713619213982, guid: 7fb131266e0fd84468ed5af27fb5bd1f, type: 3}
+      - {fileID: 8066662230590069131, guid: 9c121467226dbbe4aa1c978552fb3d6d, type: 3}
     - ID: -1
-      points: 15
+      points: 20
       dropPoints: -2
-      stepName: "\u6B63\u786E\u4F7F\u7528\u53EF\u53D8\u77ED\u8DEF\u5668"
+      stepName: "\u4E8C\u7AEF\u53E32\u5339\u914D\u8D1F\u8F7D"
       valueType: 100
       completedState: 0
-      keyItems: []
+      keyItems:
+      - {fileID: 9096104713619213982, guid: 7fb131266e0fd84468ed5af27fb5bd1f, type: 3}
+      - {fileID: 6215187212563577928, guid: 37d9002f115cadc4183454e2c1a992ee, type: 3}
     - ID: -1
-      points: 15
+      points: 20
       dropPoints: -2
-      stepName: "\u4E8C\u7AEF\u53E32\u7AEF\u5F00\u8DEF\u60C5\u51B5"
+      stepName: "\u4E8C\u7AEF\u53E32\u53EF\u53D8\u77ED\u8DEF\u5668"
       valueType: 100
       completedState: 0
-      keyItems: []
-    - ID: -1
-      points: 15
-      dropPoints: -2
-      stepName: "\u4E8C\u7AEF\u53E32\u7AEF\u5339\u914D\u60C5\u51B5"
-      valueType: 100
-      completedState: 0
-      keyItems: []
+      keyItems:
+      - {fileID: 9096104713619213982, guid: 7fb131266e0fd84468ed5af27fb5bd1f, type: 3}
+      - {fileID: 2541731738071094316, guid: 4765c982d46142d4c8ec4441a4bc5460, type: 3}
     currentStepIndex: 0
     currentStep:
       ID: -1
@@ -154,57 +149,72 @@ MonoBehaviour:
     autoMoveSpeed: 1
     originPosition: {x: 0, y: 0, z: 0}
     defaultComponents:
-    - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
-    - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
-    - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
-    - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
-    - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
-    - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
+    - {fileID: 1396622047791104849, guid: 9e9f021fe7f865b44b1a614b86751d6d, type: 3}
+    - {fileID: 2872388454102490671, guid: 138a69f919a109b47a36ad4c7e794c1e, type: 3}
+    - {fileID: 1501026121586326834, guid: 3b26854f5e5bfc143bc00b3785ba3443, type: 3}
+    - {fileID: 3991816612479598473, guid: 2e3ee03a007b3f64ea48e50730084565, type: 3}
+    - {fileID: 1667232460207234984, guid: 9310f18920ad2bb44a272d15a8934fe5, type: 3}
+    - {fileID: 8066662230590069131, guid: 9c121467226dbbe4aa1c978552fb3d6d, type: 3}
+    - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
     steps:
-    - ID: -1
-      points: 10
-      dropPoints: -2
-      stepName: 
-      valueType: 100
-      completedState: 0
-      keyItems: []
-    - ID: -1
-      points: 15
-      dropPoints: -2
-      stepName: 
-      valueType: 100
-      completedState: 0
-      keyItems: []
     - ID: -1
       points: 20
       dropPoints: -2
-      stepName: 
+      stepName: "\u9009\u62E9\u5668\u4EF6"
       valueType: 100
       completedState: 0
-      keyItems: []
+      keyItems:
+      - {fileID: 4210527241192592495, guid: fbc33b357d60c894888967e6cf05f998, type: 3}
+      - {fileID: 8066662230590069131, guid: 9c121467226dbbe4aa1c978552fb3d6d, type: 3}
+      - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
     - ID: -1
-      points: 15
+      points: 20
       dropPoints: -2
-      stepName: 
+      stepName: "\u57FA\u7840\u6CE2\u5BFC\u7CFB\u7EDF\u5668\u4EF6\u8FDE\u63A5"
       valueType: 100
       completedState: 0
-      keyItems: []
+      keyItems:
+      - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
+      - {fileID: 1501026121586326834, guid: 3b26854f5e5bfc143bc00b3785ba3443, type: 3}
+      - {fileID: 3991816612479598473, guid: 2e3ee03a007b3f64ea48e50730084565, type: 3}
+      - {fileID: 1667232460207234984, guid: 9310f18920ad2bb44a272d15a8934fe5, type: 3}
     - ID: -1
-      points: 15
+      points: 20
       dropPoints: -2
-      stepName: 
+      stepName: "\u627E\u7B49\u6548\u622A\u9762"
       valueType: 100
       completedState: 0
-      keyItems: []
+      keyItems:
+      - {fileID: 8066662230590069131, guid: 9c121467226dbbe4aa1c978552fb3d6d, type: 3}
+    - ID: -1
+      points: 20
+      dropPoints: -2
+      stepName: "\u8D1F\u8F7D\u963B\u6297\u6D4B\u91CF"
+      valueType: 100
+      completedState: 0
+      keyItems:
+      - {fileID: 4210527241192592495, guid: fbc33b357d60c894888967e6cf05f998, type: 3}
+    - ID: -1
+      points: 20
+      dropPoints: -2
+      stepName: "\u8D1F\u8F7D\u963B\u6297\u5339\u914D"
+      valueType: 100
+      completedState: 0
+      keyItems:
+      - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
+      - {fileID: 4210527241192592495, guid: fbc33b357d60c894888967e6cf05f998, type: 3}
     currentStepIndex: 0
     currentStep:
       ID: -1
-      points: 0
-      dropPoints: 0
-      stepName: 
+      points: 20
+      dropPoints: -2
+      stepName: "\u9009\u62E9\u5668\u4EF6"
       valueType: 100
       completedState: 0
-      keyItems: []
+      keyItems:
+      - {fileID: 4210527241192592495, guid: fbc33b357d60c894888967e6cf05f998, type: 3}
+      - {fileID: 8066662230590069131, guid: 9c121467226dbbe4aa1c978552fb3d6d, type: 3}
+      - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
   - ID: 3
     icon: {fileID: 21300000, guid: 04f842b4df7d3754b8ca01b30fc49710, type: 3}
     labName: " \u8D1F\u8F7D\u963B\u6297\u5339\u914D\u548C\u5B9A\u5411\u8026\u5408\u5668\u7279\u6027\u7684\u6D4B\u91CF"
@@ -215,41 +225,29 @@ MonoBehaviour:
     autoMoveSpeed: 1
     originPosition: {x: 0, y: 0, z: 0}
     defaultComponents:
-    - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
-    - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
-    - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
-    - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
-    - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
-    - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
+    - {fileID: 1396622047791104849, guid: 9e9f021fe7f865b44b1a614b86751d6d, type: 3}
+    - {fileID: 2872388454102490671, guid: 138a69f919a109b47a36ad4c7e794c1e, type: 3}
     steps:
     - ID: -1
       points: 10
       dropPoints: -2
-      stepName: 
+      stepName: "\u9009\u62E9\u5668\u4EF6"
       valueType: 100
       completedState: 0
-      keyItems: []
+      keyItems:
+      - {fileID: 6215187212563577928, guid: 37d9002f115cadc4183454e2c1a992ee, type: 3}
+      - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
+      - {fileID: 3961344040403204859, guid: ce751bace04a6ee49825c20acbe12fc2, type: 3}
     - ID: -1
       points: 15
       dropPoints: -2
-      stepName: 
+      stepName: "\u57FA\u7840\u6CE2\u5BFC\u7CFB\u7EDF\u5668\u4EF6\u8FDE\u63A5"
       valueType: 100
       completedState: 0
-      keyItems: []
-    - ID: -1
-      points: 20
-      dropPoints: -2
-      stepName: 
-      valueType: 100
-      completedState: 0
-      keyItems: []
-    - ID: -1
-      points: 15
-      dropPoints: -2
-      stepName: 
-      valueType: 100
-      completedState: 0
-      keyItems: []
+      keyItems:
+      - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
+      - {fileID: 3961344040403204859, guid: ce751bace04a6ee49825c20acbe12fc2, type: 3}
+      - {fileID: 6215187212563577928, guid: 37d9002f115cadc4183454e2c1a992ee, type: 3}
     currentStepIndex: 0
     currentStep:
       ID: -1

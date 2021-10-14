@@ -81,16 +81,22 @@ public struct LabReport3Data
 
 public class UILabReportBase : MonoBehaviour
 {
-    public GameObject SaveButton;
-    public GameObject CloseButton;
-    public GameObject ChangePageButton;
+    [Header("实验名称")] public string ExperimentItem;
+    [Header("实验类型")] public string ExperimentType;
+    [Header("实验学时")] public string ExperimentTime;
+    [SerializeField] GameObject SaveButton;
+    [SerializeField] GameObject CloseButton;
+    [SerializeField] GameObject ChangePageButton;
+    [SerializeField] Text ExperimentItemText;
+    [SerializeField] Text ExperimentTypeText;
+    [SerializeField] Text ExperimentTimeText;
     [SerializeField] protected InputField nameInputField;
     [SerializeField] InputField classInputField;
     [SerializeField] InputField timeInputField;
     [SerializeField] InputField idInputField;
     [SerializeField] InputField teacherInputField;
     public UserDate userData = new UserDate();
-    public GameObject page1, page2;
+    [SerializeField] GameObject page1, page2;
     protected CanvasGroup canvasGroup;
     private Coroutine coroutine;
     bool isPlaying = false;
@@ -102,6 +108,9 @@ public class UILabReportBase : MonoBehaviour
             canvasGroup = gameObject.AddComponent<CanvasGroup>();
         canvasGroup.alpha = 0;
         canvasGroup.blocksRaycasts = false;
+        ExperimentItemText.text = ExperimentItem;
+        ExperimentTypeText.text = ExperimentType;
+        ExperimentTimeText.text = ExperimentTime;
         UIEventListener.GetUIEventListener(SaveButton).PointerClick += (P) => { SaveData(); };
         UIEventListener.GetUIEventListener(CloseButton).PointerClick += (P) => { SetVisibale(false); };
         UIEventListener.GetUIEventListener(ChangePageButton).PointerClick += (P) =>
@@ -123,9 +132,9 @@ public class UILabReportBase : MonoBehaviour
     {
         bool state = page1.activeSelf;
         if (state == true)
-            data.pointerPress.transform.localEulerAngles = new Vector3(0, 0, 0);
-        else
             data.pointerPress.transform.localEulerAngles = new Vector3(0, 0, 180);
+        else
+            data.pointerPress.transform.localEulerAngles = new Vector3(0, 0, 0);
         page1.SetActive(!state);
         page2.SetActive(state);
     }

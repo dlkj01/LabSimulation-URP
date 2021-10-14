@@ -80,6 +80,7 @@ namespace DLKJ
                         break;
                 }
             }
+            public float x;
             private void ClickPressAction()
             {
                 clickState = ClickBtnState.Lift;
@@ -115,9 +116,17 @@ namespace DLKJ
                         }
                         break;
                     case InstrumentButtonType.Click:
+                        //如果是频选放大器的开关,需要检测当前连接是否正确
+                        if (instrumentButton.name == "PowerBtn")
+                        {
+                            instrumentButton.localPosition = new Vector3(x,
+                                                               instrumentButton.localPosition.y,
+                                                               instrumentButton.localPosition.z);
+                            return;
+                        }
                         instrumentButton.localPosition = new Vector3(instrumentButton.localPosition.x + instrumentButton.GetComponent<MeshCollider>().bounds.size.x / 3,
-                                                                     instrumentButton.localPosition.y,
-                                                                     instrumentButton.localPosition.z);
+                                                                 instrumentButton.localPosition.y,
+                                                                 instrumentButton.localPosition.z);
                         break;
                     default:
                         break;
@@ -151,6 +160,7 @@ namespace DLKJ
                 switch (instrumentButtonType)
                 {
                     case InstrumentButtonType.Power:
+
                         instrumentButton.localRotation = Quaternion.Euler(0, 0, -25);
                         break;
                     case InstrumentButtonType.Rotary:
@@ -178,6 +188,9 @@ namespace DLKJ
                         }
                         break;
                     case InstrumentButtonType.Click:
+                        if (instrumentButton.name == "PowerBtn")
+                            if (!SceneManager.GetInstance().VerifyBasicLink()) return;
+
                         instrumentButton.localPosition = new Vector3(instrumentButton.localPosition.x - instrumentButton.GetComponent<MeshCollider>().bounds.size.x / 3,
                                                                      instrumentButton.localPosition.y,
                                                                      instrumentButton.localPosition.z);

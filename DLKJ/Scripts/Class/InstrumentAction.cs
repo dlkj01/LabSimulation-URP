@@ -159,11 +159,15 @@ namespace DLKJ
                         {
                             if (MathUtility.GetCurrentValue(tempInstrumentBtn) == 0)
                             {
-                                for (int i = 0; i < powerMaterials.Count; i++)
+                                //校验是否正确
+                                if (SceneManager.GetInstance().VerifyBasicLink())
                                 {
-                                    powerMaterials[i].color = onColor;
+                                    MathTest.Instance.FormulaInit();
+                                    for (int i = 0; i < powerMaterials.Count; i++)
+                                    {
+                                        powerMaterials[i].color = onColor;
+                                    }
                                 }
-                                MathTest.Instance.FormulaInit();
                             }
                             else
                             {
@@ -174,7 +178,6 @@ namespace DLKJ
                                 MathTest.Instance.Active(false);
                                 if (pointer != null)
                                     pointer.SetAngle(0);
-
                             }
                         }
 
