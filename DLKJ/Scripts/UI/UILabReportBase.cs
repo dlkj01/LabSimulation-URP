@@ -81,6 +81,8 @@ public struct LabReport3Data
 
 public class UILabReportBase : MonoBehaviour
 {
+    public GameObject CloseButton;
+    public GameObject ChangePageButton;
     [SerializeField] protected InputField nameInputField;
     [SerializeField] InputField classInputField;
     [SerializeField] InputField timeInputField;
@@ -99,6 +101,8 @@ public class UILabReportBase : MonoBehaviour
             canvasGroup = gameObject.AddComponent<CanvasGroup>();
         canvasGroup.alpha = 0;
         canvasGroup.blocksRaycasts = false;
+        UIEventListener.GetUIEventListener(CloseButton).PointerClick += (P) => { SetVisibale(false); };
+        UIEventListener.GetUIEventListener(ChangePageButton).PointerClick += (P) => { ChangePage(); };
     }
     public void SetVisibale(bool state)
     {

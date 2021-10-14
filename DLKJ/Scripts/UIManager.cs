@@ -27,8 +27,10 @@ namespace DLKJ
         [HeaderAttribute("PanelPrefab")]
         [SerializeField] UIEquipmentPanel equipmentPanelPrefab;
         [SerializeField] UIExperimentSelectedPanel experimentSelectedPanelPrefab;
-
-
+        [SerializeField] UILabReport1 UILabReport1Prefab;
+        [SerializeField] UILabReport2 UILabReport2Prefab;
+        [SerializeField] UILabReport3 UILabReport3Prefab;
+        public UILabReportController UILabButton;
 
         private UIEquipmentPanel equipmentPanel = null;
         private UIExperimentSelectedPanel experimentSelectedPanel = null;
@@ -51,6 +53,27 @@ namespace DLKJ
         {
             if (_3dCamera) _3dCamera.gameObject.SetActive(false);
             sceneObject.SetActive(true);
+        }
+        public void CreatLabReportUI()
+        {
+            UILabReportBase UILabReport = null;
+            switch (SceneManager.GetInstance().currentLab.labName)
+            {
+                case "二端口微波网络参量测量":
+                    UILabReport = InstantiateObject<UILabReportBase>(UILabReport1Prefab);
+                    break;
+                case "负载阻抗测量":
+                    UILabReport = InstantiateObject<UILabReportBase>(UILabReport2Prefab);
+                    break;
+                case " 负载阻抗匹配和定向耦合器特性的测量":
+                    UILabReport = InstantiateObject<UILabReportBase>(UILabReport3Prefab);
+                    break;
+                default:
+                    break;
+            }
+            UILabButton.uiLabReport = UILabReport;
+            UILabButton.gameObject.SetActive(true);
+            UILabReport.SetVisibale(false);
         }
 
         public void ShowEquipmentPanel(int labID)

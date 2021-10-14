@@ -180,6 +180,7 @@ namespace DLKJ
                     case "FrequencyBtn":
                         //给频率赋值
                         MathTool.F = MathUtility.GetCurrentValue(tempInstrumentBtn);
+                        UpdateNumber(MathTool.F);
                         //  MathTool.F = MathUtility.GetCurrentValue(tempInstrumentBtn);
                         Debug.Log(MathTool.F);
                         break;
@@ -459,7 +460,7 @@ namespace DLKJ
 
         public void UpdateNumber(float frequencyValue)
         {
-            Debug.Log("频率值:"+ frequencyValue);
+            Debug.Log("频率值:" + frequencyValue);
             int value0 = 0;
             int value1 = 0;
             int value2 = 0;

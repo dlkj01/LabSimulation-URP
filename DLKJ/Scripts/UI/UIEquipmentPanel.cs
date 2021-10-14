@@ -14,7 +14,7 @@ namespace DLKJ
 
     public class UIEquipmentPanel : MonoBehaviour
     {
-        [SerializeField]private UIItem uiItemPrefab;
+        [SerializeField] private UIItem uiItemPrefab;
 
         [HeaderAttribute("设备库")]
         [SerializeField] private GameObject e_view;
@@ -22,7 +22,7 @@ namespace DLKJ
         [SerializeField] private RectTransform e_content;
         [SerializeField] private Scrollbar e_scrollbar;
         [SerializeField] private GridLayoutGroup e_layoutGroup;
- 
+
         [HeaderAttribute("器件库")]
         [SerializeField] private GameObject d_view;
         [SerializeField] private RectTransform d_scrollRect;
@@ -139,7 +139,7 @@ namespace DLKJ
                             uIItem.SetView(ViewType.EquipmentView);
                             uIItem.transform.SetParent(e_content.transform);
                         }
-                        else if (uIItem.item.libraryType == LibraryType.Device|| uIItem.item.libraryType == LibraryType.Wires)
+                        else if (uIItem.item.libraryType == LibraryType.Device || uIItem.item.libraryType == LibraryType.Wires)
                         {
                             deviceItems.Add(uIItem.item);
                             labItems.Remove(uIItem.item);
@@ -176,7 +176,7 @@ namespace DLKJ
 
         void UpdateLabView()
         {
-            int rows = labItems.Count / t_layoutGroup.constraintCount+1;
+            int rows = labItems.Count / t_layoutGroup.constraintCount + 1;
             float t_Height = rows * (t_layoutGroup.cellSize.y + t_layoutGroup.spacing.y) + t_layoutGroup.padding.top + t_layoutGroup.padding.bottom - t_layoutGroup.spacing.y;
 
             if (t_Height > t_scrollRect.rect.height)
@@ -205,7 +205,7 @@ namespace DLKJ
             if (currentLab.VerifyEnableStart())
             {
                 currentLab.currentStep.completedState = CompletedState.Finish;
-                EventManager.OnTips(TipsType.Toast,"匹配成功!",null
+                EventManager.OnTips(TipsType.Toast, "匹配成功!", null
                     , Testing);
             }
             else
@@ -216,7 +216,7 @@ namespace DLKJ
 
         void ResetUI()
         {
-            while (t_content.childCount !=0)
+            while (t_content.childCount != 0)
             {
                 UIItem uIItem = t_content.GetChild(0).GetComponent<UIItem>();
                 OnSelectedItem(uIItem);
@@ -225,7 +225,7 @@ namespace DLKJ
 
         void SetAnswer()
         {
-            List <Item> labUsingItems = currentLab.defaultComponents;
+            List<Item> labUsingItems = currentLab.defaultComponents;
 
             for (int i = 0; i < labUsingItems.Count; i++)
             {
@@ -242,6 +242,7 @@ namespace DLKJ
             EventManager.OnUsingItems(currentLab.GetSelectedItems());
             EventManager.OnTipsDecided();
             UIManager.GetInstance().ShowScene();
+            UIManager.GetInstance().CreatLabReportUI();
             DestroyImmediate(gameObject);
         }
 

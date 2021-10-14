@@ -142,7 +142,6 @@ namespace DLKJ
                     }
                 }
             }
-
             OnLinkNext();
         }
 
@@ -226,7 +225,6 @@ namespace DLKJ
                 }
             }
             return null;
-
         }
 
     }
