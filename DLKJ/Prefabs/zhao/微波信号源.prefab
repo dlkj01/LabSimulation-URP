@@ -669,7 +669,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointer: {fileID: 0}
-  powerMaterial: {fileID: 2100000, guid: 024d01e7c973a6b488edeef2fe28fb10, type: 2}
+  powerMaterials:
+  - {fileID: 2100000, guid: 024d01e7c973a6b488edeef2fe28fb10, type: 2}
+  - {fileID: 2100000, guid: a47a586d0e2f066499b68e1b916e97c2, type: 2}
+  - {fileID: 2100000, guid: 6fa24d2abf9cf3745b079e23940445ae, type: 2}
+  - {fileID: 2100000, guid: 440a1fca8760d50418cca9ad59321c57, type: 2}
   onColor: {r: 1, g: 1, b: 1, a: 1}
   offColor: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
   numbers:
