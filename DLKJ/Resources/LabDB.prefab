@@ -98,7 +98,8 @@ MonoBehaviour:
       stepName: "\u5BFB\u627E\u7B49\u6548\u622A\u9762\u548C\u6C42\u6CE2\u957F"
       valueType: 100
       completedState: 0
-      keyItems: []
+      keyItems:
+      - {fileID: 8066662230590069131, guid: 9c121467226dbbe4aa1c978552fb3d6d, type: 3}
     - ID: -1
       points: 20
       dropPoints: -2
