@@ -7,12 +7,8 @@ namespace DLKJ
 {
     public class UILabReport1 : UILabReportBase
     {
-        [SerializeField] InputField nameInputField;
-        [SerializeField] InputField classInputField;
-        [SerializeField] InputField timeInputField;
-        [SerializeField] InputField idInputField;
-        [SerializeField] InputField teacherInputField;
 
+        public LabReport1Data labReport1Data;
         public void OnSureCallBack()
         {
             if (nameInputField.text.Length > 0)
@@ -52,16 +48,36 @@ namespace DLKJ
         [SerializeField] InputField inputS12S21;
         [SerializeField] InputField inputS22;
 
-        private void Update()
+        protected override void SaveData()
         {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                SetVisibale(false);
-            }
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                SetVisibale(true);
-            }
+            base.SaveData();
+            labReport1Data.SourceFrequency = StringToDouble(SourceFrequency.text);//信号源频率
+            labReport1Data.SourceVoltage = StringToDouble(SourceVoltage.text);//信号源电压设置
+            labReport1Data.Attenuator = StringToDouble(Attenuator.text);//衰减器设置
+            labReport1Data.EquivalentSectionPosition = StringToDouble(EquivalentSectionPosition.text);//等效截面位置
+            labReport1Data.InputWavelength = StringToDouble(InputWavelength.text);//输入端波长
+            labReport1Data.VariableShortCircuitFirstPos = StringToDouble(VariableShortCircuitFirstPos.text);//可变短路器第一波节点位置
+            labReport1Data.VariableShortCircuitSecondPos = StringToDouble(VariableShortCircuitSecondPos.text);//可变短路器第二波节点位置
+            labReport1Data.VariableWavelengthInShortCircuit = StringToDouble(VariableWavelengthInShortCircuit.text);//可变短路器中波长 
+            labReport1Data.OpenLoadPosition = StringToDouble(OpenLoadPosition.text);//开路负载位置
+            labReport1Data.WaveNodePosShortCircuit = StringToDouble(WaveNodePosShortCircuit.text);//波节点位置短路
+            labReport1Data.WaveNodePosShortTerminal = StringToDouble(WaveNodePosShortTerminal.text);//波节点位置终端
+            labReport1Data.WaveNodePosShortMatching = StringToDouble(WaveNodePosShortMatching.text);//波节点位置匹配
+            labReport1Data.PhaseAngleCircuit = StringToDouble(PhaseAngleCircuit.text);//相角短路
+            labReport1Data.PhaseAngleTerminal = StringToDouble(PhaseAngleTerminal.text);//相角终端
+            labReport1Data.PhaseAngleMatching = StringToDouble(PhaseAngleMatching.text);//相角匹配
+            labReport1Data.StandingWaveRatioCircuit = StringToDouble(StandingWaveRatioCircuit.text);//驻波比短路
+            labReport1Data.StandingWaveRatioTerminal = StringToDouble(StandingWaveRatioTerminal.text);//驻波比终端
+            labReport1Data.StandingWaveRatioMatching = StringToDouble(StandingWaveRatioMatching.text);//驻波比匹配
+            labReport1Data.inputΓ1S = StringToDouble(inputΓ1S.text);
+            labReport1Data.inputΓ10 = StringToDouble(inputΓ10.text);
+            labReport1Data.inputΓ1L = StringToDouble(inputΓ1L.text);
+            labReport1Data.ReflectionCoefficientΓ1S = StringToDouble(ReflectionCoefficientΓ1S.text);//反射系数短路
+            labReport1Data.ReflectionCoefficientΓ10 = StringToDouble(ReflectionCoefficientΓ10.text);//反射系数终端
+            labReport1Data.ReflectionCoefficientΓ1L = StringToDouble(ReflectionCoefficientΓ1L.text);//反射系数匹配
+            labReport1Data.inputS11 = StringToDouble(inputS11.text);
+            labReport1Data.inputS12S21 = StringToDouble(inputS12S21.text);
+            labReport1Data.inputS22 = StringToDouble(inputS22.text);
         }
     }
 }

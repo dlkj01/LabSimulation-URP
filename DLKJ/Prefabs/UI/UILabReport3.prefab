@@ -1153,6 +1153,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 575240a4d04fdb44395cada0c09efd0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameInputField: {fileID: 2526931587107248630}
+  classInputField: {fileID: 2526931586982632528}
+  timeInputField: {fileID: 2526931586451230514}
+  idInputField: {fileID: 2526931587177850780}
+  teacherInputField: {fileID: 2526931586978618196}
   page1: {fileID: 299248933407545452}
   page2: {fileID: 5244248289904560580}
   OnePortVoltage: {fileID: 2504109663265296963}

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class UILabReport2 : UILabReportBase
 {
-
+    public LabReport2Data labReport2Data = new LabReport2Data();
     [Tooltip("信号源频率")]
     [Header("第一组------------------------------------------------")]
     public InputField inputSourceFrequencyFirst;//信号源频率
@@ -61,4 +61,35 @@ public class UILabReport2 : UILabReportBase
 
     [Tooltip("匹配后驻波比")] public InputField SWRAfterMatchingSecond;//匹配后驻波比
 
+
+    protected override void SaveData()
+    {
+        base.SaveData();
+        labReport2Data.inputSourceFrequencyFirst = StringToDouble(inputSourceFrequencyFirst.text);
+        labReport2Data.inputSourceVoltageFirst = StringToDouble(inputSourceVoltageFirst.text);
+        labReport2Data.inputAttenuatorSetupFirst = StringToDouble(inputAttenuatorSetupFirst.text);
+        labReport2Data.SWRFirst = StringToDouble(SWRFirst.text);
+        labReport2Data.WaveguideWavelengthFirst = StringToDouble(WaveguideWavelengthFirst.text);
+        labReport2Data.WaveNodePositionFirst = StringToDouble(WaveNodePositionFirst.text);
+        labReport2Data.NormalizedLoadImpedanceFirst = StringToDouble(NormalizedLoadImpedanceFirst.text);
+        labReport2Data.LoadImpedanceFirst = StringToDouble(LoadImpedanceFirst.text);
+        labReport2Data.ScrewPositionFirst = StringToDouble(ScrewPositionFirst.text);
+        labReport2Data.ScrewDepthFirst = StringToDouble(ScrewDepthFirst.text);
+        labReport2Data.MinimumVoltageAfterMatchingFirst = StringToDouble(MinimumVoltageAfterMatchingFirst.text);
+        labReport2Data.MaximumVoltageAfterMatchingFirst = StringToDouble(MaximumVoltageAfterMatchingFirst.text);
+        labReport2Data.SWRAfterMatchingFirst = StringToDouble(SWRAfterMatchingFirst.text);
+        labReport2Data.inputSourceFrequencySecond = StringToDouble(inputSourceFrequencySecond.text);
+        labReport2Data.inputSourceVoltageSecond = StringToDouble(inputSourceVoltageSecond.text);
+        labReport2Data.inputAttenuatorSetupSecond = StringToDouble(inputAttenuatorSetupSecond.text);
+        labReport2Data.SWRSecond = StringToDouble(SWRSecond.text);
+        labReport2Data.WaveguideWavelengthSecond = StringToDouble(WaveguideWavelengthSecond.text);
+        labReport2Data.WaveNodePositionSecond = StringToDouble(WaveNodePositionSecond.text);
+        labReport2Data.NormalizedLoadImpedanceSecond = StringToDouble(NormalizedLoadImpedanceSecond.text);
+        labReport2Data.LoadImpedanceSecond = StringToDouble(LoadImpedanceSecond.text);
+        labReport2Data.ScrewPositionSecond = StringToDouble(ScrewPositionSecond.text);
+        labReport2Data.ScrewDepthSecond = StringToDouble(ScrewDepthSecond.text);
+        labReport2Data.MinimumVoltageAfterMatchingSecond = StringToDouble(MinimumVoltageAfterMatchingSecond.text);
+        labReport2Data.MaximumVoltageAfterMatchingSecond = StringToDouble(MaximumVoltageAfterMatchingSecond.text);
+        labReport2Data.SWRAfterMatchingSecond = StringToDouble(SWRAfterMatchingSecond.text);
+    }
 }
