@@ -38,18 +38,11 @@ namespace DLKJ
         }
         private void Start()
         {
-            map.Add("test", "三年二班");
-            map.Add("name", "张二浩");
             //      MathTool.Init();
         }
-        Dictionary<string, string> map = new Dictionary<string, string>();
         private void Update()
         {
             OnUpdate();
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                WordHelper.HandleGuaranteeDoc("test.doc", map);
-            }
         }
 
 

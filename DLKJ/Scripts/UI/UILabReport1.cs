@@ -7,7 +7,9 @@ namespace DLKJ
 {
     public class UILabReport1 : UILabReportBase
     {
-
+        public string filePath;
+        public string outFilePath;
+        private Dictionary<string, object> map = new Dictionary<string, object>();
         public LabReport1Data labReport1Data;
         public void OnSureCallBack()
         {
@@ -78,6 +80,14 @@ namespace DLKJ
             labReport1Data.inputS11 = StringToDouble(inputS11.text);
             labReport1Data.inputS12S21 = StringToDouble(inputS12S21.text);
             labReport1Data.inputS22 = StringToDouble(inputS22.text);
+            Dictionary<string, object> map1 = WordHelper.GetFields(userData);
+            Dictionary<string, object> map2 = WordHelper.GetFields(labReport1Data);
+            foreach (var item in map1)
+                map[item.Key] = item.Value;
+            foreach (var item2 in map2)
+                map[item2.Key] = item2.Value;
+
+            WordHelper.HandleGuaranteeDoc(filePath, map, outFilePath);
         }
     }
 }

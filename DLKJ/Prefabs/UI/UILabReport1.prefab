@@ -2865,6 +2865,8 @@ MonoBehaviour:
   teacherInputField: {fileID: 2526931586978618196}
   page1: {fileID: 299248933407545452}
   page2: {fileID: 5244248289904560580}
+  filePath: LabReport2.doc
+  outFilePath: LabReport1.doc
   SourceFrequency: {fileID: 3314346404411082824}
   SourceVoltage: {fileID: 6519336778689511703}
   Attenuator: {fileID: 5351642606767326655}

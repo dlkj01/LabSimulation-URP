@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
+using System.Reflection;
+using System.Linq;
+
 public struct UserDate
 {
     public string userName;
@@ -117,6 +121,7 @@ public class UILabReportBase : MonoBehaviour
         {
             ChangePage(P);
         };
+
     }
     public void SetVisibale(bool state)
     {
@@ -183,7 +188,7 @@ public class UILabReportBase : MonoBehaviour
     }
     protected double StringToDouble(string value)
     {
-        double result = 0;
+        double result = -9999;
         if (string.IsNullOrEmpty(value))
         {
             return result;
@@ -191,4 +196,7 @@ public class UILabReportBase : MonoBehaviour
         double.TryParse(value, out result);
         return result;
     }
+
+
+
 }
