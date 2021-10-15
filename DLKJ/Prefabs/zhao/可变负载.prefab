@@ -158,6 +158,12 @@ MonoBehaviour:
       correct: 1
       value: 0
       weight: 0
+  - data:
+      itemID: 19
+      portsID: 1
+      correct: 1
+      value: 0
+      weight: 0
   linkPort: {fileID: 0}
   portDefaultPosition: {x: 0, y: 0, z: 0}
   portDefaultEuler: {x: 0, y: 0, z: 0}
@@ -187,9 +193,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointer: {fileID: 0}
-  powerMaterial: {fileID: 0}
+  powerMaterials: []
   onColor: {r: 0, g: 0, b: 0, a: 0}
   offColor: {r: 0, g: 0, b: 0, a: 0}
+  numbers: []
+  numberTextures: []
   rotationType: 1
   RotationSpeed: 2
   TestValue: 0
@@ -209,6 +217,7 @@ MonoBehaviour:
     StartAngle: 120
     EndAngle: 444
     currentAngle: 120
+    x: 0
 --- !u!1 &1747970251703575628
 GameObject:
   m_ObjectHideFlags: 0

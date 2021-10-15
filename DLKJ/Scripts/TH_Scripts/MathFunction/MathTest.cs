@@ -38,12 +38,18 @@ namespace DLKJ
         }
         private void Start()
         {
-
+            map.Add("test", "三年二班");
+            map.Add("name", "张二浩");
             //      MathTool.Init();
         }
+        Dictionary<string, string> map = new Dictionary<string, string>();
         private void Update()
         {
             OnUpdate();
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                WordHelper.HandleGuaranteeDoc("test.doc", map);
+            }
         }
 
 
@@ -51,23 +57,24 @@ namespace DLKJ
         private void OnUpdate()
         {
             if (isInit == false) return;
+            if (!SceneManager.GetInstance().VerifyBasicLink()) return;
             double U = -10000;
             switch (SceneManager.GetInstance().currentLab.labName)
             {
                 case "二端口微波网络参量测量":
                     switch (SceneManager.GetInstance().currentLab.currentStepIndex)
                     {
-                        case 1:
+                        case 2:
                             U = MathTool.SLMCLXZDDLB(MathUtility.GetDistance(tempInstrumentBtn));
                             break;
-                        case 2:
+                        case 3:
                             U = MathTool.EDKTODLB(MathUtility.GetDistance(tempInstrumentBtn));
                             break;
-                        case 3:
+                        case 4:
 
                             U = MathTool.EDKPPFZ(MathUtility.GetDistance(tempInstrumentBtn));
                             break;
-                        case 4:
+                        case 5:
                             U = MathTool.ErDuanKouKeBianDuanLuQi(MathUtility.GetDistance(keBianDuanLuQiBtn), MathUtility.GetDistance(tempInstrumentBtn));
                             break;
                         default:
@@ -77,15 +84,15 @@ namespace DLKJ
                 case "负载阻抗测量":
                     switch (SceneManager.GetInstance().currentLab.currentStepIndex)
                     {
-                        case 1:
+                        case 2:
                             U = MathTool.SLMCLXZDDLB(MathUtility.GetDistance(tempInstrumentBtn));
                             break;
 
-                        case 2:
+                        case 3:
                             U = MathTool.FZZKCL_First(MathUtility.GetDistance(tempInstrumentBtn));
                             break;
 
-                        case 3:
+                        case 4:
                             U = MathTool.FZKZPP(MathUtility.GetDistance(instrumentPiPeiLuoDingL), MathUtility.GetDistance(instrumentPiPeiLuoDingD), MathUtility.GetDistance(tempInstrumentBtn));
                             break;
                         default:
@@ -113,6 +120,7 @@ namespace DLKJ
                 return;
             }
             instrumentActionPinXuan.pointer.SetAngle(float.Parse(U.ToString()));
+            instrumentActionPinXuan.pointer.PointerRotate();
             Debug.Log(U);
         }
 

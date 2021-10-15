@@ -51,7 +51,7 @@ namespace DLKJ
                 Shan0 = UnityEngine.Random.Range(0f, 2f * Mathf.PI);
             } while (Shan0 <= 0 || Shan0 > 2 * Mathf.PI);
             Shan0 = UnityEngine.Random.Range(0, 2 * Mathf.PI);
-            //     RuDuanLuQi = UnityEngine.Random.Range(0.0024f, 0.0365f);
+                 RuDuanLuQi = UnityEngine.Random.Range(0.0024f, 0.0365f);
             ShanA = UnityEngine.Random.Range(0, 2 * Mathf.PI);
             ShanB = UnityEngine.Random.Range(0, 2 * Mathf.PI);
             ShanC = UnityEngine.Random.Range(0, 2 * Mathf.PI);

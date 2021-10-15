@@ -112,6 +112,7 @@ namespace DLKJ
         public void UpdateItemMoveable(bool able)
         {
             Step currentStep = currentLab.currentStep;
+            if (currentStep.nextStepCanMove == true) return;
             for (int i = 0; i < currentStep.keyItems.Count; i++)
             {
                 Item labItem = GetLabItemByID(currentStep.keyItems[i].ID);
@@ -225,6 +226,54 @@ namespace DLKJ
                 }
             }
             return null;
+        }
+
+        public bool CurrentStepVerify()
+        {
+            switch (currentLab.labName)
+            {
+                case "二端口微波网络参量测量":
+                    switch (currentLab.currentStepIndex)
+                    {
+                        case 2:
+                            return VerifyBasicLink();
+                        case 3:
+                            return VerifyBasicLink();
+                        case 4:
+                            return VerifyBasicLink();
+                        case 5:
+                            return VerifyBasicLink();
+                        default:
+                            break;
+                    }
+                    break;
+                case "负载阻抗测量":
+                    switch (currentLab.currentStepIndex)
+                    {
+                        case 2:
+                            return VerifyBasicLink();
+                        case 3:
+                            return VerifyBasicLink();
+                        case 4:
+                            return VerifyBasicLink();
+                        default:
+                            break;
+                    }
+                    break;
+                case " 负载阻抗匹配和定向耦合器特性的测量":
+
+                    switch (currentLab.currentStepIndex)
+                    {
+                        case 1:
+                            return VerifyBasicLink();
+                        default:
+                            break;
+                    }
+                    break;
+                default:
+                    break;
+            }
+            return false;
         }
 
     }

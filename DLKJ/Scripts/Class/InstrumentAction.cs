@@ -11,7 +11,7 @@ namespace DLKJ
     {
         [Header("Pointer Settings")]
         //  public Transform pointer;
-        [HideInInspector] public Pointer pointer;//指针
+        public Pointer pointer;//指针
         [Header("Power Material")]
         [SerializeField] List<Material> powerMaterials = new List<Material>();
         [SerializeField] Color onColor;
@@ -160,7 +160,7 @@ namespace DLKJ
                             if (MathUtility.GetCurrentValue(tempInstrumentBtn) == 0)
                             {
                                 //校验是否正确
-                                if (SceneManager.GetInstance().VerifyBasicLink())
+                                if (SceneManager.GetInstance().CurrentStepVerify())
                                 {
                                     MathTest.Instance.FormulaInit();
                                     for (int i = 0; i < powerMaterials.Count; i++)
@@ -263,7 +263,7 @@ namespace DLKJ
                     #region 可变短路器
                     case "kebianduanluqi4":
                         Debug.Log("可变短路器 尺子");
-                        MathTool.RuDuanLuQi = MathUtility.GetCurrentValue(tempInstrumentBtn);
+                     //   MathTool.RuDuanLuQi = MathUtility.GetCurrentValue(tempInstrumentBtn);
                         RotaryVariableCircuitBreaker(tempInstrumentBtn);
                         break;
                     #endregion

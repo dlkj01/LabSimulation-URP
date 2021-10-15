@@ -295,9 +295,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointer: {fileID: 0}
-  powerMaterial: {fileID: 0}
+  powerMaterials: []
   onColor: {r: 0, g: 0, b: 0, a: 0}
   offColor: {r: 0, g: 0, b: 0, a: 0}
+  numbers: []
+  numberTextures: []
   rotationType: 0
   RotationSpeed: 2
   TestValue: 0
@@ -318,6 +320,7 @@ MonoBehaviour:
     StartAngle: 127
     EndAngle: 451
     currentAngle: 127
+    x: 0
 --- !u!65 &3991816612479598487
 BoxCollider:
   m_ObjectHideFlags: 0

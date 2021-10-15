@@ -371,9 +371,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointer: {fileID: 0}
-  powerMaterial: {fileID: 0}
+  powerMaterials: []
   onColor: {r: 0, g: 0, b: 0, a: 0}
   offColor: {r: 0, g: 0, b: 0, a: 0}
+  numbers: []
+  numberTextures: []
   rotationType: 0
   RotationSpeed: 2
   TestValue: 0
@@ -395,6 +397,7 @@ MonoBehaviour:
     StartAngle: 0
     EndAngle: 0
     currentAngle: 0
+    x: 0
 --- !u!114 &9096104713619213982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,19 +423,25 @@ MonoBehaviour:
   - data:
       itemID: 3
       portsID: 1
-      correct: 0
+      correct: 1
       value: 0
       weight: 0
   - data:
       itemID: 6
       portsID: 0
-      correct: 0
+      correct: 1
       value: 0
       weight: 0
   - data:
       itemID: 5
       portsID: 0
-      correct: 0
+      correct: 1
+      value: 0
+      weight: 0
+  - data:
+      itemID: 15
+      portsID: 0
+      correct: 1
       value: 0
       weight: 0
   linkPort: {fileID: 0}

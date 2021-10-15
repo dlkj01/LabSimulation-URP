@@ -64,8 +64,8 @@ MonoBehaviour:
       weight: 0
   - data:
       itemID: 18
-      portsID: 0
-      correct: 0
+      portsID: 1
+      correct: 1
       value: 0
       weight: 0
   - data:
@@ -90,9 +90,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointer: {fileID: 0}
-  powerMaterial: {fileID: 0}
+  powerMaterials: []
   onColor: {r: 0, g: 0, b: 0, a: 0}
   offColor: {r: 0, g: 0, b: 0, a: 0}
+  numbers: []
+  numberTextures: []
   rotationType: 1
   RotationSpeed: 2
   TestValue: 0

@@ -86,9 +86,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointer: {fileID: 0}
-  powerMaterial: {fileID: 0}
+  powerMaterials: []
   onColor: {r: 0, g: 0, b: 0, a: 0}
   offColor: {r: 0, g: 0, b: 0, a: 0}
+  numbers: []
+  numberTextures: []
   rotationType: 2
   RotationSpeed: 2
   TestValue: 0
@@ -109,6 +111,7 @@ MonoBehaviour:
     StartAngle: 0
     EndAngle: 0
     currentAngle: 0
+    x: 0
 --- !u!1 &2411508877651528357
 GameObject:
   m_ObjectHideFlags: 0

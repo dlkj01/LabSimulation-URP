@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace DLKJ {
+namespace DLKJ
+{
 
     public enum CompletedState
     {
@@ -118,7 +119,7 @@ namespace DLKJ {
                 pass = true;
                 //对于小集合的所有主键，如果它的任意一个键都存在于大集合中，就可以判定大集合全包含小集合
             }
-            Debug.Log("It's Right?"+pass);
+            Debug.Log("It's Right?" + pass);
             return pass;
         }
 
@@ -129,7 +130,7 @@ namespace DLKJ {
 
         public void TriggerScore()
         {
-           currentStep.TriggerScore();
+            currentStep.TriggerScore();
         }
     }
 
@@ -137,6 +138,7 @@ namespace DLKJ {
     public class Step
     {
         public int ID = -1;
+        public bool nextStepCanMove = false;
         public float points = 0;        //总分值
         public float dropPoints = -0;   //每次错误的分值
         public string stepName;
@@ -150,6 +152,7 @@ namespace DLKJ {
         {
             Step newStep = new Step();
             newStep.ID = ID;
+            newStep.nextStepCanMove = nextStepCanMove;
             newStep.points = points;
             newStep.dropPoints = dropPoints;
             newStep.stepName = stepName;
@@ -186,7 +189,7 @@ namespace DLKJ {
             for (int i = 0; i < keyItems.Count; i++)
             {
                 Item basic = SceneManager.GetInstance().GetLabItemByID(keyItems[i].ID);
-                if (basic!=null)
+                if (basic != null)
                 {
                     if (basic.linkPort == null)
                     {

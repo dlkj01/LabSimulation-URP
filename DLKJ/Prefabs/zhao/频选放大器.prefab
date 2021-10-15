@@ -2704,10 +2704,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51856be06bb55ea4aa6c75d7feb6d667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointer: {fileID: 0}
-  powerMaterial: {fileID: 2100000, guid: 0aa6c1897f735b34c83e957bd46fe0a2, type: 2}
+  pointer: {fileID: 1875818827817789467}
+  powerMaterials: []
   onColor: {r: 1, g: 0, b: 0, a: 1}
   offColor: {r: 0.14901961, g: 0.14901961, b: 0.14901961, a: 1}
+  numbers: []
+  numberTextures: []
   rotationType: 1
   RotationSpeed: 2
   TestValue: 0
@@ -2727,6 +2729,7 @@ MonoBehaviour:
     StartAngle: 0
     EndAngle: 0
     currentAngle: 0
+    x: 0
   - instrumentButton: {fileID: 6700768529746733617}
     conbinationList: []
     clickState: 1
@@ -2742,6 +2745,7 @@ MonoBehaviour:
     StartAngle: 0
     EndAngle: 0
     currentAngle: 0
+    x: 0
   - instrumentButton: {fileID: 7481975236817150811}
     conbinationList: []
     clickState: 1
@@ -2757,6 +2761,7 @@ MonoBehaviour:
     StartAngle: 0
     EndAngle: 0
     currentAngle: 0
+    x: 0
   - instrumentButton: {fileID: 8911597034805417940}
     conbinationList: []
     clickState: 1
@@ -2772,6 +2777,7 @@ MonoBehaviour:
     StartAngle: 0
     EndAngle: 0
     currentAngle: 0
+    x: 0
   - instrumentButton: {fileID: 4540013262241815258}
     conbinationList: []
     clickState: 1
@@ -2787,6 +2793,7 @@ MonoBehaviour:
     StartAngle: 0
     EndAngle: 0
     currentAngle: 0
+    x: 0
   - instrumentButton: {fileID: 5863905391799312110}
     conbinationList: []
     clickState: 1
@@ -2802,6 +2809,7 @@ MonoBehaviour:
     StartAngle: 0
     EndAngle: 0
     currentAngle: 0
+    x: 0
   - instrumentButton: {fileID: 546082746835063672}
     conbinationList: []
     clickState: 1
@@ -2817,6 +2825,7 @@ MonoBehaviour:
     StartAngle: 0
     EndAngle: 0
     currentAngle: 0
+    x: 0
   - instrumentButton: {fileID: 8861910854385574905}
     conbinationList: []
     clickState: 1
@@ -2832,6 +2841,7 @@ MonoBehaviour:
     StartAngle: 0
     EndAngle: 0
     currentAngle: 0
+    x: 0
   - instrumentButton: {fileID: 6767552577049865971}
     conbinationList: []
     clickState: 1
@@ -2847,6 +2857,7 @@ MonoBehaviour:
     StartAngle: 0
     EndAngle: 0
     currentAngle: 0
+    x: 0
   - instrumentButton: {fileID: 3741608910811344451}
     conbinationList: []
     clickState: 1
@@ -2862,6 +2873,7 @@ MonoBehaviour:
     StartAngle: 0
     EndAngle: 0
     currentAngle: 0
+    x: 0
   - instrumentButton: {fileID: 5651818210982610795}
     conbinationList: []
     clickState: 1
@@ -2877,6 +2889,7 @@ MonoBehaviour:
     StartAngle: 0
     EndAngle: 0
     currentAngle: 0
+    x: 0
   - instrumentButton: {fileID: 6608423717461449145}
     conbinationList: []
     clickState: 1
@@ -2892,6 +2905,7 @@ MonoBehaviour:
     StartAngle: 0
     EndAngle: 0
     currentAngle: 0
+    x: 0
   - instrumentButton: {fileID: 5396985235336750185}
     conbinationList: []
     clickState: 1
@@ -2907,6 +2921,7 @@ MonoBehaviour:
     StartAngle: -33
     EndAngle: 38
     currentAngle: -33
+    x: 0
   - instrumentButton: {fileID: 6437791387953629520}
     conbinationList: []
     clickState: 1
@@ -2922,6 +2937,7 @@ MonoBehaviour:
     StartAngle: 0
     EndAngle: 0
     currentAngle: 0
+    x: 0
   - instrumentButton: {fileID: 7353312473257479881}
     conbinationList: []
     clickState: 1
@@ -2937,6 +2953,7 @@ MonoBehaviour:
     StartAngle: 0
     EndAngle: 0
     currentAngle: 0
+    x: 0
   - instrumentButton: {fileID: 5837766757628233727}
     conbinationList: []
     clickState: 1
@@ -2952,6 +2969,7 @@ MonoBehaviour:
     StartAngle: 0
     EndAngle: 0
     currentAngle: 0
+    x: 0
 --- !u!65 &8876801840887813406
 BoxCollider:
   m_ObjectHideFlags: 0

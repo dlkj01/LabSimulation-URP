@@ -311,9 +311,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointer: {fileID: 0}
-  powerMaterial: {fileID: 0}
+  powerMaterials: []
   onColor: {r: 0, g: 0, b: 0, a: 0}
   offColor: {r: 0, g: 0, b: 0, a: 0}
+  numbers: []
+  numberTextures: []
   rotationType: 1
   RotationSpeed: 2
   TestValue: 0
@@ -334,6 +336,7 @@ MonoBehaviour:
     StartAngle: 20
     EndAngle: 344
     currentAngle: 20
+    x: 0
   - instrumentButton: {fileID: 4360821696943992864}
     conbinationList:
     - {fileID: 409599474756249463}
@@ -350,6 +353,7 @@ MonoBehaviour:
     StartAngle: 0
     EndAngle: 240
     currentAngle: 120
+    x: 0
 --- !u!114 &5992136170398547697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,6 +379,12 @@ MonoBehaviour:
   - data:
       itemID: 3
       portsID: 1
+      correct: 1
+      value: 0
+      weight: 0
+  - data:
+      itemID: 8
+      portsID: 0
       correct: 1
       value: 0
       weight: 0

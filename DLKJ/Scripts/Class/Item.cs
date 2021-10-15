@@ -108,18 +108,19 @@ namespace DLKJ
                 if (linkConditions[i].data.correct)
                 {
                     correctCondition = linkConditions[i];
-                    break;
-                }
-            }
-            if (correctCondition == null) return false;
+                    if (correctCondition == null) return false;
 
-            if (correctCondition.data.itemID == targetPort.ParentItem.ID)
-            {
-                if (correctCondition.data.portsID == targetPort.ID)
-                {
-                    return true;
+                    if (correctCondition.data.itemID == targetPort.ParentItem.ID)
+                    {
+                        if (correctCondition.data.portsID == targetPort.ID)
+                        {
+                            return true;
+                        }
+                    }
+                    //break;
                 }
             }
+          
             return false;
         }
 
