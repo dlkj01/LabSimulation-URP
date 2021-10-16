@@ -7,9 +7,7 @@ namespace DLKJ
 {
     public class UILabReport1 : UILabReportBase
     {
-        public string filePath;
-        public string outFilePath;
-        private Dictionary<string, object> map = new Dictionary<string, object>();
+
         public LabReport1Data labReport1Data;
         public void OnSureCallBack()
         {
@@ -85,7 +83,7 @@ namespace DLKJ
             foreach (var item in map1)
                 map[item.Key] = item.Value;
             foreach (var item2 in map2)
-                map[item2.Key] = item2.Value;
+                map[item2.Key] = item2.Value; 
 
             WordHelper.HandleGuaranteeDoc(filePath, map, outFilePath);
         }

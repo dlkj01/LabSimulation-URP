@@ -91,5 +91,14 @@ public class UILabReport2 : UILabReportBase
         labReport2Data.MinimumVoltageAfterMatchingSecond = StringToDouble(MinimumVoltageAfterMatchingSecond.text);
         labReport2Data.MaximumVoltageAfterMatchingSecond = StringToDouble(MaximumVoltageAfterMatchingSecond.text);
         labReport2Data.SWRAfterMatchingSecond = StringToDouble(SWRAfterMatchingSecond.text);
+
+        Dictionary<string, object> map1 = WordHelper.GetFields(userData);
+        Dictionary<string, object> map2 = WordHelper.GetFields(labReport2Data);
+        foreach (var item in map1)
+            map[item.Key] = item.Value;
+        foreach (var item2 in map2)
+            map[item2.Key] = item2.Value;
+
+        WordHelper.HandleGuaranteeDoc(filePath, map, outFilePath);
     }
 }

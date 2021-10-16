@@ -365,6 +365,12 @@ MonoBehaviour:
       correct: 1
       value: 0
       weight: 0
+  - data:
+      itemID: 20
+      portsID: 0
+      correct: 1
+      value: 0
+      weight: 0
   linkPort: {fileID: 0}
   portDefaultPosition: {x: 0, y: 0, z: 0}
   portDefaultEuler: {x: 0, y: 0, z: 0}

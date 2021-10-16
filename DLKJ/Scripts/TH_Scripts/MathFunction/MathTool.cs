@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Common;
 namespace DLKJ
 {
     /// <summary>
@@ -12,8 +14,64 @@ namespace DLKJ
         public float δ;//控制衰减器取值[0,1] 初始化后不变
         public float distanceZ;//z的位置距离三厘米测量线最后侧距离
     }
+    /// <summary>
+    /// 最小波段数据
+    /// </summary>
+    public struct BandData
+    {
+        public List<double> position;//波段位置
+        public double Value;
+    }
     public class MathTool
     {
+        public static LabReport1Data report1CorrectAnswer;
+        public static LabReport1Data report2CorrectAnswer;
+        public static LabReport1Data report3CorrectAnswer;
+        private static double Calculateλp1()
+        {
+            double c = 3 * Math.Pow(10, 8);
+            double ru = c / (F * Math.Pow(10, 9));
+            double ruc = 2 * a;
+            double λp1 = ru / (1 - Math.Pow(ru / ruc, 2));
+            return λp1;
+        }
+
+        public static BandData BMin(float minValue, float maxValue, float stepLength)
+        {
+            float value = Math.Abs(minValue) + Math.Abs(maxValue);
+            float everyStep = value / stepLength;
+            BandData bandData = new BandData();
+            List<double> resultList = new List<double>();
+            List<double> position = new List<double>();
+            for (float i = minValue; i <= maxValue; i += everyStep)
+            {
+                resultList.Add(Math.Abs(Math.Sin(Getβ() * i)));
+                position.Add(i);
+            }
+            double minResult = GetMin(resultList);
+            bandData.Value = minResult;
+            for (int i = 0; i < resultList.Count; i++)
+            {
+                if (resultList[i] == minResult)
+                {
+                    bandData.position.Add(position[i]);
+                }
+            }
+            return bandData;
+            //返回结果N倍的PI
+            //return 0;
+        }
+
+        private static double GetMin(List<double> list)
+        {
+            double minValue = list[0];
+            for (int i = 1; i < list.Count; i++)
+            {
+                if (minValue > list[i])
+                    minValue = list[i];
+            }
+            return minValue;
+        }
         //   private const float j = 1;
         private const float a = 0.02286f;
         public static float A { get; set; } /*= 10*///电压10mv-1000mv 初始化后不变
@@ -51,7 +109,7 @@ namespace DLKJ
                 Shan0 = UnityEngine.Random.Range(0f, 2f * Mathf.PI);
             } while (Shan0 <= 0 || Shan0 > 2 * Mathf.PI);
             Shan0 = UnityEngine.Random.Range(0, 2 * Mathf.PI);
-                 RuDuanLuQi = UnityEngine.Random.Range(0.0024f, 0.0365f);
+            RuDuanLuQi = UnityEngine.Random.Range(0.0024f, 0.0365f);
             ShanA = UnityEngine.Random.Range(0, 2 * Mathf.PI);
             ShanB = UnityEngine.Random.Range(0, 2 * Mathf.PI);
             ShanC = UnityEngine.Random.Range(0, 2 * Mathf.PI);

@@ -187,6 +187,7 @@ namespace DLKJ
                     case "VoltageBtn":
                         break;
                     case "FrequencyBtn":
+                        if (MathTest.Instance.isInit == false) return;
                         //给频率赋值
                         MathTool.F = MathUtility.GetCurrentValue(tempInstrumentBtn);
                         UpdateNumber(MathTool.F);
@@ -236,6 +237,8 @@ namespace DLKJ
                         }
                         break;
                     case "RotaryBtnVoltage":
+                        if (MathTest.Instance.isInit == false)
+                            return;
                         //给电压赋值
                         MathTool.A = MathUtility.GetCurrentValue(tempInstrumentBtn);
                         //SetStepLength(instrumentButton.Find(x => x.instrumentButton.name == "RotaryBtnVoltage") == null ? 0 : instrumentButton.Find(x => x.instrumentButton.name == "RotaryBtnVoltage").rotary);
@@ -263,7 +266,7 @@ namespace DLKJ
                     #region 可变短路器
                     case "kebianduanluqi4":
                         Debug.Log("可变短路器 尺子");
-                     //   MathTool.RuDuanLuQi = MathUtility.GetCurrentValue(tempInstrumentBtn);
+                        //   MathTool.RuDuanLuQi = MathUtility.GetCurrentValue(tempInstrumentBtn);
                         RotaryVariableCircuitBreaker(tempInstrumentBtn);
                         break;
                     #endregion

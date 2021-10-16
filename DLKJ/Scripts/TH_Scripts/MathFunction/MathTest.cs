@@ -43,6 +43,10 @@ namespace DLKJ
         private void Update()
         {
             OnUpdate();
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                Debug.Log(Math.Pow(-1, 2));
+            }
         }
 
 
@@ -50,7 +54,12 @@ namespace DLKJ
         private void OnUpdate()
         {
             if (isInit == false) return;
-            if (!SceneManager.GetInstance().VerifyBasicLink()) return;
+            if (!SceneManager.GetInstance().VerifyBasicLink())
+            {
+                instrumentActionPinXuan.pointer.SetAngle(0);
+                instrumentActionPinXuan.pointer.PointerRotate();
+                return;
+            }
             double U = -10000;
             switch (SceneManager.GetInstance().currentLab.labName)
             {

@@ -166,6 +166,8 @@ MonoBehaviour:
     - {fileID: 4210527241192592495, guid: fbc33b357d60c894888967e6cf05f998, type: 3}
     - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
     - {fileID: 4210527241192592495, guid: fbc33b357d60c894888967e6cf05f998, type: 3}
+    - {fileID: 6160732753793878566, guid: 08bd461d317849348a7e283c0ea65675, type: 3}
+    - {fileID: 422642413207688284, guid: 2eebec1e05c8ddf47b202726a2e0d16e, type: 3}
     steps:
     - ID: -1
       nextStepCanMove: 0
@@ -243,6 +245,12 @@ MonoBehaviour:
     defaultComponents:
     - {fileID: 1396622047791104849, guid: 9e9f021fe7f865b44b1a614b86751d6d, type: 3}
     - {fileID: 2872388454102490671, guid: 138a69f919a109b47a36ad4c7e794c1e, type: 3}
+    - {fileID: 6215187212563577928, guid: 37d9002f115cadc4183454e2c1a992ee, type: 3}
+    - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
+    - {fileID: 3961344040403204859, guid: ce751bace04a6ee49825c20acbe12fc2, type: 3}
+    - {fileID: 6160732753793878566, guid: 08bd461d317849348a7e283c0ea65675, type: 3}
+    - {fileID: 422642413207688284, guid: 2eebec1e05c8ddf47b202726a2e0d16e, type: 3}
+    - {fileID: 109652449371374668, guid: 2684e3842a58cac43a03981c7f4f7b44, type: 3}
     steps:
     - ID: -1
       nextStepCanMove: 0
@@ -255,6 +263,7 @@ MonoBehaviour:
       - {fileID: 6215187212563577928, guid: 37d9002f115cadc4183454e2c1a992ee, type: 3}
       - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
       - {fileID: 3961344040403204859, guid: ce751bace04a6ee49825c20acbe12fc2, type: 3}
+      - {fileID: 109652449371374668, guid: 2684e3842a58cac43a03981c7f4f7b44, type: 3}
     - ID: -1
       nextStepCanMove: 1
       points: 15
@@ -266,13 +275,18 @@ MonoBehaviour:
       - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
       - {fileID: 3961344040403204859, guid: ce751bace04a6ee49825c20acbe12fc2, type: 3}
       - {fileID: 6215187212563577928, guid: 37d9002f115cadc4183454e2c1a992ee, type: 3}
+      - {fileID: 109652449371374668, guid: 2684e3842a58cac43a03981c7f4f7b44, type: 3}
     currentStepIndex: 0
     currentStep:
       ID: -1
       nextStepCanMove: 0
-      points: 0
-      dropPoints: 0
-      stepName: 
+      points: 10
+      dropPoints: -2
+      stepName: "\u9009\u62E9\u5668\u4EF6"
       valueType: 100
       completedState: 0
-      keyItems: []
+      keyItems:
+      - {fileID: 6215187212563577928, guid: 37d9002f115cadc4183454e2c1a992ee, type: 3}
+      - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
+      - {fileID: 3961344040403204859, guid: ce751bace04a6ee49825c20acbe12fc2, type: 3}
+      - {fileID: 109652449371374668, guid: 2684e3842a58cac43a03981c7f4f7b44, type: 3}

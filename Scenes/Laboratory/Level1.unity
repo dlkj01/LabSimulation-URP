@@ -8824,7 +8824,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u9A8C\u8BC1"
+  m_Text: "\u4E0B\u4E00\u6B65"
 --- !u!222 &1613815253
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9679,6 +9679,7 @@ MonoBehaviour:
     currentStepIndex: 0
     currentStep:
       ID: -1
+      nextStepCanMove: 0
       points: 0
       dropPoints: 0
       stepName: 

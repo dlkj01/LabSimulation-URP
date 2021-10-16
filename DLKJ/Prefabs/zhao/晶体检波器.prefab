@@ -350,6 +350,18 @@ MonoBehaviour:
       correct: 1
       value: 0
       weight: 0
+  - data:
+      itemID: 17
+      portsID: 1
+      correct: 1
+      value: 0
+      weight: 0
+  - data:
+      itemID: 20
+      portsID: 2
+      correct: 1
+      value: 0
+      weight: 0
   linkPort: {fileID: 0}
   portDefaultPosition: {x: 0, y: 0, z: 0}
   portDefaultEuler: {x: 0, y: 0, z: 0}
@@ -807,7 +819,7 @@ GameObject:
   - component: {fileID: 1336433829274557358}
   - component: {fileID: 2236338892373258016}
   - component: {fileID: 8371688223682987384}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Port2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -885,10 +897,10 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6767076807811751652}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2434244368701526625, guid: 69c78a7864a9229438302925c3147bf1, type: 3}
 --- !u!114 &8371688223682987384
@@ -904,7 +916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragAble: 0
-  ID: -1
+  ID: 1
   scope: 0.02
   moveSpeed: 1
   portCollider: {fileID: 2236338892373258016}
@@ -1089,7 +1101,7 @@ GameObject:
   - component: {fileID: 5429966165246029503}
   - component: {fileID: 466683739413998691}
   - component: {fileID: 6178728787518737448}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Port
   m_TagString: Untagged
   m_Icon: {fileID: 0}

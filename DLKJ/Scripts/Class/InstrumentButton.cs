@@ -90,7 +90,8 @@ namespace DLKJ
                         instrumentButton.localRotation = Quaternion.Euler(0, 0, 0);
                         break;
                     case InstrumentButtonType.Rotary:
-
+                        if (instrumentButton.name == "FrequencyBtn" || instrumentButton.name == "RotaryBtnVoltage")
+                            if (MathTest.Instance.isInit == false) return;
                         if (Input.GetKey(KeyCode.LeftControl))
                         {
                             if (Mathf.Approximately(currentAngle, StartAngle) || currentAngle - 0.001f <= StartAngle)
@@ -164,6 +165,8 @@ namespace DLKJ
                         instrumentButton.localRotation = Quaternion.Euler(0, 0, -25);
                         break;
                     case InstrumentButtonType.Rotary:
+                        if (instrumentButton.name == "FrequencyBtn" || instrumentButton.name == "RotaryBtnVoltage")
+                            if (MathTest.Instance.isInit == false) return;
                         if (Input.GetKey(KeyCode.LeftControl))
                         {
                             if (Mathf.Approximately(currentAngle, StartAngle) || currentAngle - 0.001f <= StartAngle)

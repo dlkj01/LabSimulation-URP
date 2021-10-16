@@ -85,6 +85,9 @@ public struct LabReport3Data
 
 public class UILabReportBase : MonoBehaviour
 {
+    public string filePath;
+    public string outFilePath;
+    protected Dictionary<string, object> map = new Dictionary<string, object>();
     [Header("实验名称")] public string ExperimentItem;
     [Header("实验类型")] public string ExperimentType;
     [Header("实验学时")] public string ExperimentTime;
