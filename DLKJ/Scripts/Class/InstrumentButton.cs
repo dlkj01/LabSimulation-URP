@@ -51,6 +51,7 @@ namespace DLKJ
 
             public float currentAngle = 0;
 
+            public bool uncontrolled;//点击不受控制
 
             public delegate void OnMouseButtonClick(string buttonName);
 
@@ -125,6 +126,7 @@ namespace DLKJ
                                                                instrumentButton.localPosition.z);
                             return;
                         }
+                        if (uncontrolled) return;
                         instrumentButton.localPosition = new Vector3(instrumentButton.localPosition.x + instrumentButton.GetComponent<MeshCollider>().bounds.size.x / 3,
                                                                  instrumentButton.localPosition.y,
                                                                  instrumentButton.localPosition.z);
@@ -193,7 +195,7 @@ namespace DLKJ
                     case InstrumentButtonType.Click:
                         if (instrumentButton.name == "PowerBtn")
                             if (!SceneManager.GetInstance().VerifyBasicLink()) return;
-
+                        if (uncontrolled) return;
                         instrumentButton.localPosition = new Vector3(instrumentButton.localPosition.x - instrumentButton.GetComponent<MeshCollider>().bounds.size.x / 3,
                                                                      instrumentButton.localPosition.y,
                                                                      instrumentButton.localPosition.z);

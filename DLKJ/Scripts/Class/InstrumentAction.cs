@@ -249,7 +249,7 @@ namespace DLKJ
                             return;
                         //给电压赋值
                         MathTool.A = MathUtility.GetCurrentValue(tempInstrumentBtn);
-                        transform.Find("电压Canvas").GetComponentInChildren<Text>().text = MathTool.A.ToString("#0.00");
+                        transform.Find("电压Text").GetComponent<TextMesh>().text = MathTool.A.ToString("#0.00");
                         //SetStepLength(instrumentButton.Find(x => x.instrumentButton.name == "RotaryBtnVoltage") == null ? 0 : instrumentButton.Find(x => x.instrumentButton.name == "RotaryBtnVoltage").rotary);
                         break;
                     case "RotaryBtnFrequency":
