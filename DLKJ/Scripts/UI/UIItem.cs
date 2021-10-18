@@ -39,7 +39,8 @@ namespace DLKJ
             down = true;
             if (item.libraryType != LibraryType.Wires)
             {
-                modelIcon.texture = item.renderTexture;
+               // modelIcon.texture = item.renderTexture;
+                modelIcon.texture = UIManager.GetInstance()._3dCamera._3DCamera.targetTexture;
             }
 
             if (clickTimes >= 2)
@@ -59,7 +60,7 @@ namespace DLKJ
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            //EventManager.OnScrollItem(this);
+            EventManager.OnScrollItem(this);
             // EventManager.OnMouseEnterItem(this.item);
         }
 
