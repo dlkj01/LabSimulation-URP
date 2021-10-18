@@ -213,7 +213,7 @@ namespace DLKJ
             float value = voltmeterRect.rect.width;
             while (value > 0)
             {
-                value--;
+                value-=10;
                 voltmeterRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, value);
                 yield return null;
             }
@@ -224,7 +224,7 @@ namespace DLKJ
             float value = 0;
             while (value <= 400)
             {
-                value++;
+                value+=10;
                 voltmeterRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, value);
                 yield return null;
             }
