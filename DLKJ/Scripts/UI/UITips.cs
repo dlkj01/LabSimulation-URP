@@ -8,7 +8,8 @@ using UnityEngine.Events;
 
 namespace DLKJ
 {
-    public enum TipsType {
+    public enum TipsType
+    {
         None,
         Toast,          //提示框(仅显示文字)
         Dialog,         //对话框
@@ -40,7 +41,7 @@ namespace DLKJ
             EventManager.OnTipsDecidedEvent -= Decided;
         }
 
-        public void OnTips(TipsType type,  string content, UnityAction noCallback = null, UnityAction yesCallback = null)
+        public void OnTips(TipsType type, string content, UnityAction noCallback = null, UnityAction yesCallback = null)
         {
             noUnityAction = noCallback;
             yesUnityAction = yesCallback;
@@ -84,7 +85,6 @@ namespace DLKJ
                 SetSelectedButtonState(true);
                 Init(content);
             }
-   
         }
 
 
@@ -126,6 +126,8 @@ namespace DLKJ
         {
             return tipsContent.preferredHeight;
         }
+
+
 
         private void SetSelectedButtonState(bool state)  //由于多次添加按钮监听所以导致事件多次被触发 应注意
         {

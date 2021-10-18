@@ -38,14 +38,14 @@ namespace DLKJ
         }
         private void Start()
         {
-            //      MathTool.Init();
+            MathTool.Init();
         }
         private void Update()
         {
             OnUpdate();
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                Debug.Log(Math.Pow(-1, 2));
+                MathTool.CorrectLT1();
             }
         }
 

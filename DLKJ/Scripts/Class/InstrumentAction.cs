@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 using static DLKJ.InstrumentAction.InstrumentButton;
 
 namespace DLKJ
@@ -240,7 +241,8 @@ namespace DLKJ
                         if (MathTest.Instance.isInit == false)
                             return;
                         //给电压赋值
-                        MathTool.A = MathUtility.GetCurrentValue(tempInstrumentBtn);
+                        MathTool.A = MathUtility.GetCurrentValue(tempInstrumentBtn) * 1000;
+                        transform.Find("电压Canvas").GetComponentInChildren<Text>().text = MathTool.A.ToString("#0.00");
                         //SetStepLength(instrumentButton.Find(x => x.instrumentButton.name == "RotaryBtnVoltage") == null ? 0 : instrumentButton.Find(x => x.instrumentButton.name == "RotaryBtnVoltage").rotary);
                         break;
                     case "RotaryBtnFrequency":

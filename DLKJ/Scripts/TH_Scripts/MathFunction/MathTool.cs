@@ -14,64 +14,38 @@ namespace DLKJ
         public float δ;//控制衰减器取值[0,1] 初始化后不变
         public float distanceZ;//z的位置距离三厘米测量线最后侧距离
     }
-    /// <summary>
-    /// 最小波段数据
-    /// </summary>
-    public struct BandData
-    {
-        public List<double> position;//波段位置
-        public double Value;
-    }
     public class MathTool
     {
         public static LabReport1Data report1CorrectAnswer;
-        public static LabReport1Data report2CorrectAnswer;
-        public static LabReport1Data report3CorrectAnswer;
+        public static LabReport2Data report2CorrectAnswer;
+        public static LabReport3Data report3CorrectAnswer;
         private static double Calculateλp1()
         {
             double c = 3 * Math.Pow(10, 8);
             double ru = c / (F * Math.Pow(10, 9));
             double ruc = 2 * a;
-            double λp1 = ru / (1 - Math.Pow(ru / ruc, 2));
+            double λp1 = ru / Math.Sqrt((1 - Math.Pow(ru / ruc, 2)));
             return λp1;
         }
-
-        public static BandData BMin(float minValue, float maxValue, float stepLength)
+        /// <summary>
+        /// 实验一可变短路器第一波节点位置lT1
+        /// </summary>
+        /// <returns></returns>
+        public static double CorrectLT1()
         {
-            float value = Math.Abs(minValue) + Math.Abs(maxValue);
-            float everyStep = value / stepLength;
-            BandData bandData = new BandData();
-            List<double> resultList = new List<double>();
-            List<double> position = new List<double>();
-            for (float i = minValue; i <= maxValue; i += everyStep)
+            double Shan1 = CalculateShan(GetTl_a(), GetTl_b());
+            for (int i = 0; i < 20; i++)
             {
-                resultList.Add(Math.Abs(Math.Sin(Getβ() * i)));
-                position.Add(i);
-            }
-            double minResult = GetMin(resultList);
-            bandData.Value = minResult;
-            for (int i = 0; i < resultList.Count; i++)
-            {
-                if (resultList[i] == minResult)
+                double z = Shan1 * Calculateλp1() / (4 * Math.PI) + (i + 1) * (Calculateλp1() / 4);
+                if (Math.Cos(2 * Getβ() * z - Shan1) == -1)
                 {
-                    bandData.position.Add(position[i]);
+                    double result = δ * Math.Abs(A) * (1 - Math.Abs(GetTl()));
+                    Debug.Log(result);
                 }
             }
-            return bandData;
-            //返回结果N倍的PI
-            //return 0;
+            return 0;
         }
 
-        private static double GetMin(List<double> list)
-        {
-            double minValue = list[0];
-            for (int i = 1; i < list.Count; i++)
-            {
-                if (minValue > list[i])
-                    minValue = list[i];
-            }
-            return minValue;
-        }
         //   private const float j = 1;
         private const float a = 0.02286f;
         public static float A { get; set; } /*= 10*///电压10mv-1000mv 初始化后不变
@@ -94,9 +68,9 @@ namespace DLKJ
         }
         public static void RandomDataInit()
         {
-            //  F = UnityEngine.Random.Range(8.2f, 12.5f);
-            //  A = UnityEngine.Random.Range(10f, 1000f);
-            //  δ = UnityEngine.Random.Range(0f, 1f); //Random(0.00f, 1.00f);
+            F = UnityEngine.Random.Range(8.2f, 12.5f);
+            A = UnityEngine.Random.Range(10f, 1000f);
+            δ = UnityEngine.Random.Range(0f, 1f); //Random(0.00f, 1.00f);
             X = UnityEngine.Random.Range(-200f, 200f);
             R = UnityEngine.Random.Range(0f, 200f);
             ZL = R + X;
@@ -415,7 +389,7 @@ namespace DLKJ
 
         private static double GetTl()
         {
-            return Math.Sqrt(Math.Pow(GetTl_a(), 2) + Math.Pow(GetTl_b(), 2)); /*GetTL_a() + j*GetTL_b()*/
+            return Math.Sqrt(Math.Pow(GetTl_a(), 2) + Math.Pow(GetTl_b(), 2));
         }
 
 

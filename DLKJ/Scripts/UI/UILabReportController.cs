@@ -9,6 +9,7 @@ public class UILabReportController : MonoBehaviour
     private void Awake()
     {
         group = GetComponent<CanvasGroup>();
+        group.alpha = 0.6f;
         UIEventListener listener = UIEventListener.GetUIEventListener(gameObject);
         listener.PointerClick += OnPointerClick;
         listener.PointerEnter += OnPointerEnter;

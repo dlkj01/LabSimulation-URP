@@ -145,7 +145,17 @@ namespace DLKJ
             return newObject;
         }
 
-
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                EventManager.OnTips(TipsType.Snackbar, "ÊÇ·ñÍË³ö³ÌÐò", () => { FindObjectOfType<UITips>().OnDisTips(); },
+                () =>
+                {
+                    Application.Quit();
+                });
+            }
+        }
     }
 
 

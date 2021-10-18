@@ -1007,13 +1007,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7423178518503789816}
   m_TextComponent: {fileID: 7423178518503789816}
   m_Placeholder: {fileID: 7176705137300406310}
-  m_ContentType: 0
+  m_ContentType: 3
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 2
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 2
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -2849,6 +2849,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 297f0669866ce984386598ae66432336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  filePath: LabReport2.doc
+  outFilePath: LabReport1.doc
   ExperimentItem: "\u4E8C\u7AEF\u53E3\u5FAE\u6CE2\u7F51\u7EDC\u53C2\u91CF\u6D4B\u91CF\u5B9E\u9A8C"
   ExperimentType: "\u7EFC\u5408\u8BBE\u8BA1\u578B"
   ExperimentTime: 2
@@ -2865,8 +2867,6 @@ MonoBehaviour:
   teacherInputField: {fileID: 2526931586978618196}
   page1: {fileID: 299248933407545452}
   page2: {fileID: 5244248289904560580}
-  filePath: LabReport2.doc
-  outFilePath: LabReport1.doc
   SourceFrequency: {fileID: 3314346404411082824}
   SourceVoltage: {fileID: 6519336778689511703}
   Attenuator: {fileID: 5351642606767326655}
@@ -8528,13 +8528,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2005042415837083841}
   m_TextComponent: {fileID: 2005042415837083841}
   m_Placeholder: {fileID: 4503440687115526830}
-  m_ContentType: 0
+  m_ContentType: 3
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 2
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 2
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -10818,13 +10818,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2546633769595556480}
   m_TextComponent: {fileID: 2546633769595556480}
   m_Placeholder: {fileID: 98080212948544709}
-  m_ContentType: 0
+  m_ContentType: 3
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 2
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 2
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
