@@ -10,6 +10,9 @@ namespace DLKJ
 {
     public partial class InstrumentAction : MonoBehaviour
     {
+        [Header("Camera Displayer")]
+        [SerializeField] public Camera voltmeterCamera;
+
         [Header("Pointer Settings")]
         //  public Transform pointer;
         public Pointer pointer;//÷∏’Î
@@ -136,6 +139,10 @@ namespace DLKJ
             pointer = GetComponentInChildren<Pointer>();
             mpb = new MaterialPropertyBlock();
 
+            if (voltmeterCamera)
+            {
+              //  voltmeterCamera.targetTexture = UIManager.GetInstance().voltmeterValue
+            }
         }
 
         /// <summary>
@@ -475,6 +482,10 @@ namespace DLKJ
         {
             if (pointer != null)
                 pointer.PointerRotate();
+            if (voltmeterCamera)
+            {
+                UIManager.GetInstance().SetVoltmeterValue(voltmeterCamera);
+            }
         }
 
 

@@ -26,6 +26,11 @@ namespace DLKJ
         [HeaderAttribute("VideoButton")]
         public Button videoShowButton;
         public UIVideoPlayer uIVideoPlayer;
+       
+        [HeaderAttribute("频选第二视口")]
+        public RectTransform voltmeterRect;
+        public RawImage voltmeterValue;
+        public Button voltmeterButton;
 
 
         [HeaderAttribute("PanelPrefab")]
@@ -39,12 +44,15 @@ namespace DLKJ
         private UIEquipmentPanel equipmentPanel = null;
         private UIExperimentSelectedPanel experimentSelectedPanel = null;
 
+        private Camera voltmeterCamera;
+
         private void Awake()
         {
             if (sceneObject) sceneObject.SetActive(false);
            // videoShowButton.gameObject.SetActive(false);
             uIVideoPlayer.gameObject.SetActive(false);
             videoShowButton.onClick.AddListener(delegate { ShowVideoButton(); });
+            voltmeterButton.onClick.AddListener(delegate { PinXuanView(); });
         }
 
         public static UIManager GetInstance()
@@ -152,6 +160,12 @@ namespace DLKJ
             return newObject;
         }
 
+        public void SetVoltmeterValue(Camera camera)
+        {
+            voltmeterCamera = camera;
+            voltmeterValue.texture = camera.targetTexture;
+        }
+
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -175,6 +189,44 @@ namespace DLKJ
             {
                 uIVideoPlayer.Play();
                 uIVideoPlayer.gameObject.SetActive(true);
+            }
+        }
+
+        private Coroutine systolic = null;
+        private Coroutine flexible = null;
+        void PinXuanView()
+        {
+            if (voltmeterRect.rect.width > 0)
+            {
+                if (systolic != null) StopCoroutine(systolic);
+                systolic =  StartCoroutine(Systolic());
+            }
+            else
+            {
+                if (flexible != null) StopCoroutine(flexible);
+                flexible = StartCoroutine(Flexible());
+            }
+        }
+
+        IEnumerator Systolic()
+        {
+            float value = voltmeterRect.rect.width;
+            while (value > 0)
+            {
+                value--;
+                voltmeterRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, value);
+                yield return null;
+            }
+        }
+
+        IEnumerator Flexible()
+        {
+            float value = 0;
+            while (value <= 400)
+            {
+                value++;
+                voltmeterRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, value);
+                yield return null;
             }
         }
 
