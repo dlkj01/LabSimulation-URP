@@ -13,7 +13,7 @@ namespace DLKJ
         [SerializeField] GameObject sceneObject;
 
         [Header("ScrollCamera")]
-        [SerializeField] UI3DCamera _3dCamera;
+        [SerializeField]public UI3DCamera _3dCamera;
 
         [HeaderAttribute("Canvas")]
         public Canvas canvas;
@@ -23,6 +23,10 @@ namespace DLKJ
 
         [HeaderAttribute("Button")]
         public Button verifyButton;
+        [HeaderAttribute("VideoButton")]
+        public Button videoShowButton;
+        public UIVideoPlayer uIVideoPlayer;
+
 
         [HeaderAttribute("PanelPrefab")]
         [SerializeField] UIEquipmentPanel equipmentPanelPrefab;
@@ -38,6 +42,9 @@ namespace DLKJ
         private void Awake()
         {
             if (sceneObject) sceneObject.SetActive(false);
+           // videoShowButton.gameObject.SetActive(false);
+            uIVideoPlayer.gameObject.SetActive(false);
+            videoShowButton.onClick.AddListener(delegate { ShowVideoButton(); });
         }
 
         public static UIManager GetInstance()
@@ -156,6 +163,21 @@ namespace DLKJ
                 });
             }
         }
+
+        void ShowVideoButton()
+        {
+            if (uIVideoPlayer.gameObject.activeSelf)
+            {
+                uIVideoPlayer.gameObject.SetActive(false);
+                uIVideoPlayer.Reset();
+            }
+            else
+            {
+                uIVideoPlayer.Play();
+                uIVideoPlayer.gameObject.SetActive(true);
+            }
+        }
+
     }
 
 
