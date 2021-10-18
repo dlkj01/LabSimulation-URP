@@ -38,7 +38,7 @@ namespace DLKJ
         }
         private void Start()
         {
-            MathTool.Init();
+            // MathTool.Init();
         }
         private void Update()
         {

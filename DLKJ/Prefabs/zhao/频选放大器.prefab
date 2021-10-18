@@ -3228,8 +3228,8 @@ MonoBehaviour:
     instrumentButtonType: 1
     rotary: 0
     rotatyDirection: 1
-    MaxValue: 1000
-    MinValue: 10
+    MaxValue: 2000
+    MinValue: 2
     EndMovePoint: 0
     StartMovePoint: 0
     StepLength: 70

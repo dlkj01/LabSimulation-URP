@@ -68,15 +68,15 @@ namespace DLKJ
         }
         public static void RandomDataInit()
         {
-            F = UnityEngine.Random.Range(8.2f, 12.5f);
-            A = UnityEngine.Random.Range(10f, 1000f);
-            δ = UnityEngine.Random.Range(0f, 1f); //Random(0.00f, 1.00f);
+            //F = UnityEngine.Random.Range(8.2f, 12.5f);
+            //A = UnityEngine.Random.Range(2f, 2000f);
+            //δ = UnityEngine.Random.Range(0f, 1f); //Random(0.00f, 1.00f);
             X = UnityEngine.Random.Range(-200f, 200f);
             R = UnityEngine.Random.Range(0f, 200f);
             ZL = R + X;
-            FA = UnityEngine.Random.Range(0f, 100f);
-            FB = UnityEngine.Random.Range(0f, 100f);
-            FC = UnityEngine.Random.Range(0f, 100f);
+            FA = UnityEngine.Random.Range(0f, 1f);
+            FC = FA;
+            FB = Math.Sqrt(1 - Math.Pow(FA, 2));
             FD = UnityEngine.Random.Range(0f, 1f);
             do
             {
@@ -85,8 +85,8 @@ namespace DLKJ
             Shan0 = UnityEngine.Random.Range(0, 2 * Mathf.PI);
             RuDuanLuQi = UnityEngine.Random.Range(0.0024f, 0.0365f);
             ShanA = UnityEngine.Random.Range(0, 2 * Mathf.PI);
-            ShanB = UnityEngine.Random.Range(0, 2 * Mathf.PI);
-            ShanC = UnityEngine.Random.Range(0, 2 * Mathf.PI);
+            ShanC = ShanA;
+            ShanB = 0.5f * (ShanA + ShanC + Math.PI);
             ShanD = UnityEngine.Random.Range(0, 2 * Mathf.PI);
             EDKKBDLQβ = GetEDKKBDLQβ();
         }
@@ -124,11 +124,11 @@ namespace DLKJ
 
         #region 实验一、二端口网络S参数测量()
         private static float FA;
-        private static float FB;
+        private static double FB;
         private static float FC;
         private static float FD;
         private static float ShanA;
-        private static float ShanB;
+        private static double ShanB;
         private static float ShanC;
         private static float ShanD;
         #endregion

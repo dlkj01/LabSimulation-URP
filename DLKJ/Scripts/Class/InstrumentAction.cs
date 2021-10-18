@@ -241,7 +241,7 @@ namespace DLKJ
                         if (MathTest.Instance.isInit == false)
                             return;
                         //给电压赋值
-                        MathTool.A = MathUtility.GetCurrentValue(tempInstrumentBtn) * 1000;
+                        MathTool.A = MathUtility.GetCurrentValue(tempInstrumentBtn);
                         transform.Find("电压Canvas").GetComponentInChildren<Text>().text = MathTool.A.ToString("#0.00");
                         //SetStepLength(instrumentButton.Find(x => x.instrumentButton.name == "RotaryBtnVoltage") == null ? 0 : instrumentButton.Find(x => x.instrumentButton.name == "RotaryBtnVoltage").rotary);
                         break;
@@ -321,14 +321,14 @@ namespace DLKJ
             {
                 float offset = GetPerStepMoveDistance(tempInstrumentBtn);
                 Transform tempTransform = tempInstrumentBtn.conbinationList.Find(x => x.name == "Body");
-                if (tempTransform.localPosition.x + offset > tempInstrumentBtn.StartMovePoint)
-                {
-                    tempTransform.localPosition = new Vector3(tempInstrumentBtn.StartMovePoint, tempTransform.localPosition.y, tempTransform.localPosition.z);
-                    return;
-                }
-                if (tempTransform.localPosition.x + offset < tempInstrumentBtn.EndMovePoint)
+                if (tempTransform.localPosition.x + offset > tempInstrumentBtn.EndMovePoint)
                 {
                     tempTransform.localPosition = new Vector3(tempInstrumentBtn.EndMovePoint, tempTransform.localPosition.y, tempTransform.localPosition.z);
+                    return;
+                }
+                if (tempTransform.localPosition.x + offset < tempInstrumentBtn.StartMovePoint)
+                {
+                    tempTransform.localPosition = new Vector3(tempInstrumentBtn.StartMovePoint, tempTransform.localPosition.y, tempTransform.localPosition.z);
                     return;
                 }
                 tempTransform.localPosition = new Vector3(tempTransform.localPosition.x + offset, tempTransform.localPosition.y, tempTransform.localPosition.z);
@@ -342,12 +342,12 @@ namespace DLKJ
             {
                 float offset = /*tempInstrumentBtn.rotary * */GetPerStepMoveDistance(tempInstrumentBtn);
                 Transform tempTransform = tempInstrumentBtn.conbinationList.Find(x => x.name == "PPLDGear");
-                if (tempTransform.localPosition.z + offset > tempInstrumentBtn.EndMovePoint)
+                if (tempTransform.localPosition.z + offset < tempInstrumentBtn.EndMovePoint)
                 {
                     tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempTransform.localPosition.y, tempInstrumentBtn.EndMovePoint);
                     return;
                 }
-                if (tempTransform.localPosition.z + offset < tempInstrumentBtn.StartMovePoint)
+                if (tempTransform.localPosition.z + offset > tempInstrumentBtn.StartMovePoint)
                 {
                     tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempTransform.localPosition.y, tempInstrumentBtn.StartMovePoint);
                     return;
