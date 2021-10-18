@@ -74,6 +74,11 @@ namespace DLKJ
             X = UnityEngine.Random.Range(-200f, 200f);
             R = UnityEngine.Random.Range(0f, 200f);
             ZL = R + X;
+            //方案一
+            //FA = UnityEngine.Random.Range(0f, 1f);
+            //FB = UnityEngine.Random.Range(0f, 1f);
+            //FC = UnityEngine.Random.Range(0f, 1f);
+
             FA = UnityEngine.Random.Range(0f, 1f);
             FC = FA;
             FB = Math.Sqrt(1 - Math.Pow(FA, 2));
@@ -84,6 +89,11 @@ namespace DLKJ
             } while (Shan0 <= 0 || Shan0 > 2 * Mathf.PI);
             Shan0 = UnityEngine.Random.Range(0, 2 * Mathf.PI);
             RuDuanLuQi = UnityEngine.Random.Range(0.0024f, 0.0365f);
+            //方案一
+            //ShanA = UnityEngine.Random.Range(0, 2 * Mathf.PI);
+            //ShanC = UnityEngine.Random.Range(0, 2 * Mathf.PI);
+            //ShanB = UnityEngine.Random.Range(0, 2 * Mathf.PI);
+            //ShanD = UnityEngine.Random.Range(0, 2 * Mathf.PI);
             ShanA = UnityEngine.Random.Range(0, 2 * Mathf.PI);
             ShanC = ShanA;
             ShanB = 0.5f * (ShanA + ShanC + Math.PI);
