@@ -16,38 +16,12 @@ namespace DLKJ
     }
     public class MathTool
     {
-        public static LabReport1Data report1CorrectAnswer;
+        public static LabReportCorrect1Data report1CorrectAnswer;
         public static LabReport2Data report2CorrectAnswer;
         public static LabReport3Data report3CorrectAnswer;
-        private static double Calculateλp1()
-        {
-            double c = 3 * Math.Pow(10, 8);
-            double ru = c / (F * Math.Pow(10, 9));
-            double ruc = 2 * a;
-            double λp1 = ru / Math.Sqrt((1 - Math.Pow(ru / ruc, 2)));
-            return λp1;
-        }
-        /// <summary>
-        /// 实验一可变短路器第一波节点位置lT1
-        /// </summary>
-        /// <returns></returns>
-        public static double CorrectLT1()
-        {
-            double Shan1 = CalculateShan(GetTl_a(), GetTl_b());
-            for (int i = 0; i < 20; i++)
-            {
-                double z = Shan1 * Calculateλp1() / (4 * Math.PI) + (i + 1) * (Calculateλp1() / 4);
-                if (Math.Cos(2 * Getβ() * z - Shan1) == -1)
-                {
-                    double result = δ * Math.Abs(A) * (1 - Math.Abs(GetTl()));
-                    Debug.Log(result);
-                }
-            }
-            return 0;
-        }
 
         //   private const float j = 1;
-        private const float a = 0.02286f;
+        private const float a = 22.86f;
         public static float A { get; set; } /*= 10*///电压10mv-1000mv 初始化后不变
         public static float F { get; set; } /*= 8.2f*///频率8.2-12.5  初始化后不变
         public static float δ { get; set; }//控制衰减器取值[0,1] 初始化后不变
@@ -68,9 +42,9 @@ namespace DLKJ
         }
         public static void RandomDataInit()
         {
-            //F = UnityEngine.Random.Range(8.2f, 12.5f);
-            //A = UnityEngine.Random.Range(2f, 2000f);
-            //δ = UnityEngine.Random.Range(0f, 1f); //Random(0.00f, 1.00f);
+            F = UnityEngine.Random.Range(8.2f, 12.5f);
+            A = UnityEngine.Random.Range(2f, 2000f);
+            δ = UnityEngine.Random.Range(0f, 1f); //Random(0.00f, 1.00f);
             X = UnityEngine.Random.Range(-200f, 200f);
             R = UnityEngine.Random.Range(0f, 200f);
             ZL = R + X;
@@ -100,6 +74,26 @@ namespace DLKJ
             ShanD = UnityEngine.Random.Range(0, 2 * Mathf.PI);
             EDKKBDLQβ = GetEDKKBDLQβ();
         }
+
+        private static void FixedCorrectCalculate()
+        {
+            report1CorrectAnswer.SourceFrequency = F;//信号源频率
+            report1CorrectAnswer.SourceVoltage = A;//电压
+            report1CorrectAnswer.Attenuator = δ;//衰减器
+            report1CorrectAnswer.EquivalentSectionPosition = 0;//第一个等效截面的位置
+            report1CorrectAnswer.InputWavelength = Calculateλp1();//输入端波长
+            report1CorrectAnswer.VariableShortCircuitFirstPos = GetlT1(1);//可变短路器第一波节点最小值位置
+            report1CorrectAnswer.VariableShortCircuitSecondPos = GetlT1(2);//可变短路器第一波节点最小值位置
+            report1CorrectAnswer.VariableWavelengthInShortCircuit = RuDuanLuQi;//可变短路器中波长λp2
+            //开路负载位置
+            report1CorrectAnswer.OpenLoadPosition = new List<double>();
+            report1CorrectAnswer.OpenLoadPosition.Add(report1CorrectAnswer.VariableShortCircuitFirstPos + RuDuanLuQi / 4);
+            report1CorrectAnswer.OpenLoadPosition.Add(report1CorrectAnswer.VariableShortCircuitSecondPos + RuDuanLuQi / 4);
+
+
+            report1CorrectAnswer.PhaseAngleCircuit = CalculateShan(GetTl_a(), GetTl_b());//相角终端短路
+
+        }
         public static void Reset()
         {
             A = 0;
@@ -107,8 +101,76 @@ namespace DLKJ
             δ = 0;
             distanceZ = 0;
         }
+        #region 答案计算
+        private static double Calculateλp1()
+        {
+            double c = 3 * Math.Pow(10, 8);
+            double ru = c / (F * Math.Pow(10, 9));
+            double ruc = 2 * a;
+            double λp1 = ru / Math.Sqrt((1 - Math.Pow(ru / ruc, 2)));
+            return λp1;
+        }
+
+        /// <summary>
+        /// 獲取等效截面读数d的位置
+        /// </summary>
+        /// <param name="endValue">最大的值</param>
+        /// <param name="step">步骤数量</param>
+        /// <param name="startValue">初始值</param>
+        /// <param name="func">获取最大值或者最小值的方法</param>
+        /// <returns></returns>
+        public static double GetDT(float endValue, int step, float startValue, Func<List<double>, double> func)
+        {
+            List<double> allResult = new List<double>();
+            List<float> distanceList = new List<float>();
+            float everyStepValue = (endValue - startValue) / step;
+            for (float distance = startValue; distance <= endValue; distance += everyStepValue)
+            {
+                allResult.Add(Math.Abs(Math.Sin(Getβ() * distance)));
+                distanceList.Add(distance);
+            }
+            double result = func(allResult);
+            int index = allResult.FindIndex((p) => { return p == result; });
+            Debug.Log("步数是:" + index + "---对应的值为:" + distanceList[index] + "---Sinβ*z=" + result + "---读数为" + SLMCLXZDDLB(distanceList[index]));
+            return distanceList[index];
+        }
 
 
+
+        /// <summary>
+        /// 等效截面位置,三厘米测量线终端接短路板时，从z=0开始向左，第一个使U读数达到最小值的位置
+        /// </summary>
+        /// <returns></returns>
+        public static double GetdT(int n)
+        {
+            double Shan1 = CalculateShan(GetTl_a(), GetTl_b());
+            double z = Shan1 * Calculateλp1() / (4 * Math.PI) + (n + 1) * (Calculateλp1() / 4);
+            return z;
+        }
+        /// <summary>
+        /// 可变短路器节点位置
+        /// </summary>
+        /// <param name="n">获取的第几个波段</param>
+        /// <returns></returns>
+        public static double GetlT1(int n)
+        {
+            int index = 1;//从第一个波段开始
+            double Shan1 = CalculateShan(GetTl_a(), GetTl_b());
+            double z = 0;
+            for (int i = index; i < 10; i++)
+            {
+                z = Shan1 * Calculateλp1() / (4 * Math.PI) + (i + 1) * (Calculateλp1() / 4);
+                if (Math.Cos(2 * Getβ() * z - Shan1) == -1)
+                {
+                    if (index == n)
+                        return z;
+                    index++;
+                }
+            }
+            return z;
+        }
+
+        #endregion
         /// <summary>
         /// 二端口网络S参数测量
         /// </summary>
@@ -427,5 +489,27 @@ namespace DLKJ
             return Math.Sqrt(Math.Pow(GetTL_a(), 2) + Math.Pow(GetTL_b(), 2));
         }
         #endregion
+
+        public static double GetMin(List<double> result)
+        {
+            double min = result[0];
+            for (int i = 1; i < result.Count; i++)
+            {
+                if (min - result[i] > 0)
+                    min = result[i];
+            }
+            return min;
+        }
+
+        public static double GetMax(List<double> result)
+        {
+            double max = result[0];
+            for (int i = 1; i < result.Count; i++)
+            {
+                if (result[i] - max > 0)
+                    max = result[i];
+            }
+            return max;
+        }
     }
 }

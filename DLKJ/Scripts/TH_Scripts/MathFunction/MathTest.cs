@@ -38,17 +38,17 @@ namespace DLKJ
         }
         private void Start()
         {
-            // MathTool.Init();
+            MathTool.Init();
         }
         private void Update()
         {
             OnUpdate();
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                MathTool.CorrectLT1();
+                MathTool.GetDT(135, 80, 55, (p) => { return MathTool.GetMax(p); });
+                MathTool.GetDT(135, 80, 55, (p) => { return MathTool.GetMin(p); });
             }
         }
-
 
 
         private void OnUpdate()
@@ -61,6 +61,7 @@ namespace DLKJ
                 return;
             }
             double U = -10000;
+
             switch (SceneManager.GetInstance().currentLab.labName)
             {
                 case "二端口微波网络参量测量":

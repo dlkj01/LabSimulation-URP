@@ -86,11 +86,7 @@ namespace DLKJ
             currentStep = steps[currentStepIndex];
             currentStep.Initialized();
             UIManager.GetInstance().StepTips(currentStep);
-            if (currentStep.ID > 2)
-            {
-                UIManager.GetInstance().videoShowButton.gameObject.SetActive(true);
-                UIManager.GetInstance().voltmeterRect.gameObject.SetActive(true);
-            }
+           
         }
 
         public Step GetStepByID(int stepID)

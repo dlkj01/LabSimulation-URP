@@ -13,7 +13,7 @@ namespace DLKJ
         [SerializeField] GameObject sceneObject;
 
         [Header("ScrollCamera")]
-        [SerializeField]public UI3DCamera _3dCamera;
+        [SerializeField] public UI3DCamera _3dCamera;
 
         [HeaderAttribute("Canvas")]
         public Canvas canvas;
@@ -26,7 +26,7 @@ namespace DLKJ
         [HeaderAttribute("VideoButton")]
         public Button videoShowButton;
         public UIVideoPlayer uIVideoPlayer;
-       
+
         [HeaderAttribute("频选第二视口")]
         public RectTransform voltmeterRect;
         public RawImage voltmeterValue;
@@ -49,7 +49,7 @@ namespace DLKJ
         private void Awake()
         {
             if (sceneObject) sceneObject.SetActive(false);
-           // videoShowButton.gameObject.SetActive(false);
+            // videoShowButton.gameObject.SetActive(false);
             uIVideoPlayer.gameObject.SetActive(false);
             videoShowButton.onClick.AddListener(delegate { ShowVideoButton(); });
             voltmeterButton.onClick.AddListener(delegate { PinXuanView(); });
@@ -135,6 +135,8 @@ namespace DLKJ
                 SceneManager.GetInstance().UpdateItemMoveable(false);
                 SceneManager.GetInstance().currentLab.NextStep();
                 StepTips(SceneManager.GetInstance().currentLab.currentStep);
+                videoShowButton.gameObject.SetActive(true);
+                voltmeterRect.gameObject.SetActive(true);
             }
             else
             {
@@ -199,7 +201,7 @@ namespace DLKJ
             if (voltmeterRect.rect.width > 0)
             {
                 if (systolic != null) StopCoroutine(systolic);
-                systolic =  StartCoroutine(Systolic());
+                systolic = StartCoroutine(Systolic());
             }
             else
             {
@@ -213,7 +215,7 @@ namespace DLKJ
             float value = voltmeterRect.rect.width;
             while (value > 0)
             {
-                value-=10;
+                value -= 10;
                 voltmeterRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, value);
                 yield return null;
             }
@@ -224,7 +226,7 @@ namespace DLKJ
             float value = 0;
             while (value <= 400)
             {
-                value+=10;
+                value += 10;
                 voltmeterRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, value);
                 yield return null;
             }

@@ -45,7 +45,36 @@ public struct LabReport1Data
     public double inputS12S21;
     public double inputS22;
 }
-
+public struct LabReportCorrect1Data
+{
+    public double SourceFrequency;//信号源频率
+    public double SourceVoltage;//信号源电压设置
+    public double Attenuator;//衰减器设置
+    public double EquivalentSectionPosition;//等效截面位置
+    public double InputWavelength;//输入端波长
+    public double VariableShortCircuitFirstPos;//可变短路器第一波节点位置
+    public double VariableShortCircuitSecondPos;//可变短路器第二波节点位置
+    public double VariableWavelengthInShortCircuit;//可变短路器中波长 
+    public List<double> OpenLoadPosition;//开路负载位置
+    public double WaveNodePosShortCircuit;//波节点位置短路
+    public double WaveNodePosShortTerminal;//波节点位置终端
+    public double WaveNodePosShortMatching;//波节点位置匹配
+    public double PhaseAngleCircuit;//相角短路
+    public double PhaseAngleTerminal;//相角终端
+    public double PhaseAngleMatching;//相角匹配
+    public double StandingWaveRatioCircuit;//驻波比短路
+    public double StandingWaveRatioTerminal;//驻波比终端
+    public double StandingWaveRatioMatching;//驻波比匹配
+    public double inputΓ1S;
+    public double inputΓ10;
+    public double inputΓ1L;
+    public double ReflectionCoefficientΓ1S;//反射系数短路
+    public double ReflectionCoefficientΓ10;//反射系数终端
+    public double ReflectionCoefficientΓ1L;//反射系数匹配
+    public double inputS11;
+    public double inputS12S21;
+    public double inputS22;
+}
 public struct LabReport2Data
 {
     public double inputSourceFrequencyFirst;//信号源频率

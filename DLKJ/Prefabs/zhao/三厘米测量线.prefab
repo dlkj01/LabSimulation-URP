@@ -1288,6 +1288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51856be06bb55ea4aa6c75d7feb6d667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  voltmeterCamera: {fileID: 0}
   pointer: {fileID: 0}
   powerMaterials: []
   onColor: {r: 0, g: 0, b: 0, a: 0}
@@ -1310,10 +1311,11 @@ MonoBehaviour:
     MinValue: 55
     EndMovePoint: -0.0413
     StartMovePoint: 0.0413
-    StepLength: 200
+    StepLength: 80
     StartAngle: 0
     EndAngle: 360
     currentAngle: 0
+    uncontrolled: 0
     x: 0
 --- !u!114 &5987007629197133435
 MonoBehaviour:
