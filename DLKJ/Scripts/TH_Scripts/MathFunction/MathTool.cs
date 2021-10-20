@@ -22,6 +22,7 @@ namespace DLKJ
 
         //   private const float j = 1;
         private const float a = 22.86f;
+        public const float Y0 = 0.01f;
         public static float A { get; set; } /*= 10*///电压10mv-1000mv 初始化后不变
         public static float F { get; set; } /*= 8.2f*///频率8.2-12.5  初始化后不变
         public static float δ { get; set; }//控制衰减器取值[0,1] 初始化后不变
@@ -30,8 +31,11 @@ namespace DLKJ
         private static float X = 0;//取值范围[-200,200] 初始化后不变
         private static float R = 0;//取值范围[0,200] 初始化后不变
         private static float ZL = 0;//ZL=R+jX
+        private static float j = 1;
+        private static float Z0 = 100;//100欧姆
         public static float couplingFactorA;//耦合度输入端电压模A
         public static float couplingFactorC;//耦合度C
+
         public static void Init(/*FormulaData data*/)
         {
             //A = data.A;
@@ -47,7 +51,7 @@ namespace DLKJ
             δ = UnityEngine.Random.Range(0f, 1f); //Random(0.00f, 1.00f);
             X = UnityEngine.Random.Range(-200f, 200f);
             R = UnityEngine.Random.Range(0f, 200f);
-            ZL = R + X;
+            ZL = R + j * X;
             //方案一
             //FA = UnityEngine.Random.Range(0f, 1f);
             //FB = UnityEngine.Random.Range(0f, 1f);
@@ -219,6 +223,65 @@ namespace DLKJ
             //int T2 = -1;
             return FuZaiZuLiangKangHengFormula(GetTl(), CalculateShan(GetTl_a(), GetTl_b()), z);
         }
+        /// <summary>
+        /// 获取二端口和短路版的最大读数
+        /// </summary>
+        /// <returns></returns>
+        public static double GetMaxReadEDKDLB()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                double z = (CalculateShan(GetTl_a(), GetTl_b()) * Calculateλp1()) / (4 * Math.PI) + 2 * i * (Calculateλp1() / 4);
+                double result = Math.Cos(2 * Getβ() * z - CalculateShan(GetTl_a(), GetTl_b()));
+                if (result == 1)
+                {
+                    double Umax = δ * Math.Abs(A) * Math.Abs((1 + GetTl()));
+                    return Umax;
+                }
+            }
+            return 0;
+        }
+        /// <summary>
+        /// 获取二端口和短路版的最小读数
+        /// </summary>
+        /// <returns></returns>
+        public static double GetMinReadEDKDLB()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                double z = (CalculateShan(GetTl_a(), GetTl_b()) * Calculateλp1()) / (4 * Math.PI) + (2 * i + 1) * (Calculateλp1() / 4);
+                double result = Math.Cos(2 * Getβ() * z - CalculateShan(GetTl_a(), GetTl_b()));
+                if (result == 1)
+                {
+                    double Umax = δ * Math.Abs(A) * Math.Abs((1 - GetTl()));
+                    return Umax;
+                }
+            }
+            return 0;
+        }
+        /// <summary>
+        /// 驻波比
+        /// </summary>
+        /// <returns></returns>
+        public static double SWREDKTODLB()
+        {
+            double result = GetMaxReadEDKDLB() / GetMinReadEDKDLB();
+            return result;
+        }
+        /// <summary>
+        /// 相角二端口连短路版
+        /// </summary>
+        /// <returns></returns>
+        public static double PhaseAngleEDKTODLB()
+        {
+            double result = CalculateShan(GetTl_a(), GetTl_b());
+            return result;
+        }
+        public static double GetΓ1S()
+        {
+            double result = GetTl();
+            return result;
+        }
         #endregion
 
         #region 实验一、二端口和匹配负载
@@ -235,6 +298,67 @@ namespace DLKJ
             double U = δ * Math.Abs(A) * Math.Sqrt(1 + Math.Abs(Math.Pow(T1, 2)) + 2 * Math.Abs(T1) * Math.Cos(2 * Getβ() * z - Shan1));
             return U;
         }
+        /// <summary>
+        /// 二端口匹配符在读数最大值
+        /// </summary>
+        /// <returns></returns>
+        public static double GetMaxReadEDKPPFZ()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                double z = ShanA * Calculateλp1() / (4 * Math.PI) + 2 * i * (Calculateλp1() / 4);
+                double result = Math.Cos(2 * Getβ() * z - ShanA);
+                if (result == 1)
+                {
+                    double Umax = δ * Math.Abs(A) * Math.Abs((1 + FA));
+                    return Umax;
+                }
+            }
+            return 0;
+        }
+        /// <summary>
+        /// 二端口匹配符在读数最小值
+        /// </summary>
+        /// <returns></returns>
+        public static double GetMinReadEDKPPFZ()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                double z = ShanA * Calculateλp1() / (4 * Math.PI) + (2 * i + 1) * (Calculateλp1() / 4);
+                double result = Math.Cos(2 * Getβ() * z - ShanA);
+                if (result == 1)
+                {
+                    double min = δ * Math.Abs(A) * Math.Abs((1 - FA));
+                    return min;
+                }
+            }
+            return 0;
+        }
+        /// <summary>
+        /// 驻波比
+        /// </summary>
+        /// <returns></returns>
+        public static double SWREDKPPFZ()
+        {
+            double result = GetMaxReadEDKPPFZ() / GetMinReadEDKPPFZ();
+            return result;
+        }
+        /// <summary>
+        /// 相角二端口接匹配负载
+        /// </summary>
+        /// <returns></returns>
+        public static double PhaseAngleSWREDKPPFZ()
+        {
+            double result = ShanA;
+            return result;
+        }
+        public static double GetΓ1L()
+        {
+            double result = FA;
+            return result;
+        }
+
+
         #endregion
 
         #region 实验一、二端口可变短路器
@@ -250,6 +374,69 @@ namespace DLKJ
         {
             return FuZaiZuLiangKangHengFormula(GetT1_EDKKBDLQ(zd), CalculateShan(GetTl_a_EDKKBDLQ(zd), GetTl_b_EDKKBDLQ(zd)), z); ;
         }
+        /// <summary>
+        /// 获取二端口和可变短路器的最大读数
+        /// </summary>
+        /// <returns></returns>
+        public static double GetMaxReadEDKKBDLQ(float zd)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                double z = CalculateShan(GetTl_a_EDKKBDLQ(zd), GetTl_b_EDKKBDLQ(zd)) * Calculateλp1() / (4 * Math.PI) + 2 * i * (Calculateλp1() / 4);
+                double result = Math.Cos(2 * Getβ() * z - CalculateShan(GetTl_a_EDKKBDLQ(zd), GetTl_b_EDKKBDLQ(zd)));
+                if (result == 1)
+                {
+                    double Umax = δ * Math.Abs(A) * Math.Abs((1 + GetTl_a_EDKKBDLQ(zd)));
+                    return Umax;
+                }
+            }
+            return 0;
+        }
+        /// <summary>
+        /// 获取二端口和可变短路器的最小读数
+        /// </summary>
+        /// <returns></returns>
+        public static double GetMinReadEDKKBDLQ(float zd)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                double z = CalculateShan(GetTl_a_EDKKBDLQ(zd), GetTl_b_EDKKBDLQ(zd)) * Calculateλp1() / (4 * Math.PI) + (2 * i + 1) * (Calculateλp1() / 4);
+                double result = Math.Cos(2 * Getβ() * z - CalculateShan(GetTl_a_EDKKBDLQ(zd), GetTl_b_EDKKBDLQ(zd)));
+                if (result == 1)
+                {
+                    double Umin = δ * Math.Abs(A) * Math.Abs((1 - GetTl_a_EDKKBDLQ(zd)));
+                    return Umin;
+                }
+            }
+            return 0;
+        }
+        /// <summary>
+        /// 驻波比
+        /// </summary>
+        /// <param name="zd"></param>
+        /// <returns></returns>
+        public static double SWREDKKBDLQ(float zd)
+        {
+            double result = GetMaxReadEDKKBDLQ(zd) / GetMinReadEDKKBDLQ(zd);
+            return result;
+        }
+
+        /// <summary>
+        /// 相角二端口和可变短路器
+        /// </summary>
+        /// <param name="zd">可变短路器在开路lT位置时</param>
+        /// <returns></returns>
+        public static double PhaseAngle(float zd)
+        {
+            double result = CalculateShan(GetTl_a_EDKKBDLQ(zd), GetTl_b_EDKKBDLQ(zd));
+            return result;
+        }
+        public static double GetΓ1O(float zd)
+        {
+            double result = GetT1_EDKKBDLQ(zd);
+            return result;
+        }
+
         #endregion
 
         #region 实验二、负载阻抗测量
@@ -262,9 +449,55 @@ namespace DLKJ
         {
             return FuZaiZuLiangKangHengFormula(GetTL(), CalculateShan(GetTL_a(), GetTL_b()), z);
         }
+
+        /// <summary>
+        /// 获取最大读数
+        /// </summary>
+        /// <returns></returns>
+        public static double GetMaxRead_FZZKCL()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                double z = (CalculateShan(GetTL_a(), GetTL_b()) * Calculateλp1()) / (4 * Math.PI) + 2 * i * (Calculateλp1() / 4);
+                double result = Math.Cos(2 * Getβ() * z - CalculateShan(GetTL_a(), GetTL_b()));
+                if (result == 1)
+                {
+                    double Umax = δ * Math.Abs(A) * Math.Abs((1 + GetTL()));
+                    return Umax;
+                }
+            }
+            return 0;
+        }
+        /// <summary>
+        /// 获取最小读数
+        /// </summary>
+        /// <returns></returns>
+        public static double GetMinRead_FZZKCL()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                double z = (CalculateShan(GetTL_a(), GetTL_b()) * Calculateλp1()) / (4 * Math.PI) + (2 * i + 1) * (Calculateλp1() / 4);
+                double result = Math.Cos(2 * Getβ() * z - CalculateShan(GetTL_a(), GetTL_b()));
+                if (result == -1)
+                {
+                    double Umin = δ * Math.Abs(A) * Math.Abs((1 - GetTL()));
+                    return Umin;
+                }
+            }
+            return 0;
+        }
+        /// <summary>
+        /// 归一化负载阻抗
+        /// </summary>
+        /// <returns></returns>
+        public static double NormalizedLoadImpedance()
+        {
+            double result = ZL / Z0;
+            return result;
+        }
         #endregion
 
-        #region 实验二、负载阻抗搭配
+        #region 实验二、负载阻抗匹配
         /// <summary>
         /// 负载抗组匹配
         /// </summary>
@@ -276,6 +509,37 @@ namespace DLKJ
         {
             return FuZaiZuLiangKangHengFormula(GetFZZKPPTL(l, d), CalculateShan(GetFZZKPPTL_a(l, d), GetFZZKPPTL_b(l, d)), z);
         }
+
+        public static double GetMinReadFZKZPP(float l, float d)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                double z = CalculateShan(GetFZZKPPTL_a(l, d), GetFZZKPPTL_b(l, d)) * Calculateλp1() / (4 * Math.PI) + (2 * i + 1) * (Calculateλp1() / 4);
+                double result = Math.Cos(2 * Getβ() * z - CalculateShan(GetFZZKPPTL_a(l, d), GetFZZKPPTL_b(l, d)));
+                if (result == -1)
+                {
+                    double min = δ * Math.Abs(A) * (1 - GetFZZKPPTL(l, d));
+                    return min;
+                }
+            }
+            return 0;
+        }
+        public static double GetMaxReadFZKZPP(float l, float d)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                double z = CalculateShan(GetFZZKPPTL_a(l, d), GetFZZKPPTL_b(l, d)) * Calculateλp1() / (4 * Math.PI) + (2 * i) * (Calculateλp1() / 4);
+                double result = Math.Cos(2 * Getβ() * z - CalculateShan(GetFZZKPPTL_a(l, d), GetFZZKPPTL_b(l, d)));
+                if (result == -1)
+                {
+                    double min = δ * Math.Abs(A) * (1 + GetFZZKPPTL(l, d));
+                    return min;
+                }
+            }
+            return 0;
+        }
+
+
         #endregion
 
         #region 实验三、定向耦合器的耦合度测量
@@ -394,20 +658,25 @@ namespace DLKJ
         }
         private static double Yin_a(float l)
         {
-            double topLeft = R * (200 * (Math.Pow(R, 2) + Math.Pow(X, 2) + X * Math.Tan(Getβ() * l)));
-            double topRight = R * (200 * (Math.Pow(R, 2) + Math.Pow(X, 2) * Math.Tan(Getβ() * l - X) * Math.Tan(Getβ() * l)));
+            double topLeft = R * (Y0 * (Math.Pow(R, 2) + Math.Pow(X, 2)) + X * Math.Tan(Getβ() * l));
+            double topRight = R * (Y0 * (Math.Pow(R, 2) + Math.Pow(X, 2) * Math.Tan(Getβ() * l) - X) * Math.Tan(Getβ() * l));
             double Top = topLeft + topRight;
-            double down = Math.Pow((200 * (Math.Pow(R, 2) + Math.Pow(X, 2)) + X * Math.Tan(Getβ() * l)), 2) + Math.Pow(R, 2) * (Math.Pow(Math.Tan(Getβ() * l), 2));
-            return Top / down;
+            double Down = Math.Pow((Y0 * (Math.Pow(R, 2) + Math.Pow(X, 2)) + X * Math.Tan(Getβ() * l)), 2) + Math.Pow(R, 2) * (Math.Pow(Math.Tan(Getβ() * l), 2));
+            double result = Y0 * (Top / Down);
+            return result;
         }
 
         private static double Yin_b(float l, float d)
         {
-            double topLeft = (200 * (Math.Pow(R, 2) + Math.Pow(X, 2) + X * Math.Tan(Getβ() * l)));
-            double topRight = R * (200 * (Math.Pow(R, 2) + Math.Pow(X, 2) * Math.Tan(Getβ() * l - X) * Math.Tan(Getβ() * l)));
+            double RPow = Math.Pow(R, 2);
+            double Tanβl = Math.Tan(Getβ() * l);
+            double topLeft = Y0 * (RPow + Math.Pow(X, 2)) * Tanβl - X;
+            double topRight = Y0 * (RPow + Math.Pow(X, 2)) + X * Tanβl - RPow * Tanβl;
             double Top = topLeft + topRight;
-            double down = Math.Pow((200 * (Math.Pow(R, 2) + Math.Pow(X, 2)) + X * Math.Tan(Getβ() * l)), 2) + Math.Pow(R, 2) * (Math.Pow(Math.Tan(Getβ() * l), 2));
-            return Top / down + Math.Tan(Getβ() * d);
+            double down = Math.Pow(Y0 * (RPow + X * Tanβl), 2) + RPow * Math.Pow(Tanβl, 2);
+            double right = Math.Cos(Getβ() * d) / Math.Sin(Getβ() * d);
+            double result = Y0 * (Top / down) - right;
+            return result;
         }
 
         /// <summary>

@@ -45,8 +45,8 @@ namespace DLKJ
             OnUpdate();
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                MathTool.GetDT(135, 80, 55, (p) => { return MathTool.GetMax(p); });
-                MathTool.GetDT(135, 80, 55, (p) => { return MathTool.GetMin(p); });
+                //MathTool.GetDT(135, 80, 55, (p) => { return MathTool.GetMax(p); });
+                //MathTool.GetDT(135, 80, 55, (p) => { return MathTool.GetMin(p); });
             }
         }
 
