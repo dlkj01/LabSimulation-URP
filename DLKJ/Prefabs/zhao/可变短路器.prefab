@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51856be06bb55ea4aa6c75d7feb6d667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  voltmeterCamera: {fileID: 0}
   pointer: {fileID: 0}
   powerMaterials: []
   onColor: {r: 0, g: 0, b: 0, a: 0}
@@ -198,6 +199,7 @@ MonoBehaviour:
     StartAngle: 90
     EndAngle: 414
     currentAngle: 90
+    uncontrolled: 0
     x: 0
 --- !u!65 &1321811347792619668
 BoxCollider:
@@ -471,7 +473,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5617881110365022927}
-  m_Text: "\u53EF\u53D8\u65AD\u8DEF\u5668"
+  m_Text: "\u53EF\u53D8\u77ED\u8DEF\u5668"
   m_OffsetZ: 0
   m_CharacterSize: 0.004
   m_LineSpacing: 1

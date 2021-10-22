@@ -141,7 +141,7 @@ namespace DLKJ
 
             if (voltmeterCamera)
             {
-              //  voltmeterCamera.targetTexture = UIManager.GetInstance().voltmeterValue
+                //  voltmeterCamera.targetTexture = UIManager.GetInstance().voltmeterValue
             }
         }
 
@@ -151,7 +151,7 @@ namespace DLKJ
         /// <param name="buttonName"></param>
         public void instrumentButtonFunc(string buttonName)
         {
-            Debug.Log(buttonName + "-------------");
+       //     Debug.Log(buttonName + "-------------");
             InstrumentButton tempInstrumentBtn = instrumentButton.Find(x => x.instrumentButton.name == buttonName);
             if (tempInstrumentBtn != null)
             {
@@ -275,7 +275,6 @@ namespace DLKJ
                     #region 可变短路器
                     case "kebianduanluqi4":
                         Debug.Log("可变短路器 尺子");
-                        //   MathTool.RuDuanLuQi = MathUtility.GetCurrentValue(tempInstrumentBtn);
                         RotaryVariableCircuitBreaker(tempInstrumentBtn);
                         break;
                     #endregion

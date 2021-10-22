@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using static DLKJ.InstrumentAction;
 
@@ -40,13 +41,16 @@ namespace DLKJ
         {
             MathTool.Init();
         }
+
         private void Update()
         {
             OnUpdate();
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                //MathTool.GetDT(135, 80, 55, (p) => { return MathTool.GetMax(p); });
-                //MathTool.GetDT(135, 80, 55, (p) => { return MathTool.GetMin(p); });
+                //MathTool.GetDT(MathTool.SLMCL_Start_Value, 0);
+                //MathTool.GetFirstMinBoundKBDLQ(0, 1);
+                //MathTool.GetFirstMinBoundKBDLQ(0, 2);
+                MathTool.FixedCorrectCalculate();
             }
         }
 
@@ -148,7 +152,7 @@ namespace DLKJ
             }
             if (keBianDuanLuQiBtn == null)
             {
-                tempInstrumentBtn = GetInstrumentButton("可变短路器", "kebianduanluqi4");
+                keBianDuanLuQiBtn = GetInstrumentButton("可变短路器", "kebianduanluqi4");
             }
 
             if (instrumentPiPeiLuoDingD == null)
@@ -170,8 +174,8 @@ namespace DLKJ
             InstrumentAction instrumentAction = item.GetComponent<InstrumentAction>();
             if (instrumentAction == null)
                 return null;
-            keBianDuanLuQiBtn = instrumentAction.instrumentButton.Find(x => x.instrumentButton.name == buttonName);
-            return keBianDuanLuQiBtn;
+            InstrumentButton button = instrumentAction.instrumentButton.Find(x => x.instrumentButton.name == buttonName);
+            return button;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace DLKJ
     {
         public bool dragAble = false;
         public int ID = -1;
-        public float scope = 0.02f; //radius
+        private float scope = 0.1f /*0.02f*/; //radius
         public float moveSpeed = 1f;
         public MeshCollider portCollider;
         public Vector3 offset;

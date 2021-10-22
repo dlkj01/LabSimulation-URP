@@ -39,7 +39,7 @@ namespace DLKJ
         /// <returns></returns>
         public static float GetDistance(InstrumentButton tempInstrumentBtn)
         {
-            float distance = GetCurrentValue(tempInstrumentBtn);
+            float distance = GetCurrentValue(tempInstrumentBtn) * 0.001f;
             return distance;
             // (length - tempInstrumentBtn.MinValue) ;
         }
