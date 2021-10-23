@@ -151,7 +151,7 @@ namespace DLKJ
         /// <param name="buttonName"></param>
         public void instrumentButtonFunc(string buttonName)
         {
-       //     Debug.Log(buttonName + "-------------");
+            //     Debug.Log(buttonName + "-------------");
             InstrumentButton tempInstrumentBtn = instrumentButton.Find(x => x.instrumentButton.name == buttonName);
             if (tempInstrumentBtn != null)
             {
@@ -264,6 +264,7 @@ namespace DLKJ
                         Debug.Log("三厘米测量线 游标");
                         MathTool.distanceZ = MathUtility.GetDistance(tempInstrumentBtn);
                         ToggleTheKnobToMoveTheCursor(tempInstrumentBtn);
+                        UIManager.GetInstance().PinXuanView();
                         break;
                     #endregion
                     #region 二端口网络调节
@@ -276,6 +277,7 @@ namespace DLKJ
                     case "kebianduanluqi4":
                         Debug.Log("可变短路器 尺子");
                         RotaryVariableCircuitBreaker(tempInstrumentBtn);
+                        UIManager.GetInstance().PinXuanView();
                         break;
                     #endregion
                     #region 可变衰减器
@@ -283,6 +285,7 @@ namespace DLKJ
                         Debug.Log("可变衰减器 旋钮");
                         MathTool.δ = MathUtility.GetCurrentValue(tempInstrumentBtn);
                         VariableAttenuatorRatary(tempInstrumentBtn);
+                        UIManager.GetInstance().PinXuanView();
                         break;
                     #endregion
                     #region 匹配螺钉

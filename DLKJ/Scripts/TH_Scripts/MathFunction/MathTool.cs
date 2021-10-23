@@ -813,8 +813,8 @@ namespace DLKJ
         private static double GetTl_a()
         {
             double T1_aAddLeft = FA * Math.Cos(ShanA);
-            double T1_aDivisionTop = Math.Pow(FB, 2) * (Math.Cos(2 * ShanB) * (1 + FC * Math.Cos(ShanC)) + (FC * Math.Sin(2 * ShanB) * Math.Sin(ShanC)));
-            double T1_aDivisionDown = Math.Pow((1 + FC * Mathf.Cos(ShanC)), 2) + Math.Pow(FC * Math.Sin(ShanC), 2);
+            double T1_aDivisionTop = Math.Pow(FB, 2) * Math.Cos(2 * ShanB + Math.PI) * (1 - FC * Math.Cos(ShanC + Math.PI)) - (Math.Pow(FB, 2) * FC * Math.Sin(2 * ShanB + Math.PI) * Math.Sin(ShanC + Math.PI));
+            double T1_aDivisionDown = Math.Pow((1 - FC * Math.Cos(ShanC + Math.PI)), 2) + Math.Pow(FC, 2) * Math.Pow(Math.Sin(ShanC + Math.PI), 2);
             double T1_a = T1_aAddLeft + T1_aDivisionTop / T1_aDivisionDown;
             return T1_a;
         }
@@ -822,8 +822,8 @@ namespace DLKJ
         public static double GetTl_b()
         {
             double T1_bAddLeft = FA * Math.Sin(ShanA);
-            double T1_bDivisionTop = Math.Pow(FB, 2) * (Math.Sin(2 * ShanB) * (1 + FC * Math.Cos(ShanC)) - FC * Math.Cos(2 * ShanB) * Math.Sin(ShanC));
-            double T1_bDivisionDown = Math.Pow(1 + FC * Math.Cos(ShanC), 2) + Math.Pow(FC * Math.Sin(ShanC), 2);
+            double T1_bDivisionTop = Math.Pow(FB, 2) * Math.Sin(2 * ShanB + Math.PI) * (1 - FC * Math.Cos(ShanC + Math.PI)) - (Math.Pow(FB, 2) * FC * Math.Cos(2 * ShanB + Math.PI) * Math.Sin(ShanC + Math.PI));
+            double T1_bDivisionDown = Math.Pow((1 - FC * Math.Cos(ShanC + Math.PI)), 2) + Math.Pow(FC, 2) * Math.Pow(Math.Sin(ShanC + Math.PI), 2);
             double T1_b = T1_bAddLeft + T1_bDivisionTop / T1_bDivisionDown;
             return T1_b;
         }
