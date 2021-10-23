@@ -18,6 +18,8 @@ namespace DLKJ
         [HeaderAttribute("Canvas")]
         public Canvas canvas;
 
+        public Image stepTipsImage;
+
         [HeaderAttribute("StepTips")]
         public Text stepText;
 
@@ -40,6 +42,8 @@ namespace DLKJ
         [SerializeField] UILabReport2 UILabReport2Prefab;
         [SerializeField] UILabReport3 UILabReport3Prefab;
         public UILabReportController UILabButton;
+
+        public UIMainPanle uiMainPanle;
 
         private UIEquipmentPanel equipmentPanel = null;
         private UIExperimentSelectedPanel experimentSelectedPanel = null;
@@ -69,7 +73,7 @@ namespace DLKJ
             if (_3dCamera) _3dCamera.gameObject.SetActive(false);
             sceneObject.SetActive(true);
         }
-        public void CreatLabReportUI()
+        public void InitLabReportUI()
         {
             UILabReportBase UILabReport = null;
             switch (SceneManager.GetInstance().currentLab.labName)
@@ -87,7 +91,6 @@ namespace DLKJ
                     break;
             }
             UILabButton.uiLabReport = UILabReport;
-            UILabButton.gameObject.SetActive(true);
             UILabReport.SetVisibale(false);
         }
 
@@ -106,8 +109,9 @@ namespace DLKJ
             }
         }
 
-        public void StepTips(Step step)
+        public void StepTips(Step step, bool active = true)
         {
+            stepTipsImage.gameObject.SetActive(active);
             if (stepText)
             {
                 stepText.text = step.stepName;
@@ -135,7 +139,7 @@ namespace DLKJ
                 SceneManager.GetInstance().UpdateItemMoveable(false);
                 SceneManager.GetInstance().currentLab.NextStep();
                 StepTips(SceneManager.GetInstance().currentLab.currentStep);
-                videoShowButton.gameObject.SetActive(true);
+                //     videoShowButton.gameObject.SetActive(true);
                 voltmeterRect.gameObject.SetActive(true);
             }
             else
@@ -180,7 +184,7 @@ namespace DLKJ
             }
         }
 
-        void ShowVideoButton()
+        public void ShowVideoButton()
         {
             if (uIVideoPlayer.gameObject.activeSelf)
             {

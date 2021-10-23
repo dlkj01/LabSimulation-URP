@@ -242,7 +242,8 @@ namespace DLKJ
             EventManager.OnUsingItems(currentLab.GetSelectedItems());
             EventManager.OnTipsDecided();
             UIManager.GetInstance().ShowScene();
-            UIManager.GetInstance().CreatLabReportUI();
+            UIManager.GetInstance().InitLabReportUI();
+            UIManager.GetInstance().uiMainPanle.SetPanleActive(true);
             DestroyImmediate(gameObject);
         }
 

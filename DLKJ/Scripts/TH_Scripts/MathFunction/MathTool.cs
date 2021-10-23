@@ -71,7 +71,7 @@ namespace DLKJ
                 Shan0 = UnityEngine.Random.Range(0f, 2f * Mathf.PI);
             } while (Shan0 <= 0 || Shan0 > 2 * Mathf.PI);
             Shan0 = UnityEngine.Random.Range(0, 2 * Mathf.PI);
-            RuDuanLuQi = UnityEngine.Random.Range(0.0024f, 0.0365f);
+            RuDuanLuQi = UnityEngine.Random.Range(0.024f, 0.0365f);
             //方案一
             //ShanA = UnityEngine.Random.Range(0, 2 * Mathf.PI);
             //ShanC = UnityEngine.Random.Range(0, 2 * Mathf.PI);
@@ -82,10 +82,12 @@ namespace DLKJ
             ShanB = 0.5f * (ShanA + ShanC + Math.PI);
             ShanD = UnityEngine.Random.Range(0, 2 * Mathf.PI);
             EDKKBDLQβ = GetEDKKBDLQβ();
-
-            S11 = new Complex(FA * Math.Cos(ShanA), FA * Math.Sin(ShanA)).Magnitude;
-            S12 = new Complex(FB * Math.Cos(ShanB), FB * Math.Sin(ShanB)).Magnitude;
-            S22 = new Complex(FC * Math.Cos(ShanC), FC * Math.Sin(ShanC)).Magnitude;
+            Complex S11Com = new Complex(FA * Math.Cos(ShanA), FA * Math.Sin(ShanA));
+            Complex S12Com = new Complex(FB * Math.Cos(ShanB), FB * Math.Sin(ShanB));
+            Complex S22Com = new Complex(FC * Math.Cos(ShanC), FC * Math.Sin(ShanC));
+            S11 = S11Com.Real + S11Com.Imaginary;
+            S12 = S12Com.Real + S12Com.Imaginary;
+            S22 = S22Com.Real + S22Com.Imaginary;
         }
 
         public static void FixedCorrectCalculate()
@@ -95,34 +97,48 @@ namespace DLKJ
             report1CorrectAnswer.Attenuator = δ;//衰减器
             report1CorrectAnswer.EquivalentSectionPosition = GetDT(0.055f, 0);//第一个等效截面的位置
             report1CorrectAnswer.InputWavelength = Calculateλp1();//输入端波长
-            report1CorrectAnswer.VariableShortCircuitFirstPos = GetFirstMinBoundKBDLQ(1);//可变短路器第一波节点最小值位置
-            report1CorrectAnswer.VariableShortCircuitSecondPos = report1CorrectAnswer.VariableShortCircuitFirstPos + 0.5f * RuDuanLuQi;//可变短路器第二波节点最小值位置
+            report1CorrectAnswer.WaveNodePosShortCircuit = GetMinZUpperDTEDKDLB();//波节点位置终端短路
+
+            report1CorrectAnswer.VariableShortCircuitFirstPos = GetFirstMinBoundKBDLQ();//可变短路器第一波节点最小值位置
+            // 可变短路器第二波节点最小值位置
+            report1CorrectAnswer.VariableShortCircuitSecondPos = new List<double>();
+            for (int i = 0; i < report1CorrectAnswer.VariableShortCircuitFirstPos.Count; i++)
+            {
+                report1CorrectAnswer.VariableShortCircuitSecondPos.Add(report1CorrectAnswer.VariableShortCircuitFirstPos[i] + 0.5f * RuDuanLuQi);
+            }
+
             report1CorrectAnswer.VariableWavelengthInShortCircuit = RuDuanLuQi;//可变短路器中波长λp2
+
             //开路负载位置
             report1CorrectAnswer.OpenLoadPosition = new List<double>();
-            report1CorrectAnswer.OpenLoadPosition.Add(report1CorrectAnswer.VariableShortCircuitFirstPos + RuDuanLuQi * 0.25f);
-            report1CorrectAnswer.OpenLoadPosition.Add(report1CorrectAnswer.VariableShortCircuitSecondPos + RuDuanLuQi * 0.25f);
+            for (int i = 0; i < report1CorrectAnswer.VariableShortCircuitFirstPos.Count; i++)
+            {
+                report1CorrectAnswer.OpenLoadPosition.Add(report1CorrectAnswer.VariableShortCircuitFirstPos[i] + RuDuanLuQi * 0.25f);
+                report1CorrectAnswer.OpenLoadPosition.Add(report1CorrectAnswer.VariableShortCircuitSecondPos[i] + RuDuanLuQi * 0.25f);
+            }
 
-            report1CorrectAnswer.WaveNodePosShortCircuit = GetMinZUpperDTEDKDLB();//波节点位置终端短路
+
+
             //波节点位置终端开路
-            report1CorrectAnswer.WaveNodePosShortTerminal = GetMinReadUpperDTEDKKEDLQ(float.Parse(report1CorrectAnswer.VariableShortCircuitFirstPos.ToString()));
+            report1CorrectAnswer.WaveNodePosShortTerminal = GetMinReadUpperDTEDKKEDLQ(float.Parse(report1CorrectAnswer.VariableShortCircuitFirstPos[0].ToString()));
             report1CorrectAnswer.WaveNodePosShortMatching = GetMinZUpperDTEDKPPFZ();//波节点位置终端匹配
 
 
             report1CorrectAnswer.PhaseAngleCircuit = CalculateShan(GetTl_a(), GetTl_b());//相角终端短路
-            report1CorrectAnswer.PhaseAngleTerminal = CalculateShan(GetTl_a_EDKKBDLQ(float.Parse(GetFirstMinBoundKBDLQ(1).ToString())), GetTl_b_EDKKBDLQ(float.Parse(GetFirstMinBoundKBDLQ(1).ToString())));//相角终端开路
+            report1CorrectAnswer.PhaseAngleTerminal = CalculateShan(GetTl_a_EDKKBDLQ(float.Parse(report1CorrectAnswer.OpenLoadPosition[0].ToString()))
+                , GetTl_b_EDKKBDLQ(float.Parse(report1CorrectAnswer.OpenLoadPosition[0].ToString())));//相角终端开路
             report1CorrectAnswer.PhaseAngleMatching = ShanA;//相角终端匹配
 
             report1CorrectAnswer.StandingWaveRatioCircuit = SWREDKTODLB();//驻波比终端短路
-            report1CorrectAnswer.StandingWaveRatioTerminal = SWREDKKBDLQ(float.Parse(report1CorrectAnswer.VariableShortCircuitFirstPos.ToString("#0.000000")));//驻波比终端开路
+            report1CorrectAnswer.StandingWaveRatioTerminal = SWREDKKBDLQ(float.Parse(report1CorrectAnswer.OpenLoadPosition[0].ToString("#0.000000")));//驻波比终端开路
             report1CorrectAnswer.StandingWaveRatioCircuit = SWREDKPPFZ();//驻波比终端匹配
 
             report1CorrectAnswer.inputΓ1S = GetTl();
-            report1CorrectAnswer.inputΓ10 = GetT1_EDKKBDLQ(float.Parse(report1CorrectAnswer.VariableShortCircuitFirstPos.ToString()));
+            report1CorrectAnswer.inputΓ10 = GetT1_EDKKBDLQ(float.Parse(report1CorrectAnswer.VariableShortCircuitFirstPos[0].ToString()));
             report1CorrectAnswer.inputΓ1L = FA;
 
             report1CorrectAnswer.ReflectionCoefficientΓ1S = S11 - (Math.Pow(S12, 2) / (1 + S22));//反射系数T1S
-            report1CorrectAnswer.ReflectionCoefficientΓ10 = S11;//反射系数T10
+            report1CorrectAnswer.ReflectionCoefficientΓ10 = S11 + Math.Pow(S12, 2) / (1 - S22);//反射系数T10
             report1CorrectAnswer.ReflectionCoefficientΓ1L = S11;//反射系数T1L
 
             report1CorrectAnswer.inputS11 = S11;
@@ -488,30 +504,18 @@ namespace DLKJ
         /// 获取可变短路器第N个波段最小值
         /// </summary>
         /// <returns></returns>
-        public static double GetFirstMinBoundKBDLQ(int bound)
+        public static List<double> GetFirstMinBoundKBDLQ()
         {
-            //float boundValue = RuDuanLuQi;//波段的值
-            //int startBandCount = (int)(startValue / boundValue) + n;
-            //float result = startBandCount * boundValue;
-
-            //Debug.Log("读数是:" + ErDuanKouKeBianDuanLuQi(result, float.Parse(GetDT(SLMCL_Start_Value, 0).ToString())));
-            //return result;
+            List<double> result = new List<double>();
             int k = 0;
-            while ((Math.PI - Shan0) / GetEDKKBDLQβ() + ((k * 0.5) * RuDuanLuQi) < 0)
+            while ((Math.PI - Shan0) / GetEDKKBDLQβ() + ((k * 0.5f) * RuDuanLuQi) <= 0.0365f)
             {
+                double value = (Math.PI - Shan0) / GetEDKKBDLQβ() + ((k * 0.5f) * RuDuanLuQi);
+                if (value >= 0.0024f)
+                    result.Add(value);
                 k++;
             }
-            for (int i = 0; i < bound; i++)
-            {
-                if (i == bound - 1)
-                {
-                    double result = (Math.PI - Shan0) / GetEDKKBDLQβ() + ((k * 0.5) * RuDuanLuQi);
-                    return result;
-                }
-                k++;
-            }
-            return 0;
-
+            return result;
         }
 
         /// <summary>

@@ -52,8 +52,8 @@ public struct LabReportCorrect1Data
     public double Attenuator;//衰减器设置
     public double EquivalentSectionPosition;//等效截面位置
     public double InputWavelength;//输入端波长
-    public double VariableShortCircuitFirstPos;//可变短路器第一波节点位置
-    public double VariableShortCircuitSecondPos;//可变短路器第二波节点位置
+    public List<double> VariableShortCircuitFirstPos;//可变短路器第一波节点位置
+    public List<double> VariableShortCircuitSecondPos;//可变短路器第二波节点位置
     public double VariableWavelengthInShortCircuit;//可变短路器中波长 
     public List<double> OpenLoadPosition;//开路负载位置
     public double WaveNodePosShortCircuit;//波节点位置短路
@@ -210,7 +210,7 @@ public class UILabReportBase : MonoBehaviour
     }
 
 
-    protected virtual void SaveData()
+    public virtual void SaveData()
     {
         userData.userName = nameInputField.text;
         userData.className = classInputField.text;

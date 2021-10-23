@@ -48,7 +48,7 @@ namespace DLKJ
         [SerializeField] InputField inputS12S21;
         [SerializeField] InputField inputS22;
 
-        protected override void SaveData()
+        public override void SaveData()
         {
             base.SaveData();
             labReport1Data.SourceFrequency = StringToDouble(SourceFrequency.text);//ÐÅºÅÔ´ÆµÂÊ

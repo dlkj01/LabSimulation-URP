@@ -162,96 +162,96 @@ namespace DLKJ
 
         private void OnGUI()
         {
-            if (SceneManager.GetInstance().IsEntryScence)
-            {
-                if (GUI.Button(new Rect(0, 0, 120, 60), "提交考试"))
-                {
-                    Debug.Log("提交！");
-                    string Url = @"http://202.205.145.156:8017/open/api/v2/";
-                    string encodename = System.Web.HttpUtility.UrlEncode(Url);
-                    string showsend = Url + "data_upload?access_token=" + encodename;
-                    RestClient rs = new RestClient(Url);
-                    Stepspro st = new Stepspro();
-                    st.seq = 1;
-                    st.title = "实验步骤1";
-                    st.startTime = TimeHelp.GetTimeStampuse(DateTime.Now);
-                    st.endTime = TimeHelp.GetTimeStampuse(DateTime.Now);
-                    st.timeUsed = 123;
-                    st.expectTime = 2;
-                    st.maxScore = 10;
-                    st.score = 10;
-                    st.repeatCount = 1;
-                    st.evaluation = "优";
-                    st.scoringModel = "赋分模型";
-                    st.remarks = "备注";
-                    List<Stepspro> list1 = new List<Stepspro>();
-                    list1.Add(st);
-                    ParaObject p1 = new ParaObject();
-                    p1.username = "test";
-                    p1.title = "实验名称";
-                    p1.status = 1;
-                    p1.score = 100;
-                    p1.startTime = TimeHelp.GetTimeStampuse(DateTime.Now);
-                    p1.endTime = TimeHelp.GetTimeStampuse(DateTime.Now);
-                    p1.timeUsed = 123;
-                    p1.appid = "100400";
-                    p1.originId = "1";
-                    p1.steps = list1;
-                    string data = JsonConvert.SerializeObject((object)p1);
-                    string m = @"http://202.205.145.156:8017/open/api/v2/token?ticket=&appid=100400&signature=11CEF42C7B28BC1E04849EF26FEC37B0";
-                    string response = rs.Post(data, m);
-                    Debug.Log(response);
-                }
+            //if (SceneManager.GetInstance().IsEntryScence)
+            //{
+            //    if (GUI.Button(new Rect(0, 0, 120, 60), "提交考试"))
+            //    {
+            //        Debug.Log("提交！");
+            //        string Url = @"http://202.205.145.156:8017/open/api/v2/";
+            //        string encodename = System.Web.HttpUtility.UrlEncode(Url);
+            //        string showsend = Url + "data_upload?access_token=" + encodename;
+            //        RestClient rs = new RestClient(Url);
+            //        Stepspro st = new Stepspro();
+            //        st.seq = 1;
+            //        st.title = "实验步骤1";
+            //        st.startTime = TimeHelp.GetTimeStampuse(DateTime.Now);
+            //        st.endTime = TimeHelp.GetTimeStampuse(DateTime.Now);
+            //        st.timeUsed = 123;
+            //        st.expectTime = 2;
+            //        st.maxScore = 10;
+            //        st.score = 10;
+            //        st.repeatCount = 1;
+            //        st.evaluation = "优";
+            //        st.scoringModel = "赋分模型";
+            //        st.remarks = "备注";
+            //        List<Stepspro> list1 = new List<Stepspro>();
+            //        list1.Add(st);
+            //        ParaObject p1 = new ParaObject();
+            //        p1.username = "test";
+            //        p1.title = "实验名称";
+            //        p1.status = 1;
+            //        p1.score = 100;
+            //        p1.startTime = TimeHelp.GetTimeStampuse(DateTime.Now);
+            //        p1.endTime = TimeHelp.GetTimeStampuse(DateTime.Now);
+            //        p1.timeUsed = 123;
+            //        p1.appid = "100400";
+            //        p1.originId = "1";
+            //        p1.steps = list1;
+            //        string data = JsonConvert.SerializeObject((object)p1);
+            //        string m = @"http://202.205.145.156:8017/open/api/v2/token?ticket=&appid=100400&signature=11CEF42C7B28BC1E04849EF26FEC37B0";
+            //        string response = rs.Post(data, m);
+            //        Debug.Log(response);
+            //    }
 
 
-                GUIStyle style = new GUIStyle();
-                style.fontSize = 20;
+            //    GUIStyle style = new GUIStyle();
+            //    style.fontSize = 20;
 
-                if (GUI.Button(new Rect(120, 0, 120, 60), "使用设备"))
-                {
-                    List<Item> allItems = SceneManager.GetInstance().GetUsingItems();
+            //    if (GUI.Button(new Rect(120, 0, 120, 60), "使用设备"))
+            //    {
+            //        List<Item> allItems = SceneManager.GetInstance().GetUsingItems();
 
-                    foreach (var item in allItems)
-                    {
-                        BoxCollider boxCollider;
+            //        foreach (var item in allItems)
+            //        {
+            //            BoxCollider boxCollider;
 
-                        if (item.TryGetComponent<BoxCollider>(out boxCollider))
-                        {
-                            boxCollider.enabled = false;
-                        }
-                        MeshCollider meshCollider;
-                        if (item.TryGetComponent<MeshCollider>(out meshCollider))
-                        {
-                            meshCollider.enabled = false;
-                        }
-                    }
-                    SceneManager.GetInstance().SetMouseState(false, true);
-                }
+            //            if (item.TryGetComponent<BoxCollider>(out boxCollider))
+            //            {
+            //                boxCollider.enabled = false;
+            //            }
+            //            MeshCollider meshCollider;
+            //            if (item.TryGetComponent<MeshCollider>(out meshCollider))
+            //            {
+            //                meshCollider.enabled = false;
+            //            }
+            //        }
+            //        SceneManager.GetInstance().SetMouseState(false, true);
+            //    }
 
-                if (GUI.Button(new Rect(240, 0, 120, 60), "移动设备"))
-                {
-                    List<Item> allItems = SceneManager.GetInstance().GetUsingItems();
-                    foreach (var item in allItems)
-                    {
-                        BoxCollider boxCollider;
-                        if (item.TryGetComponent<BoxCollider>(out boxCollider))
-                        {
-                            boxCollider.enabled = true;
-                        }
-                        MeshCollider meshCollider;
-                        if (item.TryGetComponent<MeshCollider>(out meshCollider))
-                        {
-                            meshCollider.enabled = true;
-                        }
-                    }
-                    SceneManager.GetInstance().SetMouseState(false, false);
-                }
-
-
-                GUI.Label(new Rect(50, Screen.height / 2, Screen.width / 3, Screen.height), "操作提示:\n\n W:向前 \n\n S:向后 \n\n A:向左 \n\n D:向右 \n\n Q:向下 \n\n E:向上 \n\n R:旋转设备仪器 \n\n 鼠标左键:拖拽移动 \n\n 鼠标右键:按住旋转 ", style);
+            //    if (GUI.Button(new Rect(240, 0, 120, 60), "移动设备"))
+            //    {
+            //        List<Item> allItems = SceneManager.GetInstance().GetUsingItems();
+            //        foreach (var item in allItems)
+            //        {
+            //            BoxCollider boxCollider;
+            //            if (item.TryGetComponent<BoxCollider>(out boxCollider))
+            //            {
+            //                boxCollider.enabled = true;
+            //            }
+            //            MeshCollider meshCollider;
+            //            if (item.TryGetComponent<MeshCollider>(out meshCollider))
+            //            {
+            //                meshCollider.enabled = true;
+            //            }
+            //        }
+            //        SceneManager.GetInstance().SetMouseState(false, false);
+            //    }
 
 
-            }
+            //    GUI.Label(new Rect(50, Screen.height / 2, Screen.width / 3, Screen.height), "操作提示:\n\n W:向前 \n\n S:向后 \n\n A:向左 \n\n D:向右 \n\n Q:向下 \n\n E:向上 \n\n R:旋转设备仪器 \n\n 鼠标左键:拖拽移动 \n\n 鼠标右键:按住旋转 ", style);
+
+
+            //}
         }
 
 

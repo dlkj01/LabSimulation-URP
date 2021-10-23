@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 470, y: 180}
+  m_SizeDelta: {x: 470, y: 223}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5994106624506686551
 CanvasRenderer:
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6dd29fddbd5943349bd04103eb82bf02, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5a86ae4ff07f7a7488c569411aa8dba3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -115,7 +115,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 90, y: 36}
+  m_SizeDelta: {x: 120, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5994106624539181005
 CanvasRenderer:
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1c86398f91daa8c44a7e26e8c2239e8f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7c1fd8369d4d34e409bc776659210c8f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -184,10 +184,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: 21300000, guid: b7efe2e3dc2d9f044a99a66e659a4925, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 839235cec9c8ce54185b7be66215179e, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: b7efe2e3dc2d9f044a99a66e659a4925, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: 839235cec9c8ce54185b7be66215179e, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -211,11 +211,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a932d51730b23b549b26719bd713077d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normal: {fileID: 21300000, guid: 1c86398f91daa8c44a7e26e8c2239e8f, type: 3}
-  highlight: {fileID: 21300000, guid: e288444f48a8f7148a04b38ce10c27d0, type: 3}
-  selected: {fileID: 21300000, guid: e288444f48a8f7148a04b38ce10c27d0, type: 3}
+  normal: {fileID: 21300000, guid: 7c1fd8369d4d34e409bc776659210c8f, type: 3}
+  highlight: {fileID: 21300000, guid: 20f0abb32f3e6294bb92d10ddda0e790, type: 3}
+  selected: {fileID: 21300000, guid: 20f0abb32f3e6294bb92d10ddda0e790, type: 3}
   disable: {fileID: 0}
   button: {fileID: 5994106624539181003}
+  textNormalColor: {r: 0, g: 1, b: 0.96862745, a: 1}
+  textHiglightColor: {r: 0, g: 0, b: 0, a: 1}
+  buttonText: {fileID: 5994106626030779961}
 --- !u!1 &5994106624714783080
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,7 +361,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 90, y: 36}
+  m_SizeDelta: {x: 120, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5994106625366953813
 CanvasRenderer:
@@ -381,14 +384,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.13062698, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1c86398f91daa8c44a7e26e8c2239e8f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 839235cec9c8ce54185b7be66215179e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -454,11 +457,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a932d51730b23b549b26719bd713077d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normal: {fileID: 21300000, guid: 1c86398f91daa8c44a7e26e8c2239e8f, type: 3}
-  highlight: {fileID: 21300000, guid: e288444f48a8f7148a04b38ce10c27d0, type: 3}
-  selected: {fileID: 21300000, guid: e288444f48a8f7148a04b38ce10c27d0, type: 3}
+  normal: {fileID: 21300000, guid: 7c1fd8369d4d34e409bc776659210c8f, type: 3}
+  highlight: {fileID: 21300000, guid: 20f0abb32f3e6294bb92d10ddda0e790, type: 3}
+  selected: {fileID: 21300000, guid: 20f0abb32f3e6294bb92d10ddda0e790, type: 3}
   disable: {fileID: 0}
   button: {fileID: 5994106625366953811}
+  textNormalColor: {r: 0, g: 1, b: 0.96862745, a: 1}
+  textHiglightColor: {r: 0, g: 0, b: 0, a: 1}
+  buttonText: {fileID: 5994106626314500612}
 --- !u!1 &5994106626030779959
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,7 +523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.9696944, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -526,7 +532,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 6443d2e94df93374a94ec310341af52d, type: 3}
-    m_FontSize: 18
+    m_FontSize: 22
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -596,7 +602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.96862745, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -605,10 +611,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 6443d2e94df93374a94ec310341af52d, type: 3}
-    m_FontSize: 20
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 2
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -675,7 +681,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.96862745, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -684,7 +690,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 6443d2e94df93374a94ec310341af52d, type: 3}
-    m_FontSize: 18
+    m_FontSize: 22
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1

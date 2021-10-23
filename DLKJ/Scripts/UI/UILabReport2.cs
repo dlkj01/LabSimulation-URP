@@ -62,7 +62,7 @@ public class UILabReport2 : UILabReportBase
     [Tooltip("Æ¥Åäºó×¤²¨±È")] public InputField SWRAfterMatchingSecond;//Æ¥Åäºó×¤²¨±È
 
 
-    protected override void SaveData()
+    public override void SaveData()
     {
         base.SaveData();
         labReport2Data.inputSourceFrequencyFirst = StringToDouble(inputSourceFrequencyFirst.text);

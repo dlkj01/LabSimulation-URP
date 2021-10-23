@@ -9,7 +9,7 @@ public class UILabReport3 : UILabReportBase
     [Tooltip("三端口电压")] public InputField ThreePortVoltage;//三端口电压
     [Tooltip("三端口电压")] public InputField CouplingFactor;//耦合度C
 
-    protected override void SaveData()
+    public override void SaveData()
     {
         base.SaveData();
         labReportData.OnePortVoltage = StringToDouble(OnePortVoltage.text);
