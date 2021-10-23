@@ -680,7 +680,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragAble: 0
   ID: 2
-  scope: 0.02
   moveSpeed: 1
   portCollider: {fileID: 0}
   offset: {x: 0, y: 0, z: 0}
@@ -1311,7 +1310,7 @@ MonoBehaviour:
     MinValue: 55
     EndMovePoint: -0.0413
     StartMovePoint: 0.0413
-    StepLength: 80
+    StepLength: 400
     StartAngle: 0
     EndAngle: 360
     currentAngle: 0
@@ -1910,7 +1909,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragAble: 0
   ID: 1
-  scope: 0.02
   moveSpeed: 0.02
   portCollider: {fileID: 0}
   offset: {x: 0, y: 0, z: 0}
@@ -2124,7 +2122,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragAble: 0
   ID: 2
-  scope: 0.02
   moveSpeed: 1
   portCollider: {fileID: 7914529021577067017}
   offset: {x: 0, y: 0, z: 0}
@@ -2914,7 +2911,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragAble: 0
   ID: 0
-  scope: 0.02
   moveSpeed: 0.02
   portCollider: {fileID: 0}
   offset: {x: 0, y: 0, z: 0}

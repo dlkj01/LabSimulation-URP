@@ -195,7 +195,7 @@ MonoBehaviour:
     MinValue: 0
     EndMovePoint: 0.0793
     StartMovePoint: 0
-    StepLength: 100
+    StepLength: 1000
     StartAngle: 90
     EndAngle: 414
     currentAngle: 90
@@ -598,7 +598,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragAble: 0
   ID: 0
-  scope: 0.02
   moveSpeed: 0.03
   portCollider: {fileID: 7732778968578331871}
   offset: {x: 0, y: 0, z: 0}

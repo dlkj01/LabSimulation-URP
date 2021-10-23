@@ -68,9 +68,8 @@ namespace DLKJ
             FD = UnityEngine.Random.Range(0f, 1f);
             do
             {
-                Shan0 = UnityEngine.Random.Range(0f, 2f * Mathf.PI);
-            } while (Shan0 <= 0 || Shan0 > 2 * Mathf.PI);
-            Shan0 = UnityEngine.Random.Range(0, 2 * Mathf.PI);
+                Shan0 = UnityEngine.Random.Range(0f, 0.5f * Mathf.PI);
+            } while (Shan0 <= 0 || Shan0 > 0.5f * Mathf.PI);
             RuDuanLuQi = UnityEngine.Random.Range(0.024f, 0.0365f);
             //方案一
             //ShanA = UnityEngine.Random.Range(0, 2 * Mathf.PI);
@@ -80,7 +79,7 @@ namespace DLKJ
             ShanA = UnityEngine.Random.Range(0, 2 * Mathf.PI);
             ShanC = ShanA;
             ShanB = 0.5f * (ShanA + ShanC + Math.PI);
-            ShanD = UnityEngine.Random.Range(0, 2 * Mathf.PI);
+
             EDKKBDLQβ = GetEDKKBDLQβ();
             Complex S11Com = new Complex(FA * Math.Cos(ShanA), FA * Math.Sin(ShanA));
             Complex S12Com = new Complex(FB * Math.Cos(ShanB), FB * Math.Sin(ShanB));
@@ -120,7 +119,7 @@ namespace DLKJ
 
 
             //波节点位置终端开路
-            report1CorrectAnswer.WaveNodePosShortTerminal = GetMinReadUpperDTEDKKEDLQ(float.Parse(report1CorrectAnswer.VariableShortCircuitFirstPos[0].ToString()));
+            report1CorrectAnswer.WaveNodePosShortTerminal = GetMinReadUpperDTEDKKEDLQ(float.Parse(report1CorrectAnswer.OpenLoadPosition[0].ToString()));
             report1CorrectAnswer.WaveNodePosShortMatching = GetMinZUpperDTEDKPPFZ();//波节点位置终端匹配
 
 
@@ -130,8 +129,8 @@ namespace DLKJ
             report1CorrectAnswer.PhaseAngleMatching = ShanA;//相角终端匹配
 
             report1CorrectAnswer.StandingWaveRatioCircuit = SWREDKTODLB();//驻波比终端短路
-            report1CorrectAnswer.StandingWaveRatioTerminal = SWREDKKBDLQ(float.Parse(report1CorrectAnswer.OpenLoadPosition[0].ToString("#0.000000")));//驻波比终端开路
-            report1CorrectAnswer.StandingWaveRatioCircuit = SWREDKPPFZ();//驻波比终端匹配
+            report1CorrectAnswer.StandingWaveRatioTerminal = SWREDKKBDLQ(float.Parse(report1CorrectAnswer.OpenLoadPosition[0].ToString("#0.0000000")));//驻波比终端开路
+            report1CorrectAnswer.PhaseAngleMatching = SWREDKPPFZ();//驻波比终端匹配
 
             report1CorrectAnswer.inputΓ1S = GetTl();
             report1CorrectAnswer.inputΓ10 = GetT1_EDKKBDLQ(float.Parse(report1CorrectAnswer.VariableShortCircuitFirstPos[0].ToString()));
@@ -174,8 +173,13 @@ namespace DLKJ
         public static double GetDT(float startValue, float offect /*float endValue, int step, float startValue, Func<List<double>, double> func*/)
         {
             double everyBandLength = Calculateλp1();//每一个波段的长度
-            int startBandCount = (int)((startValue + offect) / everyBandLength) + 1;
-            double result = startBandCount * everyBandLength;
+            int index = 0;
+            while (everyBandLength + (everyBandLength * 0.5f) * index < startValue)
+            {
+                index++;
+            }
+            // int startBandCount = (int)((startValue + offect) / everyBandLength) + 1;
+            double result = everyBandLength + (everyBandLength * 0.5f) * index;
             return result;
             // Debug.Log(SLMCLXZDDLB(float.Parse(result.ToString("#0.0000000"))));
 
@@ -462,7 +466,8 @@ namespace DLKJ
             double result = Math.Cos(2 * Getβ() * z - CalculateShan(GetTl_a_EDKKBDLQ(zd), GetTl_b_EDKKBDLQ(zd)));
             if (result == 1)
             {
-                double Umax = δ * Math.Abs(A) * Math.Abs((1 + GetTl_a_EDKKBDLQ(zd)));
+                double T1 = GetT1_EDKKBDLQ(zd);
+                double Umax = δ * Math.Abs(A) * Math.Abs(1 + T1);
                 return Umax;
             }
             return 0;
@@ -477,7 +482,8 @@ namespace DLKJ
             double result = Math.Cos(2 * Getβ() * z - CalculateShan(GetTl_a_EDKKBDLQ(zd), GetTl_b_EDKKBDLQ(zd)));
             if (result == -1)
             {
-                double Umin = δ * Math.Abs(A) * Math.Abs((1 - GetT1_EDKKBDLQ(zd)));
+                double T1 = GetT1_EDKKBDLQ(zd);
+                double Umin = δ * Math.Abs(A) * Math.Abs(1 - T1);
                 return Umin;
             }
             return 0;
@@ -508,10 +514,10 @@ namespace DLKJ
         {
             List<double> result = new List<double>();
             int k = 0;
-            while ((Math.PI - Shan0) / GetEDKKBDLQβ() + ((k * 0.5f) * RuDuanLuQi) <= 0.0365f)
+            while ((Math.PI - Shan0) / GetEDKKBDLQβ() + ((k * 0.5f) * RuDuanLuQi) <= 0.1f)
             {
                 double value = (Math.PI - Shan0) / GetEDKKBDLQβ() + ((k * 0.5f) * RuDuanLuQi);
-                if (value >= 0.0024f)
+                if (value >= 0f)
                     result.Add(value);
                 k++;
             }
