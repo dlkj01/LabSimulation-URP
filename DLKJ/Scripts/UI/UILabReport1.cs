@@ -112,41 +112,7 @@ namespace DLKJ
             WordHelper.HandleGuaranteeDoc(filePath, map, outFilePath);
         }
 
-        /// <summary>
-        /// 数据格式解析
-        /// </summary>
-        /// <param name="inputValue"></param>
-        /// <param name="rightAnswer"></param>
-        /// <returns></returns>
-        private bool DataFormatParsing(double inputValue, object rightAnswer)
-        {
-            if (rightAnswer is double d)
-            {
-                return VerifyScore(inputValue, d);
-            }
-            if (rightAnswer is List<double> a)
-            {
-                for (int i = 0; i < a.Count; i++)
-                {
-                    return VerifyScore(inputValue, a[i]);
-                }
-            }
-            return false;
-        }
 
-        /// <summary>
-        /// 核对添加的答案是否正确
-        /// </summary>
-        /// <param name="inputValue"></param>
-        /// <param name="rightAnswer"></param>
-        /// <returns></returns>
-        private bool VerifyScore(double inputValue, double rightAnswer)
-        {
-            double lerp = rightAnswer * 0.2f;
-            if (inputValue < rightAnswer + lerp && inputValue > rightAnswer - lerp)
-                return true;
-            return false;
-        }
 
 
 

@@ -129,7 +129,7 @@ namespace DLKJ
             {
                 Debug.LogWarning("experimentSelectedPanelPrefab is null!");
             }
-            if (experimentID.Count >= 3)
+            if (experimentID.Count >= 3 && SceneManager.experimentCount >= 2)
             {
                 EventManager.OnTips(TipsType.Toast, "所有实验已经完成,您的分数是:" + 100, () => { }, () =>
                  {

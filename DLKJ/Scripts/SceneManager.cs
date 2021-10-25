@@ -11,6 +11,7 @@ namespace DLKJ
     public class SceneManager : MonoBehaviour
     {
         public static bool didExperiment = false;
+        public static int experimentCount = 0;
         [SerializeField] Texture2D holdTexture;
         [SerializeField] Texture2D clickTexture;
         [SerializeField] Texture2D releaseTexture;

@@ -50,7 +50,7 @@ namespace DLKJ
                 //MathTool.GetDT(MathTool.SLMCL_Start_Value, 0);
                 //MathTool.GetFirstMinBoundKBDLQ(0, 1);
                 //MathTool.GetFirstMinBoundKBDLQ(0, 2);
-                MathTool.FixedCorrect2Calculate();
+                MathTool.FixedCorrect2FirstGroupCalculate();
             }
         }
 
@@ -154,13 +154,13 @@ namespace DLKJ
                 keBianDuanLuQiBtn = GetInstrumentButton("¿É±ä¶ÌÂ·Æ÷", "kebianduanluqi4");
             }
 
-            if (instrumentPiPeiLuoDingD == null)
+            if (instrumentPiPeiLuoDingL == null)
             {
                 instrumentPiPeiLuoDingL = GetInstrumentButton("Æ¥ÅäÂÝ¶¤", "PiPeiLuoDingBtn");
             }
-            if (instrumentPiPeiLuoDingL == null)
+            if (instrumentPiPeiLuoDingD == null)
             {
-                instrumentPiPeiLuoDingL = GetInstrumentButton("Æ¥ÅäÂÝ¶¤", "PPLDGear");
+                instrumentPiPeiLuoDingD = GetInstrumentButton("Æ¥ÅäÂÝ¶¤", "PPLDGear");
             }
 
         }

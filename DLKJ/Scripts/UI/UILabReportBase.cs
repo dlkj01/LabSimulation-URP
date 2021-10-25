@@ -82,7 +82,7 @@ public struct LabReport2Data
     public double inputAttenuatorSetupFirst;//衰减器设置
     public double SWRFirst;//驻波比
     public double WaveguideWavelengthFirst;//波导波长
-    public double EquivalentSectionPosition;//等效截面位置
+   // public double EquivalentSectionFirstPosition;//等效截面位置
     public double WaveNodePositionFirst;//第一波节点位置
     public double NormalizedLoadImpedanceFirst;//归一化负载阻抗
     public double LoadImpedanceFirst;//负载阻抗
@@ -96,6 +96,7 @@ public struct LabReport2Data
     public double inputAttenuatorSetupSecond;//衰减器设置
     public double SWRSecond;//驻波比
     public double WaveguideWavelengthSecond;//波导波长
+   // public double EquivalentSectionSecondPosition;//等效截面位置
     public double WaveNodePositionSecond;//第一波节点位置
     public double NormalizedLoadImpedanceSecond;//归一化负载阻抗
     public double LoadImpedanceSecond;//负载阻抗
@@ -112,12 +113,12 @@ public struct LabReportCorrect2Data
     public double inputAttenuatorSetupFirst;//衰减器设置
     public double SWRFirst;//驻波比
     public double WaveguideWavelengthFirst;//波导波长
-    public double EquivalentSectionPosition;//等效截面位置
+  //  public double EquivalentSectionFirstPosition;//等效截面位置
     public double WaveNodePositionFirst;//第一波节点位置
     public double NormalizedLoadImpedanceFirst;//归一化负载阻抗
     public double LoadImpedanceFirst;//负载阻抗
-    public double ScrewPositionFirst;//螺钉位置
-    public double ScrewDepthFirst;//螺钉深度
+    public List<double> ScrewPositionFirst;//螺钉位置
+    public List<double> ScrewDepthFirst;//螺钉深度
     public double MinimumVoltageAfterMatchingFirst;//匹配后最小电压
     public double MaximumVoltageAfterMatchingFirst;//匹配后最大电压
     public double SWRAfterMatchingFirst;//匹配后驻波比
@@ -126,11 +127,12 @@ public struct LabReportCorrect2Data
     public double inputAttenuatorSetupSecond;//衰减器设置
     public double SWRSecond;//驻波比
     public double WaveguideWavelengthSecond;//波导波长
+  //  public double EquivalentSectionSecondPosition;//等效截面位置
     public double WaveNodePositionSecond;//第一波节点位置
     public double NormalizedLoadImpedanceSecond;//归一化负载阻抗
     public double LoadImpedanceSecond;//负载阻抗
-    public double ScrewPositionSecond;//螺钉位置
-    public double ScrewDepthSecond;//螺钉深度
+    public List<double> ScrewPositionSecond;//螺钉位置
+    public List<double> ScrewDepthSecond;//螺钉深度
     public double MinimumVoltageAfterMatchingSecond;//匹配后最小电压
     public double MaximumVoltageAfterMatchingSecond;//匹配后最大电压
     public double SWRAfterMatchingSecond;//匹配后驻波比
@@ -260,6 +262,43 @@ public class UILabReportBase : MonoBehaviour
         return result;
     }
 
+    /// <summary>
+    /// 数据格式解析
+    /// </summary>
+    /// <param name="inputValue"></param>
+    /// <param name="rightAnswer"></param>
+    /// <returns></returns>
+    protected bool DataFormatParsing(double inputValue, object rightAnswer)
+    {
+        if (rightAnswer is double d)
+        {
+            return VerifyScore(inputValue, d);
+        }
+        if (rightAnswer is List<double> a)
+        {
+            for (int i = 0; i < a.Count; i++)
+            {
+                if (VerifyScore(inputValue, a[i]))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
+    /// <summary>
+    /// 核对添加的答案是否正确
+    /// </summary>
+    /// <param name="inputValue"></param>
+    /// <param name="rightAnswer"></param>
+    /// <returns></returns>
+    protected bool VerifyScore(double inputValue, double rightAnswer)
+    {
+        double lerp = rightAnswer * 0.2f;
+        if (inputValue < rightAnswer + lerp && inputValue > rightAnswer - lerp)
+            return true;
+        return false;
+    }
 
 }

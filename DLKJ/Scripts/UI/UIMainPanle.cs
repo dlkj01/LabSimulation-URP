@@ -109,7 +109,25 @@ namespace DLKJ
 
         public void SubmitTest()
         {
-            EventManager.OnTips(TipsType.Snackbar, "是否提交实验报告？", () => { FindObjectOfType<UITips>().OnDisTips(); },
+            string tipString = "提交实验报告";
+            switch (SceneManager.GetInstance().currentLab.labName)
+            {
+                case "负载阻抗测量":
+                    switch (SceneManager.experimentCount)
+                    {
+                        case 0:
+                            tipString = "进行第二组实验";
+                            break;
+                        case 1:
+                            tipString = "提交实验报告";
+                            break;
+                        default:
+                            tipString = "提交实验报告";
+                            break;
+                    }
+                    break;
+            }
+            EventManager.OnTips(TipsType.Snackbar, tipString, () => { FindObjectOfType<UITips>().OnDisTips(); },
                () =>
                {
                    //添加完成的实验名字的记录
@@ -120,6 +138,15 @@ namespace DLKJ
                    UIManager.GetInstance().UILabButton.uiLabReport.SaveData();
                    //做过实验标记为True
                    SceneManager.didExperiment = true;
+                   switch (SceneManager.GetInstance().currentLab.labName)
+                   {
+                       case "负载阻抗测量":
+                           SceneManager.experimentCount++;
+                           break;
+                       default:
+                           break;
+                   }
+
                    //返回选择实验场景
                    UnityEngine.SceneManagement.SceneManager.LoadScene("Level1");
                });

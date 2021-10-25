@@ -7,6 +7,7 @@ using Aspose.Words;
 using Aspose.Words.Tables;
 using System.Linq;
 using System.Reflection;
+using DLKJ;
 
 public static class WordHelper
 {
@@ -55,7 +56,27 @@ public static class WordHelper
             builder.MoveToBookmark(key);  //将光标移入书签的位置
             if (map[key] != null)
             {
-                builder.StartBookmark(key).Bookmark.Text = map[key].ToString();
+                if (map[key] is AnswerCheck answerCheck)
+                {
+                    builder.StartBookmark(key).Bookmark.Text = answerCheck.answer.ToString();
+                    //   builder.ParagraphFormat.Shading.BackgroundPatternColor = System.Drawing.Color.Yellow;
+                    //Aspose.Words.Font font = builder.Font;
+                    //font.Color = System.Drawing.Color.Yellow;
+                    if (answerCheck.isRight == false)
+                    {
+                        Debug.LogError("wrong");
+
+                    }
+                    else
+                    {
+                        Debug.LogError("Yes:" + answerCheck.answer.ToString());
+                    }
+                }
+                else
+                {
+                    builder.StartBookmark(key).Bookmark.Text = map[key].ToString();
+                }
+
             }
         }
         doc.Save(streamingPath + "/Save/" + outPath); //保存word

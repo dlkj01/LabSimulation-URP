@@ -159,11 +159,11 @@ MonoBehaviour:
     instrumentButtonType: 1
     rotary: 0
     rotatyDirection: 1
-    MaxValue: 70
+    MaxValue: 100
     MinValue: 0
     EndMovePoint: 0.04386
-    StartMovePoint: 0.05368
-    StepLength: 100
+    StartMovePoint: 0.06347
+    StepLength: 1000
     StartAngle: 20
     EndAngle: 344
     currentAngle: 20
@@ -177,11 +177,11 @@ MonoBehaviour:
     instrumentButtonType: 1
     rotary: 50
     rotatyDirection: 1
-    MaxValue: 13.7
-    MinValue: 0
+    MaxValue: 15.85
+    MinValue: 3.15
     EndMovePoint: 0.057
     StartMovePoint: -0.057
-    StepLength: 100
+    StepLength: 1000
     StartAngle: 0
     EndAngle: 240
     currentAngle: 0
@@ -1035,7 +1035,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6565904900863039520}
   m_LocalRotation: {x: 0, y: 0, z: 0.17364816, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: 0.00094, z: 0.05368}
+  m_LocalPosition: {x: 0, y: 0.00094, z: 0.06347}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1805497479678581560}

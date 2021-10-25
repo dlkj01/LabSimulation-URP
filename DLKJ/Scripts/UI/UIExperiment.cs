@@ -10,6 +10,7 @@ namespace DLKJ
     public class UIExperiment : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] Text titleText;
+        [SerializeField] Text experimentCountText;//第几组实验?
         [SerializeField] Color defaultColor;
         [SerializeField] Color selectedColor;
         [SerializeField] Button button;
@@ -40,13 +41,41 @@ namespace DLKJ
             image.sprite = lab.icon;
 
             if (titleText) titleText.text = lab.labName;
+
+            if (titleText.text == "负载阻抗测量")
+            {
+                switch (SceneManager.experimentCount)
+                {
+                    case 0:
+                        experimentCountText.text = "开始第一组实验";
+                        break;
+                    case 1:
+                        experimentCountText.text = "开始第二组实验";
+                        break;
+                    default:
+                        experimentCountText.text = "";
+                        break;
+                }
+            }
             for (int i = 0; i < UIManager.experimentID.Count; i++)
             {
                 if (UIManager.experimentID[i] == lab.labName)
                 {
-                    group.blocksRaycasts = false;
-                    group.interactable = false;
-                    group.alpha = 0.5f;
+                    if (lab.labName == "负载阻抗测量")
+                    {
+                        if (SceneManager.experimentCount >= 2)
+                        {
+                            group.blocksRaycasts = false;
+                            group.interactable = false;
+                            group.alpha = 0.5f;
+                        }
+                    }
+                    else
+                    {
+                        group.blocksRaycasts = false;
+                        group.interactable = false;
+                        group.alpha = 0.5f;
+                    }
                 }
             }
 

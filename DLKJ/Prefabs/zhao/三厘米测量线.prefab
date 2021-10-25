@@ -1314,7 +1314,7 @@ MonoBehaviour:
     rotatyDirection: -1
     MaxValue: 135
     MinValue: 55
-    EndMovePoint: -0.0413
+    EndMovePoint: -0.04083
     StartMovePoint: 0.0413
     StepLength: 400
     StartAngle: 0
