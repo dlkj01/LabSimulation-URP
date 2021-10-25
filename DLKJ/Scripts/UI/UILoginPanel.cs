@@ -18,13 +18,18 @@ namespace DLKJ
         {
             errorInfoText.gameObject.SetActive(false);
             UIManager.GetInstance().SetVerifyButtonActive(false);
-            if (sureButton) sureButton.onClick.AddListener(delegate() { SureCallBack(); });
-            if (exitButton) exitButton.onClick.AddListener(delegate() { ExitCallBack(); });
+            if (sureButton) sureButton.onClick.AddListener(delegate () { SureCallBack(); });
+            if (exitButton) exitButton.onClick.AddListener(delegate () { ExitCallBack(); });
+            if (SceneManager.didExperiment == true)
+            {
+                UIManager.GetInstance().ShowExperimentSelectedPanel();
+                gameObject.SetActive(false);
+            }
         }
 
         void SureCallBack()
         {
-            if (nameInputField.text.Length>0)
+            if (nameInputField.text.Length > 0)
             {
 
             }
@@ -35,7 +40,7 @@ namespace DLKJ
                 return;
             }
 
-            if (codeInputField.text.Length>0)
+            if (codeInputField.text.Length > 0)
             {
 
             }

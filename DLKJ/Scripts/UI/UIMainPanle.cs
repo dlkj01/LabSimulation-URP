@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 namespace DLKJ
 {
     public class UIMainPanle : MonoBehaviour
@@ -91,7 +92,7 @@ namespace DLKJ
 
         public void ViewTheVideo()
         {
-            if (SceneManager.GetInstance().VerifyBasicLink())
+            if (SceneManager.GetInstance().currentLab.currentStepIndex >= 2)
             {
                 UIManager.GetInstance().ShowVideoButton();
             }
@@ -111,7 +112,16 @@ namespace DLKJ
             EventManager.OnTips(TipsType.Snackbar, "是否提交实验报告？", () => { FindObjectOfType<UITips>().OnDisTips(); },
                () =>
                {
+                   //添加完成的实验名字的记录
+                   string labName = SceneManager.GetInstance().currentLab.labName;
+                   if (!UIManager.experimentID.Contains(labName))
+                       UIManager.experimentID.Add(labName);
+                   //保存word数据
                    UIManager.GetInstance().UILabButton.uiLabReport.SaveData();
+                   //做过实验标记为True
+                   SceneManager.didExperiment = true;
+                   //返回选择实验场景
+                   UnityEngine.SceneManagement.SceneManager.LoadScene("Level1");
                });
         }
     }

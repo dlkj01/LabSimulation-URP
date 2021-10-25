@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -83,9 +85,70 @@ namespace DLKJ
             foreach (var item in map1)
                 map[item.Key] = item.Value;
             foreach (var item2 in map2)
-                map[item2.Key] = item2.Value; 
+            {
+                AnswerCheck answerCheck = new AnswerCheck();
+                answerCheck.answer = item2.Value.ToString();
+                System.Reflection.FieldInfo[] fields = MathTool.report1CorrectAnswer.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+                for (int i = 0; i < fields.Length; i++)
+                {
+                    if (fields[i].Name == item2.Key)
+                    {
+                        double result;
+                        if (String.IsNullOrEmpty(item2.Value.ToString()))
+                        {
+                            result = -9999;
+                        }
+                        else
+                        {
+                            result = (double)item2.Value;
+                        }
+                        answerCheck.isRight = DataFormatParsing(result, fields[i].GetValue(MathTool.report1CorrectAnswer));
+                    }
+                }
+                map[item2.Key] = answerCheck;
+            }
+
 
             WordHelper.HandleGuaranteeDoc(filePath, map, outFilePath);
         }
+
+        /// <summary>
+        /// 数据格式解析
+        /// </summary>
+        /// <param name="inputValue"></param>
+        /// <param name="rightAnswer"></param>
+        /// <returns></returns>
+        private bool DataFormatParsing(double inputValue, object rightAnswer)
+        {
+            if (rightAnswer is double d)
+            {
+                return VerifyScore(inputValue, d);
+            }
+            if (rightAnswer is List<double> a)
+            {
+                for (int i = 0; i < a.Count; i++)
+                {
+                    return VerifyScore(inputValue, a[i]);
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 核对添加的答案是否正确
+        /// </summary>
+        /// <param name="inputValue"></param>
+        /// <param name="rightAnswer"></param>
+        /// <returns></returns>
+        private bool VerifyScore(double inputValue, double rightAnswer)
+        {
+            double lerp = rightAnswer * 0.2f;
+            if (inputValue < rightAnswer + lerp && inputValue > rightAnswer - lerp)
+                return true;
+            return false;
+        }
+
+
+
     }
 }

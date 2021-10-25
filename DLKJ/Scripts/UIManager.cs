@@ -3,13 +3,14 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 using DG.Tweening;
+using System.Collections.Generic;
 
 namespace DLKJ
 {
     public class UIManager : MonoBehaviour
     {
         private static UIManager instance;
-
+        public static List<string> experimentID = new List<string>();
         [Header("SceneObject")]
         [SerializeField] GameObject sceneObject;
 
@@ -127,6 +128,14 @@ namespace DLKJ
             else
             {
                 Debug.LogWarning("experimentSelectedPanelPrefab is null!");
+            }
+            if (experimentID.Count >= 3)
+            {
+                EventManager.OnTips(TipsType.Toast, "所有实验已经完成,您的分数是:" + 100, () => { }, () =>
+                 {
+                     Debug.Log("退出了");
+                     Application.Quit();
+                 });
             }
         }
 

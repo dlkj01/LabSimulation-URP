@@ -192,6 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51856be06bb55ea4aa6c75d7feb6d667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  voltmeterCamera: {fileID: 0}
   pointer: {fileID: 0}
   powerMaterials: []
   onColor: {r: 0, g: 0, b: 0, a: 0}
@@ -217,6 +218,7 @@ MonoBehaviour:
     StartAngle: 120
     EndAngle: 444
     currentAngle: 120
+    uncontrolled: 0
     x: 0
 --- !u!1 &1747970251703575628
 GameObject:
@@ -428,7 +430,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragAble: 0
   ID: 0
-  scope: 0.02
   moveSpeed: 0.03
   portCollider: {fileID: 0}
   offset: {x: 0, y: 0, z: 0}

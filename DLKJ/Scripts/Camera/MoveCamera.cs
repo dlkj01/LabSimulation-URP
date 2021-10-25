@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static DLKJ.InstrumentAction;
 using System.Web;
+using static DLKJ.InstrumentAction.InstrumentButton;
 
 namespace DLKJ
 {
@@ -28,7 +29,7 @@ namespace DLKJ
             Application.targetFrameRate = 120;
         }
 
-        public void CamRayCast()
+        public InstrumentButton CamRayCast()
         {
             Ray m_ray;
             RaycastHit m_hit;
@@ -46,21 +47,52 @@ namespace DLKJ
                 if (m_hit.collider.transform.root.TryGetComponent<InstrumentAction>(out instrumentAction))
                 {
                     curInstrumentButton = instrumentAction.instrumentButton.Find(x => x.instrumentButton.name == m_hit.collider.transform.name);
-                    if (curInstrumentButton != null)
-                        curInstrumentButton.OnMouseClick();
-
+                    return curInstrumentButton;
                     //Debug.Log(m_hit.collider.transform.name);
 
                 }
 
             }
+            return null;
         }
-
+        private float interval = 0.02f;
+        private float currentTime;
+        private float startHoldTime = 1f;
+        private float startClickTime;
         void Update()
         {
             if (Input.GetMouseButtonDown(0))
             {
-                CamRayCast();
+                if (CamRayCast() != null)
+                {
+                    CamRayCast().OnMouseClick();
+                }
+            }
+            if (Input.GetMouseButton(0))
+            {
+                startClickTime += Time.deltaTime;
+                if (startClickTime > startHoldTime)
+                {
+                    currentTime += Time.deltaTime;
+                    if (currentTime >= interval)
+                    {
+                        currentTime = 0;
+                        InstrumentButton button = CamRayCast();
+                        if (button != null)
+                        {
+                            if (button.instrumentButtonType == InstrumentButtonType.Rotary)
+                            {
+                                CamRayCast().OnMouseClick();
+                            }
+                        }
+
+                    }
+                }
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                startClickTime = 0;
+                currentTime = 0;
             }
 
             RotationCamera();

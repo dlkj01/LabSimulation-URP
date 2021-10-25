@@ -97,7 +97,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragAble: 0
   ID: 0
-  scope: 0.02
   moveSpeed: 0.5
   portCollider: {fileID: 6136505710733346135}
   offset: {x: 0, y: 0, z: 0}
@@ -294,6 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51856be06bb55ea4aa6c75d7feb6d667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  voltmeterCamera: {fileID: 0}
   pointer: {fileID: 0}
   powerMaterials: []
   onColor: {r: 0, g: 0, b: 0, a: 0}
@@ -320,6 +320,7 @@ MonoBehaviour:
     StartAngle: 127
     EndAngle: 451
     currentAngle: 127
+    uncontrolled: 0
     x: 0
 --- !u!65 &3991816612479598487
 BoxCollider:
@@ -431,7 +432,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragAble: 0
   ID: 1
-  scope: 0.02
   moveSpeed: 0.5
   portCollider: {fileID: 6682063740188071570}
   offset: {x: 0, y: 0, z: 0}

@@ -50,7 +50,7 @@ namespace DLKJ
                 //MathTool.GetDT(MathTool.SLMCL_Start_Value, 0);
                 //MathTool.GetFirstMinBoundKBDLQ(0, 1);
                 //MathTool.GetFirstMinBoundKBDLQ(0, 2);
-                MathTool.FixedCorrectCalculate();
+                MathTool.FixedCorrect2Calculate();
             }
         }
 
@@ -78,11 +78,10 @@ namespace DLKJ
                             U = MathTool.EDKTODLB(MathUtility.GetDistance(tempInstrumentBtn));
                             break;
                         case 4:
-
-                            U = MathTool.EDKPPFZ(MathUtility.GetDistance(tempInstrumentBtn));
+                            U = MathTool.ErDuanKouKeBianDuanLuQi(MathUtility.GetDistance(keBianDuanLuQiBtn), MathUtility.GetDistance(tempInstrumentBtn));
                             break;
                         case 5:
-                            U = MathTool.ErDuanKouKeBianDuanLuQi(MathUtility.GetDistance(keBianDuanLuQiBtn), MathUtility.GetDistance(tempInstrumentBtn));
+                            U = MathTool.EDKPPFZ(MathUtility.GetDistance(tempInstrumentBtn));
                             break;
                         default:
                             break;

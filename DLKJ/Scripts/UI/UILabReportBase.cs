@@ -82,6 +82,37 @@ public struct LabReport2Data
     public double inputAttenuatorSetupFirst;//衰减器设置
     public double SWRFirst;//驻波比
     public double WaveguideWavelengthFirst;//波导波长
+    public double EquivalentSectionPosition;//等效截面位置
+    public double WaveNodePositionFirst;//第一波节点位置
+    public double NormalizedLoadImpedanceFirst;//归一化负载阻抗
+    public double LoadImpedanceFirst;//负载阻抗
+    public double ScrewPositionFirst;//螺钉位置
+    public double ScrewDepthFirst;//螺钉深度
+    public double MinimumVoltageAfterMatchingFirst;//匹配后最小电压
+    public double MaximumVoltageAfterMatchingFirst;//匹配后最大电压
+    public double SWRAfterMatchingFirst;//匹配后驻波比
+    public double inputSourceFrequencySecond;//信号源频率
+    public double inputSourceVoltageSecond;//信号源电压
+    public double inputAttenuatorSetupSecond;//衰减器设置
+    public double SWRSecond;//驻波比
+    public double WaveguideWavelengthSecond;//波导波长
+    public double WaveNodePositionSecond;//第一波节点位置
+    public double NormalizedLoadImpedanceSecond;//归一化负载阻抗
+    public double LoadImpedanceSecond;//负载阻抗
+    public double ScrewPositionSecond;//螺钉位置
+    public double ScrewDepthSecond;//螺钉深度
+    public double MinimumVoltageAfterMatchingSecond;//匹配后最小电压
+    public double MaximumVoltageAfterMatchingSecond;//匹配后最大电压
+    public double SWRAfterMatchingSecond;//匹配后驻波比
+}
+public struct LabReportCorrect2Data
+{
+    public double inputSourceFrequencyFirst;//信号源频率
+    public double inputSourceVoltageFirst;//信号源电压
+    public double inputAttenuatorSetupFirst;//衰减器设置
+    public double SWRFirst;//驻波比
+    public double WaveguideWavelengthFirst;//波导波长
+    public double EquivalentSectionPosition;//等效截面位置
     public double WaveNodePositionFirst;//第一波节点位置
     public double NormalizedLoadImpedanceFirst;//归一化负载阻抗
     public double LoadImpedanceFirst;//负载阻抗

@@ -15,15 +15,20 @@ namespace DLKJ
         [SerializeField] Button button;
         [SerializeField] Image image;
         [SerializeField] Image selected;
+        CanvasGroup group;
         private Lab lab;
         private float targetScale = 1.05f;
 
         private Coroutine toLarge;
         private Coroutine toNormal;
+        private void OnEnable()
+        {
 
+        }
 
         public void Awake()
         {
+            group = GetComponent<CanvasGroup>();
             selected.gameObject.SetActive(false);
             if (button) button.onClick.AddListener(delegate { LabSelectedCallBack(); });
         }
@@ -35,6 +40,16 @@ namespace DLKJ
             image.sprite = lab.icon;
 
             if (titleText) titleText.text = lab.labName;
+            for (int i = 0; i < UIManager.experimentID.Count; i++)
+            {
+                if (UIManager.experimentID[i] == lab.labName)
+                {
+                    group.blocksRaycasts = false;
+                    group.interactable = false;
+                    group.alpha = 0.5f;
+                }
+            }
+
         }
 
         public void OnPointerEnter(PointerEventData eventData)
@@ -61,7 +76,7 @@ namespace DLKJ
                 value += Time.deltaTime * 0.5f;
                 if (value > targetScale) value = targetScale;
                 transform.localScale = new Vector3(value, value, value);
-               
+
                 yield return null;
             }
         }
@@ -69,7 +84,7 @@ namespace DLKJ
         IEnumerator ToNormal()
         {
             float value = targetScale;
-            while (transform.localScale.x >Vector3.one.x)
+            while (transform.localScale.x > Vector3.one.x)
             {
                 value -= Time.deltaTime * 0.5f;
                 if (value < 1) value = 1;

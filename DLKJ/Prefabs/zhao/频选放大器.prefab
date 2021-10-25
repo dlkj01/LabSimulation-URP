@@ -828,7 +828,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragAble: 0
   ID: 0
-  scope: 0.02
   moveSpeed: 1
   portCollider: {fileID: 0}
   offset: {x: 0, y: 0, z: 0}
@@ -1872,7 +1871,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragAble: 0
   ID: 1
-  scope: 0.02
   moveSpeed: 1
   portCollider: {fileID: 0}
   offset: {x: 0, y: 0, z: 0}
