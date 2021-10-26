@@ -83,6 +83,12 @@ namespace DLKJ
                     break;
                 case "负载阻抗测量":
                     UILabReport = InstantiateObject<UILabReportBase>(UILabReport2Prefab);
+                    if (SceneManager.experimentCount >= 1)
+                    {
+                        UILabReport2 report2 = (UILabReport2)UILabReport;
+                        report2.WriteInputText(WordHelper.cacheData, WordHelper.cacheUserData);
+                    }
+
                     break;
                 case " 负载阻抗匹配和定向耦合器特性的测量":
                     UILabReport = InstantiateObject<UILabReportBase>(UILabReport3Prefab);

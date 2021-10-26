@@ -699,6 +699,18 @@ namespace DLKJ
             double down = 2 * Math.Pow(RX2, 2) * (1 - R * Y0);
             double resultAdd = Math.Atan((topLeft + topRight) / down) / Get¦Â();
             double resultSub = Math.Atan((topLeft - topRight) / down) / Get¦Â();
+            int k = 0;
+            int p = 0;
+            while (resultAdd < 0)
+            {
+                k++;
+                resultAdd += 0.5f * k * Calculate¦Ëp1();
+            }
+            while (resultSub < 0)
+            {
+                p++;
+                resultSub += 0.5f * k * Calculate¦Ëp1();
+            }
             List<double> result = new List<double>();
             result.Add(resultAdd);
             result.Add(resultSub);
@@ -716,12 +728,14 @@ namespace DLKJ
             List<double> result = new List<double>();
             for (int i = 0; i < L.Count; i++)
             {
-                double topLeft = Y0 * (Y0 * RXPOW * Math.Tan(Get¦Â() * L[i]) - X);
-                double topMiddle = Y0 * (Y0 * RXPOW + X * Math.Tan(Get¦Â() * L[i]));
-                double topRight = Y0 * Math.Pow(R, 2) * Math.Tan(Get¦Â() * L[i]);
+                double topLeft = (Y0 * RXPOW * Math.Tan(Get¦Â() * L[i]) - X);
+                double topMiddle = (Y0 * RXPOW + X * Math.Tan(Get¦Â() * L[i]));
+                double topRight = Math.Pow(R, 2) * Math.Tan(Get¦Â() * L[i]);
                 double downLeft = Math.Pow(Y0 * RXPOW + X * Math.Tan(Get¦Â() * L[i]), 2);
                 double downRight = Math.Pow(R, 2) * Math.Pow(Math.Tan(Get¦Â() * L[i]), 2);
-                result.Add(Math.Acos((topLeft * topMiddle - topRight) / (downLeft + downRight)) / Get¦Â());
+                double leftResult = (topLeft * topMiddle - topRight) / (downLeft + downRight);
+                double acot = 2 * Math.Atan(1) - Math.Atan(leftResult);
+                result.Add(acot / Get¦Â());
             }
             return result;
         }
@@ -872,24 +886,23 @@ namespace DLKJ
         }
         private static double Yin_a(float l)
         {
-            double topLeft = R * (Y0 * (Math.Pow(R, 2) + Math.Pow(X, 2)) + X * Math.Tan(Get¦Â() * l));
-            double topRight = R * (Y0 * (Math.Pow(R, 2) + Math.Pow(X, 2) * Math.Tan(Get¦Â() * l) - X) * Math.Tan(Get¦Â() * l));
-            double Top = topLeft + topRight;
-            double Down = Math.Pow((Y0 * (Math.Pow(R, 2) + Math.Pow(X, 2)) + X * Math.Tan(Get¦Â() * l)), 2) + Math.Pow(R, 2) * (Math.Pow(Math.Tan(Get¦Â() * l), 2));
-            double result = Y0 * (Top / Down);
+            double Y0RX = Y0 * (Math.Pow(R, 2) + Math.Pow(X, 2));
+            double topLeft = R * (Y0RX + X * Math.Tan(Get¦Â() * l));
+            double topRight = R * (Y0RX * Math.Tan(Get¦Â() * l) - X) * Math.Tan(Get¦Â() * l);
+            double top = topLeft + topRight;
+            double down = Math.Pow(Y0RX + X * Math.Tan(Get¦Â() * l), 2) + Math.Pow(R, 2) * Math.Pow(Math.Tan(Get¦Â() * l), 2);
+            double result = Y0 * (top / down);
             return result;
         }
 
         private static double Yin_b(float l, float d)
         {
-            double RPow = Math.Pow(R, 2);
+            double RXPow = Math.Pow(R, 2) + Math.Pow(X, 2);
             double Tan¦Âl = Math.Tan(Get¦Â() * l);
-            double topLeft = (Y0 * (RPow + Math.Pow(X, 2)) * Tan¦Âl - X) * (Y0 * (RPow + Math.Pow(X, 2)) + X * Tan¦Âl);
-            double topRight = RPow * Tan¦Âl;
-            double Top = topLeft - topRight;
-            double down = Math.Pow(Y0 * (RPow + Math.Pow(X, 2) + X * Tan¦Âl), 2) + RPow * Math.Pow(Tan¦Âl, 2);
-            double right = Math.Cos(Get¦Â() * d) / Math.Sin(Get¦Â() * d);
-            double result = Y0 * (Top / down) - right;
+            double top = (Y0 * RXPow * Tan¦Âl - X) * (Y0 * RXPow + X * Tan¦Âl) - Math.Pow(R, 2) * Math.Tan(Tan¦Âl);
+            double down = Math.Pow(Y0 * RXPow + X * Math.Tan(Tan¦Âl), 2) + Math.Pow(R, 2) * Math.Pow(Math.Tan(Tan¦Âl), 2);
+            double right = Y0 * (Math.Cos(Get¦Â() * d) / Math.Sin(Get¦Â() * d));
+            double result = Y0 * (top / down) - right;
             return result;
         }
 

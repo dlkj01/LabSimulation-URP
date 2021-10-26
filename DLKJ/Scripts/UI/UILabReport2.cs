@@ -20,6 +20,8 @@ public class UILabReport2 : UILabReportBase
 
     [Tooltip("波导波长")] public InputField WaveguideWavelengthFirst;//波导波长
 
+    [SerializeField] InputField EquivalentSectionPositionFirst;//等效截面位置
+
     [Tooltip("第一波节点位置")] public InputField WaveNodePositionFirst;//第一波节点位置
 
     [Tooltip("归一化负载阻抗")] public InputField NormalizedLoadImpedanceFirst;//归一化负载阻抗
@@ -48,6 +50,8 @@ public class UILabReport2 : UILabReportBase
 
     [Tooltip("波导波长")] public InputField WaveguideWavelengthSecond;//波导波长
 
+    [SerializeField] InputField EquivalentSectionPositionSecond;//等效截面位置
+
     [Tooltip("第一波节点位置")] public InputField WaveNodePositionSecond;//第一波节点位置
 
     [Tooltip("归一化负载阻抗")] public InputField NormalizedLoadImpedanceSecond;//归一化负载阻抗
@@ -73,6 +77,7 @@ public class UILabReport2 : UILabReportBase
         labReport2Data.inputAttenuatorSetupFirst = StringToDouble(inputAttenuatorSetupFirst.text);
         labReport2Data.SWRFirst = StringToDouble(SWRFirst.text);
         labReport2Data.WaveguideWavelengthFirst = StringToDouble(WaveguideWavelengthFirst.text);
+        labReport2Data.EquivalentSectionPositionFirst = StringToDouble(EquivalentSectionPositionFirst.text);
         labReport2Data.WaveNodePositionFirst = StringToDouble(WaveNodePositionFirst.text);
         labReport2Data.NormalizedLoadImpedanceFirst = StringToDouble(NormalizedLoadImpedanceFirst.text);
         labReport2Data.LoadImpedanceFirst = StringToDouble(LoadImpedanceFirst.text);
@@ -86,6 +91,7 @@ public class UILabReport2 : UILabReportBase
         labReport2Data.inputAttenuatorSetupSecond = StringToDouble(inputAttenuatorSetupSecond.text);
         labReport2Data.SWRSecond = StringToDouble(SWRSecond.text);
         labReport2Data.WaveguideWavelengthSecond = StringToDouble(WaveguideWavelengthSecond.text);
+        labReport2Data.EquivalentSectionPositionSecond = StringToDouble(EquivalentSectionPositionSecond.text);
         labReport2Data.WaveNodePositionSecond = StringToDouble(WaveNodePositionSecond.text);
         labReport2Data.NormalizedLoadImpedanceSecond = StringToDouble(NormalizedLoadImpedanceSecond.text);
         labReport2Data.LoadImpedanceSecond = StringToDouble(LoadImpedanceSecond.text);
@@ -126,5 +132,69 @@ public class UILabReport2 : UILabReportBase
             map[item2.Key] = answerCheck;
         }
         WordHelper.HandleGuaranteeDoc(filePath, map, outFilePath);
+    }
+    /// <summary>
+    /// 缓存数据
+    /// </summary>
+    public void CacheFirstGroupData()
+    {
+        WordHelper.cacheUserData.userName = nameInputField.text;
+        WordHelper.cacheUserData.id = idInputField.text;
+        WordHelper.cacheUserData.className = classInputField.text;
+        WordHelper.cacheUserData.teacherName = teacherInputField.text;
+        WordHelper.cacheUserData.time = timeInputField.text;
+
+
+        WordHelper.cacheData.inputSourceFrequencyFirst = StringToDouble(inputSourceFrequencyFirst.text);
+        WordHelper.cacheData.inputSourceVoltageFirst = StringToDouble(inputSourceVoltageFirst.text);
+        WordHelper.cacheData.inputAttenuatorSetupFirst = StringToDouble(inputAttenuatorSetupFirst.text);
+        WordHelper.cacheData.SWRFirst = StringToDouble(SWRFirst.text);
+        WordHelper.cacheData.WaveguideWavelengthFirst = StringToDouble(WaveguideWavelengthFirst.text);
+        WordHelper.cacheData.EquivalentSectionPositionSecond = StringToDouble(EquivalentSectionPositionSecond.text);
+        WordHelper.cacheData.WaveNodePositionFirst = StringToDouble(WaveNodePositionFirst.text);
+        WordHelper.cacheData.NormalizedLoadImpedanceFirst = StringToDouble(NormalizedLoadImpedanceFirst.text);
+        WordHelper.cacheData.LoadImpedanceFirst = StringToDouble(LoadImpedanceFirst.text);
+        WordHelper.cacheData.ScrewPositionFirst = StringToDouble(ScrewPositionFirst.text);
+        WordHelper.cacheData.ScrewDepthFirst = StringToDouble(ScrewDepthFirst.text);
+        WordHelper.cacheData.MinimumVoltageAfterMatchingFirst = StringToDouble(MinimumVoltageAfterMatchingFirst.text);
+        WordHelper.cacheData.MaximumVoltageAfterMatchingFirst = StringToDouble(MaximumVoltageAfterMatchingFirst.text);
+        WordHelper.cacheData.SWRAfterMatchingFirst = StringToDouble(SWRAfterMatchingFirst.text);
+    }
+    public void WriteInputText(LabReport2Data data, UserDate userData)
+    {
+        DisposeResult(userData.userName, nameInputField, true);
+        DisposeResult(userData.className, classInputField, true);
+        DisposeResult(userData.time, timeInputField, true);
+        DisposeResult(userData.id, idInputField, true);
+        DisposeResult(userData.teacherName, teacherInputField, true);
+
+        DisposeResult(data.inputSourceFrequencyFirst.ToString(), inputSourceFrequencyFirst);
+        DisposeResult(data.inputSourceVoltageFirst.ToString(), inputSourceVoltageFirst);
+        DisposeResult(data.inputAttenuatorSetupFirst.ToString(), inputAttenuatorSetupFirst);
+        DisposeResult(data.SWRFirst.ToString(), SWRFirst);
+        DisposeResult(data.WaveguideWavelengthFirst.ToString(), WaveguideWavelengthFirst);
+        DisposeResult(data.EquivalentSectionPositionFirst.ToString(), EquivalentSectionPositionFirst);
+        DisposeResult(data.WaveNodePositionFirst.ToString(), WaveNodePositionFirst);
+        DisposeResult(data.NormalizedLoadImpedanceFirst.ToString(), NormalizedLoadImpedanceFirst);
+        DisposeResult(data.LoadImpedanceFirst.ToString(), LoadImpedanceFirst);
+        DisposeResult(data.ScrewPositionFirst.ToString(), ScrewPositionFirst);
+        DisposeResult(data.ScrewDepthFirst.ToString(), ScrewDepthFirst);
+        DisposeResult(data.MinimumVoltageAfterMatchingFirst.ToString(), MinimumVoltageAfterMatchingFirst);
+        DisposeResult(data.MaximumVoltageAfterMatchingFirst.ToString(), MaximumVoltageAfterMatchingFirst);
+        DisposeResult(data.SWRAfterMatchingFirst.ToString(), SWRAfterMatchingFirst);
+    }
+
+    private void DisposeResult(string result, InputField field, bool canChange = false)
+    {
+        string resultText = "";
+        if (result == "-9999")
+            resultText = "";
+        else
+            resultText = result;
+        field.text = resultText;
+        if (canChange == false)
+        {
+            field.interactable = false;
+        }
     }
 }

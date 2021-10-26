@@ -82,7 +82,7 @@ public struct LabReport2Data
     public double inputAttenuatorSetupFirst;//衰减器设置
     public double SWRFirst;//驻波比
     public double WaveguideWavelengthFirst;//波导波长
-   // public double EquivalentSectionFirstPosition;//等效截面位置
+    public double EquivalentSectionPositionFirst;//等效截面位置
     public double WaveNodePositionFirst;//第一波节点位置
     public double NormalizedLoadImpedanceFirst;//归一化负载阻抗
     public double LoadImpedanceFirst;//负载阻抗
@@ -96,7 +96,7 @@ public struct LabReport2Data
     public double inputAttenuatorSetupSecond;//衰减器设置
     public double SWRSecond;//驻波比
     public double WaveguideWavelengthSecond;//波导波长
-   // public double EquivalentSectionSecondPosition;//等效截面位置
+    public double EquivalentSectionPositionSecond;//等效截面位置
     public double WaveNodePositionSecond;//第一波节点位置
     public double NormalizedLoadImpedanceSecond;//归一化负载阻抗
     public double LoadImpedanceSecond;//负载阻抗
@@ -113,7 +113,7 @@ public struct LabReportCorrect2Data
     public double inputAttenuatorSetupFirst;//衰减器设置
     public double SWRFirst;//驻波比
     public double WaveguideWavelengthFirst;//波导波长
-  //  public double EquivalentSectionFirstPosition;//等效截面位置
+                                           //  public double EquivalentSectionFirstPosition;//等效截面位置
     public double WaveNodePositionFirst;//第一波节点位置
     public double NormalizedLoadImpedanceFirst;//归一化负载阻抗
     public double LoadImpedanceFirst;//负载阻抗
@@ -127,7 +127,7 @@ public struct LabReportCorrect2Data
     public double inputAttenuatorSetupSecond;//衰减器设置
     public double SWRSecond;//驻波比
     public double WaveguideWavelengthSecond;//波导波长
-  //  public double EquivalentSectionSecondPosition;//等效截面位置
+                                            //  public double EquivalentSectionSecondPosition;//等效截面位置
     public double WaveNodePositionSecond;//第一波节点位置
     public double NormalizedLoadImpedanceSecond;//归一化负载阻抗
     public double LoadImpedanceSecond;//负载阻抗
@@ -160,10 +160,10 @@ public class UILabReportBase : MonoBehaviour
     [SerializeField] Text ExperimentTypeText;
     [SerializeField] Text ExperimentTimeText;
     [SerializeField] protected InputField nameInputField;
-    [SerializeField] InputField classInputField;
-    [SerializeField] InputField timeInputField;
-    [SerializeField] InputField idInputField;
-    [SerializeField] InputField teacherInputField;
+    [SerializeField] protected InputField classInputField;
+    [SerializeField] protected InputField timeInputField;
+    [SerializeField] protected InputField idInputField;
+    [SerializeField] protected InputField teacherInputField;
     public UserDate userData = new UserDate();
     [SerializeField] GameObject page1, page2;
     protected CanvasGroup canvasGroup;
@@ -296,9 +296,7 @@ public class UILabReportBase : MonoBehaviour
     protected bool VerifyScore(double inputValue, double rightAnswer)
     {
         double lerp = rightAnswer * 0.2f;
-        if (inputValue < rightAnswer + lerp && inputValue > rightAnswer - lerp)
-            return true;
-        return false;
+        return inputValue < rightAnswer + lerp && inputValue > rightAnswer - lerp;
     }
 
 }

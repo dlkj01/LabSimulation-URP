@@ -142,6 +142,9 @@ namespace DLKJ
                    {
                        case "¸ºÔØ×è¿¹²âÁ¿":
                            SceneManager.experimentCount++;
+                           UILabReport2 report2 = UIManager.GetInstance().UILabButton.uiLabReport as UILabReport2;
+                           if (report2 != null)
+                               report2.CacheFirstGroupData();
                            break;
                        default:
                            break;

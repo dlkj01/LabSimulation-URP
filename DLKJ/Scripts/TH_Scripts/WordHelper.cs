@@ -96,4 +96,6 @@ public static class WordHelper
         Stream stream = new MemoryStream(bytes);
         return stream;
     }
+    public static LabReport2Data cacheData;
+    public static UserDate cacheUserData;
 }
