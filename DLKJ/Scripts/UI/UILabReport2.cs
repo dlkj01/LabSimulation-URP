@@ -150,7 +150,7 @@ public class UILabReport2 : UILabReportBase
         WordHelper.cacheData.inputAttenuatorSetupFirst = StringToDouble(inputAttenuatorSetupFirst.text);
         WordHelper.cacheData.SWRFirst = StringToDouble(SWRFirst.text);
         WordHelper.cacheData.WaveguideWavelengthFirst = StringToDouble(WaveguideWavelengthFirst.text);
-        WordHelper.cacheData.EquivalentSectionPositionSecond = StringToDouble(EquivalentSectionPositionSecond.text);
+        WordHelper.cacheData.EquivalentSectionPositionFirst = StringToDouble(EquivalentSectionPositionFirst.text);
         WordHelper.cacheData.WaveNodePositionFirst = StringToDouble(WaveNodePositionFirst.text);
         WordHelper.cacheData.NormalizedLoadImpedanceFirst = StringToDouble(NormalizedLoadImpedanceFirst.text);
         WordHelper.cacheData.LoadImpedanceFirst = StringToDouble(LoadImpedanceFirst.text);

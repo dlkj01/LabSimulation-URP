@@ -116,10 +116,10 @@ namespace DLKJ
                     switch (SceneManager.experimentCount)
                     {
                         case 0:
-                            tipString = "进行第二组实验";
+                            tipString = "提交第一组实验数据";
                             break;
                         case 1:
-                            tipString = "提交实验报告";
+                            tipString = "提交第二组实验数据";
                             break;
                         default:
                             tipString = "提交实验报告";

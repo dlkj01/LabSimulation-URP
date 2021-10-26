@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 8420947445790923397}
   - component: {fileID: 1681028222734455874}
   - component: {fileID: 1681028222734455885}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sanlimi_kou
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,11 +273,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 052523ce2510adc448b2463175d0d955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dragAble: 0
   ID: 1
-  scope: 0.02
   moveSpeed: 1
   portCollider: {fileID: 1681028222734455874}
+  offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
+  blidingObject: {fileID: 0}
+  ItemName: 
 --- !u!1 &5892958688573603816
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,7 +294,7 @@ GameObject:
   - component: {fileID: 5807670495000375806}
   - component: {fileID: 5892958688573603822}
   - component: {fileID: 5892958688573603817}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pinxuan_kou
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -387,8 +390,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 052523ce2510adc448b2463175d0d955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dragAble: 0
   ID: 0
-  scope: 0.02
   moveSpeed: 1
   portCollider: {fileID: 5892958688573603822}
+  offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
+  blidingObject: {fileID: 0}
+  ItemName: 

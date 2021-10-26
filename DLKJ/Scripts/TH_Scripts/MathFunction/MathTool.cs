@@ -693,23 +693,25 @@ namespace DLKJ
         /// <returns></returns>
         public static List<double> CalculateL()
         {
-            double topLeft = -2 * X * Math.Pow((Math.Pow(R, 2) + Math.Pow(X, 2)), 2) * Y0;
             double RX2 = Math.Pow(R, 2) + Math.Pow(X, 2);
-            double topRight = Math.Sqrt(Math.Pow(2 * X * Math.Pow(RX2, 2) * Y0, 2) - 4 * RX2 * (1 - R * Y0) * (Math.Pow(Y0, 2) * Math.Pow(RX2, 4) - Math.Pow(R, 3) * Y0 - R * Y0 * Math.Pow(X, 2)));
-            double down = 2 * Math.Pow(RX2, 2) * (1 - R * Y0);
+            double topLeft = -2 * X * RX2 * Y0;
+            double topRight = Math.Sqrt(Math.Pow(2 * X * RX2 * Y0, 2) - 4 * RX2 * (1 - R * Y0) * (Math.Pow(Y0, 2) * Math.Pow(RX2, 2) - Math.Pow(R, 3) * Y0 - R * Y0 * Math.Pow(X, 2)));
+            double down = 2 * RX2 * (1 - R * Y0);
             double resultAdd = Math.Atan((topLeft + topRight) / down) / Getβ();
             double resultSub = Math.Atan((topLeft - topRight) / down) / Getβ();
             int k = 0;
             int p = 0;
+            double c = 3 * Math.Pow(10, 8);
+            double ru = c / (F * Math.Pow(10, 9));
             while (resultAdd < 0)
             {
                 k++;
-                resultAdd += 0.5f * k * Calculateλp1();
+                resultAdd += 0.5f * k * ru /*Calculateλp1()*/;
             }
             while (resultSub < 0)
             {
                 p++;
-                resultSub += 0.5f * k * Calculateλp1();
+                resultSub += 0.5f * p * ru /*Calculateλp1()*/;
             }
             List<double> result = new List<double>();
             result.Add(resultAdd);
@@ -734,7 +736,7 @@ namespace DLKJ
                 double downLeft = Math.Pow(Y0 * RXPOW + X * Math.Tan(Getβ() * L[i]), 2);
                 double downRight = Math.Pow(R, 2) * Math.Pow(Math.Tan(Getβ() * L[i]), 2);
                 double leftResult = (topLeft * topMiddle - topRight) / (downLeft + downRight);
-                double acot = 2 * Math.Atan(1) - Math.Atan(leftResult);
+                double acot = 0.5 * Math.PI - Math.Atan(leftResult);
                 result.Add(acot / Getβ());
             }
             return result;
@@ -743,14 +745,26 @@ namespace DLKJ
 
         public static double GetMinReadFZKZPP(float l, float d)
         {
-            double z = CalculateShan(GetFZZKPPTL_a(l, d), GetFZZKPPTL_b(l, d)) * Calculateλp1() / (4 * Math.PI) + (2 + 1) * (Calculateλp1() / 4);
+            int index = 0;
+            double z = CalculateShan(GetFZZKPPTL_a(l, d), GetFZZKPPTL_b(l, d)) * Calculateλp1() / (4 * Math.PI) + (2 * index + 1) * (Calculateλp1() / 4);
+            while (z <= l)
+            {
+                index++;
+                z = CalculateShan(GetFZZKPPTL_a(l, d), GetFZZKPPTL_b(l, d)) * Calculateλp1() / (4 * Math.PI) + (2 * index + 1) * (Calculateλp1() / 4);
+            }
             double result = Math.Cos(2 * Getβ() * z - CalculateShan(GetFZZKPPTL_a(l, d), GetFZZKPPTL_b(l, d)));
             double min = δ * Math.Abs(A) * (1 - GetFZZKPPTL(l, d));
             return min;
         }
         public static double GetMaxReadFZKZPP(float l, float d)
         {
-            double z = CalculateShan(GetFZZKPPTL_a(l, d), GetFZZKPPTL_b(l, d)) * Calculateλp1() / (4 * Math.PI) + (2) * (Calculateλp1() / 4);
+            int index = 0;
+            double z = CalculateShan(GetFZZKPPTL_a(l, d), GetFZZKPPTL_b(l, d)) * Calculateλp1() / (4 * Math.PI) + (2 * index) * (Calculateλp1() / 4);
+            while (z <= l)
+            {
+                index++;
+                z = CalculateShan(GetFZZKPPTL_a(l, d), GetFZZKPPTL_b(l, d)) * Calculateλp1() / (4 * Math.PI) + (2 * index) * (Calculateλp1() / 4);
+            }
             double result = Math.Cos(2 * Getβ() * z - CalculateShan(GetFZZKPPTL_a(l, d), GetFZZKPPTL_b(l, d)));
             double max = δ * Math.Abs(A) * (1 + GetFZZKPPTL(l, d));
             return max;
@@ -768,13 +782,26 @@ namespace DLKJ
         #endregion
 
         #region 实验三、定向耦合器的耦合度测量
+
+        /// <summary>
+        /// 一端口电压
+        /// </summary>
+        /// <returns></returns>
+        public static double OnePortVoltage()
+        {
+            double result = Math.Abs(A);
+            return result;
+        }
+
+
         /// <summary>
         /// 定向耦合器耦合度测量
         /// </summary>
         /// <returns></returns>
         public static double CouplingFactorObserved()
         {
-            double U3 = Math.Abs(couplingFactorA) / Math.Sqrt(Math.Pow(10, couplingFactorC / 20));
+            double U3 = Math.Abs(A) / Math.Pow(10, couplingFactorC / 20);
+            //  double U3 = Math.Abs(couplingFactorA) / Math.Sqrt(Math.Pow(10, couplingFactorC / 20));
             return U3;
         }
         #endregion
@@ -913,9 +940,10 @@ namespace DLKJ
         {
             double yina = Yin_a(l);
             double yinb = Yin_b(l, d);
-            double top = 1 - Math.Pow(yina, 2) - Math.Pow(yinb, 2);
-            double down = Math.Pow((1 + yina), 2) + Math.Pow(yinb, 2);
-            return top / down;
+            double top = Math.Pow(Y0, 2) - Math.Pow(yina, 2) - Math.Pow(yinb, 2);
+            double down = Math.Pow((Y0 + yina), 2) + Math.Pow(yinb, 2);
+            double result = top / down;
+            return result;
         }
         /// <summary>
         /// 负载阻抗匹配的TL_b值
@@ -924,9 +952,10 @@ namespace DLKJ
         {
             double yina = Yin_a(l);
             double yinb = Yin_b(l, d);
-            double top = -2 * yina * yinb;
-            double down = Math.Pow((1 + yina), 2) + Math.Pow(yinb, 2);
-            return top / down;
+            double top = -2 * Y0 * yinb;
+            double down = Math.Pow((Y0 + yina), 2) + Math.Pow(yinb, 2);
+            double result = top / down;
+            return result;
         }
         /// <summary>
         /// 负载阻抗匹配的TL值

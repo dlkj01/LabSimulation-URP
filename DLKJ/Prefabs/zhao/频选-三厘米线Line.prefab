@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3537869993622365649}
   - component: {fileID: 3537869993622365662}
   - component: {fileID: 5638776769275147992}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sanlimi_kou
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -873,7 +873,7 @@ GameObject:
   - component: {fileID: 8613911593251147389}
   - component: {fileID: 8613911593251147386}
   - component: {fileID: 4425047758291895729}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pinxuan_kou
   m_TagString: Untagged
   m_Icon: {fileID: 0}

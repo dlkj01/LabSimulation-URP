@@ -729,7 +729,7 @@ GameObject:
   - component: {fileID: 8080442687167678591}
   - component: {fileID: 3355861479464528150}
   - component: {fileID: 6842831133531372442}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1773,7 +1773,7 @@ GameObject:
   - component: {fileID: 3231710154807959736}
   - component: {fileID: 6298106468072539461}
   - component: {fileID: 5161986666068672129}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: jiedi
   m_TagString: Untagged
   m_Icon: {fileID: 0}

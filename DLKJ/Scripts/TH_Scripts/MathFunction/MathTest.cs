@@ -110,6 +110,9 @@ namespace DLKJ
                     switch (SceneManager.GetInstance().currentLab.currentStepIndex)
                     {
                         case 1:
+                            U = MathTool.OnePortVoltage();
+                            break;
+                        case 2:
                             U = MathTool.CouplingFactorObserved();
                             break;
                         default:

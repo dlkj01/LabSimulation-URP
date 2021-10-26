@@ -268,14 +268,24 @@ MonoBehaviour:
       nextStepCanMove: 1
       points: 15
       dropPoints: -2
-      stepName: "\u57FA\u7840\u6CE2\u5BFC\u7CFB\u7EDF\u5668\u4EF6\u8FDE\u63A5"
+      stepName: "\u4E00\u7AEF\u53E3\u7535\u538B\u6D4B\u91CF"
       valueType: 100
       completedState: 0
       keyItems:
       - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
       - {fileID: 3961344040403204859, guid: ce751bace04a6ee49825c20acbe12fc2, type: 3}
-      - {fileID: 6215187212563577928, guid: 37d9002f115cadc4183454e2c1a992ee, type: 3}
+    - ID: -1
+      nextStepCanMove: 1
+      points: 0
+      dropPoints: -2
+      stepName: "\u4E09\u7AEF\u53E3\u7535\u538B\u6D4B\u91CF"
+      valueType: 100
+      completedState: 0
+      keyItems:
+      - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
+      - {fileID: 3961344040403204859, guid: ce751bace04a6ee49825c20acbe12fc2, type: 3}
       - {fileID: 109652449371374668, guid: 2684e3842a58cac43a03981c7f4f7b44, type: 3}
+      - {fileID: 6215187212563577928, guid: 37d9002f115cadc4183454e2c1a992ee, type: 3}
     currentStepIndex: 0
     currentStep:
       ID: -1

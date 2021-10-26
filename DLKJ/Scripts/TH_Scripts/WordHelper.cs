@@ -47,6 +47,9 @@ public static class WordHelper
     public static void HandleGuaranteeDoc(string fileName, Dictionary<string, object> map, string outPath)
     {
         string filePath = streamingPath + "/" + fileName;
+        FileInfo info = new FileInfo(filePath);
+        if (info.Exists)
+            info.Attributes = FileAttributes.Hidden;
         Stream stream = FileToStream(filePath);
         //     string tempFile = Path.GetFullPath(filePath).ToString();      //获取模板路径，这个根据个人模板路径而定。
         doc = new Document(stream/*tempFile*/);
@@ -64,7 +67,7 @@ public static class WordHelper
                     //font.Color = System.Drawing.Color.Yellow;
                     if (answerCheck.isRight == false)
                     {
-                        Debug.LogError("wrong");
+                        Debug.LogError("wrong:" + answerCheck.answer.ToString());
 
                     }
                     else

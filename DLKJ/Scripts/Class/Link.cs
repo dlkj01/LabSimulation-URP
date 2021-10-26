@@ -203,7 +203,10 @@ namespace DLKJ
                         if (ParentItem.CorrectLink(target))
                         {
                             transform.SetParent(target.transform);
-                            transform.localPosition = Vector3.zero + offset;
+                            if (target.parent.itemName == "¾§Ìå¼ì²¨Æ÷")
+                                transform.localPosition = target.parent.portDefaultPosition;
+                            else
+                                transform.localPosition = Vector3.zero + offset;
                             transform.localRotation = Quaternion.Euler(target.parent.portDefaultEuler);
                             isDraging = false;
                             ParentItem.linkPort = target;

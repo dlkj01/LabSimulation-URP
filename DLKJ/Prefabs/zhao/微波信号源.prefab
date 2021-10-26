@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 7209764356387135900}
   - component: {fileID: 1286805130586214393}
   - component: {fileID: 552827143146021420}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pCylinderOutput
   m_TagString: Untagged
   m_Icon: {fileID: 0}

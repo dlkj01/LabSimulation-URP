@@ -143,48 +143,6 @@ MonoBehaviour:
   - {fileID: 109652449371374705}
   linkConditions:
   - data:
-      itemID: 3
-      portsID: 1
-      correct: 1
-      value: 0
-      weight: 0
-  - data:
-      itemID: 12
-      portsID: 0
-      correct: 1
-      value: 0
-      weight: 0
-  - data:
-      itemID: 15
-      portsID: 0
-      correct: 1
-      value: 0
-      weight: 0
-  - data:
-      itemID: 18
-      portsID: 0
-      correct: 1
-      value: 0
-      weight: 0
-  - data:
-      itemID: 1
-      portsID: 1
-      correct: 1
-      value: 0
-      weight: 0
-  - data:
-      itemID: 6
-      portsID: 0
-      correct: 1
-      value: 0
-      weight: 0
-  - data:
-      itemID: 7
-      portsID: 1
-      correct: 0
-      value: 0
-      weight: 0
-  - data:
       itemID: 10
       portsID: 0
       correct: 1
@@ -457,7 +415,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5434834606812443209}
-  m_LocalRotation: {x: 0.00000008146034, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.03477099, y: 0.001235128, z: -0.00050750707}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
