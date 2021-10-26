@@ -7,13 +7,28 @@ namespace DLKJ
     public class Pointer : MonoBehaviour
     {
         public float currentAngle;
-        public float testValue = 30;
+        public string deviceName;
+        PressButtonGroup group;
+        private void Start()
+        {
+            Item item = SceneManager.GetInstance().GetItemByName(deviceName);
+            if (item != null)
+            {
+                group = item.GetComponent<InstrumentAction>().group;
+            }
+        }
+
         public void SetAngle(float value)
         {
             if (float.IsNaN(value)) return;
             float range = maxValue - minValue;
             float everyAngle = (maxAngle - minAngle) / range;
             currentAngle = everyAngle * (value) + minAngle;
+            if (group != null)
+            {
+                currentAngle *= group.GetValue();
+            }
+
         }
         public float rotateSpeed;
         public float minValue;

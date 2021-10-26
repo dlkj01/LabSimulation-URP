@@ -36,6 +36,7 @@ namespace DLKJ
         /// 当前步长
         /// </summary>
         private float _stepLength = 0;
+        public PressButtonGroup group;
         public float StepLength
         {
             get

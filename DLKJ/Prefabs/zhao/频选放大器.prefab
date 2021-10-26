@@ -2136,7 +2136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentAngle: -43
-  testValue: 30
+  deviceName: "\u9891\u9009\u653E\u5927\u5668"
   rotateSpeed: 5
   minValue: 0
   maxValue: 100
@@ -3189,6 +3189,7 @@ MonoBehaviour:
   numberTextures: []
   rotationType: 1
   RotationSpeed: 2
+  group: {fileID: 2312531691796505366}
   TestValue: 0
   instrumentButton:
   - instrumentButton: {fileID: 7255920669501735844}
