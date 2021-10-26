@@ -23,11 +23,14 @@ namespace DLKJ
             if (float.IsNaN(value)) return;
             float range = maxValue - minValue;
             float everyAngle = (maxAngle - minAngle) / range;
-            currentAngle = everyAngle * (value) + minAngle;
+
+            float newValue = everyAngle * (value);
             if (group != null)
             {
-                currentAngle *= group.GetValue();
+                newValue *= group.GetValue();
             }
+            currentAngle = newValue + minAngle;
+
 
         }
         public float rotateSpeed;
