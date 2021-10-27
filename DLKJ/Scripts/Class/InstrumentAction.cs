@@ -251,9 +251,9 @@ namespace DLKJ
                         if (MathTest.Instance.isInit == false)
                             return;
                         //给电压赋值
-                         MathTool.A = MathUtility.GetCurrentValue(tempInstrumentBtn);
+                        //   MathTool.A = MathUtility.GetCurrentValue(tempInstrumentBtn);
                         // UIManager.GetInstance().SetStartButton();
-                        transform.Find("电压Text").GetComponent<TextMesh>().text = MathTool.A.ToString("#0.00");
+                        //transform.Find("电压Text").GetComponent<TextMesh>().text = MathTool.A.ToString("#0.00");
                         break;
                     case "RotaryBtnFrequency":
                         break;

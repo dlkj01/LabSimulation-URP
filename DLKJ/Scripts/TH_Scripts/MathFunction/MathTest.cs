@@ -151,7 +151,6 @@ namespace DLKJ
             if (double.IsNaN(U))
             {
                 instrumentActionPinXuan.pointer.SetAngle(0);
-                Debug.LogError("计算的结果无效");
                 return;
             }
             instrumentActionPinXuan.pointer.SetAngle(float.Parse(U.ToString()));
