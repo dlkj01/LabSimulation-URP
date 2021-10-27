@@ -98,6 +98,7 @@ MonoBehaviour:
   numberTextures: []
   rotationType: 1
   RotationSpeed: 2
+  group: {fileID: 0}
   TestValue: 0
   instrumentButton: []
 --- !u!65 &7972381828152629351

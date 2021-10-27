@@ -201,9 +201,11 @@ MonoBehaviour:
   numberTextures: []
   rotationType: 1
   RotationSpeed: 2
+  group: {fileID: 0}
   TestValue: 0
   instrumentButton:
-  - instrumentButton: {fileID: 4519700904819686746}
+  - CanInteractive: 1
+    instrumentButton: {fileID: 4519700904819686746}
     conbinationList: []
     clickState: 0
     btnRotationType: 2

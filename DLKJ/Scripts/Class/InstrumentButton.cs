@@ -9,6 +9,7 @@ namespace DLKJ
         [Serializable]
         public class InstrumentButton
         {
+            public bool CanInteractive = true;
             public enum ClickBtnState { Press, Lift };
             public enum BtnRotationType { Y_AxisRotation, X_AxisRotation, Z_AxisRotation }
             public enum InstrumentButtonType { Power, Rotary, Click, Translate };
@@ -66,7 +67,18 @@ namespace DLKJ
             {
                 OnMouseButtonClickEvent += ClickState;
             }
-
+            public void AddListener()
+            {
+                OnMouseButtonClickEvent += ClickState;
+            }
+            public void RemoveListener()
+            {
+                OnMouseButtonClickEvent -= ClickState;
+            }
+            public void SetInteractiveState(bool state)
+            {
+                CanInteractive = state;
+            }
             public void ClickState(string buttonName)
             {
                 switch (clickState)

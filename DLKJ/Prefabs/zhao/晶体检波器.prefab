@@ -1005,9 +1005,11 @@ MonoBehaviour:
   numberTextures: []
   rotationType: 1
   RotationSpeed: 2
+  group: {fileID: 0}
   TestValue: 0
   instrumentButton:
-  - instrumentButton: {fileID: 4714666389608392191}
+  - CanInteractive: 1
+    instrumentButton: {fileID: 4714666389608392191}
     conbinationList: []
     clickState: 0
     btnRotationType: 2
@@ -1024,7 +1026,8 @@ MonoBehaviour:
     currentAngle: 0
     uncontrolled: 0
     x: 0
-  - instrumentButton: {fileID: 5203846356673954655}
+  - CanInteractive: 1
+    instrumentButton: {fileID: 5203846356673954655}
     conbinationList: []
     clickState: 0
     btnRotationType: 0
@@ -1041,7 +1044,8 @@ MonoBehaviour:
     currentAngle: 0
     uncontrolled: 0
     x: 0
-  - instrumentButton: {fileID: 6378198686851651384}
+  - CanInteractive: 1
+    instrumentButton: {fileID: 6378198686851651384}
     conbinationList: []
     clickState: 0
     btnRotationType: 0
@@ -1058,7 +1062,8 @@ MonoBehaviour:
     currentAngle: 0
     uncontrolled: 0
     x: 0
-  - instrumentButton: {fileID: 4234008609271150550}
+  - CanInteractive: 1
+    instrumentButton: {fileID: 4234008609271150550}
     conbinationList: []
     clickState: 0
     btnRotationType: 0
@@ -1075,7 +1080,8 @@ MonoBehaviour:
     currentAngle: 0
     uncontrolled: 0
     x: 0
-  - instrumentButton: {fileID: 981179643771979906}
+  - CanInteractive: 1
+    instrumentButton: {fileID: 981179643771979906}
     conbinationList: []
     clickState: 0
     btnRotationType: 0

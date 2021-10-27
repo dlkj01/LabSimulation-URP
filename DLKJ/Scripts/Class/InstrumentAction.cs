@@ -199,6 +199,8 @@ namespace DLKJ
                         if (MathTest.Instance.isInit == false) return;
                         //¸øÆµÂÊ¸³Öµ
                         MathTool.F = MathUtility.GetCurrentValue(tempInstrumentBtn);
+                        MathTest.Instance.mathInitValue.initF = true;
+                        UIManager.GetInstance().SetStartButton();
                         UpdateNumber(MathTool.F);
                         //  MathTool.F = MathUtility.GetCurrentValue(tempInstrumentBtn);
                         Debug.Log(MathTool.F);
@@ -249,9 +251,9 @@ namespace DLKJ
                         if (MathTest.Instance.isInit == false)
                             return;
                         //¸øµçÑ¹¸³Öµ
-                        MathTool.A = MathUtility.GetCurrentValue(tempInstrumentBtn);
+                         MathTool.A = MathUtility.GetCurrentValue(tempInstrumentBtn);
+                        // UIManager.GetInstance().SetStartButton();
                         transform.Find("µçÑ¹Text").GetComponent<TextMesh>().text = MathTool.A.ToString("#0.00");
-                        //SetStepLength(instrumentButton.Find(x => x.instrumentButton.name == "RotaryBtnVoltage") == null ? 0 : instrumentButton.Find(x => x.instrumentButton.name == "RotaryBtnVoltage").rotary);
                         break;
                     case "RotaryBtnFrequency":
                         break;
@@ -285,15 +287,19 @@ namespace DLKJ
                     case "Kebianshaijianqi":
                         Debug.Log("¿É±äË¥¼õÆ÷ ÐýÅ¥");
                         MathTool.¦Ä = MathUtility.GetCurrentValue(tempInstrumentBtn);
+                        MathTest.Instance.mathInitValue.init¦Ä = true;
+                        UIManager.GetInstance().SetStartButton();
                         VariableAttenuatorRatary(tempInstrumentBtn);
                         UIManager.GetInstance().PinXuanView();
                         break;
                     #endregion
                     #region Æ¥ÅäÂÝ¶¤
                     case "PPLDGear":
+                        UIManager.GetInstance().PinXuanView();
                         MatchingScrewActive(tempInstrumentBtn);
                         break;
                     case "PiPeiLuoDingBtn":
+                        UIManager.GetInstance().PinXuanView();
                         MatchingScrewHorMove(tempInstrumentBtn);
                         break;
                     #endregion
@@ -320,7 +326,6 @@ namespace DLKJ
                 Transform tempTransform = tempInstrumentBtn.conbinationList.Find(x => x.name == "zhijiagan");
                 tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempInstrumentBtn.StartMovePoint + offset, tempTransform.localPosition.z);
             }
-
         }
         #endregion
         #region Æ¥ÅäÂÝ¶¤
@@ -372,6 +377,7 @@ namespace DLKJ
         #region ¿É±äË¥¼õÆ÷
         private void VariableAttenuatorRatary(InstrumentButton tempInstrumentBtn)
         {
+            if (tempInstrumentBtn.CanInteractive == false) return;
             if (tempInstrumentBtn.conbinationList.Count > 0)
             {
                 Transform tempTransform = tempInstrumentBtn.conbinationList.Find(x => x.name == "Kebianshaijianqi");

@@ -81,12 +81,12 @@ namespace DLKJ
         public void NextStep()
         {
             currentStep.completedState = CompletedState.Finish;
+            if (currentStepIndex + 1 > steps.Count - 1) return;
             currentStepIndex++;
-            if (currentStepIndex > steps.Count - 1) return;
             currentStep = steps[currentStepIndex];
             currentStep.Initialized();
             UIManager.GetInstance().StepTips(currentStep);
-           
+
         }
 
         public Step GetStepByID(int stepID)

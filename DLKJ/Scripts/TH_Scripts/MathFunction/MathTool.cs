@@ -5,6 +5,11 @@ using System.Numerics;
 using Common;
 namespace DLKJ
 {
+    public struct InitValue
+    {
+        public bool initF;
+        public bool initδ;
+    }
     /// <summary>
     /// 公式数据
     /// </summary>
@@ -22,6 +27,7 @@ namespace DLKJ
     }
     public class MathTool
     {
+        public static float score = 0;//一个题1.724分
         public const float SLMCL_Start_Value = 0.055f;
 
         public static LabReportCorrect1Data report1CorrectAnswer;
@@ -56,9 +62,9 @@ namespace DLKJ
         }
         public static void RandomDataInit()
         {
-            F = UnityEngine.Random.Range(8.2f, 12.5f);
-            A = UnityEngine.Random.Range(2f, 2000f);
-            δ = UnityEngine.Random.Range(0f, 1f); //Random(0.00f, 1.00f);
+            //F = UnityEngine.Random.Range(8.2f, 12.5f);
+            //A = UnityEngine.Random.Range(2f, 2000f);
+            //δ = UnityEngine.Random.Range(0f, 1f); //Random(0.00f, 1.00f);
 
 
             //方案一
@@ -101,10 +107,15 @@ namespace DLKJ
             {
                 X = UnityEngine.Random.Range(-200f, 200f);
                 R = UnityEngine.Random.Range(0f, 200f);
+                while (R * Y0 == 1)
+                {
+                    R = UnityEngine.Random.Range(0f, 200f);
+                }
                 verify = Math.Pow(2 * X * XRPow * Y0, 2) - 4 * XRPow * (1 - R * Y0) * (Math.Pow(Y0, 2) * Math.Pow(XRPow, 4) - Math.Pow(R, 3) * Y0 - R * Y0 * Math.Pow(X, 2));
             }
             Complex ZLCom = new Complex(R, X);
             ZL = ZLCom.Real + ZLCom.Imaginary;
+            couplingFactorC = UnityEngine.Random.Range(5, 20);
         }
         #region 第一个实验正确计算的答案
         public static void FixedCorrect1Calculate()
@@ -143,7 +154,6 @@ namespace DLKJ
             }
 
 
-
             //波节点位置终端开路
             report1CorrectAnswer.WaveNodePosShortTerminal = GetMinReadUpperDTEDKKEDLQ(float.Parse(report1CorrectAnswer.OpenLoadPosition[0].ToString()));
             report1CorrectAnswer.WaveNodePosShortMatching = GetMinZUpperDTEDKPPFZ();//波节点位置终端匹配
@@ -180,7 +190,7 @@ namespace DLKJ
             report2CorrectAnswer.inputAttenuatorSetupFirst = δ;//衰减器
             report2CorrectAnswer.SWRFirst = SWRFZZKCL();
             report2CorrectAnswer.WaveguideWavelengthFirst = Calculateλp1();
-            //    report2CorrectAnswer.EquivalentSectionFirstPosition = GetDT(SLMCL_Start_Value, 0);//第一个等效截面的位置
+            report2CorrectAnswer.EquivalentSectionPositionFirst = GetDT(SLMCL_Start_Value, 0);//第一个等效截面的位置
             report2CorrectAnswer.WaveNodePositionFirst = GetMinZUpperDTFZZKCL();
             report2CorrectAnswer.NormalizedLoadImpedanceFirst = NormalizedLoadImpedance();
             report2CorrectAnswer.LoadImpedanceFirst = ZL;
@@ -199,7 +209,7 @@ namespace DLKJ
             report2CorrectAnswer.inputAttenuatorSetupSecond = δ;//衰减器
             report2CorrectAnswer.SWRSecond = SWRFZZKCL();
             report2CorrectAnswer.WaveguideWavelengthSecond = Calculateλp1();
-            //   report2CorrectAnswer.EquivalentSectionSecondPosition = GetDT(SLMCL_Start_Value, 0);//第一个等效截面的位置
+            report2CorrectAnswer.EquivalentSectionPositionSecond = GetDT(SLMCL_Start_Value, 0);//第一个等效截面的位置
             report2CorrectAnswer.WaveNodePositionSecond = GetMinZUpperDTFZZKCL();//第一个波节点位置
             report2CorrectAnswer.NormalizedLoadImpedanceSecond = NormalizedLoadImpedance();//负载阻抗归一化
             report2CorrectAnswer.LoadImpedanceSecond = ZL;//负载阻抗
@@ -208,6 +218,15 @@ namespace DLKJ
             report2CorrectAnswer.MinimumVoltageAfterMatchingSecond = GetMinReadFZKZPP(float.Parse(report2CorrectAnswer.ScrewPositionFirst[0].ToString()), float.Parse(report2CorrectAnswer.ScrewDepthFirst[0].ToString()));
             report2CorrectAnswer.MinimumVoltageAfterMatchingSecond = GetMaxReadFZKZPP(float.Parse(report2CorrectAnswer.ScrewPositionFirst[0].ToString()), float.Parse(report2CorrectAnswer.ScrewDepthFirst[0].ToString()));
             report2CorrectAnswer.SWRAfterMatchingSecond = report2CorrectAnswer.MaximumVoltageAfterMatchingFirst / report2CorrectAnswer.MinimumVoltageAfterMatchingFirst;
+        }
+        #endregion
+
+        #region 第三个实验正确答案计算
+        public static void FixedCorrectCalculate()
+        {
+            report3CorrectAnswer.OnePortVoltage = OnePortVoltage();
+            report3CorrectAnswer.ThreePortVoltage = CouplingFactorObserved();
+            report3CorrectAnswer.CouplingFactor = couplingFactorC;
         }
         #endregion
         public static void Reset()
@@ -706,12 +725,12 @@ namespace DLKJ
             while (resultAdd < 0)
             {
                 k++;
-                resultAdd += 0.5f * k * ru /*Calculateλp1()*/;
+                resultAdd += 0.5f * k * Calculateλp1();
             }
             while (resultSub < 0)
             {
                 p++;
-                resultSub += 0.5f * p * ru /*Calculateλp1()*/;
+                resultSub += 0.5f * p * Calculateλp1();
             }
             List<double> result = new List<double>();
             result.Add(resultAdd);
@@ -911,6 +930,12 @@ namespace DLKJ
             double 贝特 = squareOut * Math.Sqrt(squareIn);
             return 贝特;
         }
+
+        //private static double Get2β()
+        //{ 
+
+
+        //}
         private static double Yin_a(float l)
         {
             double Y0RX = Y0 * (Math.Pow(R, 2) + Math.Pow(X, 2));
@@ -925,9 +950,9 @@ namespace DLKJ
         private static double Yin_b(float l, float d)
         {
             double RXPow = Math.Pow(R, 2) + Math.Pow(X, 2);
-            double Tanβl = Math.Tan(Getβ() * l);
-            double top = (Y0 * RXPow * Tanβl - X) * (Y0 * RXPow + X * Tanβl) - Math.Pow(R, 2) * Math.Tan(Tanβl);
-            double down = Math.Pow(Y0 * RXPow + X * Math.Tan(Tanβl), 2) + Math.Pow(R, 2) * Math.Pow(Math.Tan(Tanβl), 2);
+            double βl = Getβ() * l;
+            double top = (Y0 * RXPow * Math.Tan(βl) - X) * (Y0 * RXPow + X * Math.Tan(βl)) - Math.Pow(R, 2) * Math.Tan(βl);
+            double down = Math.Pow(Y0 * RXPow + X * Math.Tan(βl), 2) + Math.Pow(R, 2) * Math.Pow(Math.Tan(βl), 2);
             double right = Y0 * (Math.Cos(Getβ() * d) / Math.Sin(Getβ() * d));
             double result = Y0 * (top / down) - right;
             return result;

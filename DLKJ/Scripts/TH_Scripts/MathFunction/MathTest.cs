@@ -7,12 +7,14 @@ using static DLKJ.InstrumentAction;
 
 namespace DLKJ
 {
-
-
     public class MathTest : MonoBehaviour
     {
+        public InitValue mathInitValue;
+        private void Awake()
+        {
+            mathInitValue = new InitValue();
+        }
         public bool isInit { get; private set; }
-        public FormulaData formulaData;
         private static MathTest instance;
         public static MathTest Instance
         {
@@ -24,6 +26,8 @@ namespace DLKJ
             }
         }
 
+        public float randomAngle;
+
         /// <summary>
         /// 公示数据初始化
         /// </summary>
@@ -32,6 +36,13 @@ namespace DLKJ
             MathTool.Init();
             ShiYan1();
             Active(true);
+            //给电压自动设置一个随机值
+            instrumentActionPinXuan.pointer.SetAngle(MathTool.A);
+            Item item = SceneManager.GetInstance().GetItemByName("频选放大器");
+            InstrumentAction instrumentAction = item.GetComponent<InstrumentAction>();
+            instrumentAction.transform.Find("电压Text").GetComponent<TextMesh>().text = MathTool.A.ToString("#0.00");
+            SceneManager.GetInstance().GetInstrumentButton("频选放大器", "RotaryBtnVoltage").RemoveListener();
+            SceneManager.GetInstance().GetInstrumentButton("频选放大器", "RotaryBtnVoltage").SetInteractiveState(false);
         }
         public void Active(bool state)
         {
@@ -40,10 +51,13 @@ namespace DLKJ
         private void Start()
         {
             MathTool.Init();
+            MathTool.A = UnityEngine.Random.Range(2f, 2000f);
+            Debug.Log(MathTool.A);
         }
 
         private void Update()
         {
+
             OnUpdate();
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
@@ -101,11 +115,23 @@ namespace DLKJ
                         case 4:
                             U = MathTool.FZKZPP(MathUtility.GetDistance(instrumentPiPeiLuoDingL), MathUtility.GetDistance(instrumentPiPeiLuoDingD), MathUtility.GetDistance(tempInstrumentBtn));
                             break;
+
+                        case 5:
+                            U = MathTool.SLMCLXZDDLB(MathUtility.GetDistance(tempInstrumentBtn));
+                            break;
+
+                        case 6:
+                            U = MathTool.FZZKCL_First(MathUtility.GetDistance(tempInstrumentBtn));
+                            break;
+
+                        case 7:
+                            U = MathTool.FZKZPP(MathUtility.GetDistance(instrumentPiPeiLuoDingL), MathUtility.GetDistance(instrumentPiPeiLuoDingD), MathUtility.GetDistance(tempInstrumentBtn));
+                            break;
                         default:
                             break;
                     }
                     break;
-                case " 负载阻抗匹配和定向耦合器特性的测量":
+                case "负载阻抗匹配和定向耦合器特性的测量":
 
                     switch (SceneManager.GetInstance().currentLab.currentStepIndex)
                     {
@@ -168,7 +194,7 @@ namespace DLKJ
 
         }
 
-        private InstrumentButton GetInstrumentButton(string deviceName, string buttonName)
+        public InstrumentButton GetInstrumentButton(string deviceName, string buttonName)
         {
             Item item = SceneManager.GetInstance().GetItemByName(deviceName);
             if (item == null)
@@ -178,6 +204,19 @@ namespace DLKJ
                 return null;
             InstrumentButton button = instrumentAction.instrumentButton.Find(x => x.instrumentButton.name == buttonName);
             return button;
+        }
+
+        public bool CheckValueIsInit()
+        {
+            if (SceneManager.GetInstance().currentLab.labName == "负载阻抗匹配和定向耦合器特性的测量")
+            {
+                return mathInitValue.initF == true;
+            }
+            else
+            {
+                return mathInitValue.initF == true && mathInitValue.initδ == true;
+            }
+
         }
     }
 }

@@ -110,23 +110,6 @@ namespace DLKJ
         public void SubmitTest()
         {
             string tipString = "提交实验报告";
-            switch (SceneManager.GetInstance().currentLab.labName)
-            {
-                case "负载阻抗测量":
-                    switch (SceneManager.experimentCount)
-                    {
-                        case 0:
-                            tipString = "提交第一组实验数据";
-                            break;
-                        case 1:
-                            tipString = "提交第二组实验数据";
-                            break;
-                        default:
-                            tipString = "提交实验报告";
-                            break;
-                    }
-                    break;
-            }
             EventManager.OnTips(TipsType.Snackbar, tipString, () => { FindObjectOfType<UITips>().OnDisTips(); },
                () =>
                {
@@ -141,10 +124,7 @@ namespace DLKJ
                    switch (SceneManager.GetInstance().currentLab.labName)
                    {
                        case "负载阻抗测量":
-                           SceneManager.experimentCount++;
-                           UILabReport2 report2 = UIManager.GetInstance().UILabButton.uiLabReport as UILabReport2;
-                           if (report2 != null)
-                               report2.CacheFirstGroupData();
+                          
                            break;
                        default:
                            break;

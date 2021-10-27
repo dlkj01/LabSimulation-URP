@@ -4,6 +4,7 @@ using System;
 using UnityEngine.AI;
 using System.Linq;
 using System.Collections;
+using static DLKJ.InstrumentAction;
 
 namespace DLKJ
 {
@@ -11,7 +12,6 @@ namespace DLKJ
     public class SceneManager : MonoBehaviour
     {
         public static bool didExperiment = false;
-        public static int experimentCount = 0;
         [SerializeField] Texture2D holdTexture;
         [SerializeField] Texture2D clickTexture;
         [SerializeField] Texture2D releaseTexture;
@@ -49,7 +49,6 @@ namespace DLKJ
             EventManager.OnUsingItemsEvent -= OnUsingItem;
             EventManager.OnLinkNextEvent -= OnLinkNext;
         }
-
 
         void OnUsingItem(List<Item> items)
         {
@@ -258,11 +257,17 @@ namespace DLKJ
                             return VerifyBasicLink();
                         case 4:
                             return VerifyBasicLink();
+                        case 5:
+                            return VerifyBasicLink();
+                        case 6:
+                            return VerifyBasicLink();
+                        case 7:
+                            return VerifyBasicLink();
                         default:
                             break;
                     }
                     break;
-                case " 负载阻抗匹配和定向耦合器特性的测量":
+                case "负载阻抗匹配和定向耦合器特性的测量":
 
                     switch (currentLab.currentStepIndex)
                     {
@@ -277,6 +282,16 @@ namespace DLKJ
             }
             return false;
         }
-
+        public InstrumentButton GetInstrumentButton(string deviceName, string buttonName)
+        {
+            Item item = GetItemByName(deviceName);
+            if (item == null)
+                return null;
+            InstrumentAction instrumentAction = item.GetComponent<InstrumentAction>();
+            if (instrumentAction == null)
+                return null;
+            InstrumentButton button = instrumentAction.instrumentButton.Find(x => x.instrumentButton.name == buttonName);
+            return button;
+        }
     }
 }

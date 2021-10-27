@@ -32,6 +32,10 @@ namespace DLKJ
             ItemName = GetComponentInParent<Item>().itemName;
             if (portCollider == null) portCollider = transform.GetComponent<MeshCollider>();
             if (meshRenderer == null) meshRenderer = transform.GetComponent<MeshRenderer>();
+            if (transform.name== "weibo_kou"|| transform.name == "pinxuan_kou")
+            {
+                portCollider.enabled = false;
+            }
         }
 
         public Item ParentItem { get { return parent; } set { parent = value; } }

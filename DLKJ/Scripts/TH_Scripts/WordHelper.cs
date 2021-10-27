@@ -61,25 +61,21 @@ public static class WordHelper
             {
                 if (map[key] is AnswerCheck answerCheck)
                 {
-                    builder.StartBookmark(key).Bookmark.Text = answerCheck.answer.ToString();
-                    //   builder.ParagraphFormat.Shading.BackgroundPatternColor = System.Drawing.Color.Yellow;
-                    //Aspose.Words.Font font = builder.Font;
-                    //font.Color = System.Drawing.Color.Yellow;
+                    string result;
                     if (answerCheck.isRight == false)
                     {
-                        Debug.LogError("wrong:" + answerCheck.answer.ToString());
-
+                        result = answerCheck.answer.ToString() + "(Wrong)";
                     }
                     else
                     {
-                        Debug.LogError("Yes:" + answerCheck.answer.ToString());
+                        result = answerCheck.answer.ToString();
                     }
+                    builder.StartBookmark(key).Bookmark.Text = result;
                 }
                 else
                 {
                     builder.StartBookmark(key).Bookmark.Text = map[key].ToString();
                 }
-
             }
         }
         doc.Save(streamingPath + "/Save/" + outPath); //±£´æword

@@ -694,9 +694,11 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 1b8ad9d04c058e2449fbadd7356c5dca, type: 3}
   rotationType: 2
   RotationSpeed: 2
+  group: {fileID: 0}
   TestValue: 0
   instrumentButton:
-  - instrumentButton: {fileID: 5311698908420780464}
+  - CanInteractive: 1
+    instrumentButton: {fileID: 5311698908420780464}
     conbinationList: []
     clickState: 1
     btnRotationType: 0
@@ -713,7 +715,8 @@ MonoBehaviour:
     currentAngle: 0
     uncontrolled: 0
     x: 0
-  - instrumentButton: {fileID: 1622630317215731366}
+  - CanInteractive: 1
+    instrumentButton: {fileID: 1622630317215731366}
     conbinationList: []
     clickState: 1
     btnRotationType: 0
@@ -730,7 +733,8 @@ MonoBehaviour:
     currentAngle: 0
     uncontrolled: 0
     x: 0
-  - instrumentButton: {fileID: 8466322375461474319}
+  - CanInteractive: 1
+    instrumentButton: {fileID: 8466322375461474319}
     conbinationList: []
     clickState: 1
     btnRotationType: 0
@@ -747,7 +751,8 @@ MonoBehaviour:
     currentAngle: 0
     uncontrolled: 0
     x: 0.1534435
-  - instrumentButton: {fileID: 7590066869274233023}
+  - CanInteractive: 1
+    instrumentButton: {fileID: 7590066869274233023}
     conbinationList: []
     clickState: 1
     btnRotationType: 1
