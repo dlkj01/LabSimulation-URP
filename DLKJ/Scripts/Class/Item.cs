@@ -7,6 +7,12 @@ using UnityEngine.EventSystems;
 
 namespace DLKJ
 {
+    public enum DirectionType
+    {
+        Horizontal,     //横向
+        Vertical,       //纵向
+    }
+
     public class Item : MonoBehaviour
     {
         public int ID = -1;
@@ -15,6 +21,7 @@ namespace DLKJ
         public RenderTexture renderTexture;
         public bool moveable = true;
         public LibraryType libraryType = LibraryType.None;
+        public DirectionType directionType = DirectionType.Horizontal;
 
 
         [SerializeField] public List<Link> ports = new List<Link>();
@@ -67,18 +74,31 @@ namespace DLKJ
         void OnAttach(TargetPort target)
         {
             SetDragable(false);
-            transform.position = new Vector3(target.targetPosition.x, target.targetPosition.y, transform.position.z);
+            switch (directionType)
+            {
+                case DirectionType.Horizontal:
+                    {
+                        transform.position = new Vector3(target.targetPosition.x, target.targetPosition.y, transform.position.z);
+                    }
+                    break;
+                case DirectionType.Vertical:
+                    {
+                        transform.position = new Vector3(transform.position.x, target.selfPort.position.y, target.selfPort.position.z);
+                    }
+                    break;
+                default:
+                    break;
+            }
 
             if (magicCoroutine != null) StopCoroutine(magicCoroutine);
             magicCoroutine = StartCoroutine(Move(target));
-            // magicCoroutine = StartCoroutine(MoveToTarget(target));
         }
 
         IEnumerator Move(TargetPort target)
         {
             BroadcastMessage("StopDetection", SendMessageOptions.RequireReceiver);
             double reDistance = Vector3.Distance(target.selfPort.position, target.targetPort.transform.position);
-
+            
             while (reDistance > target.distance)// 0.005243f
             {
                 reDistance = Vector3.Distance(target.selfPort.position, target.targetPort.transform.position);
@@ -120,7 +140,7 @@ namespace DLKJ
                     //break;
                 }
             }
-          
+
             return false;
         }
 
@@ -191,7 +211,21 @@ namespace DLKJ
                 {
                     eulers += 90;
                     transform.eulerAngles = new Vector3(0, eulers, 0);
-                    //transform.Rotate(new Vector3(0, eulers, 0), Space.World);
+                    switch (directionType)
+                    {
+                        case DirectionType.Horizontal:
+                            {
+                                directionType = DirectionType.Vertical;
+                            }
+                            break;
+                        case DirectionType.Vertical:
+                            {
+                                directionType = DirectionType.Horizontal;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
                 }
 
                 if (Input.GetKeyDown(KeyCode.T))
@@ -228,52 +262,12 @@ namespace DLKJ
             return worldPos;
         }
 
-        private Transform mMark;
-
-        private Transform tMark;
-
-        //public Transform TAssambleObject;
-        private IEnumerator MoveToTarget(TargetPort targetPort)
-        {
-            tMark = targetPort.selfPort.transform;
-            mMark = targetPort.targetPort.transform;
-            tMark.parent.transform.localRotation = Quaternion.identity;
-            if (mMark.localRotation.z == -tMark.localRotation.z)
-            {
-                Debug.Log("反向");
-                mMark.parent.Rotate(mMark.parent.transform.up, 180, Space.World);
-            }
-            Vector3 RotateAix = Vector3.Cross(mMark.transform.forward, tMark.transform.forward);
-            float angle = Vector3.Angle(mMark.transform.forward, tMark.transform.forward);
-            mMark.transform.parent.Rotate(RotateAix, angle, Space.World);
-            bool start = true;
-            while (start)
-            {
-                //第一步
-                float Angle = Vector3.Angle(tMark.transform.up, mMark.transform.up);
-                tMark.transform.parent.Rotate(tMark.transform.forward, Angle * 10f * Time.deltaTime, Space.World);
-                //第二步
-                Vector3 moveVector = -tMark.transform.position + mMark.transform.position;
-                tMark.transform.parent.transform.Translate(moveVector * 1 * Time.deltaTime, Space.World);
-                if (Angle == 0 && moveVector == Vector3.zero)
-                {
-                    Debug.Log("停止");
-                    break;
-                }
-                if (Vector3.Distance(mMark.transform.parent.position, tMark.transform.parent.position) >= tMark.transform.parent.localScale.z && Vector3.Distance(mMark.transform.position, tMark.transform.position) < 0.005f)
-                {
-                    start = false;
-                    Debug.Log("停止");
-                }
-                yield return new WaitForSeconds(0.001f);
-            }
-        }
         public void UpdateTriggerState(int itemID, int portID, bool isTrigger)
         {
             if (itemID != ID) return;
             for (int i = 0; i < ports.Count; i++)
             {
-                if (portID == ports[i].ID)
+                if (portID == ports[i].ID && linkPort == null)
                 {
                     ports[i].SetTriggerState(isTrigger);
                 }

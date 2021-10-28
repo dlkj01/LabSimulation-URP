@@ -120,7 +120,7 @@ namespace DLKJ
                 pass = true;
                 //对于小集合的所有主键，如果它的任意一个键都存在于大集合中，就可以判定大集合全包含小集合
             }
-            Debug.Log("It's Right?" + pass);
+           // Debug.Log("It's Right?" + pass);
             return pass;
         }
 

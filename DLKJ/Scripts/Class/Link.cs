@@ -95,8 +95,11 @@ namespace DLKJ
                         Link target = colliders[i].transform.GetComponent<Link>();
                         //AutoConnect(target, moveSpeed);
 
-
-                        StartCoroutine(stay(target, moveSpeed));
+                        if (target.parent.linkPort == null)
+                        {
+                            StartCoroutine(stay(target, moveSpeed));
+                        }
+                        
                         //Vector3 targetPosition = colliders[i].transform.position - transform.localPosition;
 
                         //TargetPort targetPort = new TargetPort();
@@ -121,7 +124,18 @@ namespace DLKJ
             targetPort.targetPosition = targetPosition;
             targetPort.targetPort = target;
             targetPort.selfPort = transform;
-            targetPort.distance = portCollider.bounds.size.z;
+            targetPort.selfParent = parent;
+            switch (parent.directionType)
+            {
+                case DirectionType.Horizontal:
+                    targetPort.distance = portCollider.bounds.size.z;
+                    break;
+                case DirectionType.Vertical:
+                    targetPort.distance = portCollider.bounds.size.x;
+                    break;
+                default:
+                    break;
+            }
             targetPort.speed = speed;
             targetPort.linkNextOne = false;
             //此消息只有父物体能接收
@@ -235,6 +249,7 @@ namespace DLKJ
         public Vector3 targetPosition;
         public Link targetPort;
         public Transform selfPort;
+        public Item selfParent;
         public float distance;
         public float speed;
         public bool linkNextOne;
