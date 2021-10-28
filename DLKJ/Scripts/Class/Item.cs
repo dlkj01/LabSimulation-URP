@@ -98,7 +98,7 @@ namespace DLKJ
         {
             BroadcastMessage("StopDetection", SendMessageOptions.RequireReceiver);
             double reDistance = Vector3.Distance(target.selfPort.position, target.targetPort.transform.position);
-            
+
             while (reDistance > target.distance)// 0.005243f
             {
                 reDistance = Vector3.Distance(target.selfPort.position, target.targetPort.transform.position);
@@ -267,7 +267,7 @@ namespace DLKJ
             if (itemID != ID) return;
             for (int i = 0; i < ports.Count; i++)
             {
-                if (portID == ports[i].ID && linkPort == null)
+                if (portID == ports[i].ID)
                 {
                     ports[i].SetTriggerState(isTrigger);
                 }

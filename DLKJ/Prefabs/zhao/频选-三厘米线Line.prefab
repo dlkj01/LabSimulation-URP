@@ -834,6 +834,7 @@ MonoBehaviour:
   renderTexture: {fileID: 8400000, guid: efcb58dfa215ba84bb1f15e6bc62ae27, type: 2}
   moveable: 0
   libraryType: 3
+  directionType: 0
   ports:
   - {fileID: 8613911593251147386}
   - {fileID: 3537869993622365662}

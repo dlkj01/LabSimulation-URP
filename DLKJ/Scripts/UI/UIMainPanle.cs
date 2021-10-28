@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 namespace DLKJ
 {
     public class UIMainPanle : MonoBehaviour
@@ -11,13 +13,17 @@ namespace DLKJ
         [SerializeField] private float normalX;
         [SerializeField] private float targetX;
         [SerializeField] private Transform arrow;
-
+        [SerializeField] private Image controllerButton;
         private bool isMoving;//正在移动？
         private bool isHide;//是否隐藏了
         RectTransform rectTF;
         private void Awake()
         {
             rectTF = transform as RectTransform;
+            UIEventListener.GetUIEventListener(controllerButton.gameObject).PointerClick += (p) =>
+              {
+                  MovePanle();
+              };
         }
 
         public void MovePanle()
@@ -124,7 +130,7 @@ namespace DLKJ
                    switch (SceneManager.GetInstance().currentLab.labName)
                    {
                        case "负载阻抗测量":
-                          
+
                            break;
                        default:
                            break;

@@ -32,7 +32,7 @@ namespace DLKJ
             ItemName = GetComponentInParent<Item>().itemName;
             if (portCollider == null) portCollider = transform.GetComponent<MeshCollider>();
             if (meshRenderer == null) meshRenderer = transform.GetComponent<MeshRenderer>();
-            if (transform.name== "weibo_kou"|| transform.name == "pinxuan_kou")
+            if (transform.name == "weibo_kou" || transform.name == "pinxuan_kou")
             {
                 portCollider.enabled = false;
             }
@@ -94,12 +94,7 @@ namespace DLKJ
 
                         Link target = colliders[i].transform.GetComponent<Link>();
                         //AutoConnect(target, moveSpeed);
-
-                        if (target.parent.linkPort == null)
-                        {
-                            StartCoroutine(stay(target, moveSpeed));
-                        }
-                        
+                        StartCoroutine(stay(target, moveSpeed));
                         //Vector3 targetPosition = colliders[i].transform.position - transform.localPosition;
 
                         //TargetPort targetPort = new TargetPort();

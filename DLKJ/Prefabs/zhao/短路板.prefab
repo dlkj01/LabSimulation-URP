@@ -53,6 +53,7 @@ MonoBehaviour:
   renderTexture: {fileID: 8400000, guid: b7924862fcdea3744902470e9bc53f48, type: 2}
   moveable: 1
   libraryType: 2
+  directionType: 0
   ports:
   - {fileID: 8256831110555541099}
   linkConditions:

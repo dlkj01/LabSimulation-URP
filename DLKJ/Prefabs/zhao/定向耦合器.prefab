@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 109652449371374668}
   - component: {fileID: 109652449371374669}
   m_Layer: 0
-  m_Name: "\u5B9A\u5411\u8026\u5408"
+  m_Name: "\u5B9A\u5411\u8026\u5408\u5668"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,6 +137,7 @@ MonoBehaviour:
   renderTexture: {fileID: 8400000, guid: e6a84319631ba7940a6719fcbf1da6aa, type: 2}
   moveable: 1
   libraryType: 2
+  directionType: 0
   ports:
   - {fileID: 109652449371374706}
   - {fileID: 109652449371374707}
