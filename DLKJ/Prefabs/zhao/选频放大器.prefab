@@ -2136,7 +2136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentAngle: -43
-  deviceName: "\u9891\u9009\u653E\u5927\u5668"
+  deviceName: "\u9009\u9891\u653E\u5927\u5668"
   rotateSpeed: 5
   minValue: 0
   maxValue: 100
