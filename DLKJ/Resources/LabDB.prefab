@@ -164,7 +164,7 @@ MonoBehaviour:
     - {fileID: 8066662230590069131, guid: 9c121467226dbbe4aa1c978552fb3d6d, type: 3}
     - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
     - {fileID: 4210527241192592495, guid: fbc33b357d60c894888967e6cf05f998, type: 3}
-    - {fileID: 8205315873878254757, guid: 29888df70210393469ae1d73754285cc, type: 3}
+    - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
     - {fileID: 6160732753793878566, guid: 08bd461d317849348a7e283c0ea65675, type: 3}
     - {fileID: 422642413207688284, guid: 2eebec1e05c8ddf47b202726a2e0d16e, type: 3}
     steps:
@@ -178,7 +178,7 @@ MonoBehaviour:
       keyItems:
       - {fileID: 4210527241192592495, guid: fbc33b357d60c894888967e6cf05f998, type: 3}
       - {fileID: 8066662230590069131, guid: 9c121467226dbbe4aa1c978552fb3d6d, type: 3}
-      - {fileID: 8205315873878254757, guid: 29888df70210393469ae1d73754285cc, type: 3}
+      - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
     - ID: -1
       nextStepCanMove: 0
       points: 20
@@ -217,7 +217,7 @@ MonoBehaviour:
       valueType: 100
       completedState: 0
       keyItems:
-      - {fileID: 8205315873878254757, guid: 29888df70210393469ae1d73754285cc, type: 3}
+      - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
       - {fileID: 4210527241192592495, guid: fbc33b357d60c894888967e6cf05f998, type: 3}
     - ID: -1
       nextStepCanMove: 1
@@ -245,7 +245,7 @@ MonoBehaviour:
       valueType: 100
       completedState: 0
       keyItems:
-      - {fileID: 8205315873878254757, guid: 29888df70210393469ae1d73754285cc, type: 3}
+      - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
       - {fileID: 4210527241192592495, guid: fbc33b357d60c894888967e6cf05f998, type: 3}
     currentStepIndex: 0
     currentStep:
@@ -259,7 +259,7 @@ MonoBehaviour:
       keyItems:
       - {fileID: 4210527241192592495, guid: fbc33b357d60c894888967e6cf05f998, type: 3}
       - {fileID: 8066662230590069131, guid: 9c121467226dbbe4aa1c978552fb3d6d, type: 3}
-      - {fileID: 8205315873878254757, guid: 29888df70210393469ae1d73754285cc, type: 3}
+      - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
   - ID: 3
     icon: {fileID: 21300000, guid: 04f842b4df7d3754b8ca01b30fc49710, type: 3}
     labName: "\u8D1F\u8F7D\u963B\u6297\u5339\u914D\u548C\u5B9A\u5411\u8026\u5408\u5668\u7279\u6027\u7684\u6D4B\u91CF"
