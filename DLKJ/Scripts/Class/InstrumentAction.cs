@@ -336,27 +336,6 @@ namespace DLKJ
             {
                 float offset = GetPerStepMoveDistance(tempInstrumentBtn);
                 Transform tempTransform = tempInstrumentBtn.conbinationList.Find(x => x.name == "Body");
-                if (tempTransform.localPosition.x + offset > tempInstrumentBtn.EndMovePoint)
-                {
-                    tempTransform.localPosition = new Vector3(tempInstrumentBtn.EndMovePoint, tempTransform.localPosition.y, tempTransform.localPosition.z);
-                    return;
-                }
-                if (tempTransform.localPosition.x + offset < tempInstrumentBtn.StartMovePoint)
-                {
-                    tempTransform.localPosition = new Vector3(tempInstrumentBtn.StartMovePoint, tempTransform.localPosition.y, tempTransform.localPosition.z);
-                    return;
-                }
-                tempTransform.localPosition = new Vector3(tempTransform.localPosition.x + offset, tempTransform.localPosition.y, tempTransform.localPosition.z);
-            }
-        }
-
-
-        private void MatchingScrewActive(InstrumentButton tempInstrumentBtn)
-        {
-            if (tempInstrumentBtn.conbinationList.Count > 0)
-            {
-                float offset = /*tempInstrumentBtn.rotary * */GetPerStepMoveDistance(tempInstrumentBtn);
-                Transform tempTransform = tempInstrumentBtn.conbinationList.Find(x => x.name == "PPLDGear");
                 if (tempTransform.localPosition.z + offset < tempInstrumentBtn.EndMovePoint)
                 {
                     tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempTransform.localPosition.y, tempInstrumentBtn.EndMovePoint);
@@ -368,6 +347,27 @@ namespace DLKJ
                     return;
                 }
                 tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempTransform.localPosition.y, tempTransform.localPosition.z + offset);
+            }
+        }
+
+
+        private void MatchingScrewActive(InstrumentButton tempInstrumentBtn)
+        {
+            if (tempInstrumentBtn.conbinationList.Count > 0)
+            {
+                float offset = /*tempInstrumentBtn.rotary * */GetPerStepMoveDistance(tempInstrumentBtn);
+                Transform tempTransform = tempInstrumentBtn.conbinationList.Find(x => x.name == "PPLDGear");
+                if (tempTransform.localPosition.y + offset < tempInstrumentBtn.EndMovePoint)
+                {
+                    tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempInstrumentBtn.EndMovePoint, tempTransform.localPosition.z);
+                    return;
+                }
+                if (tempTransform.localPosition.y + offset > tempInstrumentBtn.StartMovePoint)
+                {
+                    tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempInstrumentBtn.StartMovePoint, tempTransform.localPosition.z);
+                    return;
+                }
+                tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempTransform.localPosition.y + offset, tempTransform.localPosition.z);
             }
         }
 
