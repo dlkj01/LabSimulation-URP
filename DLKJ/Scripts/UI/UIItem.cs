@@ -54,9 +54,7 @@ namespace DLKJ
         {
             down = false;
             drag = false;
-            
             EventManager.OnMouseEnterItem(null);
-            EventManager.OnScrollItem(null);
         }
 
         public void OnPointerEnter(PointerEventData eventData)
@@ -69,13 +67,13 @@ namespace DLKJ
         {
             clickTimes = 0;
             down = false;
-            //drag = false;
+            drag = false;
             EventManager.OnScrollItem(null);
         }
 
         public void OnDrag(PointerEventData eventData)
         {
-            if (down && !drag)
+            if (!drag)
             {
                 clickTimes = 0;
                 EventManager.OnScrollItem(this);
