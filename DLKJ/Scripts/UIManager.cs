@@ -85,14 +85,14 @@ namespace DLKJ
                         MathTool.Init();
                         switch (SceneManager.GetInstance().currentLab.labName)
                         {
-                            case "二端口微波网络参量测量":
+                            case SceneManager.FIRST_EXPERIMENT_NAME:
                                 MathTool.FixedCorrect1Calculate();
                                 break;
-                            case "负载阻抗测量":
+                            case SceneManager.SECOND_EXPERIMENT_NAME:
                                 MathTool.FixedCorrect2FirstGroupCalculate();
                                 break;
-                            case "负载阻抗匹配和定向耦合器特性的测量":
-                                MathTool.FixedCorrectCalculate();
+                            case SceneManager.THIRD_EXPERIMENT_NAME:
+                                MathTool.FixedCorrect3Calculate();
                                 break;
                             default:
                                 break;
@@ -127,13 +127,13 @@ namespace DLKJ
             UILabReportBase UILabReport = null;
             switch (SceneManager.GetInstance().currentLab.labName)
             {
-                case "二端口微波网络参量测量":
+                case SceneManager.FIRST_EXPERIMENT_NAME:
                     UILabReport = InstantiateObject<UILabReportBase>(UILabReport1Prefab);
                     break;
-                case "负载阻抗测量":
+                case SceneManager.SECOND_EXPERIMENT_NAME:
                     UILabReport = InstantiateObject<UILabReportBase>(UILabReport2Prefab);
                     break;
-                case "负载阻抗匹配和定向耦合器特性的测量":
+                case SceneManager.THIRD_EXPERIMENT_NAME:
                     UILabReport = InstantiateObject<UILabReportBase>(UILabReport3Prefab);
                     break;
                 default:
@@ -192,7 +192,7 @@ namespace DLKJ
         {
             string labName = SceneManager.GetInstance().currentLab.labName;
             int currentStep = SceneManager.GetInstance().currentLab.currentStepIndex;
-            if (labName == "二端口微波网络参量测量" || labName == "负载阻抗测量")
+            if (labName == SceneManager.FIRST_EXPERIMENT_NAME || labName == SceneManager.SECOND_EXPERIMENT_NAME)
             {
                 if (startEquipment == false)
                 {
@@ -204,7 +204,7 @@ namespace DLKJ
                 }
             }
 
-            if (labName == "负载阻抗测量")
+            if (labName == SceneManager.SECOND_EXPERIMENT_NAME)
             {
                 if (currentStep == 4)
                 {
@@ -218,8 +218,7 @@ namespace DLKJ
                            FindObjectOfType<UITips>().OnDisTips();
                            //记录第一组数据到word表格
                            UILabReport2 report2 = UILabButton.uiLabReport as UILabReport2;
-                           report2.CacheFirstGroupData();
-                           report2.WriteInputText(WordHelper.cacheData, WordHelper.cacheUserData);
+                           report2.WriteInputText();
                            //数据初始化
                            MathTool.Init();
                            //计算第二组数据正确答案
@@ -229,7 +228,7 @@ namespace DLKJ
                 }
             }
 
-            if (labName == "负载阻抗匹配和定向耦合器特性的测量")
+            if (labName == SceneManager.THIRD_EXPERIMENT_NAME)
             {
                 if (startEquipment == false)
                 {
@@ -244,6 +243,7 @@ namespace DLKJ
             if (SceneManager.GetInstance().currentLab.currentStepIndex >= SceneManager.GetInstance().currentLab.steps.Count - 1)
             {
                 EventManager.OnTips(TipsType.Toast, "实验完成,请提交实验报告");
+                return;
             }
 
             if (SceneManager.GetInstance().VerifyBasicLink())

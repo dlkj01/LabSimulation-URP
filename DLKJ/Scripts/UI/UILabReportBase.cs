@@ -16,7 +16,8 @@ public struct UserDate
     public string id;
     public string teacherName;
 }
-public struct LabReport1Data
+public class LabReportData { }
+public class LabReport1Data : LabReportData
 {
     public double SourceFrequency;//信号源频率
     public double SourceVoltage;//信号源电压设置
@@ -46,7 +47,7 @@ public struct LabReport1Data
     public double inputS12S21;
     public double inputS22;
 }
-public struct LabReportCorrect1Data
+public class LabReportCorrect1Data : LabReportData
 {
     public double SourceFrequency;//信号源频率
     public double SourceVoltage;//信号源电压设置
@@ -76,7 +77,7 @@ public struct LabReportCorrect1Data
     public double inputS12S21;
     public double inputS22;
 }
-public struct LabReport2Data
+public class LabReport2Data : LabReportData
 {
     public double inputSourceFrequencyFirst;//信号源频率
     public double inputSourceVoltageFirst;//信号源电压
@@ -107,7 +108,7 @@ public struct LabReport2Data
     public double MaximumVoltageAfterMatchingSecond;//匹配后最大电压
     public double SWRAfterMatchingSecond;//匹配后驻波比
 }
-public struct LabReportCorrect2Data
+public class LabReportCorrect2Data : LabReportData
 {
     public double inputSourceFrequencyFirst;//信号源频率
     public double inputSourceVoltageFirst;//信号源电压
@@ -139,7 +140,7 @@ public struct LabReportCorrect2Data
     public double SWRAfterMatchingSecond;//匹配后驻波比
 }
 
-public struct LabReport3Data
+public class LabReport3Data : LabReportData
 {
     public double OnePortVoltage;//一端口电压
     public double ThreePortVoltage;//三端口电压
@@ -251,6 +252,9 @@ public class UILabReportBase : MonoBehaviour
         userData.time = timeInputField.text;
         userData.id = idInputField.text;
         userData.teacherName = teacherInputField.text;
+        Dictionary<string, object> map1 = WordHelper.GetFields(userData);
+        foreach (var item in map1)
+            map[item.Key] = item.Value;
     }
     protected double StringToDouble(string value)
     {
@@ -305,5 +309,32 @@ public class UILabReportBase : MonoBehaviour
         }
         return result;
     }
-
+    protected void AddResult(LabReportData labReportData)
+    {
+        Dictionary<string, object> addMap = WordHelper.GetFields(labReportData);
+        foreach (var item2 in addMap)
+        {
+            AnswerCheck answerCheck = new AnswerCheck();
+            answerCheck.answer = item2.Value.ToString();
+            System.Reflection.FieldInfo[] fields = MathTool.report1CorrectAnswer.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+            for (int i = 0; i < fields.Length; i++)
+            {
+                if (fields[i].Name == item2.Key)
+                {
+                    double result;
+                    if (String.IsNullOrEmpty(item2.Value.ToString()))
+                    {
+                        result = -9999;
+                    }
+                    else
+                    {
+                        result = (double)item2.Value;
+                    }
+                    answerCheck.isRight = DataFormatParsing(result, fields[i].GetValue(MathTool.report1CorrectAnswer));
+                }
+            }
+            this.map[item2.Key] = answerCheck;
+        }
+        WordHelper.HandleGuaranteeDoc(filePath, map, outFilePath);
+    }
 }

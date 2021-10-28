@@ -34,19 +34,27 @@ namespace DLKJ
         public void FormulaInit()
         {
             MathTool.Init();
-            ShiYan1();
+            GetDevice();
             Active(true);
             //给电压自动设置一个随机值
-            instrumentActionPinXuan.pointer.SetAngle(MathTool.A);
-            Item item = SceneManager.GetInstance().GetItemByName("频选放大器");
-            InstrumentAction instrumentAction = item.GetComponent<InstrumentAction>();
-            instrumentAction.transform.Find("电压Text").GetComponent<TextMesh>().text = MathTool.A.ToString("#0.00");
+            InitA();
+            //移除频选放大器按钮的监听
             SceneManager.GetInstance().GetInstrumentButton("频选放大器", "RotaryBtnVoltage").RemoveListener();
             SceneManager.GetInstance().GetInstrumentButton("频选放大器", "RotaryBtnVoltage").SetInteractiveState(false);
         }
         public void Active(bool state)
         {
             isInit = state;
+        }
+        /// <summary>
+        /// 初始化电压
+        /// </summary>
+        private void InitA()
+        {
+            instrumentActionPinXuan.pointer.SetAngle(MathTool.A);
+            Item item = SceneManager.GetInstance().GetItemByName("频选放大器");
+            InstrumentAction instrumentAction = item.GetComponent<InstrumentAction>();
+            instrumentAction.transform.Find("电压Text").GetComponent<TextMesh>().text = MathTool.A.ToString("#0.00");
         }
         private void Start()
         {
@@ -57,14 +65,10 @@ namespace DLKJ
 
         private void Update()
         {
-
             OnUpdate();
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                //MathTool.GetDT(MathTool.SLMCL_Start_Value, 0);
-                //MathTool.GetFirstMinBoundKBDLQ(0, 1);
-                //MathTool.GetFirstMinBoundKBDLQ(0, 2);
-                MathTool.FixedCorrect2FirstGroupCalculate();
+                MathTool.FixedCorrect1Calculate();
             }
         }
 
@@ -82,7 +86,7 @@ namespace DLKJ
 
             switch (SceneManager.GetInstance().currentLab.labName)
             {
-                case "二端口微波网络参量测量":
+                case SceneManager.FIRST_EXPERIMENT_NAME:
                     switch (SceneManager.GetInstance().currentLab.currentStepIndex)
                     {
                         case 2:
@@ -101,7 +105,7 @@ namespace DLKJ
                             break;
                     }
                     break;
-                case "负载阻抗测量":
+                case SceneManager.SECOND_EXPERIMENT_NAME:
                     switch (SceneManager.GetInstance().currentLab.currentStepIndex)
                     {
                         case 2:
@@ -131,7 +135,7 @@ namespace DLKJ
                             break;
                     }
                     break;
-                case "负载阻抗匹配和定向耦合器特性的测量":
+                case SceneManager.THIRD_EXPERIMENT_NAME:
 
                     switch (SceneManager.GetInstance().currentLab.currentStepIndex)
                     {
@@ -158,19 +162,16 @@ namespace DLKJ
             Debug.Log(U);
         }
 
-
-
         private InstrumentAction instrumentActionPinXuan;//频选放大器
-
         private InstrumentButton tempInstrumentBtn;//三厘米测量线
         private InstrumentButton keBianDuanLuQiBtn;//可变断路器
         private InstrumentButton instrumentPiPeiLuoDingD;//匹配螺钉D
         private InstrumentButton instrumentPiPeiLuoDingL;//匹配螺钉L
-        private void ShiYan1()
+        private void GetDevice()
         {
             if (tempInstrumentBtn == null)
             {
-                tempInstrumentBtn = GetInstrumentButton("三厘米测量线", "FrequencySelectKnob");
+                tempInstrumentBtn = SceneManager.GetInstance().GetInstrumentButton("三厘米测量线", "FrequencySelectKnob");
             }
             if (instrumentActionPinXuan == null)
             {
@@ -179,30 +180,17 @@ namespace DLKJ
             }
             if (keBianDuanLuQiBtn == null)
             {
-                keBianDuanLuQiBtn = GetInstrumentButton("可变短路器", "kebianduanluqi4");
+                keBianDuanLuQiBtn = SceneManager.GetInstance().GetInstrumentButton("可变短路器", "kebianduanluqi4");
             }
 
             if (instrumentPiPeiLuoDingL == null)
             {
-                instrumentPiPeiLuoDingL = GetInstrumentButton("匹配螺钉", "PiPeiLuoDingBtn");
+                instrumentPiPeiLuoDingL = SceneManager.GetInstance().GetInstrumentButton("匹配螺钉", "PiPeiLuoDingBtn");
             }
             if (instrumentPiPeiLuoDingD == null)
             {
-                instrumentPiPeiLuoDingD = GetInstrumentButton("匹配螺钉", "PPLDGear");
+                instrumentPiPeiLuoDingD = SceneManager.GetInstance().GetInstrumentButton("匹配螺钉", "PPLDGear");
             }
-
-        }
-
-        public InstrumentButton GetInstrumentButton(string deviceName, string buttonName)
-        {
-            Item item = SceneManager.GetInstance().GetItemByName(deviceName);
-            if (item == null)
-                return null;
-            InstrumentAction instrumentAction = item.GetComponent<InstrumentAction>();
-            if (instrumentAction == null)
-                return null;
-            InstrumentButton button = instrumentAction.instrumentButton.Find(x => x.instrumentButton.name == buttonName);
-            return button;
         }
 
         public bool CheckValueIsInit()
@@ -215,7 +203,6 @@ namespace DLKJ
             {
                 return mathInitValue.initF == true && mathInitValue.initδ == true;
             }
-
         }
     }
 }

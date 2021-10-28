@@ -30,9 +30,9 @@ namespace DLKJ
         public static float score = 0;//一个题1.724分
         public const float SLMCL_Start_Value = 0.055f;
 
-        public static LabReportCorrect1Data report1CorrectAnswer;
-        public static LabReportCorrect2Data report2CorrectAnswer;
-        public static LabReport3Data report3CorrectAnswer;
+        public static LabReportCorrect1Data report1CorrectAnswer = new LabReportCorrect1Data();
+        public static LabReportCorrect2Data report2CorrectAnswer = new LabReportCorrect2Data();
+        public static LabReport3Data report3CorrectAnswer = new LabReport3Data();
         //   private const float j = 1;
         private const float a = 0.02286f;
         public const float Y0 = 0.01f;
@@ -222,7 +222,7 @@ namespace DLKJ
         #endregion
 
         #region 第三个实验正确答案计算
-        public static void FixedCorrectCalculate()
+        public static void FixedCorrect3Calculate()
         {
             report3CorrectAnswer.OnePortVoltage = OnePortVoltage();
             report3CorrectAnswer.ThreePortVoltage = CouplingFactorObserved();

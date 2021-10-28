@@ -24,16 +24,12 @@ public static class WordHelper
         {
             string name = item.Name; //名称
             object value = item.GetValue(t);  //值
-
-            //if (item.FieldType.IsValueType || item.FieldType.Name.StartsWith("String"))
-            //{
             if (value.ToString() == "-9999")
             {
                 map.Add(name, "");
                 continue;
             }
             map.Add(name, value);
-            // }
         }
         return map;
     }
@@ -83,7 +79,6 @@ public static class WordHelper
     }
 
     public static Stream FileToStream(string fileName)
-
     {
         // 打开文件
         FileStream fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
