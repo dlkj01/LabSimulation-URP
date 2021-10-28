@@ -142,6 +142,7 @@ namespace DLKJ
 
             if (voltmeterCamera)
             {
+                voltmeterCamera.gameObject.SetActive(false);
                 //  voltmeterCamera.targetTexture = UIManager.GetInstance().voltmeterValue
             }
         }
