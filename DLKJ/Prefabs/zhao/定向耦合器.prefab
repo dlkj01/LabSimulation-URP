@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 20
-  itemName: "\u5B9A\u5411\u8026\u5408"
+  itemName: "\u5B9A\u5411\u8026\u5408\u5668"
   icon: {fileID: 2800000, guid: b3f4982351010904d89661b7f05058e5, type: 3}
   renderTexture: {fileID: 8400000, guid: e6a84319631ba7940a6719fcbf1da6aa, type: 2}
   moveable: 1

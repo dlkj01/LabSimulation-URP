@@ -3150,7 +3150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 1
-  itemName: "\u9891\u9009\u653E\u5927\u5668"
+  itemName: "\u9009\u9891\u653E\u5927\u5668"
   icon: {fileID: 2800000, guid: 2709adf22ff3b8f43a4678c8821460f6, type: 3}
   renderTexture: {fileID: 8400000, guid: 148dae54e4dbf0047a6173ec0bdd217c, type: 2}
   moveable: 0
