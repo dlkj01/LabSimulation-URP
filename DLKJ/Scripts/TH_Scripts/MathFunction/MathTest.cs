@@ -58,7 +58,7 @@ namespace DLKJ
         }
         private void Start()
         {
-            MathTool.Init();
+            //MathTool.Init();
             MathTool.A = UnityEngine.Random.Range(2f, 2000f);
             Debug.Log(MathTool.A);
         }
@@ -66,10 +66,10 @@ namespace DLKJ
         private void Update()
         {
             OnUpdate();
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                MathTool.FixedCorrect1Calculate();
-            }
+            //if (Input.GetKeyDown(KeyCode.Alpha1))
+            //{
+            //    MathTool.FixedCorrect1Calculate();
+            //}
         }
 
 
