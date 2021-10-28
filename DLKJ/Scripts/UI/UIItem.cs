@@ -56,6 +56,7 @@ namespace DLKJ
             drag = false;
             
             EventManager.OnMouseEnterItem(null);
+            EventManager.OnScrollItem(null);
         }
 
         public void OnPointerEnter(PointerEventData eventData)
