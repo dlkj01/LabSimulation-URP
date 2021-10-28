@@ -88,6 +88,12 @@ namespace DLKJ
                 {
                     meshCollider.enabled = true;
                 }
+
+                InstrumentAction instrumentAction;
+                if (labItems[i].transform.TryGetComponent(out instrumentAction))
+                {
+                    if (instrumentAction.voltmeterCamera) instrumentAction.voltmeterCamera.gameObject.SetActive(true);
+                }
             }
             UIManager.GetInstance().SetVerifyButtonActive(true);
         }
