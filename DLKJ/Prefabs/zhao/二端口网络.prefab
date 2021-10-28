@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 9096104713619213982}
   - component: {fileID: 1631015732050587417}
   m_Layer: 0
-  m_Name: "\u4E8C\u7AEF\u53E3\u7F51\u7EDC\u8C03\u8282"
+  m_Name: "\u4E8C\u7AEF\u53E3\u7F51\u7EDC"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -413,7 +413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 18
-  itemName: "\u4E8C\u7AEF\u53E3\u7F51\u7EDC\u8C03\u8282"
+  itemName: "\u4E8C\u7AEF\u53E3\u7F51\u7EDC"
   icon: {fileID: 2800000, guid: 68e5e80a0b9a8cb4db395c2a0290569d, type: 3}
   renderTexture: {fileID: 8400000, guid: f42be26bca8af94409dd092316e02265, type: 2}
   moveable: 1
@@ -425,24 +425,6 @@ MonoBehaviour:
   - data:
       itemID: 3
       portsID: 1
-      correct: 1
-      value: 0
-      weight: 0
-  - data:
-      itemID: 6
-      portsID: 0
-      correct: 1
-      value: 0
-      weight: 0
-  - data:
-      itemID: 5
-      portsID: 0
-      correct: 1
-      value: 0
-      weight: 0
-  - data:
-      itemID: 15
-      portsID: 0
       correct: 1
       value: 0
       weight: 0
@@ -883,7 +865,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8279383830175784673}
-  m_Text: "\u53EF\u8C03\u4E8C\u7AEF\u53E3\u7F51\u7EDC"
+  m_Text: "\u4E8C\u7AEF\u53E3\u7F51\u7EDC"
   m_OffsetZ: 0
   m_CharacterSize: 0.0015
   m_LineSpacing: 1

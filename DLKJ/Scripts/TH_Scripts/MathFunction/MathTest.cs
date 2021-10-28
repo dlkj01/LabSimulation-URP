@@ -26,7 +26,7 @@ namespace DLKJ
             }
         }
 
-        public float randomAngle;
+        [HideInInspector] public float randomAngle;
 
         /// <summary>
         /// 公示数据初始化
@@ -39,8 +39,8 @@ namespace DLKJ
             //给电压自动设置一个随机值
             InitA();
             //移除频选放大器按钮的监听
-            SceneManager.GetInstance().GetInstrumentButton("频选放大器", "RotaryBtnVoltage").RemoveListener();
-            SceneManager.GetInstance().GetInstrumentButton("频选放大器", "RotaryBtnVoltage").SetInteractiveState(false);
+            SceneManager.GetInstance().GetInstrumentButton("选频放大器", "RotaryBtnVoltage").RemoveListener();
+            SceneManager.GetInstance().GetInstrumentButton("选频放大器", "RotaryBtnVoltage").SetInteractiveState(false);
         }
         public void Active(bool state)
         {
@@ -52,7 +52,7 @@ namespace DLKJ
         private void InitA()
         {
             instrumentActionPinXuan.pointer.SetAngle(MathTool.A);
-            Item item = SceneManager.GetInstance().GetItemByName("频选放大器");
+            Item item = SceneManager.GetInstance().GetItemByName("选频放大器");
             InstrumentAction instrumentAction = item.GetComponent<InstrumentAction>();
             instrumentAction.transform.Find("电压Text").GetComponent<TextMesh>().text = MathTool.A.ToString("#0.00");
         }
@@ -175,7 +175,7 @@ namespace DLKJ
             }
             if (instrumentActionPinXuan == null)
             {
-                Item itemPinXuan = SceneManager.GetInstance().GetItemByName("频选放大器");
+                Item itemPinXuan = SceneManager.GetInstance().GetItemByName("选频放大器");
                 instrumentActionPinXuan = itemPinXuan.GetComponent<InstrumentAction>();
             }
             if (keBianDuanLuQiBtn == null)

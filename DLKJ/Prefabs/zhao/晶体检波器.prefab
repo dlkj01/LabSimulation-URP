@@ -945,18 +945,6 @@ MonoBehaviour:
   - {fileID: 5538837970332449672}
   linkConditions:
   - data:
-      itemID: 3
-      portsID: 1
-      correct: 1
-      value: 0
-      weight: 0
-  - data:
-      itemID: 17
-      portsID: 1
-      correct: 1
-      value: 0
-      weight: 0
-  - data:
       itemID: 20
       portsID: 2
       correct: 1

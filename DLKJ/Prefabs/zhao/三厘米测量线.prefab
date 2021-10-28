@@ -873,7 +873,7 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2784032702146190525}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
@@ -1248,20 +1248,8 @@ MonoBehaviour:
   - {fileID: 2513549903991641663}
   linkConditions:
   - data:
-      itemID: 1
-      portsID: 1
-      correct: 0
-      value: 0
-      weight: 0
-  - data:
       itemID: 7
       portsID: 1
-      correct: 1
-      value: 0
-      weight: 0
-  - data:
-      itemID: 18
-      portsID: 0
       correct: 1
       value: 0
       weight: 0

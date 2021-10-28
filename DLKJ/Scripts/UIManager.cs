@@ -66,10 +66,10 @@ namespace DLKJ
                     {
                         startEquipment = true;
                         startEquipmentButton.gameObject.SetActive(false);
-                        if (SceneManager.GetInstance().GetInstrumentButton("频选放大器", "RotaryBtnVoltage") != null)
+                        if (SceneManager.GetInstance().GetInstrumentButton("选频放大器", "RotaryBtnVoltage") != null)
                         {
-                            SceneManager.GetInstance().GetInstrumentButton("频选放大器", "RotaryBtnVoltage").RemoveListener();
-                            SceneManager.GetInstance().GetInstrumentButton("频选放大器", "RotaryBtnVoltage").SetInteractiveState(false);
+                            SceneManager.GetInstance().GetInstrumentButton("选频放大器", "RotaryBtnVoltage").RemoveListener();
+                            SceneManager.GetInstance().GetInstrumentButton("选频放大器", "RotaryBtnVoltage").SetInteractiveState(false);
                         }
                         if (SceneManager.GetInstance().GetInstrumentButton("可变衰减器", "Kebianshaijianqi") != null)
                         {

@@ -140,12 +140,6 @@ MonoBehaviour:
   - {fileID: 2095747444113282576}
   linkConditions:
   - data:
-      itemID: 3
-      portsID: 1
-      correct: 0
-      value: 0
-      weight: 0
-  - data:
       itemID: 13
       portsID: 0
       correct: 0

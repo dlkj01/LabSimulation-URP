@@ -382,12 +382,12 @@ namespace DLKJ
             {
                 Transform tempTransform = tempInstrumentBtn.conbinationList.Find(x => x.name == "Kebianshaijianqi");
                 float offset = GetPerStepMoveDistance(tempInstrumentBtn);
-                if (tempTransform.localPosition.y + offset > tempInstrumentBtn.EndMovePoint)
+                if (tempTransform.localPosition.y + offset < tempInstrumentBtn.EndMovePoint)
                 {
                     tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempInstrumentBtn.EndMovePoint, tempTransform.localPosition.z);
                     return;
                 }
-                if (tempTransform.localPosition.y + offset < tempInstrumentBtn.StartMovePoint)
+                if (tempTransform.localPosition.y + offset > tempInstrumentBtn.StartMovePoint)
                 {
                     tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempInstrumentBtn.StartMovePoint, tempTransform.localPosition.z);
                     return;
