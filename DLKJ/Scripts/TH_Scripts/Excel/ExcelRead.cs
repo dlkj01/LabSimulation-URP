@@ -11,10 +11,6 @@ public enum UserType
     Student,
     Teacher
 }
-public struct UserDataList
-{
-    public List<UserData> userDatas;
-}
 public struct UserData
 {
     public UserType userType;
@@ -38,14 +34,7 @@ public class ExcelRead : MonoSingleton<ExcelRead>
                 userType = "Null";
             Enum.TryParse(userType, out userData.userType);
             userDataList.Add(userData);
-
         }
-        for (int i = 0; i < userDataList.Count; i++)
-        {
-            Debug.Log(userDataList[i].accountNumber);
-        }
-        UserData user = GetUserData("1");
-        Debug.LogFormat("账号是{0}、密码是{1}、身份是{2}", user.accountNumber, user.password, user.userType.ToString());
     }
 
     public int Verify(string userName, string password)
@@ -81,36 +70,5 @@ public class ExcelRead : MonoSingleton<ExcelRead>
     public UserData GetUserData(string id)
     {
         return userDataList.Find((P) => { return id == P.accountNumber; });
-    }
-
-    public List<string> GetColumnByName(string columnName, string sheetName)
-    {
-        FileInfo fileInfo = new FileInfo(filePath);
-        List<string> result = new List<string>();
-        using (ExcelPackage excelPackage = new ExcelPackage(fileInfo))
-        {
-            ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets[sheetName];
-            int column = 0;
-
-            for (int i = 1; i < worksheet.Dimension.Columns + 1; i++)
-            {
-                if (worksheet.Cells[1, i].Value.ToString() == columnName)
-                {
-                    column = i;
-                }
-            }
-            for (int j = 2; j < worksheet.Dimension.Rows + 1; j++)
-            {
-                if (worksheet.Cells[j, column].Value != null)
-                {
-                    result.Add(worksheet.Cells[j, column].Value.ToString());
-                }
-                else
-                {
-                    result.Add("weiotyweiobnsdhqiotryuqwiou");
-                }
-            }
-        }
-        return result;
     }
 }

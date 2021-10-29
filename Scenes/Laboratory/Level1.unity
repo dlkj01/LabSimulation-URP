@@ -3419,8 +3419,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.077677414, y: 0.023848431}
   m_AnchorMax: {x: 0.077677414, y: 0.023848431}
-  m_AnchoredPosition: {x: 128.8052, y: 147.23}
-  m_SizeDelta: {x: 551.7223, y: 588.9}
+  m_AnchoredPosition: {x: 128.8052, y: 162.38249}
+  m_SizeDelta: {x: 551.7223, y: 649.51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &576543409
 MonoBehaviour:
@@ -3457,7 +3457,8 @@ MonoBehaviour:
     m_LineSpacing: 1.3
   m_Text: "W\uFF1A\u5411\u524D\nS \uFF1A\u5411\u540E\nA \uFF1A\u5411\u5DE6\nD \uFF1A\u5411\u53F3\nQ
     \uFF1A\u5411\u4E0B\nE \uFF1A\u5411\u4E0A\nR \uFF1A\u65CB\u8F6C\u4EEA\u5668\u8BBE\u5907\n\u9F20\u6807\u5DE6\u952E
-    \uFF1A\u62D6\u62FD\u3001\u4F7F\u7528\u8BBE\u5907\n\u9F20\u6807\u5DE6\u952E\u957F\u6309\uFF1A\u6301\u7EED\u4F7F\u7528\u8BBE\u5907\n\u9F20\u6807\u53F3\u952E
+    \uFF1A\u62D6\u62FD\u3001\u4F7F\u7528\u8BBE\u5907\nCtrl+\u9F20\u6807\u5DE6\u952E:
+    \u53CD\u65B9\u5411\u4F7F\u7528\u8BBE\u5907\n\u9F20\u6807\u5DE6\u952E\u957F\u6309\uFF1A\u6301\u7EED\u4F7F\u7528\u8BBE\u5907\n\u9F20\u6807\u53F3\u952E
     \uFF1A\u65CB\u8F6C\u89C6\u89D2"
 --- !u!222 &576543410
 CanvasRenderer:

@@ -198,7 +198,14 @@ namespace DLKJ
                 {
                     if (currentStep == 2)
                     {
-                        EventManager.OnTips(TipsType.Toast, "请完成实验基本数据设置");
+                        if (SceneManager.GetInstance().VerifyBasicLink() == false)
+                        {
+                            EventManager.OnTips(TipsType.Toast, "请检查设备连接");
+                        }
+                        else
+                        {
+                            EventManager.OnTips(TipsType.Toast, "请完成实验基本数据设置");
+                        }
                         return;
                     }
                 }
