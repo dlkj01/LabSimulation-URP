@@ -136,11 +136,11 @@ namespace DLKJ
 
         public void AutoConnectCurrentStep()
         {
-            if (currentLab.currentStep.ID <= 0) return;
-            Debug.Log("实验步骤："+ currentLab.currentStep.ID);
+            if (currentLab.currentStepIndex <= 0) return;
+            Debug.Log("实验步骤："+ currentLab.currentStepIndex);
             if (currentLab.ID<2)
             {
-                if (currentLab.currentStep.ID > 2)
+                if (currentLab.currentStepIndex > 1)
                 {
                     int basicLinkItemsSize = currentLab.steps[1].keyItems.Count;
                     List<Item> stepItems = currentLab.currentStep.keyItems;

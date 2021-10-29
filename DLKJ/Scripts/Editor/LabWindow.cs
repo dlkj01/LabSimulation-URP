@@ -250,6 +250,7 @@ namespace DLKJ
             if (GUILayout.Button("+", new GUILayoutOption[] { GUILayout.Width(20), GUILayout.Height(20) }))
             {
                 Step newStep = new Step();
+                newStep.ID = GererateStepID(selected);
                 selected.steps.Add(newStep);
             }
             GUILayout.EndHorizontal();
@@ -340,6 +341,19 @@ namespace DLKJ
             }
             ID += 1;
 
+            return ID;
+        }
+
+        int GererateStepID(Lab lab) {
+            int ID = 0;
+            for (int i = 0; i < lab.steps.Count; i++)
+            {
+                if (lab.steps[i].ID>ID)
+                {
+                    ID = lab.steps[i].ID;
+                }
+            }
+            ID += 1;
             return ID;
         }
 

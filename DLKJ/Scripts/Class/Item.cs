@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.RefAndLookup;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEngine.GraphicsBuffer;
 
 namespace DLKJ
 {
@@ -151,17 +153,51 @@ namespace DLKJ
             {
                 if (!linkConditions[i].data.correct) continue;
                 Item targetItem = SceneManager.GetInstance().GetLabItemByID(linkConditions[i].data.itemID);
+                if (targetItem == null) break;
                 Link _targetPort = targetItem.GetPortByPortsID(linkConditions[i].data.portsID);
-                targetPosition = _targetPort.transform.position - ports[0].transform.localPosition;
+                
+                if (libraryType == LibraryType.Wires)
+                {
+                    //if (targetItem.itemName == "微波-波导Line")  //这两个地方的名字如果更换也要跟着换
+                    //{
 
-                TargetPort targetPort = new TargetPort();
-                targetPort.targetPosition = targetPosition;
-                targetPort.targetPort = _targetPort;
-                targetPort.selfPort = ports[0].transform;
-                targetPort.distance = _targetPort.portCollider.bounds.size.z;
-                targetPort.speed = _targetPort.moveSpeed;
-                targetPort.linkNextOne = true;
-                OnAttach(targetPort);
+                    //}
+                    //else if (targetItem.itemName == "频选-三厘米线Line")
+                    //{
+
+                    //}
+                    for (int a = 0; a < ports.Count; a++)
+                    {
+                        if (ports[a].dragAble)
+                        {
+                            ports[a].transform.SetParent(_targetPort.transform);
+                            if (targetItem.itemName == "晶体检波器")
+                            {
+                                ports[a].transform.localPosition = targetItem.portDefaultPosition;
+                            }
+                            else
+                            {
+                                ports[a].transform.localPosition = Vector3.zero + _targetPort.offset;
+                            }
+                            linkPort = _targetPort;
+                            ports[a].transform.localRotation = Quaternion.Euler(targetItem.portDefaultEuler);
+                            break;
+                        }
+                    }
+                    EventManager.OnLinkNext();
+                }
+                else
+                {
+                    targetPosition = _targetPort.transform.position - ports[0].transform.localPosition;
+                    TargetPort targetPort = new TargetPort();
+                    targetPort.targetPosition = targetPosition;
+                    targetPort.targetPort = _targetPort;
+                    targetPort.selfPort = ports[0].transform;
+                    targetPort.distance = _targetPort.portCollider.bounds.size.z;
+                    targetPort.speed = _targetPort.moveSpeed;
+                    targetPort.linkNextOne = true;
+                    OnAttach(targetPort);
+                }
             }
         }
 
