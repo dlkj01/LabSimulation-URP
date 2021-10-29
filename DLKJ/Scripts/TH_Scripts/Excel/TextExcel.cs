@@ -3,51 +3,86 @@ using System.Collections.Generic;
 using UnityEngine;
 using OfficeOpenXml;
 using System.IO;
-public class TextExcel : MonoBehaviour
+using Common;
+
+public enum UserType
+{
+    啥也不是,
+    Student,
+    Teacher
+}
+public class TextExcel : MonoSingleton<TextExcel>
 {
     private string filePath = Application.streamingAssetsPath + "/账号表格.xlsx";
-    private void Update()
+    public Dictionary<string, string> studentNameMap = new Dictionary<string, string>();
+    public Dictionary<string, string> teacherNameMap = new Dictionary<string, string>();
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha5))
+        AddUserData("Student", studentNameMap);
+        AddUserData("Teacher", teacherNameMap);
+        foreach (var item in studentNameMap)
         {
-            SaveExcel();
+            Debug.Log(item.Key.ToString() + "===>" + item.Value.ToString());
+        }
+        foreach (var item in teacherNameMap)
+        {
+            Debug.Log(item.Key.ToString() + "===>" + item.Value.ToString());
         }
     }
-    public void SaveExcel()
+
+    private void AddUserData(string sheetName, Dictionary<string, string> map)
     {
-        Debug.Log(filePath);
+        List<string> numbers = GetColumnByName("账号", sheetName);
+        List<string> passwords = GetColumnByName("密码", sheetName);
+        for (int i = 0; i < numbers.Count; i++)
+        {
+            if (!map.ContainsKey(numbers[i]))
+                map.Add(numbers[i], passwords[i]);
+        }
+    }
+
+    public UserType GetUserType(string id)
+    {
+        if (studentNameMap.ContainsKey(id))
+        {
+            return UserType.Student;
+        }
+        if (teacherNameMap.ContainsKey(id))
+        {
+            return UserType.Teacher;
+        }
+        return UserType.啥也不是;
+    }
+
+
+    public List<string> GetColumnByName(string columnName, string sheetName)
+    {
         FileInfo fileInfo = new FileInfo(filePath);
-        Debug.Log(fileInfo.Name);
+        List<string> result = new List<string>();
         using (ExcelPackage excelPackage = new ExcelPackage(fileInfo))
         {
-            Debug.Log(excelPackage.Workbook.Names);
-            //获取Excel的第一张表
-            ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets[1];
-            //获取第一行第一列的数据
-            for (int i = 1; i < 4; i++)
+            ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets[sheetName];
+            int column = 0;
+
+            for (int i = 1; i < worksheet.Dimension.Columns + 1; i++)
             {
-                Debug.Log(worksheet.Cells[i, 1].Value.ToString());
-                Debug.Log(worksheet.Cells[i, 2].Value.ToString());
-                Debug.Log(worksheet.Cells[i, 3].Value.ToString());
+                if (worksheet.Cells[1, i].Value.ToString() == columnName)
+                {
+                    column = i;
+                }
             }
-            //////写入数据
-            ////worksheet.Cells[1, 1].Value = "爸爸";
-            //MainUiWindow mainUiWindow = FindObjectOfType<MainUiWindow>();
-            ////从表格的第二行开始
-            //for (int i = 2; i < mainUiWindow.ItemDic.Count + 2; i++)
-            //{
-            //    //第一列为编号
-            //    worksheet.Cells[i, 1].Value = (i - 1).ToString();
-            //    Debug.Log(worksheet.Cells[i, 1].Value = (i - 1).ToString());
-            //    //第二列为队伍名称
-            //    worksheet.Cells[i, 2].Value = mainUiWindow.ItemDic[i - 1].TeamID;
-            //    //第三列为旗帜
-            //    worksheet.Cells[i, 3].Value = mainUiWindow.ItemDic[i - 1].DuoQiID;
-            //    //第四列为创建时间
-            //    worksheet.Cells[i, 4].Value = mainUiWindow.ItemDic[i - 1].CreatTime;
-            //}
-            ////保存数据
-            //excelPackage.Save();
+            for (int j = 2; j < worksheet.Dimension.Rows + 1; j++)
+            {
+                if (worksheet.Cells[j, column].Value != null)
+                {
+                    result.Add(worksheet.Cells[j, column].Value.ToString());
+                }
+                else
+                {
+                    result.Add("weiotyweiobnsdhqiotryuqwiou");
+                }
+            }
         }
+        return result;
     }
 }
