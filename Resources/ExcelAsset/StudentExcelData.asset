@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa750eb7ad1a49b42b87cfbdd5e7ced5, type: 3}
+  m_Name: StudentExcelData
+  m_EditorClassIdentifier: 
+  items:
+  - id: 1
+    accountNumber: 1
+    password: a
+    userType: Student
+  - id: 2
+    accountNumber: 2
+    password: b
+    userType: Student
+  - id: 3
+    accountNumber: 3
+    password: c
+    userType: Student
+  - id: 4
+    accountNumber: 4
+    password: d
+    userType: Student
+  - id: 5
+    accountNumber: 
+    password: 
+    userType: Student
+  - id: 6
+    accountNumber: 
+    password: 
+    userType: Student
+  - id: 7
+    accountNumber: 
+    password: 
+    userType: Student
+  - id: 8
+    accountNumber: 
+    password: 
+    userType: Student
+  - id: 9
+    accountNumber: 
+    password: 
+    userType: Student
+  - id: 10
+    accountNumber: 
+    password: 
+    userType: Student
+  - id: 11
+    accountNumber: 
+    password: 
+    userType: Student
+  - id: 12
+    accountNumber: 
+    password: 
+    userType: Student
+  - id: 13
+    accountNumber: 
+    password: 
+    userType: Student
+  - id: 14
+    accountNumber: 
+    password: 
+    userType: Student
+  - id: 15
+    accountNumber: 
+    password: 
+    userType: Student
+  - id: 16
+    accountNumber: 
+    password: 
+    userType: Student
