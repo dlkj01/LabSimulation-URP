@@ -253,25 +253,26 @@ namespace DLKJ
                 return;
             }
 
-            if (SceneManager.GetInstance().VerifyBasicLink())
-            {
-                Debug.Log("基础连接正确，请进行下一步实验");
-                SceneManager.GetInstance().UpdateItemMoveable(false);
-                SceneManager.GetInstance().currentLab.NextStep();
-                StepTips(SceneManager.GetInstance().currentLab.currentStep);
-            }
-            else
+            if (SceneManager.GetInstance().VerifyBasicLink() == false)
             {
                 Debug.Log("连接有误 请仔细检查，扣分");
                 SceneManager.GetInstance().currentLab.TriggerScore();
-
-
                 if (SceneManager.GetInstance().currentLab.currentStep.GetScore() <= 0)
                 {
                     //Debug.Log("分数扣没，直接给出正确答案");
                     //verifyButton.interactable = false;
                     //SceneManager.GetInstance().SetBasicItemsLink();
                 }
+            }
+            else
+            {
+                EventManager.OnTips(TipsType.Snackbar, "确定进行下一步操作", () => { FindObjectOfType<UITips>().OnDisTips(); }, () =>
+                {
+                    Debug.Log("基础连接正确，请进行下一步实验");
+                    SceneManager.GetInstance().UpdateItemMoveable(false);
+                    SceneManager.GetInstance().currentLab.NextStep();
+                    StepTips(SceneManager.GetInstance().currentLab.currentStep);
+                });
             }
         }
 

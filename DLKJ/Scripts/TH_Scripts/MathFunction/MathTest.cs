@@ -58,7 +58,7 @@ namespace DLKJ
         }
         private void Start()
         {
-            MathTool.A = UnityEngine.Random.Range(2f, 2000f);
+            MathTool.A = UnityEngine.Random.Range(2f, 1000f);
         }
 
         private void Update()
