@@ -14,6 +14,8 @@ namespace DLKJ
         public const string FIRST_EXPERIMENT_NAME = "二端口微波网络参量测量";
         public const string SECOND_EXPERIMENT_NAME = "负载阻抗测量";
         public const string THIRD_EXPERIMENT_NAME = "负载阻抗匹配和定向耦合器特性的测量";
+        public static UserData loginUserData;
+
         public static bool didExperiment = false;
         [SerializeField] Texture2D holdTexture;
         [SerializeField] Texture2D clickTexture;

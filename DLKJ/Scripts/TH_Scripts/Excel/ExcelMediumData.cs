@@ -31,7 +31,7 @@ public static class ExcelDataReader
 
     //Excel读取路径
     //public static string excelFilePath = Application.dataPath + "/Excel";
-    public static string excelFilePath = Application.dataPath.Replace("Assets", "Excel");
+    public static string excelFilePath = Application.dataPath + "/DLKJ/DOC/Excel";
 
     //自动生成C#类文件路径
     static string excelCodePath = Application.dataPath + "/DLKJ/Scripts/TH_Scripts/Excel/AutoCreateCSCode";

@@ -31,7 +31,24 @@ namespace DLKJ
         {
             if (nameInputField.text.Length > 0)
             {
-
+                int result = ExcelRead.GetInstance.Verify(nameInputField.text, codeInputField.text);
+                if (result == 0)
+                {
+                    errorInfoText.gameObject.SetActive(true);
+                    errorInfoText.text = "没有此用户";
+                }
+                else if (result == 1)
+                {
+                    errorInfoText.gameObject.SetActive(true);
+                    errorInfoText.text = "密码不正确";
+                }
+                else
+                {
+                    UIManager.GetInstance().ShowExperimentSelectedPanel();
+                    gameObject.SetActive(false);
+                    UserData data = ExcelRead.GetInstance.GetUserData(nameInputField.text);
+                    SceneManager.loginUserData = data;
+                }
             }
             else
             {
@@ -39,20 +56,6 @@ namespace DLKJ
                 errorInfoText.text = "请输入用户名";
                 return;
             }
-
-            if (codeInputField.text.Length > 0)
-            {
-
-            }
-            else
-            {
-                errorInfoText.gameObject.SetActive(true);
-                errorInfoText.text = "请输入用户密码";
-                return;
-            }
-
-            UIManager.GetInstance().ShowExperimentSelectedPanel();
-            gameObject.SetActive(false);
         }
 
         void ExitCallBack()
