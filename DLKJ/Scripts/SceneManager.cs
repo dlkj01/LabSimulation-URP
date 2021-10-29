@@ -5,6 +5,7 @@ using UnityEngine.AI;
 using System.Linq;
 using System.Collections;
 using static DLKJ.InstrumentAction;
+using static UnityEngine.UI.Image;
 
 namespace DLKJ
 {
@@ -75,6 +76,7 @@ namespace DLKJ
                     Link targetPort = targetItem.GetPortByPortsID(labItems[i].linkConditions[0].data.portsID);
                     selfPort.transform.SetParent(targetPort.transform);
                     selfPort.transform.localPosition = labItems[i].portDefaultPosition;
+                    selfPort.dragAble = false;
                     selfPort.transform.localRotation = Quaternion.Euler(labItems[i].portDefaultEuler);
                 }
 
@@ -130,6 +132,37 @@ namespace DLKJ
             }
         }
 
+        public void AutoConnectCurrentStep()
+        {
+            if (currentLab.currentStep.ID <= 0) return;
+            Debug.Log("实验步骤："+ currentLab.currentStep.ID);
+            if (currentLab.ID<2)
+            {
+                if (currentLab.currentStep.ID > 2)
+                {
+                    int basicLinkItemsSize = currentLab.steps[1].keyItems.Count;
+                    List<Item> stepItems = currentLab.currentStep.keyItems;
+                    for (int i = 0; i < stepItems.Count; i++)
+                    {
+                        Item item = GetLabItemByID(stepItems[i].ID);
+                        if (item.libraryType == LibraryType.Wires) continue;
+
+                        item.transform.position = new Vector3(currentLab.originPosition.x, currentLab.originPosition.y, currentLab.originPosition.z - currentLab.spacing * (basicLinkItemsSize + i + 1));
+
+                    }
+                    //OnLinkNext();
+                }
+                else
+                {
+                    SetBasicItemsLink();
+                }
+            }
+            else
+            {
+                //特殊的定向耦合连接
+            }
+        }
+
         public void SetBasicItemsLink()
         {
             List<Item> basicItems = currentLab.currentStep.keyItems;
@@ -137,7 +170,7 @@ namespace DLKJ
             for (int i = 0; i < basicItems.Count; i++)
             {
                 Item item = GetLabItemByID(basicItems[i].ID);
-
+                if (item.libraryType == LibraryType.Wires) continue;
                 if (item.ID == 11)//波导转同轴
                 {
                     origin = i;
@@ -167,6 +200,7 @@ namespace DLKJ
             }
             else
             {
+                Debug.Log("连接完成");
                 UpdateItemMoveable(false);
                 currentLab.NextStep();
                 UIManager.GetInstance().StepTips(currentLab.currentStep);
