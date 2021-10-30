@@ -150,12 +150,6 @@ MonoBehaviour:
       value: 0
       weight: 0
   - data:
-      itemID: 11
-      portsID: 1
-      correct: 1
-      value: 0
-      weight: 0
-  - data:
       itemID: 5
       portsID: 0
       correct: 1
