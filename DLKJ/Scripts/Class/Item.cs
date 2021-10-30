@@ -155,7 +155,7 @@ namespace DLKJ
                 Item targetItem = SceneManager.GetInstance().GetLabItemByID(linkConditions[i].data.itemID);
                 if (targetItem == null) break;
                 Link _targetPort = targetItem.GetPortByPortsID(linkConditions[i].data.portsID);
-                
+
                 if (libraryType == LibraryType.Wires)
                 {
                     //if (targetItem.itemName == "微波-波导Line")  //这两个地方的名字如果更换也要跟着换
@@ -245,7 +245,11 @@ namespace DLKJ
 
                 if (Input.GetKeyDown(KeyCode.R))
                 {
+
+                    eulers = transform.eulerAngles.y;
+
                     eulers += 90;
+
                     transform.eulerAngles = new Vector3(0, eulers, 0);
                     switch (directionType)
                     {

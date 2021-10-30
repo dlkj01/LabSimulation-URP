@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace DLKJ
 {
-  
+
 
     public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler, IDragHandler
     {
@@ -18,7 +18,6 @@ namespace DLKJ
         private int clickTimes = 0;
         private bool down = false;
         private bool drag = false;
-
 
         public void Initialized(Item item)
         {
@@ -34,12 +33,12 @@ namespace DLKJ
 
         public void OnPointerDown(PointerEventData data)
         {
-         
+
             clickTimes++;
             down = true;
             if (item.libraryType != LibraryType.Wires)
             {
-               // modelIcon.texture = item.renderTexture;
+                // modelIcon.texture = item.renderTexture;
                 modelIcon.texture = UIManager.GetInstance()._3dCamera._3DCamera.targetTexture;
             }
 

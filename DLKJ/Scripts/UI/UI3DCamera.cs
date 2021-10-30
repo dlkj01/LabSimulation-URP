@@ -7,7 +7,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
-
 namespace DLKJ
 {
     public class UI3DCamera : MonoBehaviour
@@ -37,7 +36,7 @@ namespace DLKJ
         private bool leftDown = false;
 
 
-        
+
 
         private void Start()
         {
@@ -50,6 +49,13 @@ namespace DLKJ
         private void OnEnable()
         {
             EventManager.OnScrollItemEvent += OnScrollItem;
+        }
+        public void InitDefaultPosition(float x, float y, float distance)
+        {
+            targetX = x;
+            targetY = ClampAngle(y, yMinLimit, yMaxLimit);
+            targetDistance = Mathf.Clamp(distance, minDistance, maxDistance); ;
+
         }
 
         private void OnDisable()
@@ -144,7 +150,7 @@ namespace DLKJ
             tex.Apply();
 
             byte[] bytes = tex.EncodeToPNG();
-           // File.WriteAllBytes(pngOutPath, tex.EncodeToPNG());
+            // File.WriteAllBytes(pngOutPath, tex.EncodeToPNG());
 
             FileStream file = File.Open(pngOutPath + "/" + "RenderTexture.renderTexture", FileMode.Create);
             var binary = new BinaryWriter(file);
@@ -153,8 +159,8 @@ namespace DLKJ
             binary.Close();
             file.Close();
 
-           // RenderTexture.active = oldRT;
-             //AssetDatabase.Refresh();
+            // RenderTexture.active = oldRT;
+            //AssetDatabase.Refresh();
         }
 
     }
