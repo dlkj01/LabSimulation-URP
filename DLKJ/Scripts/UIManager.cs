@@ -272,6 +272,7 @@ namespace DLKJ
                     SceneManager.GetInstance().UpdateItemMoveable(false);
                     SceneManager.GetInstance().currentLab.NextStep();
                     StepTips(SceneManager.GetInstance().currentLab.currentStep);
+                    FindObjectOfType<UITips>().OnDisTips();
                 });
             }
         }
