@@ -108,13 +108,13 @@ namespace DLKJ
             }
         }
 
-        public delegate void OnLinkNextHandler();
+        public delegate void OnLinkNextHandler(List<Item> needToConnect);
         public static event OnLinkNextHandler OnLinkNextEvent;
-        public static void OnLinkNext()
+        public static void OnLinkNext(List<Item> needToConnect)
         {
             if (OnLinkNextEvent != null)
             {
-                OnLinkNextEvent();
+                OnLinkNextEvent(needToConnect);
             }
         }
 
