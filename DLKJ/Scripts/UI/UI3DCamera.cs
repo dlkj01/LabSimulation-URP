@@ -115,14 +115,11 @@ namespace DLKJ
                 target.SetActive(true);
                 pivot = target.transform;
                 uIItem.modelIcon.texture = _3DCamera.targetTexture;
+                if (uIItem.nameText.text == "频选-三厘米线Line" || uIItem.nameText.text == "微波-波导Line")
+                {
+                    uIItem.modelIcon.texture = uIItem.item.icon;
+                }
 
-            }
-        }
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                OnStart();
             }
         }
         public void LateUpdate()

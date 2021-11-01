@@ -830,7 +830,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 17
   itemName: "\u9891\u9009-\u4E09\u5398\u7C73\u7EBFLine"
-  icon: {fileID: 2800000, guid: 8be1c99cf0197684ca27a5b1c68be6b3, type: 3}
+  icon: {fileID: 2800000, guid: 16292c74916f52244a984da9a55c508c, type: 3}
   renderTexture: {fileID: 8400000, guid: efcb58dfa215ba84bb1f15e6bc62ae27, type: 2}
   moveable: 0
   libraryType: 3

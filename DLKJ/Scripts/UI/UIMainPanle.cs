@@ -17,6 +17,7 @@ namespace DLKJ
         private bool isMoving;//正在移动？
         private bool isHide;//是否隐藏了
         RectTransform rectTF;
+        public GameObject AutoConnect;
         private void Awake()
         {
             rectTF = transform as RectTransform;
@@ -25,7 +26,21 @@ namespace DLKJ
                   MovePanle();
               };
         }
-
+        public void Init(UserType type)
+        {
+            switch (type)
+            {
+                case UserType.Null:
+                    break;
+                case UserType.Student:
+                    break;
+                case UserType.Teacher:
+                    AutoConnect.gameObject.SetActive(true);
+                    break;
+                default:
+                    break;
+            }
+        }
         public void MovePanle()
         {
             if (isMoving == true) return;

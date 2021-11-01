@@ -48,6 +48,7 @@ namespace DLKJ
                     gameObject.SetActive(false);
                     UserData data = ExcelRead.GetInstance.GetUserData(nameInputField.text);
                     SceneManager.loginUserData = data;
+                    UIManager.GetInstance().uiMainPanle.Init(data.userType);
                 }
             }
             else
