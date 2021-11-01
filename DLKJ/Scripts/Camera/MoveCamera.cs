@@ -27,6 +27,7 @@ namespace DLKJ
         private void Awake()
         {
             Application.targetFrameRate = 120;
+
         }
 
         public InstrumentButton CamRayCast()
@@ -97,7 +98,7 @@ namespace DLKJ
 
             RotationCamera();
             dirVector3 = Vector3.zero;
-            KeyBoardMove();
+            //     KeyBoardMove();
             //CameraLimit();
         }
         /// <summary>
@@ -130,45 +131,45 @@ namespace DLKJ
                 transform.position = new Vector3(transform.position.x, 3f, transform.position.z);
             }
         }
-        /// <summary>
-        ///WASDQE 键盘移动摄像头   
-        /// </summary>
-        private void KeyBoardMove()
-        {
-            dirVector3 = Vector3.zero;
-            if (Input.GetKey(KeyCode.W))
-            {
-                if (Input.GetKey(KeyCode.LeftShift)) dirVector3.z = lagerspeed;
-                else dirVector3.z = speed;
-            }
-            if (Input.GetKey(KeyCode.S))
-            {
-                if (Input.GetKey(KeyCode.LeftShift)) dirVector3.z = -lagerspeed;
-                else dirVector3.z = -speed;
-            }
-            if (Input.GetKey(KeyCode.A))
-            {
-                if (Input.GetKey(KeyCode.LeftShift)) dirVector3.x = -lagerspeed;
-                else dirVector3.x = -speed;
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                if (Input.GetKey(KeyCode.LeftShift)) dirVector3.x = lagerspeed;
-                else dirVector3.x = speed;
-            }
-            if (Input.GetKey(KeyCode.Q))
-            {
-                if (Input.GetKey(KeyCode.LeftShift)) dirVector3.y = -lagerspeed;
-                else dirVector3.y = -speed;
-            }
-            if (Input.GetKey(KeyCode.E))
-            {
-                if (Input.GetKey(KeyCode.LeftShift)) dirVector3.y = lagerspeed;
-                else dirVector3.y = speed;
-            }
-            transform.Translate(dirVector3 * Time.deltaTime, Space.Self);
-            transform.position = Vector3.ClampMagnitude(transform.position, 5);
-        }
+        ///// <summary>
+        /////WASDQE 键盘移动摄像头   
+        ///// </summary>
+        //private void KeyBoardMove()
+        //{
+        //    dirVector3 = Vector3.zero;
+        //    if (Input.GetKey(KeyCode.W))
+        //    {
+        //        if (Input.GetKey(KeyCode.LeftShift)) dirVector3.z = lagerspeed;
+        //        else dirVector3.z = speed;
+        //    }
+        //    if (Input.GetKey(KeyCode.S))
+        //    {
+        //        if (Input.GetKey(KeyCode.LeftShift)) dirVector3.z = -lagerspeed;
+        //        else dirVector3.z = -speed;
+        //    }
+        //    if (Input.GetKey(KeyCode.A))
+        //    {
+        //        if (Input.GetKey(KeyCode.LeftShift)) dirVector3.x = -lagerspeed;
+        //        else dirVector3.x = -speed;
+        //    }
+        //    if (Input.GetKey(KeyCode.D))
+        //    {
+        //        if (Input.GetKey(KeyCode.LeftShift)) dirVector3.x = lagerspeed;
+        //        else dirVector3.x = speed;
+        //    }
+        //    if (Input.GetKey(KeyCode.Q))
+        //    {
+        //        if (Input.GetKey(KeyCode.LeftShift)) dirVector3.y = -lagerspeed;
+        //        else dirVector3.y = -speed;
+        //    }
+        //    if (Input.GetKey(KeyCode.E))
+        //    {
+        //        if (Input.GetKey(KeyCode.LeftShift)) dirVector3.y = lagerspeed;
+        //        else dirVector3.y = speed;
+        //    }
+        //    transform.Translate(dirVector3 * Time.deltaTime, Space.Self);
+        //    transform.position = Vector3.ClampMagnitude(transform.position, 5);
+        //}
 
         /// <summary>
         /// 鼠标右键旋转摄像头
@@ -177,16 +178,15 @@ namespace DLKJ
         {
             if (Input.GetMouseButton(1))
             {
-                float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX;
                 rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
                 rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
                 if (rotationY == 0)
                 {
-                    transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, rotationX, transform.localEulerAngles.z);
+                    //transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, rotationX, transform.localEulerAngles.z);
                 }
                 else
                 {
-                    transform.localEulerAngles = new Vector3(-rotationY, rotationX, transform.localEulerAngles.z);
+                    transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, transform.localEulerAngles.z);
                 }
             }
         }
