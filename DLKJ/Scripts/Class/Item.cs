@@ -118,7 +118,7 @@ namespace DLKJ
 
             if (target.linkNextOne)
             {
-                EventManager.OnLinkNext();
+                EventManager.OnLinkNext(SceneManager.GetInstance().currentLab.currentStep.keyItems);
             }
         }
 
@@ -146,15 +146,28 @@ namespace DLKJ
             return false;
         }
 
-        public void AutoConnect()
+        public void AutoConnect(Condition targetCondition = null)
         {
             Vector3 targetPosition;
             for (int i = 0; i < linkConditions.Count; i++)
             {
+
                 if (!linkConditions[i].data.correct) continue;
                 Item targetItem = SceneManager.GetInstance().GetLabItemByID(linkConditions[i].data.itemID);
                 if (targetItem == null) break;
-                Link _targetPort = targetItem.GetPortByPortsID(linkConditions[i].data.portsID);
+
+
+                Link _targetPort;
+                if (targetCondition != null)
+                {
+                    if (targetCondition != linkConditions[i]) continue;
+                    _targetPort = targetItem.GetPortByPortsID(targetCondition.data.portsID);
+                }
+                else
+                {
+                    _targetPort = targetItem.GetPortByPortsID(linkConditions[i].data.portsID);
+                }
+
 
                 if (libraryType == LibraryType.Wires)
                 {
@@ -180,11 +193,12 @@ namespace DLKJ
                                 ports[a].transform.localPosition = Vector3.zero + _targetPort.offset;
                             }
                             linkPort = _targetPort;
+                            targetItem.linkPort = ports[a];
                             ports[a].transform.localRotation = Quaternion.Euler(targetItem.portDefaultEuler);
                             break;
                         }
                     }
-                    EventManager.OnLinkNext();
+                    EventManager.OnLinkNext(SceneManager.GetInstance().currentLab.currentStep.keyItems);
                 }
                 else
                 {
@@ -245,9 +259,7 @@ namespace DLKJ
 
                 if (Input.GetKeyDown(KeyCode.R))
                 {
-
                     eulers = transform.eulerAngles.y;
-
                     eulers += 90;
 
                     transform.eulerAngles = new Vector3(0, eulers, 0);

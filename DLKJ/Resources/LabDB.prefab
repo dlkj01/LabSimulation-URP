@@ -102,6 +102,12 @@ MonoBehaviour:
       valueType: 100
       completedState: 0
       keyItems:
+      - {fileID: 6160732753793878566, guid: 08bd461d317849348a7e283c0ea65675, type: 3}
+      - {fileID: 422642413207688284, guid: 2eebec1e05c8ddf47b202726a2e0d16e, type: 3}
+      - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
+      - {fileID: 1501026121586326834, guid: 3b26854f5e5bfc143bc00b3785ba3443, type: 3}
+      - {fileID: 3991816612479598473, guid: 2e3ee03a007b3f64ea48e50730084565, type: 3}
+      - {fileID: 1667232460207234984, guid: 9310f18920ad2bb44a272d15a8934fe5, type: 3}
       - {fileID: 8066662230590069131, guid: 9c121467226dbbe4aa1c978552fb3d6d, type: 3}
     - ID: 4
       nextStepCanMove: 1

@@ -6,6 +6,8 @@ using System.Linq;
 using System.Collections;
 using static DLKJ.InstrumentAction;
 using static UnityEngine.UI.Image;
+using static UnityEditor.Progress;
+using System.Drawing;
 
 namespace DLKJ
 {
@@ -134,10 +136,11 @@ namespace DLKJ
             }
         }
 
+        int size = 0;
         public void AutoConnectCurrentStep()
         {
             if (currentLab.currentStepIndex <= 0) return;
-            Debug.Log("实验步骤："+ currentLab.currentStepIndex);
+            Debug.Log("自动连接");
             if (currentLab.ID<2)
             {
                 if (currentLab.currentStepIndex > 1)
@@ -147,12 +150,15 @@ namespace DLKJ
                     for (int i = 0; i < stepItems.Count; i++)
                     {
                         Item item = GetLabItemByID(stepItems[i].ID);
-                        if (item.libraryType == LibraryType.Wires) continue;
+                        if (item.libraryType == LibraryType.Wires || item.linkPort != null) {
+                            size++;
+                            continue;
+                        } 
 
-                        item.transform.position = new Vector3(currentLab.originPosition.x, currentLab.originPosition.y, currentLab.originPosition.z - currentLab.spacing * (basicLinkItemsSize + i + 1));
+                        item.transform.position = new Vector3(currentLab.originPosition.x, currentLab.originPosition.y, currentLab.originPosition.z - currentLab.spacing * ( i - size + 1));
 
                     }
-                    //OnLinkNext();
+                    OnLinkNext(currentLab.currentStep.keyItems);
                 }
                 else
                 {
@@ -188,21 +194,43 @@ namespace DLKJ
                     }
                 }
             }
-            OnLinkNext();
+            OnLinkNext(basicItems);
         }
 
-        void OnLinkNext()
+        void OnLinkNext(List<Item> needToConnect)
         {
             originIndex++;
-            List<Item> basicItems = currentLab.currentStep.keyItems;
-            if (originIndex < basicItems.Count)
+            //List<Item> basicItems = currentLab.currentStep.keyItems;
+            if (originIndex < needToConnect.Count)
             {
-                Item nextItem = GetLabItemByID(basicItems[originIndex].ID);
-                nextItem.AutoConnect();
+                Item nextItem = GetLabItemByID(needToConnect[originIndex].ID);
+                if (nextItem.linkPort != null)
+                {
+                    OnLinkNext(currentLab.currentStep.keyItems);
+                    return;
+                }
+
+                Condition toConnectCondition = null;
+
+                if (originIndex > 0) {
+                    Item lastItem = GetLabItemByID(needToConnect[originIndex - 1].ID);
+                    for (int i = 0; i < nextItem.linkConditions.Count; i++)
+                    {
+                        if (nextItem.linkConditions[i].data.itemID == lastItem.ID)
+                        {
+                            toConnectCondition = nextItem.linkConditions[i];
+                            break;
+                        }
+                    }
+                }
+
+                nextItem.AutoConnect(toConnectCondition);
             }
             else
             {
                 Debug.Log("连接完成");
+                originIndex = -1;
+                size = 0;
                 UpdateItemMoveable(false);
                 currentLab.NextStep();
                 UIManager.GetInstance().StepTips(currentLab.currentStep);
