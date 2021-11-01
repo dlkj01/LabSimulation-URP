@@ -102,6 +102,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
+  linkedItem: {fileID: 0}
   ItemName: 
 --- !u!64 &4780794453303502783
 MeshCollider:
@@ -798,6 +799,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
+  linkedItem: {fileID: 0}
   ItemName: 
 --- !u!64 &3321663502292294271
 MeshCollider:

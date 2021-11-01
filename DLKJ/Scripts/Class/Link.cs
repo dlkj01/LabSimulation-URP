@@ -19,6 +19,7 @@ namespace DLKJ
         public Rigidbody blidingObject;
 
         private Item parent;
+        private Item linkedItem = null;
         private bool detecting = false;
         private Coroutine decectCoroutine = null;
         private Coroutine wireCoroutine = null;
@@ -39,6 +40,7 @@ namespace DLKJ
         }
 
         public Item ParentItem { get { return parent; } set { parent = value; } }
+        public Item LinkedItem { get { return linkedItem; } set { linkedItem = value; } }
 
         public void OnDrawGizmosSelected()
         {
@@ -118,7 +120,7 @@ namespace DLKJ
             TargetPort targetPort = new TargetPort();
             targetPort.targetPosition = targetPosition;
             targetPort.targetPort = target;
-            targetPort.selfPort = transform;
+            targetPort.selfPort = this;
             targetPort.selfParent = parent;
             switch (parent.directionType)
             {
@@ -243,7 +245,7 @@ namespace DLKJ
     {
         public Vector3 targetPosition;
         public Link targetPort;
-        public Transform selfPort;
+        public Link selfPort;
         public Item selfParent;
         public float distance;
         public float speed;

@@ -199,6 +199,8 @@ MonoBehaviour:
       - {fileID: 1501026121586326834, guid: 3b26854f5e5bfc143bc00b3785ba3443, type: 3}
       - {fileID: 3991816612479598473, guid: 2e3ee03a007b3f64ea48e50730084565, type: 3}
       - {fileID: 1667232460207234984, guid: 9310f18920ad2bb44a272d15a8934fe5, type: 3}
+      - {fileID: 6160732753793878566, guid: 08bd461d317849348a7e283c0ea65675, type: 3}
+      - {fileID: 422642413207688284, guid: 2eebec1e05c8ddf47b202726a2e0d16e, type: 3}
     - ID: 3
       nextStepCanMove: 1
       points: 20
@@ -207,6 +209,12 @@ MonoBehaviour:
       valueType: 100
       completedState: 0
       keyItems:
+      - {fileID: 6160732753793878566, guid: 08bd461d317849348a7e283c0ea65675, type: 3}
+      - {fileID: 422642413207688284, guid: 2eebec1e05c8ddf47b202726a2e0d16e, type: 3}
+      - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
+      - {fileID: 1501026121586326834, guid: 3b26854f5e5bfc143bc00b3785ba3443, type: 3}
+      - {fileID: 3991816612479598473, guid: 2e3ee03a007b3f64ea48e50730084565, type: 3}
+      - {fileID: 1667232460207234984, guid: 9310f18920ad2bb44a272d15a8934fe5, type: 3}
       - {fileID: 8066662230590069131, guid: 9c121467226dbbe4aa1c978552fb3d6d, type: 3}
     - ID: 4
       nextStepCanMove: 1
@@ -216,6 +224,12 @@ MonoBehaviour:
       valueType: 100
       completedState: 0
       keyItems:
+      - {fileID: 6160732753793878566, guid: 08bd461d317849348a7e283c0ea65675, type: 3}
+      - {fileID: 422642413207688284, guid: 2eebec1e05c8ddf47b202726a2e0d16e, type: 3}
+      - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
+      - {fileID: 1501026121586326834, guid: 3b26854f5e5bfc143bc00b3785ba3443, type: 3}
+      - {fileID: 3991816612479598473, guid: 2e3ee03a007b3f64ea48e50730084565, type: 3}
+      - {fileID: 1667232460207234984, guid: 9310f18920ad2bb44a272d15a8934fe5, type: 3}
       - {fileID: 4210527241192592495, guid: fbc33b357d60c894888967e6cf05f998, type: 3}
     - ID: 5
       nextStepCanMove: 1
@@ -225,6 +239,12 @@ MonoBehaviour:
       valueType: 100
       completedState: 0
       keyItems:
+      - {fileID: 6160732753793878566, guid: 08bd461d317849348a7e283c0ea65675, type: 3}
+      - {fileID: 422642413207688284, guid: 2eebec1e05c8ddf47b202726a2e0d16e, type: 3}
+      - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
+      - {fileID: 1501026121586326834, guid: 3b26854f5e5bfc143bc00b3785ba3443, type: 3}
+      - {fileID: 3991816612479598473, guid: 2e3ee03a007b3f64ea48e50730084565, type: 3}
+      - {fileID: 1667232460207234984, guid: 9310f18920ad2bb44a272d15a8934fe5, type: 3}
       - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
       - {fileID: 4210527241192592495, guid: fbc33b357d60c894888967e6cf05f998, type: 3}
     - ID: 6
@@ -235,6 +255,12 @@ MonoBehaviour:
       valueType: 100
       completedState: 0
       keyItems:
+      - {fileID: 6160732753793878566, guid: 08bd461d317849348a7e283c0ea65675, type: 3}
+      - {fileID: 422642413207688284, guid: 2eebec1e05c8ddf47b202726a2e0d16e, type: 3}
+      - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
+      - {fileID: 1501026121586326834, guid: 3b26854f5e5bfc143bc00b3785ba3443, type: 3}
+      - {fileID: 3991816612479598473, guid: 2e3ee03a007b3f64ea48e50730084565, type: 3}
+      - {fileID: 1667232460207234984, guid: 9310f18920ad2bb44a272d15a8934fe5, type: 3}
       - {fileID: 8066662230590069131, guid: 9c121467226dbbe4aa1c978552fb3d6d, type: 3}
     - ID: 7
       nextStepCanMove: 1
@@ -244,15 +270,27 @@ MonoBehaviour:
       valueType: 100
       completedState: 0
       keyItems:
+      - {fileID: 6160732753793878566, guid: 08bd461d317849348a7e283c0ea65675, type: 3}
+      - {fileID: 422642413207688284, guid: 2eebec1e05c8ddf47b202726a2e0d16e, type: 3}
+      - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
+      - {fileID: 1501026121586326834, guid: 3b26854f5e5bfc143bc00b3785ba3443, type: 3}
+      - {fileID: 3991816612479598473, guid: 2e3ee03a007b3f64ea48e50730084565, type: 3}
+      - {fileID: 1667232460207234984, guid: 9310f18920ad2bb44a272d15a8934fe5, type: 3}
       - {fileID: 4210527241192592495, guid: fbc33b357d60c894888967e6cf05f998, type: 3}
     - ID: 8
       nextStepCanMove: 1
-      points: 0
+      points: 10
       dropPoints: 0
       stepName: "\u8D1F\u8F7D\u963B\u6297\u5339\u914D(\u7B2C\u4E8C\u7EC4)"
       valueType: 100
       completedState: 0
       keyItems:
+      - {fileID: 6160732753793878566, guid: 08bd461d317849348a7e283c0ea65675, type: 3}
+      - {fileID: 422642413207688284, guid: 2eebec1e05c8ddf47b202726a2e0d16e, type: 3}
+      - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
+      - {fileID: 1501026121586326834, guid: 3b26854f5e5bfc143bc00b3785ba3443, type: 3}
+      - {fileID: 3991816612479598473, guid: 2e3ee03a007b3f64ea48e50730084565, type: 3}
+      - {fileID: 1667232460207234984, guid: 9310f18920ad2bb44a272d15a8934fe5, type: 3}
       - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
       - {fileID: 4210527241192592495, guid: fbc33b357d60c894888967e6cf05f998, type: 3}
     currentStepIndex: 0
@@ -309,21 +347,25 @@ MonoBehaviour:
       keyItems:
       - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
       - {fileID: 3961344040403204859, guid: ce751bace04a6ee49825c20acbe12fc2, type: 3}
+      - {fileID: 6160732753793878566, guid: 08bd461d317849348a7e283c0ea65675, type: 3}
+      - {fileID: 422642413207688284, guid: 2eebec1e05c8ddf47b202726a2e0d16e, type: 3}
     - ID: 3
       nextStepCanMove: 1
-      points: 0
+      points: 10
       dropPoints: -2
       stepName: "\u4E09\u7AEF\u53E3\u7535\u538B\u6D4B\u91CF"
       valueType: 100
       completedState: 0
       keyItems:
       - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
-      - {fileID: 3961344040403204859, guid: ce751bace04a6ee49825c20acbe12fc2, type: 3}
       - {fileID: 109652449371374668, guid: 2684e3842a58cac43a03981c7f4f7b44, type: 3}
+      - {fileID: 3961344040403204859, guid: ce751bace04a6ee49825c20acbe12fc2, type: 3}
       - {fileID: 6215187212563577928, guid: 37d9002f115cadc4183454e2c1a992ee, type: 3}
+      - {fileID: 6160732753793878566, guid: 08bd461d317849348a7e283c0ea65675, type: 3}
+      - {fileID: 422642413207688284, guid: 2eebec1e05c8ddf47b202726a2e0d16e, type: 3}
     currentStepIndex: 0
     currentStep:
-      ID: -1
+      ID: 1
       nextStepCanMove: 0
       points: 10
       dropPoints: -2

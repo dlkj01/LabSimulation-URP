@@ -198,6 +198,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
+  linkedItem: {fileID: 0}
   ItemName: 
 --- !u!64 &3756311381851415064
 MeshCollider:
@@ -765,6 +766,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
+  linkedItem: {fileID: 0}
   ItemName: 
 --- !u!1 &4094243220500764044
 GameObject:
@@ -1559,6 +1561,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
+  linkedItem: {fileID: 0}
   ItemName: 
 --- !u!1 &6802403798363858679
 GameObject:
@@ -2069,6 +2072,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
+  linkedItem: {fileID: 0}
   ItemName: 
 --- !u!64 &6178728787518737448
 MeshCollider:

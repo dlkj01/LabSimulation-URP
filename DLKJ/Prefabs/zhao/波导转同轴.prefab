@@ -116,6 +116,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
+  linkedItem: {fileID: 0}
   ItemName: 
 --- !u!1 &2889019413701942367
 GameObject:
@@ -177,12 +178,6 @@ MonoBehaviour:
   linkConditions:
   - data:
       itemID: 19
-      portsID: 0
-      correct: 0
-      value: 0
-      weight: 0
-  - data:
-      itemID: 20
       portsID: 0
       correct: 1
       value: 0
@@ -611,4 +606,5 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
+  linkedItem: {fileID: 0}
   ItemName: 

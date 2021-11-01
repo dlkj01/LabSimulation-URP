@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.RefAndLookup;
 using TMPro;
+using UnityEditorInternal.VersionControl;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using static UnityEngine.GraphicsBuffer;
@@ -85,7 +86,7 @@ namespace DLKJ
                     break;
                 case DirectionType.Vertical:
                     {
-                        transform.position = new Vector3(transform.position.x, target.selfPort.position.y, target.selfPort.position.z);
+                        transform.position = new Vector3(transform.position.x - 0.25f, target.targetPort.transform.position.y, target.targetPort.transform.position.z) ;
                     }
                     break;
                 default:
@@ -99,17 +100,18 @@ namespace DLKJ
         IEnumerator Move(TargetPort target)
         {
             BroadcastMessage("StopDetection", SendMessageOptions.RequireReceiver);
-            double reDistance = Vector3.Distance(target.selfPort.position, target.targetPort.transform.position);
+            double reDistance = Vector3.Distance(target.selfPort.transform.position, target.targetPort.transform.position);
 
             while (reDistance > target.distance)// 0.005243f
             {
-                reDistance = Vector3.Distance(target.selfPort.position, target.targetPort.transform.position);
+                reDistance = Vector3.Distance(target.selfPort.transform.position, target.targetPort.transform.position);
                 //transform.position = Vector3.Lerp(transform.position, target.targetPosition, Time.deltaTime * target.speed);
-                Vector3 moveVector = target.targetPort.transform.position - target.selfPort.position;
+                Vector3 moveVector = target.targetPort.transform.position - target.selfPort.transform.position;
                 transform.Translate(moveVector * 1 * Time.deltaTime, Space.World);
                 yield return new WaitForFixedUpdate();
             }
 
+            target.targetPort.LinkedItem = this;
             SetDragable(true);
             if (CorrectLink(target.targetPort))  //检查连接的是否是正确目标的端口
             {
@@ -118,6 +120,7 @@ namespace DLKJ
 
             if (target.linkNextOne)
             {
+               
                 EventManager.OnLinkNext(SceneManager.GetInstance().currentLab.currentStep.keyItems);
             }
         }
@@ -154,8 +157,7 @@ namespace DLKJ
 
                 if (!linkConditions[i].data.correct) continue;
                 Item targetItem = SceneManager.GetInstance().GetLabItemByID(linkConditions[i].data.itemID);
-                if (targetItem == null) break;
-
+                if (targetItem == null) continue;
 
                 Link _targetPort;
                 if (targetCondition != null)
@@ -168,17 +170,13 @@ namespace DLKJ
                     _targetPort = targetItem.GetPortByPortsID(linkConditions[i].data.portsID);
                 }
 
+                if (_targetPort.LinkedItem != null)
+                {
+                    _targetPort.LinkedItem.Revert();
+                }
 
                 if (libraryType == LibraryType.Wires)
                 {
-                    //if (targetItem.itemName == "微波-波导Line")  //这两个地方的名字如果更换也要跟着换
-                    //{
-
-                    //}
-                    //else if (targetItem.itemName == "频选-三厘米线Line")
-                    //{
-
-                    //}
                     for (int a = 0; a < ports.Count; a++)
                     {
                         if (ports[a].dragAble)
@@ -203,14 +201,44 @@ namespace DLKJ
                 else
                 {
                     targetPosition = _targetPort.transform.position - ports[0].transform.localPosition;
-                    TargetPort targetPort = new TargetPort();
+                     TargetPort targetPort = new TargetPort();
                     targetPort.targetPosition = targetPosition;
                     targetPort.targetPort = _targetPort;
-                    targetPort.selfPort = ports[0].transform;
-                    targetPort.distance = _targetPort.portCollider.bounds.size.z;
+                    targetPort.selfPort = ports[0];
+                    if (itemName == "晶体检波器")
+                    {
+                        if (SceneManager.GetInstance().currentLab.currentStepIndex == 2)
+                        {
+                            RotationY();
+                            targetPort.distance = _targetPort.portCollider.bounds.size.x;
+                        }
+                        else
+                        {
+                            targetPort.distance = _targetPort.portCollider.bounds.size.z;
+                        }
+                    }
+                    else
+                    {
+                        targetPort.distance = _targetPort.portCollider.bounds.size.z;
+                    }
+                   
                     targetPort.speed = _targetPort.moveSpeed;
                     targetPort.linkNextOne = true;
                     OnAttach(targetPort);
+                }
+            }
+        }
+
+        void Revert()
+        {
+            linkPort = null;
+            ItemDB itemDB = DBManager.GetInstance().GetDB<ItemDB>();
+            transform.position = itemDB.GetItemByID(ID).transform.position;
+            if (ports.Count>1)
+            {
+                if (ports[1].LinkedItem)
+                {
+                    ports[1].LinkedItem.Revert();
                 }
             }
         }
@@ -259,31 +287,36 @@ namespace DLKJ
 
                 if (Input.GetKeyDown(KeyCode.R))
                 {
-                    eulers = transform.eulerAngles.y;
-                    eulers += 90;
-
-                    transform.eulerAngles = new Vector3(0, eulers, 0);
-                    switch (directionType)
-                    {
-                        case DirectionType.Horizontal:
-                            {
-                                directionType = DirectionType.Vertical;
-                            }
-                            break;
-                        case DirectionType.Vertical:
-                            {
-                                directionType = DirectionType.Horizontal;
-                            }
-                            break;
-                        default:
-                            break;
-                    }
+                    RotationY();
                 }
 
                 if (Input.GetKeyDown(KeyCode.T))
                 {
                     transform.rotation = Quaternion.identity;
                 }
+            }
+        }
+
+        public void RotationY()
+        {
+            eulers = transform.eulerAngles.y;
+            eulers += 90;
+
+            transform.eulerAngles = new Vector3(0, eulers, 0);
+            switch (directionType)
+            {
+                case DirectionType.Horizontal:
+                    {
+                        directionType = DirectionType.Vertical;
+                    }
+                    break;
+                case DirectionType.Vertical:
+                    {
+                        directionType = DirectionType.Horizontal;
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 

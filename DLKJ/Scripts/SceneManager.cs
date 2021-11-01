@@ -8,6 +8,7 @@ using static DLKJ.InstrumentAction;
 using static UnityEngine.UI.Image;
 using static UnityEditor.Progress;
 using System.Drawing;
+using UnityEditor.MemoryProfiler;
 
 namespace DLKJ
 {
@@ -136,38 +137,51 @@ namespace DLKJ
             }
         }
 
-        int size = 0;
+        private bool connecting = false;
         public void AutoConnectCurrentStep()
         {
-            if (currentLab.currentStepIndex <= 0) return;
-            Debug.Log("自动连接");
-            if (currentLab.ID<2)
+            if (currentLab.currentStepIndex <= 0|| connecting) return;
+            Debug.Log("自动连接:"+ currentLab.currentStepIndex);
+
+            if (currentLab.currentStepIndex > 1)
             {
-                if (currentLab.currentStepIndex > 1)
+                int basicLinkItemsSize = currentLab.steps[1].keyItems.Count;
+                List<Item> stepItems = currentLab.currentStep.keyItems;
+                for (int i = 0; i < stepItems.Count; i++)
                 {
-                    int basicLinkItemsSize = currentLab.steps[1].keyItems.Count;
-                    List<Item> stepItems = currentLab.currentStep.keyItems;
-                    for (int i = 0; i < stepItems.Count; i++)
+                   
+                    Item item = GetLabItemByID(stepItems[i].ID);
+                    if (item.libraryType == LibraryType.Wires || item.linkPort != null) continue;
+
+                    if (stepItems[i].itemName == "晶体检波器")
                     {
-                        Item item = GetLabItemByID(stepItems[i].ID);
-                        if (item.libraryType == LibraryType.Wires || item.linkPort != null) {
-                            size++;
-                            continue;
-                        } 
-
-                        item.transform.position = new Vector3(currentLab.originPosition.x, currentLab.originPosition.y, currentLab.originPosition.z - currentLab.spacing * ( i - size + 1));
-
+                        if (currentLab.currentStepIndex == 2)
+                        {
+                            stepItems[i].RotationY();
+                        }
+                        else
+                        {
+                            int value = i - basicLinkItemsSize;
+                            if (value>1)
+                            {
+                                item.transform.position = new Vector3(currentLab.originPosition.x, currentLab.originPosition.y, currentLab.originPosition.z - currentLab.spacing * value);
+                            }
+                            else
+                            {
+                                item.transform.position = new Vector3(currentLab.originPosition.x, currentLab.originPosition.y, currentLab.originPosition.z - currentLab.spacing * 1.5f);
+                            }
+                        }
                     }
-                    OnLinkNext(currentLab.currentStep.keyItems);
+                    else
+                    {
+                        item.transform.position = new Vector3(currentLab.originPosition.x, currentLab.originPosition.y, currentLab.originPosition.z - currentLab.spacing * 1.5f);
+                    }
                 }
-                else
-                {
-                    SetBasicItemsLink();
-                }
+                 OnLinkNext(currentLab.currentStep.keyItems);
             }
             else
             {
-                //特殊的定向耦合连接
+                SetBasicItemsLink();
             }
         }
 
@@ -176,7 +190,7 @@ namespace DLKJ
             List<Item> basicItems = currentLab.currentStep.keyItems;
             int origin = 10000000;
             for (int i = 0; i < basicItems.Count; i++)
-            {
+            {         
                 Item item = GetLabItemByID(basicItems[i].ID);
                 if (item.libraryType == LibraryType.Wires) continue;
                 if (item.ID == 11)//波导转同轴
@@ -199,8 +213,9 @@ namespace DLKJ
 
         void OnLinkNext(List<Item> needToConnect)
         {
+            connecting = true;
             originIndex++;
-            //List<Item> basicItems = currentLab.currentStep.keyItems;
+
             if (originIndex < needToConnect.Count)
             {
                 Item nextItem = GetLabItemByID(needToConnect[originIndex].ID);
@@ -214,6 +229,7 @@ namespace DLKJ
 
                 if (originIndex > 0) {
                     Item lastItem = GetLabItemByID(needToConnect[originIndex - 1].ID);
+
                     for (int i = 0; i < nextItem.linkConditions.Count; i++)
                     {
                         if (nextItem.linkConditions[i].data.itemID == lastItem.ID)
@@ -230,7 +246,7 @@ namespace DLKJ
             {
                 Debug.Log("连接完成");
                 originIndex = -1;
-                size = 0;
+                connecting = false;
                 UpdateItemMoveable(false);
                 currentLab.NextStep();
                 UIManager.GetInstance().StepTips(currentLab.currentStep);
