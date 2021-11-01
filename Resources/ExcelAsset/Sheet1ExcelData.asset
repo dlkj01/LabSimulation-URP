@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b032e08ea3447c41aadc3c6c65ea64a, type: 3}
+  m_Name: Sheet1ExcelData
+  m_EditorClassIdentifier: 
+  items:
+  - id: "\u5FAE\u6CE2\u4FE1\u53F7\u6E90"
+    X: 90
+    Y: 0
+    Distance: 3
+  - id: "\u9009\u9891\u653E\u5927\u5668"
+    X: 90
+    Y: 0
+    Distance: 3
+  - id: "\u5339\u914D\u87BA\u9489"
+    X: 90
+    Y: 0
+    Distance: 1
+  - id: "\u5339\u914D\u8D1F\u8F7D"
+    X: 90
+    Y: 0
+    Distance: 1
+  - id: "\u53EF\u53D8\u77ED\u8DEF\u5668"
+    X: 90
+    Y: 0
+    Distance: 2
+  - id: "\u4E09\u5398\u7C73\u6D4B\u91CF\u7EBF"
+    X: 90
+    Y: 0
+    Distance: 2
+  - id: "\u4E8C\u7AEF\u53E3\u7F51\u7EDC"
+    X: 90
+    Y: 0
+    Distance: 1
+  - id: "\u53EF\u53D8\u8870\u51CF\u5668"
+    X: 90
+    Y: 0
+    Distance: 1
+  - id: "\u53EF\u53D8\u8D1F\u8F7D"
+    X: 90
+    Y: 0
+    Distance: 2
+  - id: "\u5B9A\u5411\u8026\u5408\u5668"
+    X: 90
+    Y: 42.25
+    Distance: 1
+  - id: "\u652F\u67B6"
+    X: 0
+    Y: 26
+    Distance: 1
+  - id: "\u6676\u4F53\u68C0\u6CE2\u5668"
+    X: 90
+    Y: 0
+    Distance: 1
+  - id: "\u6CE2\u5BFC\u8F6C\u540C\u8F74"
+    X: 90
+    Y: 0
+    Distance: 1
+  - id: "\u77ED\u8DEF\u7248"
+    X: 180
+    Y: 0
+    Distance: 1
+  - id: "\u9694\u79BB\u5668"
+    X: 90
+    Y: 0
+    Distance: 1

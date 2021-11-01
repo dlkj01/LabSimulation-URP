@@ -11,19 +11,25 @@ namespace DLKJ
     public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler, IDragHandler
     {
         public RawImage modelIcon;
-        [SerializeField] private Text nameText;
+        [SerializeField] public Text nameText;
         public Item item = null;
         public ViewType viewType;
 
         private int clickTimes = 0;
         private bool down = false;
         private bool drag = false;
-
+        CameraPosData currentCameraPos;
         public void Initialized(Item item)
         {
             this.item = item;
             nameText.text = item.itemName;
             modelIcon.texture = item.icon;
+            currentCameraPos = UI3DCamera.GetInstance.SetPosData(item.itemName);
+        }
+        public void OnStart()
+        {
+            UI3DCamera.GetInstance.InitDefaultPosition(currentCameraPos);
+            EventManager.OnScrollItem(this);
         }
 
         public void SetView(ViewType type)
@@ -33,7 +39,7 @@ namespace DLKJ
 
         public void OnPointerDown(PointerEventData data)
         {
-
+            UI3DCamera.GetInstance.currentSelectName = nameText.text;
             clickTimes++;
             down = true;
             if (item.libraryType != LibraryType.Wires)
@@ -53,11 +59,17 @@ namespace DLKJ
         {
             down = false;
             drag = false;
+            if (UI3DCamera.GetInstance.currentSelectName == nameText.text)
+            {
+                currentCameraPos = UI3DCamera.GetInstance.GetCurrentPos();
+            }
             EventManager.OnMouseEnterItem(null);
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
+            GetComponentInParent<ScrollRect>().vertical = false;
+            UI3DCamera.GetInstance.InitDefaultPosition(currentCameraPos);
             EventManager.OnScrollItem(this);
             // EventManager.OnMouseEnterItem(this.item);
         }
@@ -67,6 +79,8 @@ namespace DLKJ
             clickTimes = 0;
             down = false;
             drag = false;
+            currentCameraPos = UI3DCamera.GetInstance.GetCurrentPos();
+            GetComponentInParent<ScrollRect>().vertical = true;
             EventManager.OnScrollItem(null);
         }
 

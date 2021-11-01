@@ -43,7 +43,7 @@ namespace DLKJ
         private List<Item> equipmentItems;
         private List<Item> deviceItems;
         private List<Item> labItems = new List<Item>();
-        private List<UIItem> uIItems = new List<UIItem>();
+        [HideInInspector] public List<UIItem> uIItems = new List<UIItem>();
 
         private bool scoreChecking = true;
         private Lab currentLab;
@@ -77,25 +77,38 @@ namespace DLKJ
             deviceItems.AddRange(itemDB.GetItemsByLibraryType(LibraryType.Wires));
 
             RefreshEquipmentView();
-            for (int i = 0; i < equipmentItems.Count; i++)
-            {
-                UIItem uIItem = Instantiate(uiItemPrefab, e_content.transform) as UIItem;
-                uIItem.Initialized(equipmentItems[i]);
-                uIItem.SetView(ViewType.EquipmentView);
-                uIItems.Add(uIItem);
-            }
+            InitCameraView(equipmentItems, ViewType.EquipmentView, e_content);
+            //for (int i = 0; i < equipmentItems.Count; i++)
+            //{
+            //    UIItem uIItem = Instantiate(uiItemPrefab, e_content.transform) as UIItem;
+            //    uIItem.Initialized(equipmentItems[i]);
+            //    uIItem.SetView(ViewType.EquipmentView);
+            //    uIItems.Add(uIItem);
+            //}
             e_scrollbar.value = 0;
 
 
             RefreshDeviceView();
-            for (int i = 0; i < deviceItems.Count; i++)
+            InitCameraView(deviceItems, ViewType.DeviceView, d_content);
+            //for (int i = 0; i < deviceItems.Count; i++)
+            //{
+            //    UIItem uIItem = Instantiate(uiItemPrefab, d_content.transform) as UIItem;
+            //    uIItem.Initialized(deviceItems[i]);
+            //    uIItem.SetView(ViewType.DeviceView);
+            //    uIItems.Add(uIItem);
+            //}
+            d_scrollbar.value = 0;
+        }
+
+        void InitCameraView(List<Item> itemList, ViewType type, RectTransform parent)
+        {
+            for (int i = 0; i < itemList.Count; i++)
             {
-                UIItem uIItem = Instantiate(uiItemPrefab, d_content.transform) as UIItem;
-                uIItem.Initialized(deviceItems[i]);
-                uIItem.SetView(ViewType.DeviceView);
+                UIItem uIItem = Instantiate(uiItemPrefab, parent) as UIItem;
+                uIItem.Initialized(itemList[i]);
+                uIItem.SetView(type);
                 uIItems.Add(uIItem);
             }
-            d_scrollbar.value = 0;
         }
 
         void RefreshDeviceView()

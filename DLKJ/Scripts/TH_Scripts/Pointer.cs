@@ -16,7 +16,6 @@ namespace DLKJ
             {
                 group = item.GetComponent<InstrumentAction>().group;
             }
-            Debug.Log(group.gameObject.name);
         }
 
         public void SetAngle(float value)

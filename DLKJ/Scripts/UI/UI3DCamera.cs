@@ -7,10 +7,19 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
+using Common;
 namespace DLKJ
 {
-    public class UI3DCamera : MonoBehaviour
+    public struct CameraPosData
     {
+        public float X;
+        public float Y;
+        public float distance;
+    }
+    public class UI3DCamera : MonoSingleton<UI3DCamera>
+    {
+        public string currentSelectName;
+        public bool isInput = false;
         public Camera _3DCamera;
 
         public Vector3 pivotOffset = Vector3.zero;
@@ -23,8 +32,8 @@ namespace DLKJ
         public bool allowYTilt = true;
         public float yMinLimit = -90f;
         public float yMaxLimit = 90f;
-        private float x = 0.0f;
-        private float y = 0.0f;
+        [SerializeField] private float x = 0.0f;
+        [SerializeField] private float y = 0.0f;
         private float targetX = 0f;
         private float targetY = 0f;
         public float targetDistance = 0f;
@@ -36,26 +45,55 @@ namespace DLKJ
         private bool leftDown = false;
 
 
+        private Dictionary<string, CameraPosData> map = new Dictionary<string, CameraPosData>();
 
-
-        private void Start()
+        private void Awake()
         {
             var angles = transform.eulerAngles;
             targetX = x = angles.x;
             targetY = y = ClampAngle(angles.y, yMinLimit, yMaxLimit);
             targetDistance = distance;
+            Sheet1ExcelData data = ExcelManager.GetInstance.GetExcelData<Sheet1ExcelData, Sheet1ExcelItem>();
+            foreach (var item in data.items)
+                map.Add(item.id, new CameraPosData() { distance = item.Distance, X = item.X, Y = item.Y });
         }
-
+        public void OnStart()
+        {
+            UIItem[] uiItems = FindObjectOfType<UIEquipmentPanel>().uIItems.ToArray();
+            StartCoroutine(WaitForView(uiItems));
+        }
+        IEnumerator WaitForView(UIItem[] uiItems)
+        {
+            for (int i = 0; i < uiItems.Length; i++)
+            {
+                yield return new WaitForEndOfFrame();
+                uiItems[i].OnStart();
+            }
+        }
+        public CameraPosData GetCurrentPos()
+        {
+            return new CameraPosData()
+            {
+                distance = targetDistance,
+                X = targetX,
+                Y = targetY
+            };
+        }
+        public CameraPosData SetPosData(string deviceName)
+        {
+            if (map.ContainsKey(deviceName))
+                return map[deviceName];
+            return default;
+        }
+        public void InitDefaultPosition(CameraPosData pos)
+        {
+            targetX = x = pos.X;
+            targetY = y = ClampAngle(pos.Y, yMinLimit, yMaxLimit);
+            targetDistance = distance = Mathf.Clamp(pos.distance, minDistance, maxDistance);
+        }
         private void OnEnable()
         {
             EventManager.OnScrollItemEvent += OnScrollItem;
-        }
-        public void InitDefaultPosition(float x, float y, float distance)
-        {
-            targetX = x;
-            targetY = ClampAngle(y, yMinLimit, yMaxLimit);
-            targetDistance = Mathf.Clamp(distance, minDistance, maxDistance); ;
-
         }
 
         private void OnDisable()
@@ -77,13 +115,18 @@ namespace DLKJ
                 target.SetActive(true);
                 pivot = target.transform;
                 uIItem.modelIcon.texture = _3DCamera.targetTexture;
+
             }
         }
-
-
-        private void LateUpdate()
+        private void Update()
         {
-
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                OnStart();
+            }
+        }
+        public void LateUpdate()
+        {
             if (!pivot) return;
             var scroll = Input.GetAxis("Mouse ScrollWheel");
 
