@@ -6,59 +6,42 @@ public class CharacterInput : MonoBehaviour
 {
     private CharacterController character;
     public Camera rotateCamera;
-    private Vector3 dirVector3;
+    private float defaultSpeed;
     public float speed = 1f;
-    public float lagerspeed = 3f;
+    public float speedRatio = 3f;//ËÙ¶È±¶ÂÊ
     public float sensitivityX = 2F;
     private void Awake()
     {
         character = GetComponent<CharacterController>();
+        defaultSpeed = speed;
     }
-    // Update is called once per frame
+    Vector3 xDir;
+    Vector3 yDir;
+    Vector3 zDir;
+    float x;
+    float y;
     void Update()
     {
         Rotate();
-        dirVector3 = Vector3.zero;
-        if (Input.GetKey(KeyCode.W))
-        {
-            if (Input.GetKey(KeyCode.LeftShift)) dirVector3.z = lagerspeed;
-            else dirVector3.z = speed;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            if (Input.GetKey(KeyCode.LeftShift)) dirVector3.z = -lagerspeed;
-            else dirVector3.z = -speed;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            if (Input.GetKey(KeyCode.LeftShift)) dirVector3.x = -lagerspeed;
-            else dirVector3.x = -speed;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            if (Input.GetKey(KeyCode.LeftShift)) dirVector3.x = lagerspeed;
-            else dirVector3.x = speed;
-        }
-        if (Input.GetKey(KeyCode.Q))
-        {
-            if (Input.GetKey(KeyCode.LeftShift)) dirVector3.y = -lagerspeed;
-            else dirVector3.y = -speed;
-        }
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+            speed = speedRatio * speed;
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+            speed = defaultSpeed;
+        x = Input.GetAxis("Horizontal");
+        y = Input.GetAxis("Vertical");
+        xDir = transform.right * x * speed * Time.deltaTime;
+        zDir = rotateCamera.transform.forward * y * speed * Time.deltaTime;
+        yDir = Vector3.zero;
         if (Input.GetKey(KeyCode.E))
-        {
-            if (Input.GetKey(KeyCode.LeftShift)) dirVector3.y = lagerspeed;
-            else dirVector3.y = speed;
-        }
-        Move(transform.rotation * dirVector3 * Time.deltaTime);
+            yDir = Vector3.up * speed * Time.deltaTime;
+        if (Input.GetKey(KeyCode.Q))
+            yDir = Vector3.down * speed * Time.deltaTime;
+        Move(xDir + zDir + yDir);
     }
 
     private void Move(Vector3 dir)
     {
         character.Move(dir);
-    }
-    private void FixedUpdate()
-    {
-
     }
 
     private void Rotate()
