@@ -29,14 +29,14 @@ public class CharacterInput : MonoBehaviour
             speed = defaultSpeed;
         x = Input.GetAxis("Horizontal");
         y = Input.GetAxis("Vertical");
-        xDir = transform.right * x * speed * Time.deltaTime;
-        zDir = rotateCamera.transform.forward * y * speed * Time.deltaTime;
+        xDir = transform.right * x;
+        zDir = rotateCamera.transform.forward * y;
         yDir = Vector3.zero;
         if (Input.GetKey(KeyCode.E))
-            yDir = Vector3.up * speed * Time.deltaTime;
+            yDir = Vector3.up;
         if (Input.GetKey(KeyCode.Q))
-            yDir = Vector3.down * speed * Time.deltaTime;
-        Move(xDir + zDir + yDir);
+            yDir = Vector3.down;
+        Move((xDir + zDir + yDir) * speed * Time.deltaTime);
     }
 
     private void Move(Vector3 dir)
