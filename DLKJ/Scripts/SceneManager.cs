@@ -1,18 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-using UnityEngine.AI;
-using System.Linq;
-using System.Collections;
 using static DLKJ.InstrumentAction;
-using static UnityEngine.UI.Image;
-using static UnityEditor.Progress;
-using System.Drawing;
-using UnityEditor.MemoryProfiler;
 
 namespace DLKJ
 {
-
     public class SceneManager : MonoBehaviour
     {
         public const string FIRST_EXPERIMENT_NAME = "二端口微波网络参量测量";
