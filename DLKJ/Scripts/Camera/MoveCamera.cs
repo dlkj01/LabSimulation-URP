@@ -6,13 +6,13 @@ using UnityEngine;
 using static DLKJ.InstrumentAction;
 using System.Web;
 using static DLKJ.InstrumentAction.InstrumentButton;
-
+using DG.Tweening;
 namespace DLKJ
 {
 
     public class MoveCamera : MonoBehaviour
     {
-
+        private Camera m_camera;
         private Vector3 dirVector3;
         private float paramater = 0.5f;
         public float sensitivityX = 2F;
@@ -27,7 +27,7 @@ namespace DLKJ
         private void Awake()
         {
             Application.targetFrameRate = 120;
-
+            m_camera = GetComponent<Camera>();
         }
 
         public InstrumentButton CamRayCast()
@@ -60,8 +60,22 @@ namespace DLKJ
         private float currentTime;
         private float startHoldTime = 1f;
         private float startClickTime;
+        [SerializeField] private float minView;
+        [SerializeField] private float maxView;
+        private bool isLarge = true;
+        float viewResult;
         void Update()
         {
+            if (Input.GetMouseButtonDown(2))
+            {
+                isLarge = !isLarge;
+                m_camera.DOKill();
+                if (isLarge == false)
+                    m_camera.DOFieldOfView(minView, (m_camera.fieldOfView - minView) * Time.deltaTime);
+                else
+                    m_camera.DOFieldOfView(maxView, (maxView - m_camera.fieldOfView) * Time.deltaTime);
+            }
+
             if (Input.GetMouseButtonDown(0))
             {
                 if (CamRayCast() != null)
