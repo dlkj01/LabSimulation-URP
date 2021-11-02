@@ -31,7 +31,11 @@ namespace DLKJ
         {
             group = GetComponent<CanvasGroup>();
             selected.gameObject.SetActive(false);
-            if (button) button.onClick.AddListener(delegate { LabSelectedCallBack(); UI3DCamera.GetInstance.OnStart(); });
+            if (button) button.onClick.AddListener(delegate
+            {
+                LabSelectedCallBack(); UI3DCamera.GetInstance.OnStart();
+                button.interactable = false;
+            });
         }
 
 

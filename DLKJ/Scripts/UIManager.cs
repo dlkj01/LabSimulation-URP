@@ -147,9 +147,12 @@ namespace DLKJ
         {
             if (equipmentPanelPrefab && equipmentPanel == null)
             {
-                if (experimentSelectedPanel) DestroyImmediate(experimentSelectedPanel.gameObject);
-
+                if (experimentSelectedPanel)
+                {
+                    Destroy(experimentSelectedPanel.gameObject, 1f);
+                }
                 equipmentPanel = InstantiateObject(equipmentPanelPrefab);
+                equipmentPanel.transform.SetSiblingIndex(experimentSelectedPanel.transform.GetSiblingIndex() - 1);
                 equipmentPanel.Initialized(labID);
             }
             else
@@ -302,7 +305,6 @@ namespace DLKJ
                     Application.Quit();
                 });
             }
-
         }
 
         public void ShowVideoButton()
