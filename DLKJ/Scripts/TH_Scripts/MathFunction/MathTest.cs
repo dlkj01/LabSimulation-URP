@@ -198,7 +198,7 @@ namespace DLKJ
 
         public bool CheckValueIsInit()
         {
-            if (SceneManager.GetInstance().currentLab.labName == "负载阻抗匹配和定向耦合器特性的测量")
+            if (SceneManager.GetInstance().currentLab.labName == SceneManager.THIRD_EXPERIMENT_NAME)
             {
                 return mathInitValue.initF == true;
             }
