@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace DLKJ
 {
@@ -81,7 +82,7 @@ namespace DLKJ
                     break;
                 case DirectionType.Vertical:
                     {
-                        transform.position = new Vector3(transform.position.x - 0.25f, target.targetPort.transform.position.y, target.targetPort.transform.position.z) ;
+                        transform.position = new Vector3(transform.position.x - 0.25f, target.targetPort.transform.position.y, target.targetPort.transform.position.z);
                     }
                     break;
                 default:
@@ -115,7 +116,7 @@ namespace DLKJ
 
             if (target.linkNextOne)
             {
-               
+
                 EventManager.OnLinkNext(SceneManager.GetInstance().currentLab.currentStep.keyItems);
             }
         }
@@ -196,7 +197,7 @@ namespace DLKJ
                 else
                 {
                     targetPosition = _targetPort.transform.position - ports[0].transform.localPosition;
-                     TargetPort targetPort = new TargetPort();
+                    TargetPort targetPort = new TargetPort();
                     targetPort.targetPosition = targetPosition;
                     targetPort.targetPort = _targetPort;
                     targetPort.selfPort = ports[0];
@@ -216,7 +217,7 @@ namespace DLKJ
                     {
                         targetPort.distance = _targetPort.portCollider.bounds.size.z;
                     }
-                   
+
                     targetPort.speed = _targetPort.moveSpeed;
                     targetPort.linkNextOne = true;
                     OnAttach(targetPort);
@@ -229,7 +230,7 @@ namespace DLKJ
             linkPort = null;
             ItemDB itemDB = DBManager.GetInstance().GetDB<ItemDB>();
             transform.position = itemDB.GetItemByID(ID).transform.position;
-            if (ports.Count>1)
+            if (ports.Count > 1)
             {
                 if (ports[1].LinkedItem)
                 {
@@ -269,6 +270,8 @@ namespace DLKJ
         private float eulers = 0;
         public void OnMouseDrag()
         {
+            if (EventSystem.current.IsPointerOverGameObject() == true)
+                return;
             if (dragAble && moveable)
             {
                 if (!startDetection)

@@ -7,6 +7,7 @@ using static DLKJ.InstrumentAction;
 using System.Web;
 using static DLKJ.InstrumentAction.InstrumentButton;
 using DG.Tweening;
+using UnityEngine.EventSystems;
 namespace DLKJ
 {
 
@@ -32,6 +33,8 @@ namespace DLKJ
 
         public InstrumentButton CamRayCast()
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+                return null;
             Ray m_ray;
             RaycastHit m_hit;
             m_ray = Camera.main.ScreenPointToRay(Input.mousePosition);
