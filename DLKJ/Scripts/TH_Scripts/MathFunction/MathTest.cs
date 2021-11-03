@@ -10,12 +10,9 @@ namespace DLKJ
     public class MathTest : MonoBehaviour
     {
         public InitValue mathInitValue;
-        private void Awake()
-        {
-            mathInitValue = new InitValue();
-            MathTool.Reset();
-        }
+
         public bool isOpen { get; private set; }
+        public bool isFirstClick { get; private set; }
         private static MathTest instance;
         public static MathTest Instance
         {
@@ -26,8 +23,14 @@ namespace DLKJ
                 return instance;
             }
         }
+        private void Awake()
+        {
+            mathInitValue = new InitValue();
+            MathTool.Reset();
+        }
+        private void Start() => MathTool.A = UnityEngine.Random.Range(2f, 1000f);
 
-        [HideInInspector] public float randomAngle;
+        private void Update() => OnUpdate();
 
         /// <summary>
         /// 公示数据初始化
@@ -43,11 +46,9 @@ namespace DLKJ
                 InitA();
                 isFirstClick = true;
             }
-            //给电压自动设置一个随机值
-            //移除频选放大器按钮的监听
         }
-        public bool isFirstClick { get; private set; }
-        public void Active(bool state)
+
+        public void IsOpen(bool state)
         {
             isOpen = state;
         }
@@ -61,20 +62,6 @@ namespace DLKJ
             InstrumentAction instrumentAction = item.GetComponent<InstrumentAction>();
             instrumentAction.transform.Find("电压Text").GetComponent<TextMesh>().text = MathTool.A.ToString("#0.00");
         }
-        private void Start()
-        {
-            MathTool.A = UnityEngine.Random.Range(2f, 1000f);
-        }
-
-        private void Update()
-        {
-            OnUpdate();
-            //if (Input.GetKeyDown(KeyCode.Alpha1))
-            //{
-            //    MathTool.FixedCorrect1Calculate();
-            //}
-        }
-
 
         private void OnUpdate()
         {

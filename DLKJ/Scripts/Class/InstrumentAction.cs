@@ -173,7 +173,7 @@ namespace DLKJ
                                 if (SceneManager.GetInstance().CurrentStepVerify())
                                 {
                                     MathTest.Instance.FormulaInit();
-                                    MathTest.Instance.Active(true);
+                                    MathTest.Instance.IsOpen(true);
                                     for (int i = 0; i < powerMaterials.Count; i++)
                                     {
                                         powerMaterials[i].color = onColor;
@@ -186,7 +186,7 @@ namespace DLKJ
                                 {
                                     powerMaterials[i].color = offColor;
                                 }
-                                MathTest.Instance.Active(false);
+                                MathTest.Instance.IsOpen(false);
                                 if (pointer != null)
                                     pointer.SetAngle(0);
                             }

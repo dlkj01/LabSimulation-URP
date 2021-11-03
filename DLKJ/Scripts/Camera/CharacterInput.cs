@@ -27,8 +27,8 @@ public class CharacterInput : MonoBehaviour
             speed = speedRatio * speed;
         if (Input.GetKeyUp(KeyCode.LeftShift))
             speed = defaultSpeed;
-        x = Input.GetAxis("Horizontal");
-        y = Input.GetAxis("Vertical");
+        x = Input.GetAxisRaw("Horizontal");
+        y = Input.GetAxisRaw("Vertical");
         xDir = transform.right * x;
         zDir = rotateCamera.transform.forward * y;
         yDir = Vector3.zero;
