@@ -5,6 +5,8 @@ using OfficeOpenXml;
 using System.IO;
 using Common;
 using System;
+using DLKJ;
+
 public enum UserType
 {
     Null,
@@ -21,6 +23,7 @@ public class ExcelRead : MonoSingleton<ExcelRead>
 {
     private string filePath = Application.streamingAssetsPath + "/账号表格.xlsx";
     List<UserData> userDataList = new List<UserData>();
+
     private void Awake()
     {
         StudentExcelData studentData = ExcelManager.GetInstance.GetExcelData<StudentExcelData, StudentExcelItem>();

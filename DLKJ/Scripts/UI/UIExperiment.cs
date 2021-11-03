@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
+using Common;
 
 namespace DLKJ
 {
@@ -103,6 +103,8 @@ namespace DLKJ
         {
             lab.Initialized();
             UIManager.GetInstance().ShowEquipmentPanel(lab.ID);
+            ProxyManager.InitProxy();
+      
         }
 
     }
