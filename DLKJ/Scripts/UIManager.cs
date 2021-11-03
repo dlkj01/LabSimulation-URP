@@ -195,6 +195,7 @@ namespace DLKJ
                     SceneManager.GetInstance().currentLab.NextStep();
                     StepTips(SceneManager.GetInstance().currentLab.currentStep);
                     FindObjectOfType<UITips>().OnDisTips();
+                    uiMainPanle.autoConnect.Interactable(true);
                 });
             }
         }
@@ -202,7 +203,7 @@ namespace DLKJ
         /// <summary>
         /// 校验实验基本数据设置是否完成
         /// </summary>
-        private bool VerifyBackLinkIsComplete()
+        public bool VerifyBackLinkIsComplete()
         {
             string labName = SceneManager.GetInstance().currentLab.labName;
             int currentStep = SceneManager.GetInstance().currentLab.currentStepIndex;

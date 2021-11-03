@@ -133,6 +133,7 @@ namespace DLKJ
         {
             if (currentLab.currentStepIndex <= 0 || connecting) return;
             Debug.Log("自动连接:" + currentLab.currentStepIndex);
+            UIManager.GetInstance().uiMainPanle.autoConnect.Interactable(false);
 
             if (currentLab.currentStepIndex > 1)
             {
@@ -240,8 +241,8 @@ namespace DLKJ
                 originIndex = -1;
                 connecting = false;
                 UpdateItemMoveable(false);
-                currentLab.NextStep();
-                UIManager.GetInstance().StepTips(currentLab.currentStep);
+                //currentLab.NextStep();
+                //UIManager.GetInstance().StepTips(currentLab.currentStep);
             }
         }
 

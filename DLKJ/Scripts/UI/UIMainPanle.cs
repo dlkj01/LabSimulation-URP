@@ -17,7 +17,7 @@ namespace DLKJ
         private bool isMoving;//正在移动？
         private bool isHide;//是否隐藏了
         RectTransform rectTF;
-        public GameObject AutoConnect;
+        public UIButton autoConnect;
         private void Awake()
         {
             rectTF = transform as RectTransform;
@@ -35,7 +35,7 @@ namespace DLKJ
                 case UserType.Student:
                     break;
                 case UserType.Teacher:
-                    AutoConnect.gameObject.SetActive(true);
+                    autoConnect.gameObject.SetActive(true);
                     break;
                 default:
                     break;

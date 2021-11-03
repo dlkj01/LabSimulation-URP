@@ -1469,6 +1469,7 @@ MonoBehaviour:
   button: {fileID: 188493776}
   textNormalColor: {r: 0, g: 0, b: 0, a: 0}
   textHiglightColor: {r: 0, g: 0, b: 0, a: 0}
+  textInteractableColor: {r: 0, g: 0, b: 0, a: 0}
   buttonText: {fileID: 0}
 --- !u!1 &207658626
 GameObject:
@@ -1987,6 +1988,7 @@ GameObject:
   - component: {fileID: 313795399}
   - component: {fileID: 313795398}
   - component: {fileID: 313795397}
+  - component: {fileID: 313795400}
   m_Layer: 5
   m_Name: "\u81EA\u52A8\u8FDE\u63A5"
   m_TagString: Untagged
@@ -2039,7 +2041,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -2108,6 +2110,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 313795395}
   m_CullTransparentMesh: 1
+--- !u!114 &313795400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 313795395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a932d51730b23b549b26719bd713077d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normal: {fileID: 0}
+  highlight: {fileID: 0}
+  selected: {fileID: 0}
+  disable: {fileID: 0}
+  button: {fileID: 313795397}
+  textNormalColor: {r: 0, g: 0.8867924, b: 0.858862, a: 0}
+  textHiglightColor: {r: 0, g: 0.99607843, b: 0.9647059, a: 0}
+  textInteractableColor: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
+  buttonText: {fileID: 1468417132}
 --- !u!1 &322585033
 GameObject:
   m_ObjectHideFlags: 0
@@ -3137,6 +3160,7 @@ MonoBehaviour:
   button: {fileID: 0}
   textNormalColor: {r: 0, g: 0, b: 0, a: 0}
   textHiglightColor: {r: 0, g: 0, b: 0, a: 0}
+  textInteractableColor: {r: 0, g: 0, b: 0, a: 0}
   buttonText: {fileID: 0}
 --- !u!1 &464590899
 GameObject:
@@ -6959,6 +6983,7 @@ MonoBehaviour:
   button: {fileID: 1051795056}
   textNormalColor: {r: 0, g: 0, b: 0, a: 0}
   textHiglightColor: {r: 0, g: 0, b: 0, a: 0}
+  textInteractableColor: {r: 0, g: 0, b: 0, a: 0}
   buttonText: {fileID: 0}
 --- !u!1 &1073671907
 GameObject:
@@ -7923,6 +7948,7 @@ MonoBehaviour:
   button: {fileID: 0}
   textNormalColor: {r: 0, g: 0, b: 0, a: 0}
   textHiglightColor: {r: 0, g: 0, b: 0, a: 0}
+  textInteractableColor: {r: 0, g: 0, b: 0, a: 0}
   buttonText: {fileID: 0}
 --- !u!1 &1242938853
 GameObject:
@@ -8616,6 +8642,7 @@ MonoBehaviour:
   button: {fileID: 0}
   textNormalColor: {r: 0, g: 1, b: 0.96862745, a: 1}
   textHiglightColor: {r: 0, g: 0, b: 0, a: 1}
+  textInteractableColor: {r: 0, g: 0, b: 0, a: 0}
   buttonText: {fileID: 1613815252}
 --- !u!1 &1279801007
 GameObject:
@@ -9151,6 +9178,7 @@ MonoBehaviour:
   button: {fileID: 0}
   textNormalColor: {r: 0, g: 0, b: 0, a: 0}
   textHiglightColor: {r: 0, g: 0, b: 0, a: 0}
+  textInteractableColor: {r: 0, g: 0, b: 0, a: 0}
   buttonText: {fileID: 0}
 --- !u!1 &1374626881
 GameObject:
@@ -10353,7 +10381,7 @@ MonoBehaviour:
   targetX: -148
   arrow: {fileID: 658155347}
   controllerButton: {fileID: 658155351}
-  AutoConnect: {fileID: 313795395}
+  autoConnect: {fileID: 313795400}
 --- !u!1 &1507533137
 GameObject:
   m_ObjectHideFlags: 0
@@ -13068,7 +13096,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146cab3e293e3e0489803ef71e2e59c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomAngle: 0
 --- !u!4 &1819904870
 Transform:
   m_ObjectHideFlags: 0
@@ -13248,6 +13275,7 @@ MonoBehaviour:
   button: {fileID: 0}
   textNormalColor: {r: 0, g: 0, b: 0, a: 0}
   textHiglightColor: {r: 0, g: 0, b: 0, a: 0}
+  textInteractableColor: {r: 0, g: 0, b: 0, a: 0}
   buttonText: {fileID: 0}
 --- !u!1 &1840985367
 GameObject:
@@ -14253,6 +14281,7 @@ MonoBehaviour:
   button: {fileID: 0}
   textNormalColor: {r: 0, g: 0, b: 0, a: 0}
   textHiglightColor: {r: 0, g: 0, b: 0, a: 0}
+  textInteractableColor: {r: 0, g: 0, b: 0, a: 0}
   buttonText: {fileID: 0}
 --- !u!1 &2030361076
 GameObject:

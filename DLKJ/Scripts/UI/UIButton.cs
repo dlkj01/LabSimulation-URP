@@ -12,10 +12,11 @@ namespace DLKJ
         [SerializeField] Sprite highlight;
         [SerializeField] Sprite selected;
         [SerializeField] Sprite disable;
-        [SerializeField] Button button;
+        [SerializeField] public Button button;
 
         public Color textNormalColor;
         public Color textHiglightColor;
+        public Color textInteractableColor;
         public Text buttonText;
         void Awake()
         {
@@ -27,14 +28,14 @@ namespace DLKJ
         {
             if (highlight) button.image.sprite = highlight;
             if (buttonText != null)
-                buttonText.color = textHiglightColor;
+               if(button.interactable) buttonText.color = textHiglightColor;
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
             if (normal) button.image.sprite = normal;
             if (buttonText != null)
-                buttonText.color = textNormalColor;
+                if (button.interactable) buttonText.color = textNormalColor;
         }
 
         public void OnPointerClick(PointerEventData eventData)
@@ -42,6 +43,19 @@ namespace DLKJ
             if (selected) button.image.sprite = selected;
         }
 
+
+        public void Interactable(bool state)
+        {
+            button.interactable = state;
+            if (state)
+            {
+                buttonText.color = textNormalColor;
+            }
+            else
+            {
+                buttonText.color = textInteractableColor;
+            }
+        }
 
     }
 }

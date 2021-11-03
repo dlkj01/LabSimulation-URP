@@ -195,7 +195,7 @@ namespace DLKJ
                     if (basic.libraryType == LibraryType.Wires) continue;
                     if (basic.linkPort == null)
                     {
-                        Debug.Log("没连上的器件："+ basic.itemName);
+                        //Debug.Log("没连上的器件："+ basic.itemName);
                         completed = false;
                         return completed;
                     }
