@@ -36,11 +36,11 @@ namespace DLKJ
         {
             if (isFirstClick == false)
             {
-                MathTool.Init();
-                InitA();
                 GetDevice();
                 SceneManager.GetInstance().GetInstrumentButton("选频放大器", "RotaryBtnVoltage").RemoveListener();
                 SceneManager.GetInstance().GetInstrumentButton("选频放大器", "RotaryBtnVoltage").SetInteractiveState(false);
+                MathTool.Init();
+                InitA();
                 isFirstClick = true;
             }
             //给电压自动设置一个随机值
