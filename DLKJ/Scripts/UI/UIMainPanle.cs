@@ -142,18 +142,22 @@ namespace DLKJ
                    UIManager.GetInstance().UILabButton.uiLabReport.SaveData();
                    //做过实验标记为True
                    SceneManager.didExperiment = true;
-                   switch (SceneManager.GetInstance().currentLab.labName)
-                   {
-                       case "负载阻抗测量":
-
-                           break;
-                       default:
-                           break;
-                   }
-
                    //返回选择实验场景
                    UnityEngine.SceneManagement.SceneManager.LoadScene("Level1");
                });
+        }
+
+        /// <summary>
+        /// 重新开始实验
+        /// </summary>
+        public void RestartTest()
+        {
+            EventManager.OnTips(TipsType.Snackbar, "重新开始", () => { FindObjectOfType<UITips>().OnDisTips(); },
+             () =>
+             {
+                 SceneManager.didExperiment = true;
+                 UnityEngine.SceneManagement.SceneManager.LoadScene("Level1");
+             });
         }
     }
 }
