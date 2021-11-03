@@ -2127,8 +2127,8 @@ MonoBehaviour:
   selected: {fileID: 0}
   disable: {fileID: 0}
   button: {fileID: 313795397}
-  textNormalColor: {r: 0, g: 0.8867924, b: 0.858862, a: 0}
-  textHiglightColor: {r: 0, g: 0.99607843, b: 0.9647059, a: 0}
+  textNormalColor: {r: 0, g: 0.8867924, b: 0.858862, a: 1}
+  textHiglightColor: {r: 0, g: 0.99607843, b: 0.9647059, a: 1}
   textInteractableColor: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
   buttonText: {fileID: 1468417132}
 --- !u!1 &322585033
