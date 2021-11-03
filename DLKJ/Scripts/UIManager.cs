@@ -62,42 +62,20 @@ namespace DLKJ
             videoShowButton.onClick.AddListener(delegate { ShowVideoButton(); });
             startEquipmentButton.onClick.AddListener(() =>
             {
-                EventManager.OnTips(TipsType.Snackbar, "电压、衰减器、频率设置后不可更改", () => { FindObjectOfType<UITips>().OnDisTips(); }, () =>
-                    {
-                        startEquipment = true;
-                        startEquipmentButton.gameObject.SetActive(false);
-                        if (SceneManager.GetInstance().GetInstrumentButton("选频放大器", "RotaryBtnVoltage") != null)
-                        {
-                            SceneManager.GetInstance().GetInstrumentButton("选频放大器", "RotaryBtnVoltage").RemoveListener();
-                            SceneManager.GetInstance().GetInstrumentButton("选频放大器", "RotaryBtnVoltage").SetInteractiveState(false);
-                        }
-                        if (SceneManager.GetInstance().GetInstrumentButton("可变衰减器", "Kebianshaijianqi") != null)
-                        {
-                            SceneManager.GetInstance().GetInstrumentButton("可变衰减器", "Kebianshaijianqi").RemoveListener();
-                            SceneManager.GetInstance().GetInstrumentButton("可变衰减器", "Kebianshaijianqi").SetInteractiveState(false);
-                        }
-                        if (SceneManager.GetInstance().GetInstrumentButton("微波信号源", "FrequencyBtn") != null)
-                        {
-                            SceneManager.GetInstance().GetInstrumentButton("微波信号源", "FrequencyBtn").RemoveListener();
-                            SceneManager.GetInstance().GetInstrumentButton("微波信号源", "FrequencyBtn").SetInteractiveState(false);
-                        }
-                        FindObjectOfType<UITips>().OnDisTips();
-                        MathTool.Init();
-                        switch (SceneManager.GetInstance().currentLab.labName)
-                        {
-                            case SceneManager.FIRST_EXPERIMENT_NAME:
-                                MathTool.FixedCorrect1Calculate();
-                                break;
-                            case SceneManager.SECOND_EXPERIMENT_NAME:
-                                MathTool.FixedCorrect2FirstGroupCalculate();
-                                break;
-                            case SceneManager.THIRD_EXPERIMENT_NAME:
-                                MathTool.FixedCorrect3Calculate();
-                                break;
-                            default:
-                                break;
-                        }
+                string tipString = "电压、衰减器、频率设置后不可更改";
+                switch (SceneManager.GetInstance().currentLab.labName)
+                {
+                    case SceneManager.THIRD_EXPERIMENT_NAME:
+                        tipString = "电压、频率设置后不可更改";
+                        break;
+                    default:
+                        break;
+                }
 
+                EventManager.OnTips(TipsType.Snackbar, tipString, () => { FindObjectOfType<UITips>().OnDisTips(); }, () =>
+                    {
+                        SetFixDataCallBack();
+                        FindObjectOfType<UITips>().OnDisTips();
                     });
             });
         }
@@ -193,68 +171,9 @@ namespace DLKJ
 
         public void VerifyBasicLink()
         {
-            string labName = SceneManager.GetInstance().currentLab.labName;
-            int currentStep = SceneManager.GetInstance().currentLab.currentStepIndex;
-            if (labName == SceneManager.FIRST_EXPERIMENT_NAME || labName == SceneManager.SECOND_EXPERIMENT_NAME)
-            {
-                if (startEquipment == false)
-                {
-                    if (currentStep == 2)
-                    {
-                        if (SceneManager.GetInstance().VerifyBasicLink() == false)
-                        {
-                            EventManager.OnTips(TipsType.Toast, "请检查设备连接");
-                        }
-                        else
-                        {
-                            EventManager.OnTips(TipsType.Toast, "请完成实验基本数据设置");
-                        }
-                        return;
-                    }
-                }
-            }
-
-            if (labName == SceneManager.SECOND_EXPERIMENT_NAME)
-            {
-                if (currentStep == 4)
-                {
-                    EventManager.OnTips(TipsType.Snackbar, "是否开始第二组实验", () => { FindObjectOfType<UITips>().OnDisTips(); }, () =>
-                       {
-                           Debug.Log("刷新设备,重新给一组随机值");
-                           //下一步
-                           SceneManager.GetInstance().UpdateItemMoveable(false);
-                           SceneManager.GetInstance().currentLab.NextStep();
-                           StepTips(SceneManager.GetInstance().currentLab.currentStep);
-                           FindObjectOfType<UITips>().OnDisTips();
-                           //记录第一组数据到word表格
-                           UILabReport2 report2 = UILabButton.uiLabReport as UILabReport2;
-                           report2.WriteInputText();
-                           //数据初始化
-                           MathTool.Init();
-                           //计算第二组数据正确答案
-                           MathTool.FixedCorrect2SecondGroupCalculate();
-                       });
-                    return;
-                }
-            }
-
-            if (labName == SceneManager.THIRD_EXPERIMENT_NAME)
-            {
-                if (startEquipment == false)
-                {
-                    if (currentStep == 1)
-                    {
-                        EventManager.OnTips(TipsType.Toast, "请完成实验基本数据设置");
-                        return;
-                    }
-                }
-            }
-
-            if (SceneManager.GetInstance().currentLab.currentStepIndex >= SceneManager.GetInstance().currentLab.steps.Count - 1)
-            {
-                EventManager.OnTips(TipsType.Toast, "实验完成,请提交实验报告");
+            //是否可以检查连接完成状态的前提条件,为true才可以继续
+            if (!VerifyBackLinkIsComplete())
                 return;
-            }
 
             if (SceneManager.GetInstance().VerifyBasicLink() == false)
             {
@@ -277,6 +196,120 @@ namespace DLKJ
                     StepTips(SceneManager.GetInstance().currentLab.currentStep);
                     FindObjectOfType<UITips>().OnDisTips();
                 });
+            }
+        }
+
+        /// <summary>
+        /// 校验实验基本数据设置是否完成
+        /// </summary>
+        private bool VerifyBackLinkIsComplete()
+        {
+            string labName = SceneManager.GetInstance().currentLab.labName;
+            int currentStep = SceneManager.GetInstance().currentLab.currentStepIndex;
+            if (labName == SceneManager.FIRST_EXPERIMENT_NAME || labName == SceneManager.SECOND_EXPERIMENT_NAME)
+            {
+                if (currentStep == 2)
+                {
+                    if (startEquipment == false)
+                    {
+                        if (SceneManager.GetInstance().VerifyBasicLink() == false)
+                        {
+                            EventManager.OnTips(TipsType.Toast, "请检查设备连接");
+                        }
+                        else
+                        {
+                            EventManager.OnTips(TipsType.Toast, "请完成实验基本数据设置");
+                        }
+                        return false;
+                    }
+                }
+            }
+
+            if (labName == SceneManager.SECOND_EXPERIMENT_NAME)
+            {
+                if (currentStep == 4)
+                {
+                    EventManager.OnTips(TipsType.Snackbar, "是否开始第二组实验", () => { FindObjectOfType<UITips>().OnDisTips(); }, () =>
+                    {
+                        Debug.Log("刷新设备,重新给一组随机值");
+                        //下一步
+                        SceneManager.GetInstance().UpdateItemMoveable(false);
+                        SceneManager.GetInstance().currentLab.NextStep();
+                        StepTips(SceneManager.GetInstance().currentLab.currentStep);
+                        FindObjectOfType<UITips>().OnDisTips();
+                        //记录第一组数据到word表格
+                        UILabReport2 report2 = UILabButton.uiLabReport as UILabReport2;
+                        report2.WriteInputText();
+                        //数据初始化
+                        MathTool.Init();
+                        //计算第二组数据正确答案
+                        MathTool.FixedCorrect2SecondGroupCalculate();
+                    });
+                    return false;
+                }
+            }
+            if (labName == SceneManager.THIRD_EXPERIMENT_NAME)
+            {
+                if (startEquipment == false)
+                {
+                    if (currentStep == 1)
+                    {
+                        if (SceneManager.GetInstance().VerifyBasicLink() == false)
+                        {
+                            EventManager.OnTips(TipsType.Toast, "请检查设备连接");
+                        }
+                        else
+                        {
+                            EventManager.OnTips(TipsType.Toast, "请完成实验基本数据设置");
+                        }
+                        return false;
+                    }
+                }
+            }
+
+            if (SceneManager.GetInstance().currentLab.currentStepIndex >= SceneManager.GetInstance().currentLab.steps.Count - 1)
+            {
+                EventManager.OnTips(TipsType.Toast, "实验完成,请提交实验报告");
+                return false;
+            }
+            return true;
+        }
+        /// <summary>
+        /// 设置完成基本数据回调
+        /// </summary>
+        private void SetFixDataCallBack()
+        {
+            startEquipment = true;
+            startEquipmentButton.gameObject.SetActive(false);
+            if (SceneManager.GetInstance().GetInstrumentButton("选频放大器", "RotaryBtnVoltage") != null)
+            {
+                SceneManager.GetInstance().GetInstrumentButton("选频放大器", "RotaryBtnVoltage").RemoveListener();
+                SceneManager.GetInstance().GetInstrumentButton("选频放大器", "RotaryBtnVoltage").SetInteractiveState(false);
+            }
+            if (SceneManager.GetInstance().GetInstrumentButton("可变衰减器", "Kebianshaijianqi") != null)
+            {
+                SceneManager.GetInstance().GetInstrumentButton("可变衰减器", "Kebianshaijianqi").RemoveListener();
+                SceneManager.GetInstance().GetInstrumentButton("可变衰减器", "Kebianshaijianqi").SetInteractiveState(false);
+            }
+            if (SceneManager.GetInstance().GetInstrumentButton("微波信号源", "FrequencyBtn") != null)
+            {
+                SceneManager.GetInstance().GetInstrumentButton("微波信号源", "FrequencyBtn").RemoveListener();
+                SceneManager.GetInstance().GetInstrumentButton("微波信号源", "FrequencyBtn").SetInteractiveState(false);
+            }
+            MathTool.Init();
+            switch (SceneManager.GetInstance().currentLab.labName)
+            {
+                case SceneManager.FIRST_EXPERIMENT_NAME:
+                    MathTool.FixedCorrect1Calculate();
+                    break;
+                case SceneManager.SECOND_EXPERIMENT_NAME:
+                    MathTool.FixedCorrect2FirstGroupCalculate();
+                    break;
+                case SceneManager.THIRD_EXPERIMENT_NAME:
+                    MathTool.FixedCorrect3Calculate();
+                    break;
+                default:
+                    break;
             }
         }
 
