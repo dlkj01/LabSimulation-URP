@@ -173,6 +173,7 @@ namespace DLKJ
                                 if (SceneManager.GetInstance().CurrentStepVerify())
                                 {
                                     MathTest.Instance.FormulaInit();
+                                    MathTest.Instance.Active(true);
                                     for (int i = 0; i < powerMaterials.Count; i++)
                                     {
                                         powerMaterials[i].color = onColor;
@@ -197,7 +198,7 @@ namespace DLKJ
                     case "VoltageBtn":
                         break;
                     case "FrequencyBtn":
-                        if (MathTest.Instance.isInit == false) return;
+                        if (MathTest.Instance.isOpen == false) return;
                         //给频率赋值
                         MathTool.F = MathUtility.GetCurrentValue(tempInstrumentBtn);
                         MathTest.Instance.mathInitValue.initF = true;
@@ -249,7 +250,7 @@ namespace DLKJ
                         }
                         break;
                     case "RotaryBtnVoltage":
-                        if (MathTest.Instance.isInit == false)
+                        if (MathTest.Instance.isOpen == false)
                             return;
                         //给电压赋值
                         //   MathTool.A = MathUtility.GetCurrentValue(tempInstrumentBtn);

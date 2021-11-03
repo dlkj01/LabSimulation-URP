@@ -13,8 +13,9 @@ namespace DLKJ
         private void Awake()
         {
             mathInitValue = new InitValue();
+            MathTool.Reset();
         }
-        public bool isInit { get; private set; }
+        public bool isOpen { get; private set; }
         private static MathTest instance;
         public static MathTest Instance
         {
@@ -33,18 +34,22 @@ namespace DLKJ
         /// </summary>
         public void FormulaInit()
         {
-            MathTool.Init();
-            GetDevice();
-            Active(true);
+            if (isFirstClick == false)
+            {
+                MathTool.Init();
+                InitA();
+                GetDevice();
+                SceneManager.GetInstance().GetInstrumentButton("选频放大器", "RotaryBtnVoltage").RemoveListener();
+                SceneManager.GetInstance().GetInstrumentButton("选频放大器", "RotaryBtnVoltage").SetInteractiveState(false);
+                isFirstClick = true;
+            }
             //给电压自动设置一个随机值
-            InitA();
             //移除频选放大器按钮的监听
-            SceneManager.GetInstance().GetInstrumentButton("选频放大器", "RotaryBtnVoltage").RemoveListener();
-            SceneManager.GetInstance().GetInstrumentButton("选频放大器", "RotaryBtnVoltage").SetInteractiveState(false);
         }
+        public bool isFirstClick { get; private set; }
         public void Active(bool state)
         {
-            isInit = state;
+            isOpen = state;
         }
         /// <summary>
         /// 初始化电压
@@ -73,7 +78,7 @@ namespace DLKJ
 
         private void OnUpdate()
         {
-            if (isInit == false) return;
+            if (isOpen == false) return;
             if (!SceneManager.GetInstance().VerifyBasicLink())
             {
                 instrumentActionPinXuan.pointer.SetAngle(0);

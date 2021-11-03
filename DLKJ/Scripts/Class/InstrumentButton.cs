@@ -104,7 +104,7 @@ namespace DLKJ
                         break;
                     case InstrumentButtonType.Rotary:
                         if (instrumentButton.name == "FrequencyBtn" || instrumentButton.name == "RotaryBtnVoltage")
-                            if (MathTest.Instance.isInit == false) return;
+                            if (MathTest.Instance.isOpen == false) return;
                         if (Input.GetKey(KeyCode.LeftControl))
                         {
                             if (Mathf.Approximately(currentAngle, StartAngle) || currentAngle - 0.001f <= StartAngle)
@@ -180,7 +180,7 @@ namespace DLKJ
                         break;
                     case InstrumentButtonType.Rotary:
                         if (instrumentButton.name == "FrequencyBtn" || instrumentButton.name == "RotaryBtnVoltage")
-                            if (MathTest.Instance.isInit == false) return;
+                            if (MathTest.Instance.isOpen == false) return;
                         if (Input.GetKey(KeyCode.LeftControl))
                         {
                             if (Mathf.Approximately(currentAngle, StartAngle) || currentAngle - 0.001f <= StartAngle)
