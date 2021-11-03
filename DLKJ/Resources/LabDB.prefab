@@ -156,7 +156,7 @@ MonoBehaviour:
       - {fileID: 2872388454102490671, guid: 138a69f919a109b47a36ad4c7e794c1e, type: 3}
   - ID: 2
     icon: {fileID: 21300000, guid: 04f842b4df7d3754b8ca01b30fc49710, type: 3}
-    labName: "\u8D1F\u8F7D\u963B\u6297\u6D4B\u91CF"
+    labName: "\u8D1F\u8F7D\u963B\u6297\u6D4B\u91CF\u53CA\u963B\u6297\u5339\u914D"
     labDesc: LabDesc2
     score: 100
     audioClip: {fileID: 0}
@@ -308,7 +308,7 @@ MonoBehaviour:
       - {fileID: 5992136170398547697, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
   - ID: 3
     icon: {fileID: 21300000, guid: 04f842b4df7d3754b8ca01b30fc49710, type: 3}
-    labName: "\u8D1F\u8F7D\u963B\u6297\u5339\u914D\u548C\u5B9A\u5411\u8026\u5408\u5668\u7279\u6027\u7684\u6D4B\u91CF"
+    labName: "\u5B9A\u5411\u8026\u5408\u5668\u7279\u6027\u7684\u6D4B\u91CF"
     labDesc: LabDesc3
     score: 100
     audioClip: {fileID: 0}

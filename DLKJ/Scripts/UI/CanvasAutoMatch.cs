@@ -35,7 +35,6 @@ namespace DLKJ
         {
             int width = Screen.width;
             int height = Screen.height;
-            Debug.Log("width / height = " + (float)width / height);
             if ((float)width / height >= 16f / 9f)
             {
                 CanvasScaler canvasScaler = GetComponent<CanvasScaler>();

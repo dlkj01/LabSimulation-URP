@@ -7,8 +7,8 @@ namespace DLKJ
     public class SceneManager : MonoBehaviour
     {
         public const string FIRST_EXPERIMENT_NAME = "二端口微波网络参量测量";
-        public const string SECOND_EXPERIMENT_NAME = "负载阻抗测量";
-        public const string THIRD_EXPERIMENT_NAME = "负载阻抗匹配和定向耦合器特性的测量";
+        public const string SECOND_EXPERIMENT_NAME = "负载阻抗测量及阻抗匹配";
+        public const string THIRD_EXPERIMENT_NAME = "定向耦合器特性的测量";
         public static UserData loginUserData;
 
         public static bool didExperiment = false;
@@ -131,8 +131,8 @@ namespace DLKJ
         private bool connecting = false;
         public void AutoConnectCurrentStep()
         {
-            if (currentLab.currentStepIndex <= 0|| connecting) return;
-            Debug.Log("自动连接:"+ currentLab.currentStepIndex);
+            if (currentLab.currentStepIndex <= 0 || connecting) return;
+            Debug.Log("自动连接:" + currentLab.currentStepIndex);
 
             if (currentLab.currentStepIndex > 1)
             {
@@ -140,7 +140,7 @@ namespace DLKJ
                 List<Item> stepItems = currentLab.currentStep.keyItems;
                 for (int i = 0; i < stepItems.Count; i++)
                 {
-                   
+
                     Item item = GetLabItemByID(stepItems[i].ID);
                     if (item.libraryType == LibraryType.Wires || item.linkPort != null) continue;
 
@@ -153,7 +153,7 @@ namespace DLKJ
                         else
                         {
                             int value = i - basicLinkItemsSize;
-                            if (value>1)
+                            if (value > 1)
                             {
                                 item.transform.position = new Vector3(currentLab.originPosition.x, currentLab.originPosition.y, currentLab.originPosition.z - currentLab.spacing * value);
                             }
@@ -168,7 +168,7 @@ namespace DLKJ
                         item.transform.position = new Vector3(currentLab.originPosition.x, currentLab.originPosition.y, currentLab.originPosition.z - currentLab.spacing * 1.5f);
                     }
                 }
-                 OnLinkNext(currentLab.currentStep.keyItems);
+                OnLinkNext(currentLab.currentStep.keyItems);
             }
             else
             {
@@ -181,7 +181,7 @@ namespace DLKJ
             List<Item> basicItems = currentLab.currentStep.keyItems;
             int origin = 10000000;
             for (int i = 0; i < basicItems.Count; i++)
-            {         
+            {
                 Item item = GetLabItemByID(basicItems[i].ID);
                 if (item.libraryType == LibraryType.Wires) continue;
                 if (item.ID == 11)//波导转同轴
@@ -218,7 +218,8 @@ namespace DLKJ
 
                 Condition toConnectCondition = null;
 
-                if (originIndex > 0) {
+                if (originIndex > 0)
+                {
                     Item lastItem = GetLabItemByID(needToConnect[originIndex - 1].ID);
 
                     for (int i = 0; i < nextItem.linkConditions.Count; i++)
