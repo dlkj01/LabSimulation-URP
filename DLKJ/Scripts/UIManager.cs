@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using DG.Tweening;
 using System.Collections.Generic;
-
+using Common;
 namespace DLKJ
 {
     public class UIManager : MonoBehaviour
@@ -171,10 +171,16 @@ namespace DLKJ
 
         public void VerifyBasicLink()
         {
+            int currentStep = SceneManager.GetInstance().currentLab.currentStepIndex;
+
             //是否可以检查连接完成状态的前提条件,为true才可以继续
             if (!VerifyBackLinkIsComplete())
                 return;
-
+            if (ProxyManager.experimentInputProxy.experimentStepInputMap.ContainsKey(currentStep))
+            {
+                if (!UILabButton.uiLabReport.isFinished(ProxyManager.experimentInputProxy.experimentStepInputMap[currentStep]))
+                    return;
+            }
             if (SceneManager.GetInstance().VerifyBasicLink() == false)
             {
                 Debug.Log("连接有误 请仔细检查，扣分");

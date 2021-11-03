@@ -149,6 +149,7 @@ public class LabReport3Data : LabReportData
 
 public class UILabReportBase : MonoBehaviour
 {
+    private InputField[] inputFields;
     public string filePath;
     public string outFilePath;
     protected Dictionary<string, object> map = new Dictionary<string, object>();
@@ -188,10 +189,42 @@ public class UILabReportBase : MonoBehaviour
         {
             ChangePage(P);
         };
-
+        inputFields = GetComponentsInChildren<InputField>(true);
     }
-    public void SetVisibale(bool state)
+    List<Outline> highLightInputField = new List<Outline>();
+    public bool isFinished(string[] inputFieldName)
     {
+        bool isInput = true;// «∑Ò”– ‰»Î
+        foreach (var item in inputFieldName)
+        {
+            for (int i = 0; i < inputFields.Length; i++)
+            {
+                if (inputFields[i].gameObject.name == item)
+                {
+                    if (string.IsNullOrEmpty(inputFields[i].text))
+                    {
+                        Debug.Log(inputFields[i].gameObject.name);
+                        isInput = false;
+                    }
+                }
+            }
+        }
+        if (isInput == false)
+        {
+            OpenSecondPage();
+        }
+        return isInput;
+    }
+    public void SetVisibale(bool state, bool immediately = false)
+    {
+        if (immediately == true)
+        {
+            if (coroutine != null)
+                StopCoroutine(coroutine);
+            isPlaying = false;
+            canvasGroup.alpha = 1;
+            canvasGroup.blocksRaycasts = true;
+        }
         if (canvasGroup.alpha == 0 && state == false) return;
         if (canvasGroup.alpha == 1 && state == true) return;
         if (isPlaying == true)
@@ -209,6 +242,13 @@ public class UILabReportBase : MonoBehaviour
             data.pointerPress.transform.localEulerAngles = new Vector3(0, 0, 0);
         page1.SetActive(!state);
         page2.SetActive(state);
+    }
+    private void OpenSecondPage()
+    {
+        SetVisibale(true, true);
+        ChangePageButton.transform.localEulerAngles = new Vector3(0, 0, 180);
+        page1.SetActive(false);
+        page2.SetActive(true);
     }
     IEnumerator SetVisibleDelay(bool state)
     {
