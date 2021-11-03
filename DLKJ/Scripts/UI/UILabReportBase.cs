@@ -177,7 +177,9 @@ public class UILabReportBase : MonoBehaviour
     {
         canvasGroup = GetComponent<CanvasGroup>();
         if (canvasGroup == null)
+        {
             canvasGroup = gameObject.AddComponent<CanvasGroup>();
+        }
         canvasGroup.alpha = 0;
         canvasGroup.blocksRaycasts = false;
         ExperimentItemText.text = ExperimentItem;
@@ -190,10 +192,21 @@ public class UILabReportBase : MonoBehaviour
             ChangePage(P);
         };
         inputFields = GetComponentsInChildren<InputField>(true);
+        foreach (var item in inputFields)
+        {
+            UIEffect uiEffect = item.gameObject.AddComponent<UIEffect>();
+        }
+        page2.SetActive(true);
+        page2.SetActive(false);
     }
-    List<Outline> highLightInputField = new List<Outline>();
+    List<UIEffect> cacheEffect = new List<UIEffect>();
     public bool isFinished(string[] inputFieldName)
     {
+        for (int i = 0; i < cacheEffect.Count; i++)
+        {
+            cacheEffect[i].StopFlashing();
+        }
+        cacheEffect.Clear();
         bool isInput = true;//ÊÇ·ñÓÐÊäÈë
         foreach (var item in inputFieldName)
         {
@@ -205,12 +218,17 @@ public class UILabReportBase : MonoBehaviour
                     {
                         Debug.Log(inputFields[i].gameObject.name);
                         isInput = false;
+                        cacheEffect.Add(inputFields[i].GetComponent<UIEffect>());
                     }
                 }
             }
         }
         if (isInput == false)
         {
+            for (int i = 0; i < cacheEffect.Count; i++)
+            {
+                cacheEffect[i].StartFlashing();
+            }
             OpenSecondPage();
         }
         return isInput;
