@@ -8,14 +8,14 @@ namespace DLKJ
     {
         public float currentAngle;
         public string deviceName;
-        PressButtonGroup group;
+        public PressButtonGroup group;
         private void Start()
         {
-            Item item = SceneManager.GetInstance().GetItemByName(deviceName);
-            if (item != null)
-            {
-                group = item.GetComponent<InstrumentAction>().group;
-            }
+            //Item item = SceneManager.GetInstance().GetItemByName(deviceName);
+            //if (item != null)
+            //{
+            //    group = item.GetComponent<InstrumentAction>().group;
+            //}
         }
 
         public void SetAngle(float value)
