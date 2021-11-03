@@ -20,6 +20,9 @@ namespace DLKJ
             UIManager.GetInstance().SetVerifyButtonActive(false);
             if (sureButton) sureButton.onClick.AddListener(delegate () { SureCallBack(); });
             if (exitButton) exitButton.onClick.AddListener(delegate () { ExitCallBack(); });
+#if UNITY_EDITOR
+            SceneManager.didExperiment = true;
+#endif
             if (SceneManager.didExperiment == true)
             {
                 UIManager.GetInstance().ShowExperimentSelectedPanel();
