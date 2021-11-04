@@ -11651,7 +11651,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 4294967295
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -12343,6 +12343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0731445730f745f45a9fe3fa5feec4ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentLabScore: 0
   holdTexture: {fileID: 2800000, guid: f75ff625adc1bbb4b90318fd3cdab168, type: 3}
   clickTexture: {fileID: 2800000, guid: 1a7ece4c7ecc87341ad42f4d4f651485, type: 3}
   releaseTexture: {fileID: 2800000, guid: f3fa31edf37b859418f79d9591bdacf3, type: 3}

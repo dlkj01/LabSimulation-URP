@@ -149,6 +149,23 @@ namespace DLKJ
 
         private float score = 0;
 
+        public Item GetPreviousLinkItem(Item item)
+        {
+            Item item1 = null;
+            for (int i = 0; i < keyItems.Count; i++)
+            {
+                if (keyItems[i].ID == item.ID)
+                {
+                    int value = i - 1;
+                    if (value >= 0)
+                    {
+                        return keyItems[value];
+                    }
+                }
+            }
+            return item1;
+        }
+
         public Step Clone()
         {
             Step newStep = new Step();
@@ -203,6 +220,8 @@ namespace DLKJ
             }
             return completed;
         }
+
+       
 
     }
 }
