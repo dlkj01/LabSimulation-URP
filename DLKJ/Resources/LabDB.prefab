@@ -295,7 +295,7 @@ MonoBehaviour:
       - {fileID: 4210527241192592495, guid: fbc33b357d60c894888967e6cf05f998, type: 3}
     currentStepIndex: 0
     currentStep:
-      ID: -1
+      ID: 1
       nextStepCanMove: 0
       points: 20
       dropPoints: -2

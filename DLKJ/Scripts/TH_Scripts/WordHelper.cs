@@ -80,7 +80,7 @@ public static class WordHelper
                 }
             }
         }
-        doc.Save(streamingPath + "/Save/" + outPath); //±£´æword
+        doc.Save(streamingPath + "/Save/" + SceneManager.loginUserData.accountNumber + "-" + DateTime.Now.ToString("yyyy-MM-dd") + outPath); //±£´æword
         stream.Close();
     }
 
