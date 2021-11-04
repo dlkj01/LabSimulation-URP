@@ -135,13 +135,20 @@ namespace DLKJ
         public void AutoConnectCurrentStep()
         {
             if (currentLab.currentStepIndex <= 0 || connecting) return;
+
             Debug.Log("自动连接:" + currentLab.currentStepIndex);
+
             UIManager.GetInstance().uiMainPanle.autoConnect.Interactable(false);
+            List<Item> stepItems = currentLab.currentStep.keyItems;
+            for (int i = 0; i < stepItems.Count; i++)
+            {
+                stepItems[i].linkPort = null;
+            }
 
             if (currentLab.currentStepIndex > 1)
             {
                 int basicLinkItemsSize = currentLab.steps[1].keyItems.Count;
-                List<Item> stepItems = currentLab.currentStep.keyItems;
+               
                 for (int i = 0; i < stepItems.Count; i++)
                 {
 
