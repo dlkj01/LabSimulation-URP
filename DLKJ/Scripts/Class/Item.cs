@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.RefAndLookup;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEngine.GraphicsBuffer;
 
 namespace DLKJ
 {
@@ -34,6 +36,7 @@ namespace DLKJ
 
         [Header("Drag And Rotate Setting")]
         private bool dragAble = false;
+        private bool usingItem = false;
         private bool startDetection = false;
         private Coroutine magicCoroutine = null;
 
@@ -59,6 +62,22 @@ namespace DLKJ
         private void OnDisable()
         {
             EventManager.OnDetectionEvent -= UpdateTriggerState;
+        }
+
+        public void OnUsingItem(bool isUsing)
+        {
+            usingItem = isUsing;
+            if (isUsing)
+            {
+                boxCollider.enabled = false;
+            }
+            else
+            {
+                if (dragAble)
+                {
+                    boxCollider.enabled = true;
+                }
+            }
         }
 
         void SetDragable(bool state)
@@ -123,26 +142,50 @@ namespace DLKJ
 
         public bool CorrectLink(Link targetPort)
         {
-            Condition correctCondition = null;
-            for (int i = 0; i < linkConditions.Count; i++)
+            Step currentStep = SceneManager.GetInstance().currentLab.currentStep;
+            List<Item> correctLinkItems = currentStep.keyItems;
+            bool contains = false;
+            for (int i = 0; i < correctLinkItems.Count; i++)
             {
-                if (linkConditions[i].data.correct)
+                if (correctLinkItems[i].ID == this.ID)
                 {
-                    correctCondition = linkConditions[i];
-                    if (correctCondition == null) return false;
-
-                    if (correctCondition.data.itemID == targetPort.ParentItem.ID)
-                    {
-                        if (correctCondition.data.portsID == targetPort.ID)
-                        {
-                            return true;
-                        }
-                    }
-                    //break;
+                    contains = true;
+                    break;
                 }
             }
-
+            if (contains)
+            {
+                Item previousItem = currentStep.GetPreviousLinkItem(this);
+                if (previousItem)
+                {
+                    if (previousItem.ContainsPort(targetPort))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
             return false;
+        }
+
+        bool ContainsPort(Link port) {
+            bool contains = false;
+            for (int i = 0; i < ports.Count; i++)
+            {
+                if (ports[i].ID == port.ID)
+                {
+                    contains = true;
+                    break;
+                }
+            }
+            return contains;
         }
 
         public void AutoConnect(Condition targetCondition = null)
@@ -184,14 +227,17 @@ namespace DLKJ
                             }
                             else
                             {
-                                ports[a].transform.localPosition = Vector3.zero + _targetPort.offset;
+                                ports[a].transform.localPosition = Vector3.zero + ports[a].offset;
                             }
+
                             linkPort = _targetPort;
                             targetItem.linkPort = ports[a];
                             ports[a].transform.localRotation = Quaternion.Euler(targetItem.portDefaultEuler);
+                            ports[a].dragAble = false;
                             break;
                         }
                     }
+                    dragAble = false;
                     EventManager.OnLinkNext(SceneManager.GetInstance().currentLab.currentStep.keyItems);
                 }
                 else
@@ -272,7 +318,7 @@ namespace DLKJ
         {
             if (EventSystem.current.IsPointerOverGameObject() == true)
                 return;
-            if (dragAble && moveable)
+            if (dragAble && moveable&& !usingItem)
             {
                 if (!startDetection)
                 {

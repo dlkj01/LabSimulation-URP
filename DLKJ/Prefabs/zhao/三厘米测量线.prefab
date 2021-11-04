@@ -685,7 +685,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
-  linkedItem: {fileID: 0}
+  parent: {fileID: 0}
   ItemName: 
 --- !u!1 &2738115408573011017
 GameObject:
@@ -1912,7 +1912,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
-  linkedItem: {fileID: 0}
+  parent: {fileID: 0}
   ItemName: 
 --- !u!1 &4528001792604029327
 GameObject:
@@ -2126,7 +2126,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
-  linkedItem: {fileID: 0}
+  parent: {fileID: 0}
   ItemName: 
 --- !u!1 &5133596488056636501
 GameObject:
@@ -2916,5 +2916,5 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
-  linkedItem: {fileID: 0}
+  parent: {fileID: 0}
   ItemName: 
