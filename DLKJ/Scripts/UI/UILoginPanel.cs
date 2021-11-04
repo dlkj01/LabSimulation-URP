@@ -20,9 +20,10 @@ namespace DLKJ
             UIManager.GetInstance().SetVerifyButtonActive(false);
             if (sureButton) sureButton.onClick.AddListener(delegate () { SureCallBack(); });
             if (exitButton) exitButton.onClick.AddListener(delegate () { ExitCallBack(); });
-//#if UNITY_EDITOR
-//            SceneManager.didExperiment = true;
-//#endif
+#if UNITY_EDITOR
+            SceneManager.didExperiment = true;
+            UserData data = new UserData() { accountNumber = "teacher1", password = "123", userType = UserType.Teacher };
+#endif
             if (SceneManager.didExperiment == true)
             {
                 UIManager.GetInstance().ShowExperimentSelectedPanel();
@@ -52,7 +53,7 @@ namespace DLKJ
                     UIManager.GetInstance().uiMainPanle.Init(data.userType);
                     UIManager.GetInstance().ShowExperimentSelectedPanel();
                     gameObject.SetActive(false);
-                 
+
                 }
             }
             else
