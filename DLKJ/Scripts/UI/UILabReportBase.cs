@@ -363,7 +363,6 @@ public class UILabReportBase : MonoBehaviour
             }
             this.map[item2.Key] = answerCheck;
         }
-        ProxyManager.saveProxy.SetData(SceneManager.GetInstance().GetCurrentLabName(), SceneManager.GetInstance().currentLabScore);
         ProxyManager.saveProxy.Save();
         WordHelper.HandleGuaranteeDoc(filePath, map, outFilePath);
     }

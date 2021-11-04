@@ -8,7 +8,7 @@ namespace DLKJ
     {
         private void Awake()
         {
-            ProxyManager.InitProxy(new SaveProxy("Save"));
+        
         }
     }
 }

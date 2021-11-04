@@ -20,9 +20,9 @@ namespace DLKJ
             UIManager.GetInstance().SetVerifyButtonActive(false);
             if (sureButton) sureButton.onClick.AddListener(delegate () { SureCallBack(); });
             if (exitButton) exitButton.onClick.AddListener(delegate () { ExitCallBack(); });
-#if UNITY_EDITOR
-            SceneManager.didExperiment = true;
-#endif
+//#if UNITY_EDITOR
+//            SceneManager.didExperiment = true;
+//#endif
             if (SceneManager.didExperiment == true)
             {
                 UIManager.GetInstance().ShowExperimentSelectedPanel();
@@ -47,11 +47,12 @@ namespace DLKJ
                 }
                 else
                 {
-                    UIManager.GetInstance().ShowExperimentSelectedPanel();
-                    gameObject.SetActive(false);
                     UserData data = ExcelRead.GetInstance.GetUserData(nameInputField.text);
                     SceneManager.loginUserData = data;
                     UIManager.GetInstance().uiMainPanle.Init(data.userType);
+                    UIManager.GetInstance().ShowExperimentSelectedPanel();
+                    gameObject.SetActive(false);
+                 
                 }
             }
             else

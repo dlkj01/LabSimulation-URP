@@ -149,6 +149,7 @@ namespace DLKJ
 
         public void ShowExperimentSelectedPanel()
         {
+            ProxyManager.InitProxy(new SaveProxy("Save"));
             if (experimentSelectedPanelPrefab && experimentSelectedPanel == null)
             {
                 experimentSelectedPanel = InstantiateObject(experimentSelectedPanelPrefab);
