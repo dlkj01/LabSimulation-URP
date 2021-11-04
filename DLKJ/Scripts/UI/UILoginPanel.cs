@@ -22,7 +22,7 @@ namespace DLKJ
             if (exitButton) exitButton.onClick.AddListener(delegate () { ExitCallBack(); });
 #if UNITY_EDITOR
             SceneManager.didExperiment = true;
-            UserData data = new UserData() { accountNumber = "teacher1", password = "123", userType = UserType.Teacher };
+            SceneManager.loginUserData = new UserData() { accountNumber = "teacher1", password = "123", userType = UserType.Teacher };
 #endif
             if (SceneManager.didExperiment == true)
             {
