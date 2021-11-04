@@ -176,6 +176,7 @@ namespace DLKJ
             //是否可以检查连接完成状态的前提条件,为true才可以继续
             if (!VerifyBackLinkIsComplete())
                 return;
+            //检查当前步骤是否有没填写的InputText
             if (ProxyManager.experimentInputProxy.experimentStepInputMap.ContainsKey(currentStep))
             {
                 if (!UILabButton.uiLabReport.isFinished(ProxyManager.experimentInputProxy.experimentStepInputMap[currentStep]))

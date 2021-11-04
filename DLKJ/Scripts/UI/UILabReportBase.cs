@@ -235,21 +235,23 @@ public class UILabReportBase : MonoBehaviour
     }
     public void SetVisibale(bool state, bool immediately = false)
     {
-        if (immediately == true)
-        {
-            if (coroutine != null)
-                StopCoroutine(coroutine);
-            isPlaying = false;
-            canvasGroup.alpha = 1;
-            canvasGroup.blocksRaycasts = true;
-        }
-        if (canvasGroup.alpha == 0 && state == false) return;
-        if (canvasGroup.alpha == 1 && state == true) return;
-        if (isPlaying == true)
-            return;
-        if (coroutine != null)
-            StopCoroutine(coroutine);
-        coroutine = StartCoroutine(SetVisibleDelay(state));
+        canvasGroup.alpha = state == false ? 0 : 1;
+        canvasGroup.blocksRaycasts = state;
+        //if (immediately == true)
+        //{
+        //    if (coroutine != null)
+        //        StopCoroutine(coroutine);
+        //    isPlaying = false;
+        //    canvasGroup.alpha = 1;
+        //    canvasGroup.blocksRaycasts = true;
+        //}
+        //if (canvasGroup.alpha == 0 && state == false) return;
+        //if (canvasGroup.alpha == 1 && state == true) return;
+        //if (isPlaying == true)
+        //    return;
+        //if (coroutine != null)
+        //    StopCoroutine(coroutine);
+        //coroutine = StartCoroutine(SetVisibleDelay(state));
     }
     public void ChangePage(PointerEventData data)
     {
