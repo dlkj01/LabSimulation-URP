@@ -6,6 +6,7 @@ namespace DLKJ
 {
     public class SceneManager : MonoBehaviour
     {
+        [HideInInspector] public float currentLabScore;
         public const string FIRST_EXPERIMENT_NAME = "二端口微波网络参量测量";
         public const string SECOND_EXPERIMENT_NAME = "负载阻抗测量及阻抗匹配";
         public const string THIRD_EXPERIMENT_NAME = "定向耦合器特性的测量";
@@ -37,7 +38,8 @@ namespace DLKJ
             }
             return instance;
         }
-
+        public int GetCurrentStep() { return currentLab.currentStepIndex; }
+        public string GetCurrentLabName() { return currentLab.labName; }
         private void OnEnable()
         {
             EventManager.OnUsingItemsEvent += OnUsingItem;

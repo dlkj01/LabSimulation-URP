@@ -21,6 +21,6 @@ public abstract class BaseProxy
 
     public virtual void Remove() { }//移除数据
 
-    protected virtual void Save() { }//存储数据
+    public virtual void Save() { }//存储数据
 
 }

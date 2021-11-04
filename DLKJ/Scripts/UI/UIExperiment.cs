@@ -45,16 +45,14 @@ namespace DLKJ
             image.sprite = lab.icon;
 
             if (titleText) titleText.text = lab.labName;
-            for (int i = 0; i < UIManager.experimentID.Count; i++)
-            {
-                if (UIManager.experimentID[i] == lab.labName)
-                {
-                    group.blocksRaycasts = false;
-                    group.interactable = false;
-                    group.alpha = 0.5f;
-                }
-            }
 
+        }
+
+        public void SetUnInteractive()
+        {
+            group.blocksRaycasts = false;
+            group.interactable = false;
+            group.alpha = 0.5f;
         }
 
         public void OnPointerEnter(PointerEventData eventData)
@@ -103,8 +101,7 @@ namespace DLKJ
         {
             lab.Initialized();
             UIManager.GetInstance().ShowEquipmentPanel(lab.ID);
-            ProxyManager.InitProxy();
-      
+            ProxyManager.InitProxy(new ExperimentInputVerifyProxy("ExperimentInputVerify"));
         }
 
     }

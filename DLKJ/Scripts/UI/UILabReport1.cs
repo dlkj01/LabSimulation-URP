@@ -80,39 +80,7 @@ namespace DLKJ
             labReport1Data.inputS11 = StringToDouble(inputS11.text);
             labReport1Data.inputS12S21 = StringToDouble(inputS12S21.text);
             labReport1Data.inputS22 = StringToDouble(inputS22.text);
-            //  Dictionary<string, object> map2 = WordHelper.GetFields(labReport1Data);
-            AddResult(labReport1Data);
-            //foreach (var item2 in map2)
-            //{
-            //    AnswerCheck answerCheck = new AnswerCheck();
-            //    answerCheck.answer = item2.Value.ToString();
-            //    System.Reflection.FieldInfo[] fields = MathTool.report1CorrectAnswer.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
-            //    for (int i = 0; i < fields.Length; i++)
-            //    {
-            //        if (fields[i].Name == item2.Key)
-            //        {
-            //            double result;
-            //            if (String.IsNullOrEmpty(item2.Value.ToString()))
-            //            {
-            //                result = -9999;
-            //            }
-            //            else
-            //            {
-            //                result = (double)item2.Value;
-            //            }
-            //            answerCheck.isRight = DataFormatParsing(result, fields[i].GetValue(MathTool.report1CorrectAnswer));
-            //        }
-            //    }
-            //    map[item2.Key] = answerCheck;
-            //}
-
-
-            //WordHelper.HandleGuaranteeDoc(filePath, map, outFilePath);
+            AddResult(labReport1Data, MathTool.report1CorrectAnswer);
         }
-
-
-
-
-
     }
 }

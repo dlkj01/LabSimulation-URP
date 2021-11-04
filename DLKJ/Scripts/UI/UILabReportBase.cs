@@ -7,6 +7,7 @@ using System;
 using System.Reflection;
 using System.Linq;
 using DLKJ;
+using Common;
 
 public struct UserDate
 {
@@ -200,7 +201,7 @@ public class UILabReportBase : MonoBehaviour
         page2.SetActive(false);
     }
     List<UIEffect> cacheEffect = new List<UIEffect>();
-    public bool isFinished(string[] inputFieldName)
+    public bool FinishedStepInput(string[] inputFieldName)
     {
         for (int i = 0; i < cacheEffect.Count; i++)
         {
@@ -233,25 +234,10 @@ public class UILabReportBase : MonoBehaviour
         }
         return isInput;
     }
-    public void SetVisibale(bool state, bool immediately = false)
+    public void SetVisibale(bool state)
     {
         canvasGroup.alpha = state == false ? 0 : 1;
         canvasGroup.blocksRaycasts = state;
-        //if (immediately == true)
-        //{
-        //    if (coroutine != null)
-        //        StopCoroutine(coroutine);
-        //    isPlaying = false;
-        //    canvasGroup.alpha = 1;
-        //    canvasGroup.blocksRaycasts = true;
-        //}
-        //if (canvasGroup.alpha == 0 && state == false) return;
-        //if (canvasGroup.alpha == 1 && state == true) return;
-        //if (isPlaying == true)
-        //    return;
-        //if (coroutine != null)
-        //    StopCoroutine(coroutine);
-        //coroutine = StartCoroutine(SetVisibleDelay(state));
     }
     public void ChangePage(PointerEventData data)
     {
@@ -265,45 +251,11 @@ public class UILabReportBase : MonoBehaviour
     }
     private void OpenSecondPage()
     {
-        SetVisibale(true, true);
+        SetVisibale(true);
         ChangePageButton.transform.localEulerAngles = new Vector3(0, 0, 180);
         page1.SetActive(false);
         page2.SetActive(true);
     }
-    IEnumerator SetVisibleDelay(bool state)
-    {
-        canvasGroup.alpha = state == false ? 1 : 0;
-        isPlaying = true;
-        if (state == true)
-        {
-            while (canvasGroup.alpha < 1)
-            {
-                canvasGroup.alpha += Time.deltaTime * fadeSpeed;
-                yield return null;
-            }
-            isPlaying = false;
-        }
-        else
-        {
-            while (canvasGroup.alpha > 0)
-            {
-                canvasGroup.alpha -= Time.deltaTime * fadeSpeed;
-                yield return null;
-            }
-            isPlaying = false;
-        }
-        if (canvasGroup.alpha >= 1)
-        {
-            canvasGroup.alpha = 1;
-            canvasGroup.blocksRaycasts = true;
-        }
-        if (canvasGroup.alpha <= 0)
-        {
-            canvasGroup.alpha = 0;
-            canvasGroup.blocksRaycasts = false;
-        }
-    }
-
 
     public virtual void SaveData()
     {
@@ -364,19 +316,35 @@ public class UILabReportBase : MonoBehaviour
         bool result = inputValue < rightAnswer + lerp && inputValue > rightAnswer - lerp;
         if (result)
         {
-            MathTool.score += 1.724f;
+            string labName = SceneManager.GetInstance().GetCurrentLabName();
+            switch (labName)
+            {
+                case SceneManager.FIRST_EXPERIMENT_NAME:
+                    SceneManager.GetInstance().currentLabScore += 100f / 27f * 0.4f;
+                    break;
+                case SceneManager.SECOND_EXPERIMENT_NAME:
+                    SceneManager.GetInstance().currentLabScore += 100f / 30f * 0.5f;
+                    break;
+                case SceneManager.THIRD_EXPERIMENT_NAME:
+                    SceneManager.GetInstance().currentLabScore += 100f / 3f * 0.1f;
+                    break;
+                default:
+                    SceneManager.GetInstance().currentLabScore = 0;
+                    break;
+            }
+            // MathTool.score += 1.724f;
             Debug.Log("´ð°¸ÕýÈ·" + inputValue + rightAnswer);
         }
         return result;
     }
-    protected void AddResult(LabReportData labReportData)
+    protected void AddResult(LabReportData labReportData, LabReportData rightAnswer)
     {
         Dictionary<string, object> addMap = WordHelper.GetFields(labReportData);
         foreach (var item2 in addMap)
         {
             AnswerCheck answerCheck = new AnswerCheck();
             answerCheck.answer = item2.Value.ToString();
-            System.Reflection.FieldInfo[] fields = MathTool.report1CorrectAnswer.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+            System.Reflection.FieldInfo[] fields = rightAnswer.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
             for (int i = 0; i < fields.Length; i++)
             {
                 if (fields[i].Name == item2.Key)
@@ -390,11 +358,13 @@ public class UILabReportBase : MonoBehaviour
                     {
                         result = (double)item2.Value;
                     }
-                    answerCheck.isRight = DataFormatParsing(result, fields[i].GetValue(MathTool.report1CorrectAnswer));
+                    answerCheck.isRight = DataFormatParsing(result, fields[i].GetValue(rightAnswer));
                 }
             }
             this.map[item2.Key] = answerCheck;
         }
+        ProxyManager.saveProxy.SetData(SceneManager.GetInstance().GetCurrentLabName(), SceneManager.GetInstance().currentLabScore);
+        ProxyManager.saveProxy.Save();
         WordHelper.HandleGuaranteeDoc(filePath, map, outFilePath);
     }
 }

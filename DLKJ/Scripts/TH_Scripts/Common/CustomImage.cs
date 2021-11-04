@@ -13,8 +13,6 @@ public class CustomImage : Image
     }
     public override bool IsRaycastLocationValid(Vector2 screenPoint, Camera eventCamera)
     {
-        Vector3 point;
-        RectTransformUtility.ScreenPointToWorldPointInRectangle(rectTransform, screenPoint, eventCamera, out point);
-        return customCollider.OverlapPoint(point);
+        return customCollider.OverlapPoint(screenPoint);
     }
 }

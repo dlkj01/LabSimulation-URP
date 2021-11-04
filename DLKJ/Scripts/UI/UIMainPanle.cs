@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using Common;
 namespace DLKJ
 {
     public class UIMainPanle : MonoBehaviour
@@ -136,8 +136,7 @@ namespace DLKJ
                {
                    //添加完成的实验名字的记录
                    string labName = SceneManager.GetInstance().currentLab.labName;
-                   if (!UIManager.experimentID.Contains(labName))
-                       UIManager.experimentID.Add(labName);
+
                    //保存word数据
                    UIManager.GetInstance().UILabButton.uiLabReport.SaveData();
                    //做过实验标记为True

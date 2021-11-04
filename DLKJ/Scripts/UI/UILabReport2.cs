@@ -100,37 +100,7 @@ public class UILabReport2 : UILabReportBase
         labReport2Data.MinimumVoltageAfterMatchingSecond = StringToDouble(MinimumVoltageAfterMatchingSecond.text);
         labReport2Data.MaximumVoltageAfterMatchingSecond = StringToDouble(MaximumVoltageAfterMatchingSecond.text);
         labReport2Data.SWRAfterMatchingSecond = StringToDouble(SWRAfterMatchingSecond.text);
-
-
-        // Dictionary<string, object> map2 = WordHelper.GetFields(labReport2Data);
-
-        //foreach (var item2 in map2)
-        //    map[item2.Key] = item2.Value;
-        AddResult(labReport2Data);
-        //foreach (var item2 in map2)
-        //{
-        //    AnswerCheck answerCheck = new AnswerCheck();
-        //    answerCheck.answer = item2.Value.ToString();
-        //    System.Reflection.FieldInfo[] fields = MathTool.report1CorrectAnswer.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
-        //    for (int i = 0; i < fields.Length; i++)
-        //    {
-        //        if (fields[i].Name == item2.Key)
-        //        {
-        //            double result;
-        //            if (String.IsNullOrEmpty(item2.Value.ToString()))
-        //            {
-        //                result = -9999;
-        //            }
-        //            else
-        //            {
-        //                result = (double)item2.Value;
-        //            }
-        //            answerCheck.isRight = DataFormatParsing(result, fields[i].GetValue(MathTool.report1CorrectAnswer));
-        //        }
-        //    }
-        //    map[item2.Key] = answerCheck;
-        //}
-        //WordHelper.HandleGuaranteeDoc(filePath, map, outFilePath);
+        AddResult(labReport2Data, MathTool.report2CorrectAnswer);
     }
     /// <summary>
     /// 设置第一组数据不可交互

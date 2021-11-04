@@ -10,7 +10,6 @@ namespace DLKJ
     public class UIManager : MonoBehaviour
     {
         private static UIManager instance;
-        public static List<string> experimentID = new List<string>();
         [Header("SceneObject")]
         [SerializeField] GameObject sceneObject;
 
@@ -159,19 +158,24 @@ namespace DLKJ
             {
                 Debug.LogWarning("experimentSelectedPanelPrefab is null!");
             }
-            if (experimentID.Count >= 3)
+            if (ProxyManager.saveProxy.IsFinishedAll())
             {
-                EventManager.OnTips(TipsType.Toast, "所有实验已经完成,您的分数是:" + MathTool.score.ToString(), () => { }, () =>
-                 {
-                     Debug.Log("退出了");
-                     Application.Quit();
-                 });
+                float score = ProxyManager.saveProxy.GetAllScore();
+                EventManager.OnTips(TipsType.Toast, "所有实验已经完成,您的分数是:" + score.ToString("#0.00"), () => { }, () =>
+                {
+                    Debug.Log("退出了");
+                    if (ProxyManager.saveProxy.IsFinishedAll() == true)
+                    {
+                        ProxyManager.saveProxy.Remove();
+                    }
+                    Application.Quit();
+                });
             }
         }
 
         public void VerifyBasicLink()
         {
-            int currentStep = SceneManager.GetInstance().currentLab.currentStepIndex;
+            int currentStep = SceneManager.GetInstance().GetCurrentStep();
 
             //是否可以检查连接完成状态的前提条件,为true才可以继续
             if (!VerifyBackLinkIsComplete())
@@ -179,7 +183,7 @@ namespace DLKJ
             //检查当前步骤是否有没填写的InputText
             if (ProxyManager.experimentInputProxy.experimentStepInputMap.ContainsKey(currentStep))
             {
-                if (!UILabButton.uiLabReport.isFinished(ProxyManager.experimentInputProxy.experimentStepInputMap[currentStep]))
+                if (!UILabButton.uiLabReport.FinishedStepInput(ProxyManager.experimentInputProxy.experimentStepInputMap[currentStep]))
                     return;
             }
             if (SceneManager.GetInstance().VerifyBasicLink() == false)

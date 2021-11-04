@@ -7,11 +7,7 @@ namespace Common
 {
     public class ProxyManager : Singleton<ProxyManager>
     {
-        private readonly ConcurrentDictionary<string, BaseProxy> m_ProxyMap;
-        public ProxyManager()
-        {
-            m_ProxyMap = new ConcurrentDictionary<string, BaseProxy>();
-        }
+        private readonly ConcurrentDictionary<string, BaseProxy> m_ProxyMap = new ConcurrentDictionary<string, BaseProxy>();
 
         /// <summary>
         /// 注册
@@ -50,10 +46,11 @@ namespace Common
         /// <summary>
         /// 初始化一个Proxy
         /// </summary>
-        public static void InitProxy()
+        public static void InitProxy(BaseProxy proxy)
         {
-            GetInstance.RegisterProxy(new ExperimentInputVerifyProxy("ExperimentInputVerify"));
+            GetInstance.RegisterProxy(proxy);
         }
+        public static SaveProxy saveProxy { get { return GetInstance.RetrieveProxy<SaveProxy>("Save"); } }
         public static ExperimentInputVerifyProxy experimentInputProxy { get { return GetInstance.RetrieveProxy<ExperimentInputVerifyProxy>("ExperimentInputVerify"); } }
     }
 }
