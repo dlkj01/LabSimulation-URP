@@ -202,11 +202,7 @@ namespace DLKJ
             {
                 EventManager.OnTips(TipsType.Snackbar, "确定进行下一步操作", () => { FindObjectOfType<UITips>().OnDisTips(); }, () =>
                 {
-                    Debug.Log("基础连接正确，请进行下一步实验");
-                    SceneManager.GetInstance().UpdateItemMoveable(false);
-                    SceneManager.GetInstance().currentLab.NextStep();
-                    StepTips(SceneManager.GetInstance().currentLab.currentStep);
-                    FindObjectOfType<UITips>().OnDisTips();
+                    NextStep();
                     uiMainPanle.autoConnect.Interactable(true);
                 });
             }
@@ -245,11 +241,8 @@ namespace DLKJ
                     EventManager.OnTips(TipsType.Snackbar, "是否开始第二组实验", () => { FindObjectOfType<UITips>().OnDisTips(); }, () =>
                     {
                         Debug.Log("刷新设备,重新给一组随机值");
-                        //下一步
-                        SceneManager.GetInstance().UpdateItemMoveable(false);
-                        SceneManager.GetInstance().currentLab.NextStep();
-                        StepTips(SceneManager.GetInstance().currentLab.currentStep);
-                        FindObjectOfType<UITips>().OnDisTips();
+                        NextStep();
+                        uiMainPanle.autoConnect.Interactable(true);
                         //记录第一组数据到word表格
                         UILabReport2 report2 = UILabButton.uiLabReport as UILabReport2;
                         report2.WriteInputText();
@@ -287,6 +280,18 @@ namespace DLKJ
             }
             return true;
         }
+        private void NextStep()
+        {
+
+            Debug.Log("基础连接正确，请进行下一步实验");
+            SceneManager.GetInstance().UpdateItemMoveable(false);
+            SceneManager.GetInstance().currentLab.NextStep();
+            StepTips(SceneManager.GetInstance().currentLab.currentStep);
+            FindObjectOfType<UITips>().OnDisTips();
+
+        }
+
+
         /// <summary>
         /// 设置完成基本数据回调
         /// </summary>
