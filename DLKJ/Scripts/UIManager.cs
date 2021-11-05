@@ -55,6 +55,7 @@ namespace DLKJ
 
         private void Awake()
         {
+            Debug.unityLogger.logEnabled = false;
             if (sceneObject) sceneObject.SetActive(false);
             // videoShowButton.gameObject.SetActive(false);
             uIVideoPlayer.gameObject.SetActive(false);

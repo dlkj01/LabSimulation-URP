@@ -140,36 +140,57 @@ namespace DLKJ
             }
         }
 
-        public bool CorrectLink(Link targetPort)
+        public bool CorrectLink(Link targetPort, bool wires = false)
         {
-            Step currentStep = SceneManager.GetInstance().currentLab.currentStep;
-            List<Item> correctLinkItems = currentStep.keyItems;
-            bool contains = false;
-            for (int i = 0; i < correctLinkItems.Count; i++)
+            if (wires)
             {
-                if (correctLinkItems[i].ID == this.ID)
-                {
-                    contains = true;
-                    break;
+                Condition correctCondition = null;
+                for (int i = 0; i < linkConditions.Count; i++) {
+                    if (linkConditions[i].data.correct) {
+
+                        correctCondition = linkConditions[i];
+                        if (correctCondition == null) return false;
+
+                        if (correctCondition.data.itemID == targetPort.ParentItem.ID) {
+                            if (correctCondition.data.portsID == targetPort.ID)
+                            {
+                                return true;
+                            }
+                        }
+                    }
                 }
             }
-            if (contains)
+            else
             {
-                Item previousItem = currentStep.GetPreviousLinkItem(this);
-                if (previousItem)
+                Step currentStep = SceneManager.GetInstance().currentLab.currentStep;
+                List<Item> correctLinkItems = currentStep.keyItems;
+                bool contains = false;
+                for (int i = 0; i < correctLinkItems.Count; i++)
                 {
-                    if (previousItem.ContainsPort(targetPort))
+                    if (correctLinkItems[i].ID == this.ID)
                     {
-                        return true;
+                        contains = true;
+                        break;
+                    }
+                }
+                if (contains)
+                {
+                    Item previousItem = currentStep.GetPreviousLinkItem(this);
+                    if (previousItem)
+                    {
+                        if (previousItem.ContainsPort(targetPort))
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
                     else
                     {
                         return false;
                     }
-                }
-                else
-                {
-                    return false;
                 }
             }
             return false;

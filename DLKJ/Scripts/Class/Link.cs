@@ -215,7 +215,7 @@ namespace DLKJ
                     if (colliders[i].isTrigger == false)
                     {
                         Link target = colliders[i].transform.GetComponent<Link>();
-                        if (ParentItem.CorrectLink(target))
+                        if (ParentItem.CorrectLink(target, true))
                         {
                             transform.SetParent(target.transform);
                             if (target.parent.itemName == "¾§Ìå¼ì²¨Æ÷")
