@@ -303,9 +303,7 @@ namespace DLKJ
 
         public void OnMouseUp()
         {
-            //rigidbody.isKinematic = false;
             Destroy(transform.gameObject.GetComponent<Rigidbody>());
-            dragAble = false;
             dragAble = true;
             startDetection = false;
             SceneManager.GetInstance().SetMouseState(false);

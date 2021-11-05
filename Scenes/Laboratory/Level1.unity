@@ -992,7 +992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateCamera: {fileID: 1663606359}
-  speed: 1
+  speed: 0.5
   speedRatio: 3
   sensitivityX: 2
 --- !u!143 &126529277

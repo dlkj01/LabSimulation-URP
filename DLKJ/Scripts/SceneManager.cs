@@ -139,11 +139,7 @@ namespace DLKJ
 
             UIManager.GetInstance().uiMainPanle.autoConnect.Interactable(false);
             List<Item> stepItems = currentLab.currentStep.keyItems;
-            for (int i = 0; i < stepItems.Count; i++)
-            {
-                stepItems[i].linkPort = null;
-            }
-
+           
             if (currentLab.currentStepIndex > 1)
             {
                 int basicLinkItemsSize = currentLab.steps[1].keyItems.Count;
@@ -182,6 +178,11 @@ namespace DLKJ
             }
             else
             {
+                for (int i = 0; i < stepItems.Count; i++)
+                {
+                    Item item = GetLabItemByID(stepItems[i].ID);
+                    item.linkPort = null;
+                }
                 SetBasicItemsLink();
             }
         }
