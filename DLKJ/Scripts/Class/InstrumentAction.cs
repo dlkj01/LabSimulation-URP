@@ -338,14 +338,14 @@ namespace DLKJ
             {
                 float offset = GetPerStepMoveDistance(tempInstrumentBtn);
                 Transform tempTransform = tempInstrumentBtn.conbinationList.Find(x => x.name == "Body");
-                if (tempTransform.localPosition.z + offset < tempInstrumentBtn.EndMovePoint)
-                {
-                    tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempTransform.localPosition.y, tempInstrumentBtn.EndMovePoint);
-                    return;
-                }
-                if (tempTransform.localPosition.z + offset > tempInstrumentBtn.StartMovePoint)
+                if (tempTransform.localPosition.z + offset < tempInstrumentBtn.StartMovePoint)
                 {
                     tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempTransform.localPosition.y, tempInstrumentBtn.StartMovePoint);
+                    return;
+                }
+                if (tempTransform.localPosition.z + offset > tempInstrumentBtn.EndMovePoint)
+                {
+                    tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempTransform.localPosition.y, tempInstrumentBtn.EndMovePoint);
                     return;
                 }
                 tempTransform.localPosition = new Vector3(tempTransform.localPosition.x, tempTransform.localPosition.y, tempTransform.localPosition.z + offset);
