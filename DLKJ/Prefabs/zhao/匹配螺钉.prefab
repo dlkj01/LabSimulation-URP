@@ -504,7 +504,6 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
-  parent: {fileID: 0}
   ItemName: 
 --- !u!1 &1985180437276455124
 GameObject:
@@ -704,7 +703,6 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
-  parent: {fileID: 0}
   ItemName: 
 --- !u!1 &5654983250800132002
 GameObject:

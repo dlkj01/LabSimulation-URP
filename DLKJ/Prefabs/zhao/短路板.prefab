@@ -326,5 +326,4 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
-  parent: {fileID: 0}
   ItemName: 

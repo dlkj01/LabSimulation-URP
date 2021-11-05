@@ -117,7 +117,6 @@ MonoBehaviour:
   offset: {x: 0, y: 0.016, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
-  parent: {fileID: 0}
   ItemName: 
 --- !u!54 &5638776769275147992
 Rigidbody:
@@ -978,7 +977,6 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
-  parent: {fileID: 0}
   ItemName: 
 --- !u!54 &4425047758291895729
 Rigidbody:
