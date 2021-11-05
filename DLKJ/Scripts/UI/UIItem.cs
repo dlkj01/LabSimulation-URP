@@ -68,7 +68,12 @@ namespace DLKJ
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            GetComponentInParent<ScrollRect>().vertical = false;
+            ScrollRect scroll = GetComponentInParent<ScrollRect>();
+            if (scroll != null)
+            {
+                scroll.vertical = false;
+            }
+
             UI3DCamera.GetInstance.InitDefaultPosition(currentCameraPos);
             EventManager.OnScrollItem(this);
             // EventManager.OnMouseEnterItem(this.item);
@@ -80,7 +85,11 @@ namespace DLKJ
             down = false;
             drag = false;
             currentCameraPos = UI3DCamera.GetInstance.GetCurrentPos();
-            GetComponentInParent<ScrollRect>().vertical = true;
+            ScrollRect scroll = GetComponentInParent<ScrollRect>();
+            if (scroll != null)
+            {
+                scroll.vertical = true;
+            }
             EventManager.OnScrollItem(null);
         }
 
