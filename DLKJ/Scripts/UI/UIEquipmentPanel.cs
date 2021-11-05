@@ -185,6 +185,7 @@ namespace DLKJ
                 default:
                     break;
             }
+            uIItem.OnPointerEnter(null);
         }
 
         void UpdateLabView()
