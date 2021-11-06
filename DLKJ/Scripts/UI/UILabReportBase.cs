@@ -224,6 +224,12 @@ public class UILabReportBase : MonoBehaviour
                 }
             }
         }
+
+        return isInput;
+    }
+
+    public void ShowPanle(bool isInput)
+    {
         if (isInput == false)
         {
             for (int i = 0; i < cacheEffect.Count; i++)
@@ -232,7 +238,6 @@ public class UILabReportBase : MonoBehaviour
             }
             OpenSecondPage();
         }
-        return isInput;
     }
     public void SetVisibale(bool state)
     {

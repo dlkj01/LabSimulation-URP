@@ -186,7 +186,10 @@ namespace DLKJ
             if (ProxyManager.experimentInputProxy.experimentStepInputMap.ContainsKey(currentStep))
             {
                 if (!UILabButton.uiLabReport.FinishedStepInput(ProxyManager.experimentInputProxy.experimentStepInputMap[currentStep]))
+                {
+                    UILabButton.uiLabReport.ShowPanle(false);
                     return;
+                }
             }
 
             if (labName == SceneManager.SECOND_EXPERIMENT_NAME)

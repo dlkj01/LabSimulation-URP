@@ -130,10 +130,40 @@ namespace DLKJ
 
         public void SubmitTest()
         {
+            if (SceneManager.GetInstance().GetCurrentStep() < SceneManager.GetInstance().currentLab.steps.Count - 1)
+            {
+                EventManager.OnTips(TipsType.Toast, "请完成实验所有操作步骤", () => { FindObjectOfType<UITips>().OnDisTips(); }, () =>
+                {
+                    FindObjectOfType<UITips>().OnDisTips();
+                });
+                return;
+            }
+            else
+            {
+                int currentStep = SceneManager.GetInstance().GetCurrentStep();
+                //检查当前步骤是否有没填写的InputText
+                if (ProxyManager.experimentInputProxy.experimentStepInputMap.ContainsKey(currentStep))
+                {
+                    if (!UIManager.GetInstance().UILabButton.uiLabReport.FinishedStepInput(ProxyManager.experimentInputProxy.experimentStepInputMap[currentStep]))
+                    {
+                        EventManager.OnTips(TipsType.Toast, "请完成实验所有操作步骤", () => { FindObjectOfType<UITips>().OnDisTips(); }, () =>
+                        {
+                            FindObjectOfType<UITips>().OnDisTips();
+                        });
+                        return;
+                    }
+                }
+            }
+
+
             string tipString = "提交实验报告";
             EventManager.OnTips(TipsType.Snackbar, tipString, () => { FindObjectOfType<UITips>().OnDisTips(); },
                () =>
                {
+
+
+
+
                    //添加完成的实验名字的记录
                    string labName = SceneManager.GetInstance().currentLab.labName;
 
