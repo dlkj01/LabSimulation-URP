@@ -33,7 +33,7 @@ public class ExperimentInputVerifyAssetAssignment
 			items[i].id = allItemValueRowList[i]["id"];
 			items[i].ExperimentalType = allItemValueRowList[i]["ExperimentalType"];
 			items[i].ExperimentalStep = Convert.ToInt32(allItemValueRowList[i]["ExperimentalStep"]);
-			items[i].InputTextName = new string[]{ "SourceFrequency","Attenuator","EquivalentSectionPosition" };
+			items[i].InputTextName = ToArray(allItemValueRowList[i]["InputTextName"]);
 		}
 		ExperimentInputVerifyExcelData excelDataAsset = ScriptableObject.CreateInstance<ExperimentInputVerifyExcelData>();
 		excelDataAsset.items = items;
@@ -45,7 +45,14 @@ public class ExperimentInputVerifyAssetAssignment
 		UnityEditor.AssetDatabase.Refresh();
 		return true;
 	}
-}
+	public static string[] ToArray(string value)
+	{
+		 string[] singStr = value.Split(',');
+		 List<string> strList = new List<string>();
+		 for (int i = 0; i < singStr.Length; i++)
+			 strList.Add(singStr[i]);
+		 return strList.ToArray();
+	}}
 #endif
 
 

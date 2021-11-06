@@ -20,3 +20,73 @@ MonoBehaviour:
     - SourceFrequency
     - Attenuator
     - EquivalentSectionPosition
+    - InputWavelength
+  - id: 2
+    ExperimentalType: "\u5B9E\u9A8C\u4E00"
+    ExperimentalStep: 3
+    InputTextName:
+    - WaveNodePosShortCircuit
+    - StandingWaveRatioCircuit
+  - id: 3
+    ExperimentalType: "\u5B9E\u9A8C\u4E00"
+    ExperimentalStep: 4
+    InputTextName:
+    - VariableShortCircuitFirstPos
+    - VariableShortCircuitSecondPos
+    - VariableWavelengthInShortCircuit
+    - OpenLoadPosition
+    - WaveNodePosShortTerminal
+    - StandingWaveRatioTerminal
+  - id: 4
+    ExperimentalType: "\u5B9E\u9A8C\u4E00"
+    ExperimentalStep: 5
+    InputTextName:
+    - WaveNodePosShortMatching
+    - StandingWaveRatioMatching
+  - id: 5
+    ExperimentalType: "\u5B9E\u9A8C\u4E8C"
+    ExperimentalStep: 2
+    InputTextName:
+    - WaveguideWavelengthFirst
+    - EquivalentSectionPositionFirst
+  - id: 6
+    ExperimentalType: "\u5B9E\u9A8C\u4E8C"
+    ExperimentalStep: 3
+    InputTextName:
+    - SWRFirst
+    - WaveNodePositionFirst
+  - id: 7
+    ExperimentalType: "\u5B9E\u9A8C\u4E8C"
+    ExperimentalStep: 4
+    InputTextName:
+    - MinimumVoltageAfterMatchingFirst
+    - MaximumVoltageAfterMatchingFirst
+  - id: 8
+    ExperimentalType: "\u5B9E\u9A8C\u4E8C"
+    ExperimentalStep: 5
+    InputTextName:
+    - WaveguideWavelengthSecond
+    - EquivalentSectionPositionSecond
+  - id: 9
+    ExperimentalType: "\u5B9E\u9A8C\u4E8C"
+    ExperimentalStep: 6
+    InputTextName:
+    - SWRSecond
+    - WaveNodePositionSecond
+  - id: 10
+    ExperimentalType: "\u5B9E\u9A8C\u4E8C"
+    ExperimentalStep: 7
+    InputTextName:
+    - MinimumVoltageAfterMatchingSecond
+    - MaximumVoltageAfterMatchingSecond
+  - id: 11
+    ExperimentalType: "\u5B9E\u9A8C\u4E09"
+    ExperimentalStep: 1
+    InputTextName:
+    - OnePortVoltage
+  - id: 12
+    ExperimentalType: "\u5B9E\u9A8C\u4E09"
+    ExperimentalStep: 2
+    InputTextName:
+    - ThreePortVoltage
+    - CouplingFactor

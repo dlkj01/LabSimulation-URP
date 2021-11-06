@@ -1510,7 +1510,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: -53.16504}
+  m_AnchoredPosition: {x: -241.7, y: -53.16504}
   m_SizeDelta: {x: 115.1997, y: 25.6634}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5248965443050815314
@@ -4679,7 +4679,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -253, y: 150.1}
+  m_AnchoredPosition: {x: -12.4, y: 150.1}
   m_SizeDelta: {x: 125.7564, y: 107.8988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6562994605782363054
@@ -4918,7 +4918,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.6, y: -90.8}
+  m_AnchoredPosition: {x: -241.7, y: -90.8}
   m_SizeDelta: {x: 113.02, y: 25.6634}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6444791221605068318
@@ -8313,7 +8313,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -239.95575, y: -53.16504}
+  m_AnchoredPosition: {x: 0.6, y: -53.16504}
   m_SizeDelta: {x: 109.1132, y: 25.6634}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7491424715551105385
@@ -8704,7 +8704,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -239.95, y: -90.8}
+  m_AnchoredPosition: {x: 0.6, y: -90.8}
   m_SizeDelta: {x: 109.12, y: 25.6634}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8177937505707172415
@@ -12291,7 +12291,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5, y: 150.1}
+  m_AnchoredPosition: {x: -247.4, y: 150.1}
   m_SizeDelta: {x: 113.65, y: 107.8988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2910672617939265856

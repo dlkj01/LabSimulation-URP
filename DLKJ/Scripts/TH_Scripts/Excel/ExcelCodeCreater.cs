@@ -172,6 +172,14 @@ public class ExcelCodeCreater
         classSource.Append("\t\tUnityEditor.AssetDatabase.Refresh();\n");
         classSource.Append("\t\treturn true;\n");
         classSource.Append("\t}\n");
+
+        classSource.Append("\tpublic static string[] ToArray(string value)\n");
+        classSource.Append("\t{\n\t\t string[] singStr = value.Split(',');\n");
+        classSource.Append("\t\t List<string> strList = new List<string>();\n");
+        classSource.Append("\t\t for (int i = 0; i < singStr.Length; i++)\n");
+        classSource.Append("\t\t\t strList.Add(singStr[i]);\n");
+        classSource.Append("\t\t return strList.ToArray();\n\t\n}");
+
         //
         classSource.Append("}\n");
         classSource.Append("#endif\n");
@@ -200,33 +208,35 @@ public class ExcelCodeCreater
         }
         else if (type == "string[]" || type == "String[]" || type == "STRING[]")
         {
-            string stringArrayValue = "";
-            for (int i = 0; i < allItemValueRowList.Count; i++)
-            {
-                foreach (var item in allItemValueRowList[i])
-                {
-                    if (keyName == item.Key)
-                    {
-                        stringArrayValue = item.Value;
-                    }
-                }
-            }
-            string[] result = stringArrayValue.Split(',');
-            List<string> arrayStr = new List<string>();
-            string arrayResult = "";
-            for (int i = 0; i < result.Length; i++)
-            {
-                arrayStr.Add('"' + result[i] + '"' + ",");
-            }
-            for (int i = 0; i < arrayStr.Count; i++)
-            {
-                arrayResult += arrayStr[i];
-            }
-            if (arrayResult.EndsWith(","))
-            {
-                arrayResult = arrayResult.Remove(arrayResult.Length - 1, 1);
-            }
-            return "new string[]{ " + arrayResult + " }";
+            return "ToArray(" + stringValue + ")";
+
+            //string stringArrayValue = "";
+            //for (int i = 0; i < allItemValueRowList.Count; i++)
+            //{
+            //    foreach (var item in allItemValueRowList[i])
+            //    {
+            //        if (keyName == item.Key)
+            //        {
+            //            stringArrayValue = item.Value;
+            //        }
+            //    }
+            //}
+            //string[] result = stringArrayValue.Split(',');
+            //List<string> arrayStr = new List<string>();
+            //string arrayResult = "";
+            //for (int i = 0; i < result.Length; i++)
+            //{
+            //    arrayStr.Add('"' + result[i] + '"' + ",");
+            //}
+            //for (int i = 0; i < arrayStr.Count; i++)
+            //{
+            //    arrayResult += arrayStr[i];
+            //}
+            //if (arrayResult.EndsWith(","))
+            //{
+            //    arrayResult = arrayResult.Remove(arrayResult.Length - 1, 1);
+            //}
+            //return "new string[]{ " + arrayResult + " }";
         }
         else
             return stringValue;
