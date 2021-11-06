@@ -52,7 +52,8 @@ public class ExperimentInputVerifyAssetAssignment
 		 for (int i = 0; i < singStr.Length; i++)
 			 strList.Add(singStr[i]);
 		 return strList.ToArray();
-	}}
+	
+}}
 #endif
 
 

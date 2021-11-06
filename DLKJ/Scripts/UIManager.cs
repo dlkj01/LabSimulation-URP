@@ -178,9 +178,9 @@ namespace DLKJ
         public void VerifyBasicLink()
         {
             int currentStep = SceneManager.GetInstance().GetCurrentStep();
-
+            string labName = SceneManager.GetInstance().currentLab.labName;
             //是否可以检查连接完成状态的前提条件,为true才可以继续
-            if (!VerifyBackLinkIsComplete())
+            if (!VerifyBackLinkIsComplete(currentStep, labName))
                 return;
             //检查当前步骤是否有没填写的InputText
             if (ProxyManager.experimentInputProxy.experimentStepInputMap.ContainsKey(currentStep))
@@ -188,6 +188,34 @@ namespace DLKJ
                 if (!UILabButton.uiLabReport.FinishedStepInput(ProxyManager.experimentInputProxy.experimentStepInputMap[currentStep]))
                     return;
             }
+
+            if (labName == SceneManager.SECOND_EXPERIMENT_NAME)
+            {
+                if (currentStep == 4)
+                {
+                    EventManager.OnTips(TipsType.Snackbar, "是否开始第二组实验", () => { FindObjectOfType<UITips>().OnDisTips(); }, () =>
+                    {
+                        Debug.Log("刷新设备,重新给一组随机值");
+                        NextStep();
+                        uiMainPanle.autoConnect.Interactable(true);
+                        //记录第一组数据到word表格
+                        UILabReport2 report2 = UILabButton.uiLabReport as UILabReport2;
+                        report2.WriteInputText();
+                        //数据初始化
+                        MathTool.Init();
+                        //计算第二组数据正确答案
+                        MathTool.FixedCorrect2SecondGroupCalculate();
+                    });
+                    return;
+                }
+            }
+
+            if (SceneManager.GetInstance().currentLab.currentStepIndex >= SceneManager.GetInstance().currentLab.steps.Count - 1)
+            {
+                EventManager.OnTips(TipsType.Toast, "实验完成,请提交实验报告");
+                return;
+            }
+
             if (SceneManager.GetInstance().VerifyBasicLink() == false)
             {
                 Debug.Log("连接有误 请仔细检查，扣分");
@@ -212,10 +240,9 @@ namespace DLKJ
         /// <summary>
         /// 校验实验基本数据设置是否完成
         /// </summary>
-        public bool VerifyBackLinkIsComplete()
+        public bool VerifyBackLinkIsComplete(int currentStep, string labName)
         {
-            string labName = SceneManager.GetInstance().currentLab.labName;
-            int currentStep = SceneManager.GetInstance().currentLab.currentStepIndex;
+
             if (labName == SceneManager.FIRST_EXPERIMENT_NAME || labName == SceneManager.SECOND_EXPERIMENT_NAME)
             {
                 if (currentStep == 2)
@@ -235,26 +262,7 @@ namespace DLKJ
                 }
             }
 
-            if (labName == SceneManager.SECOND_EXPERIMENT_NAME)
-            {
-                if (currentStep == 4)
-                {
-                    EventManager.OnTips(TipsType.Snackbar, "是否开始第二组实验", () => { FindObjectOfType<UITips>().OnDisTips(); }, () =>
-                    {
-                        Debug.Log("刷新设备,重新给一组随机值");
-                        NextStep();
-                        uiMainPanle.autoConnect.Interactable(true);
-                        //记录第一组数据到word表格
-                        UILabReport2 report2 = UILabButton.uiLabReport as UILabReport2;
-                        report2.WriteInputText();
-                        //数据初始化
-                        MathTool.Init();
-                        //计算第二组数据正确答案
-                        MathTool.FixedCorrect2SecondGroupCalculate();
-                    });
-                    return false;
-                }
-            }
+
             if (labName == SceneManager.THIRD_EXPERIMENT_NAME)
             {
                 if (startEquipment == false)
@@ -274,11 +282,7 @@ namespace DLKJ
                 }
             }
 
-            if (SceneManager.GetInstance().currentLab.currentStepIndex >= SceneManager.GetInstance().currentLab.steps.Count - 1)
-            {
-                EventManager.OnTips(TipsType.Toast, "实验完成,请提交实验报告");
-                return false;
-            }
+
             return true;
         }
         private void NextStep()
