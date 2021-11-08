@@ -34,7 +34,7 @@ public static class WordHelper
         }
         return map;
     }
-    private static string streamingPath = Application.streamingAssetsPath.Replace("StreamingAssets", "DocData");
+    private static string streamingPath = Application.streamingAssetsPath + "/DocTemplate";
     static Document doc;
     /// <summary>
     /// 根据标签写入数据
