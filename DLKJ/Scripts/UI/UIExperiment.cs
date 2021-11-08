@@ -53,6 +53,9 @@ namespace DLKJ
             group.blocksRaycasts = false;
             group.interactable = false;
             group.alpha = 0.5f;
+
+            experimentCountText.text = "分数:" + ProxyManager.saveProxy.map[titleText.text].score.ToString() + "\n完成状态:" +
+                 ProxyManager.saveProxy.map[titleText.text].isFinished.ToString();
         }
 
         public void OnPointerEnter(PointerEventData eventData)
