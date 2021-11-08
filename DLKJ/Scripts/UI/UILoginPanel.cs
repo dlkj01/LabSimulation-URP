@@ -14,7 +14,7 @@ namespace DLKJ
         [SerializeField] private Button sureButton;
         [SerializeField] private Button exitButton;
 
-        public void Awake()
+        public void Start()
         {
             errorInfoText.gameObject.SetActive(false);
             UIManager.GetInstance().SetVerifyButtonActive(false);
