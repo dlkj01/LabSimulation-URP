@@ -100,7 +100,7 @@ public static class WordHelper
     public static Stream FileToStream(string fileName)
     {
         // 打开文件
-        FileStream fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+        FileStream fileStream = new FileStream(fileName, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
         // 读取文件的 byte[]
         byte[] bytes = new byte[fileStream.Length];
         fileStream.Read(bytes, 0, bytes.Length);
