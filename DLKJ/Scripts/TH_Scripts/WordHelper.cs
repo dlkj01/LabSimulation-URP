@@ -84,7 +84,7 @@ public static class WordHelper
                 }
             }
         }
-        string savePath = Application.streamingAssetsPath + "/Save/";
+        string savePath = Application.streamingAssetsPath + "/Save";
         if (!Directory.Exists(savePath))
         {
             Directory.CreateDirectory(savePath);
@@ -92,7 +92,7 @@ public static class WordHelper
         string studentID = UIManager.GetInstance().UILabButton.uiLabReport.GetInputValue("IDInputField");
         if (string.IsNullOrEmpty(studentID))
             studentID = "学号有误";
-        doc.Save(savePath + studentID /*SceneManager.loginUserData.accountNumber*/ + "-" + DateTime.Now.ToString("yyyy-MM-dd") + outPath); //保存word
+        doc.Save(savePath + "/" + studentID /*SceneManager.loginUserData.accountNumber*/ + "-" + DateTime.Now.ToString("yyyy-MM-dd") + outPath); //保存word
         ProxyManager.saveProxy.Save();
         stream.Close();
     }
