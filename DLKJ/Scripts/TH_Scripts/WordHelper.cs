@@ -8,6 +8,7 @@ using Aspose.Words.Tables;
 using System.Linq;
 using System.Reflection;
 using DLKJ;
+using Common;
 
 public static class WordHelper
 {
@@ -33,7 +34,7 @@ public static class WordHelper
         }
         return map;
     }
-    private static string streamingPath = Application.streamingAssetsPath;
+    private static string streamingPath = Application.streamingAssetsPath.Replace("StreamingAssets", "DocData");
     static Document doc;
     /// <summary>
     /// 根据标签写入数据
@@ -43,7 +44,10 @@ public static class WordHelper
     public static void HandleGuaranteeDoc(string fileName, Dictionary<string, object> map, string outPath)
     {
         string[] reportPath = new string[] { streamingPath + "/LabReport2.doc", streamingPath + "/LabReport3.doc", streamingPath + "/LabReport4.doc" };
-
+        if (!Directory.Exists(streamingPath))
+        {
+            Directory.CreateDirectory(streamingPath);
+        }
         string filePath = streamingPath + "/" + fileName;
         //for (int i = 0; i < reportPath.Length; i++)
         //{
@@ -80,7 +84,16 @@ public static class WordHelper
                 }
             }
         }
-        doc.Save(streamingPath + "/Save/" + SceneManager.loginUserData.accountNumber + "-" + DateTime.Now.ToString("yyyy-MM-dd") + outPath); //保存word
+        string savePath = Application.streamingAssetsPath + "/Save/";
+        if (!Directory.Exists(savePath))
+        {
+            Directory.CreateDirectory(savePath);
+        }
+        string studentID = UIManager.GetInstance().UILabButton.uiLabReport.GetInputValue("IDInputField");
+        if (string.IsNullOrEmpty(studentID))
+            studentID = "学号有误";
+        doc.Save(savePath + studentID /*SceneManager.loginUserData.accountNumber*/ + "-" + DateTime.Now.ToString("yyyy-MM-dd") + outPath); //保存word
+        ProxyManager.saveProxy.Save();
         stream.Close();
     }
 

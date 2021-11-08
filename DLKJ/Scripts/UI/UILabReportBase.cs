@@ -228,7 +228,7 @@ public class UILabReportBase : MonoBehaviour
         return isInput;
     }
 
-    public void ShowPanle(bool isInput)
+    public void ShowPanle(bool isInput, bool secondPage = true)
     {
         if (isInput == false)
         {
@@ -236,7 +236,7 @@ public class UILabReportBase : MonoBehaviour
             {
                 cacheEffect[i].StartFlashing();
             }
-            OpenSecondPage();
+            OpenSecondPage(secondPage);
         }
     }
     public void SetVisibale(bool state)
@@ -254,12 +254,20 @@ public class UILabReportBase : MonoBehaviour
         page1.SetActive(!state);
         page2.SetActive(state);
     }
-    private void OpenSecondPage()
+    private void OpenSecondPage(bool secondPage = true)
     {
         SetVisibale(true);
         ChangePageButton.transform.localEulerAngles = new Vector3(0, 0, 180);
-        page1.SetActive(false);
-        page2.SetActive(true);
+        if (secondPage)
+        {
+            page1.SetActive(false);
+            page2.SetActive(true);
+        }
+        else
+        {
+            page1.SetActive(true);
+            page2.SetActive(false);
+        }
     }
 
     public virtual void SaveData()
@@ -307,6 +315,17 @@ public class UILabReportBase : MonoBehaviour
             }
         }
         return false;
+    }
+    public string GetInputValue(string inputTextName)
+    {
+        foreach (var item in inputFields)
+        {
+            if (item.name == inputTextName)
+            {
+                return item.text;
+            }
+        }
+        return "";
     }
 
     /// <summary>
@@ -368,7 +387,7 @@ public class UILabReportBase : MonoBehaviour
             }
             this.map[item2.Key] = answerCheck;
         }
-        ProxyManager.saveProxy.Save();
+
         WordHelper.HandleGuaranteeDoc(filePath, map, outFilePath);
     }
 }

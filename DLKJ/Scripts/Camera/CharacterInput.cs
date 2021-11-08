@@ -33,9 +33,9 @@ public class CharacterInput : MonoBehaviour
         zDir = rotateCamera.transform.forward * y;
         yDir = Vector3.zero;
         if (Input.GetKey(KeyCode.Q))
-            yDir = Vector3.up;
-        if (Input.GetKey(KeyCode.E))
             yDir = Vector3.down;
+        if (Input.GetKey(KeyCode.E))
+            yDir = Vector3.up;
         Move((xDir + zDir + yDir) * speed * Time.deltaTime);
     }
 

@@ -153,6 +153,11 @@ namespace DLKJ
                         return;
                     }
                 }
+                if (!UIManager.GetInstance().UILabButton.uiLabReport.FinishedStepInput(new string[] { "IDInputField" }))
+                {
+                    UIManager.GetInstance().UILabButton.uiLabReport.ShowPanle(false, false);
+                    return;
+                }
             }
 
 
@@ -160,13 +165,8 @@ namespace DLKJ
             EventManager.OnTips(TipsType.Snackbar, tipString, () => { FindObjectOfType<UITips>().OnDisTips(); },
                () =>
                {
-
-
-
-
                    //添加完成的实验名字的记录
                    string labName = SceneManager.GetInstance().currentLab.labName;
-
                    //保存word数据
                    UIManager.GetInstance().UILabButton.uiLabReport.SaveData();
                    //做过实验标记为True
