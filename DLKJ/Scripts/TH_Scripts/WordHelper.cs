@@ -45,12 +45,12 @@ public static class WordHelper
         string[] reportPath = new string[] { streamingPath + "/LabReport2.doc", streamingPath + "/LabReport3.doc", streamingPath + "/LabReport4.doc" };
 
         string filePath = streamingPath + "/" + fileName;
-        for (int i = 0; i < reportPath.Length; i++)
-        {
-            FileInfo info = new FileInfo(reportPath[i]);
-            if (info.Exists)
-                info.Attributes = FileAttributes.Hidden;
-        }
+        //for (int i = 0; i < reportPath.Length; i++)
+        //{
+        //    FileInfo info = new FileInfo(reportPath[i]);
+        //    if (info.Exists)
+        //        info.Attributes = FileAttributes.Hidden;
+        //}
 
         Stream stream = FileToStream(filePath);
         //     string tempFile = Path.GetFullPath(filePath).ToString();      //获取模板路径，这个根据个人模板路径而定。
