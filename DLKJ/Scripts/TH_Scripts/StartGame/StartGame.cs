@@ -18,6 +18,8 @@ namespace DLKJ
             if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.F1))
             {
                 ProxyManager.saveProxy.Remove();
+                SceneManager.didExperiment = true;
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Level1");
             }
         }
     }
