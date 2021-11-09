@@ -163,7 +163,7 @@ namespace DLKJ
             if (ProxyManager.saveProxy.IsFinishedAll())
             {
                 float score = ProxyManager.saveProxy.GetAllScore();
-                EventManager.OnTips(TipsType.Toast, "所有实验已经完成,您的分数是:" + score.ToString("#0.00"), () => { }, () =>
+                EventManager.OnTips(TipsType.Toast, "您的分数是:" + score.ToString("#0.00"), () => { }, () =>
                 {
                     Debug.Log("退出了");
                     if (ProxyManager.saveProxy.IsFinishedAll() == true)
