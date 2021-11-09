@@ -14,12 +14,15 @@ namespace DLKJ
         [SerializeField] private Button sureButton;
         [SerializeField] private Button exitButton;
 
-        public void Start()
+        public void Awake()
         {
             errorInfoText.gameObject.SetActive(false);
             UIManager.GetInstance().SetVerifyButtonActive(false);
             if (sureButton) sureButton.onClick.AddListener(delegate () { SureCallBack(); });
             if (exitButton) exitButton.onClick.AddListener(delegate () { ExitCallBack(); });
+        }
+        private void Start()
+        {
 #if UNITY_EDITOR
             SceneManager.didExperiment = true;
             SceneManager.loginUserData = new UserData() { accountNumber = "teacher1", password = "123", userType = UserType.Teacher };
