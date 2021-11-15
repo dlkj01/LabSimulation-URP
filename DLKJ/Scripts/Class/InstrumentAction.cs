@@ -21,8 +21,10 @@ namespace DLKJ
         [SerializeField] Color onColor;
         [SerializeField] Color offColor;
 
-        [Header("Numbers Bits")]
+        [Header("Numbers Bits Of GHZ")]
         [SerializeField] List<MeshRenderer> numbers = new List<MeshRenderer>();
+        [Header("Numbers Bits Of UV")]
+        [SerializeField] List<MeshRenderer> numbersUV = new List<MeshRenderer>();
         [Header("Frequency")]
         [SerializeField] List<Texture2D> numberTextures = new List<Texture2D>();
 
@@ -203,7 +205,7 @@ namespace DLKJ
                         MathTool.F = MathUtility.GetCurrentValue(tempInstrumentBtn);
                         MathTest.Instance.mathInitValue.initF = true;
                         UIManager.GetInstance().SetStartButton();
-                        UpdateNumber(MathTool.F);
+                        UpdateHZNumber(MathTool.F);
                         //  MathTool.F = MathUtility.GetCurrentValue(tempInstrumentBtn);
                         Debug.Log(MathTool.F);
                         break;
@@ -500,7 +502,7 @@ namespace DLKJ
         }
 
 
-        public void UpdateNumber(float frequencyValue)
+        public void UpdateHZNumber(float frequencyValue)
         {
             Debug.Log("频率值:" + frequencyValue);
             int value0 = 0;
@@ -602,6 +604,136 @@ namespace DLKJ
                 }
             }
         }
+        public void UpdateUVNumber(float voltageValue)
+        {
+            Debug.Log("电压值:" + voltageValue);
+            int value0 = 0;
+            int value1 = 0;
+            int value2 = 0;
+            int value3 = 0;
+            int value4 = 0;
 
+
+            if (voltageValue > 0)
+            {
+                float value = voltageValue;
+
+                if (voltageValue < 1)
+                {
+                    value = value * 100;
+                    string vslueStr = value.ToString();
+                    string[] arry = vslueStr.Split('.');
+
+                    string first = arry[0].Substring(0, 1);
+                    string second = arry[0].Substring(1, 1);
+                    //Debug.Log("first:" + first + "   second:" + second);
+
+                    value0 = 0;
+                    value1 = 0;
+                    value2 = 0;
+                    value3 = int.Parse(first);
+                    value4 = int.Parse(second);
+                }
+                else if (1 <= voltageValue && voltageValue < 10)
+                {
+                    value = value * 100;
+                    string vslueStr = value.ToString();
+                    string[] arry = vslueStr.Split('.');
+
+                    string first = arry[0].Substring(0, 1);
+                    string second = arry[0].Substring(1, 1);
+                    string third = arry[0].Substring(2, 1);
+                    //Debug.Log("first:" + first + "   second:" + second+ "    third:" + third);
+
+                    value0 = 0;
+                    value1 = 0;
+                    value2 = int.Parse(first); ;
+                    value3 = int.Parse(second);
+                    value4 = int.Parse(third);
+                }
+                else if (10 <= voltageValue && voltageValue < 100)
+                {
+                    value = value * 100;
+                    string vslueStr = value.ToString();
+                    string[] arry = vslueStr.Split('.');
+
+                    string first = arry[0].Substring(0, 1);
+                    string second = arry[0].Substring(1, 1);
+                    string third = arry[0].Substring(2, 1);
+                    string forth = arry[0].Substring(3, 1);
+                    //Debug.Log("first:" + first + "   second:" + second+ "    third:" + third+ "  forth:" + forth);
+
+                    value0 = 0;
+                    value1 = int.Parse(first);
+                    value2 = int.Parse(second); ;
+                    value3 = int.Parse(third);
+                    value4 = int.Parse(forth);
+                }
+                else if (100 <= voltageValue && voltageValue < 1000)
+                {
+                    value = value * 100;
+                    string vslueStr = value.ToString();
+                    string[] arry = vslueStr.Split('.');
+
+                    string first = arry[0].Substring(0, 1);
+                    string second = arry[0].Substring(1, 1);
+                    string third = arry[0].Substring(2, 1);
+                    string forth = arry[0].Substring(3, 1);
+                    string fifth = arry[0].Substring(4, 1);
+                    //Debug.Log("first:" + first + "   second:" + second+ "    third:" + third+ "  forth:" + forth);
+
+                    value0 = int.Parse(first);
+                    value1 = int.Parse(second);
+                    value2 = int.Parse(third);
+                    value3 = int.Parse(forth);
+                    value4 = int.Parse(fifth);
+                }
+
+                for (int i = 0; i < numbersUV.Count; i++)
+                {
+                    numbersUV[i].GetPropertyBlock(mpb);
+                    switch (i)
+                    {
+                        case 0:
+                            {
+                                mpb.SetTexture("_MainTex", numberTextures[value0]);
+                            }
+                            break;
+                        case 1:
+                            {
+                                mpb.SetTexture("_MainTex", numberTextures[value1]);
+                            }
+                            break;
+                        case 2:
+                            {
+                                mpb.SetTexture("_MainTex", numberTextures[value2]);
+                            }
+                            break;
+                        case 3:
+                            {
+                                mpb.SetTexture("_MainTex", numberTextures[value3]);
+                            }
+                            break;
+                        case 4:
+                            {
+                                mpb.SetTexture("_MainTex", numberTextures[value4]);
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    numbersUV[i].SetPropertyBlock(mpb);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < numbersUV.Count; i++)
+                {
+                    numbersUV[i].GetPropertyBlock(mpb);
+                    mpb.SetTexture("_MainTex", numberTextures[0]);
+                    numbersUV[i].SetPropertyBlock(mpb);
+                }
+            }
+        }
     }
 }
