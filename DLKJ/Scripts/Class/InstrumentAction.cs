@@ -254,10 +254,11 @@ namespace DLKJ
                     case "RotaryBtnVoltage":
                         if (MathTest.Instance.isOpen == false)
                             return;
-                        //给电压赋值
-                        //   MathTool.A = MathUtility.GetCurrentValue(tempInstrumentBtn);
-                        // UIManager.GetInstance().SetStartButton();
-                        //transform.Find("电压Text").GetComponent<TextMesh>().text = MathTool.A.ToString("#0.00");
+                       // 给电压赋值
+                        MathTool.A = MathUtility.GetCurrentValue(tempInstrumentBtn);
+                        UIManager.GetInstance().SetStartButton();
+                        UpdateUVNumber(MathTool.A);
+                       //transform.Find("电压Text").GetComponent<TextMesh>().text = MathTool.A.ToString("#0.00");
                         break;
                     case "RotaryBtnFrequency":
                         break;
