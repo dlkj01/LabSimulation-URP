@@ -200,7 +200,10 @@ namespace DLKJ
                     {
                         Debug.Log("刷新设备,重新给一组随机值");
                         NextStep();
-                        uiMainPanle.autoConnect.Interactable(true);
+                        if (SceneManager.loginUserData.userType == UserType.Teacher)
+                        {
+                            uiMainPanle.autoConnect.Interactable(true);
+                        }
                         //记录第一组数据到word表格
                         UILabReport2 report2 = UILabButton.uiLabReport as UILabReport2;
                         report2.WriteInputText();
@@ -235,7 +238,10 @@ namespace DLKJ
                 EventManager.OnTips(TipsType.Snackbar, "确定进行下一步操作", () => { FindObjectOfType<UITips>().OnDisTips(); }, () =>
                 {
                     NextStep();
-                    uiMainPanle.autoConnect.Interactable(true);
+                    if (SceneManager.loginUserData.userType == UserType.Teacher)
+                    {
+                        uiMainPanle.autoConnect.Interactable(true);
+                    }
                 });
             }
         }
