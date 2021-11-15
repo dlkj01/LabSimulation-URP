@@ -52,7 +52,7 @@ MonoBehaviour:
     audioClip: {fileID: 0}
     spacing: 0.5
     autoMoveSpeed: 1
-    originPosition: {x: -0.2, y: 1.1, z: 1.4}
+    originPosition: {x: -0.2, y: 0.98, z: 1.4}
     defaultComponents:
     - {fileID: 1667232460207234984, guid: 9310f18920ad2bb44a272d15a8934fe5, type: 3}
     - {fileID: 2872388454102490671, guid: 138a69f919a109b47a36ad4c7e794c1e, type: 3}
@@ -180,7 +180,7 @@ MonoBehaviour:
     audioClip: {fileID: 0}
     spacing: 0.5
     autoMoveSpeed: 1
-    originPosition: {x: -0.2, y: 1.1, z: 1.4}
+    originPosition: {x: -0.2, y: 0.98, z: 1.4}
     defaultComponents:
     - {fileID: 1396622047791104849, guid: 9e9f021fe7f865b44b1a614b86751d6d, type: 3}
     - {fileID: 2872388454102490671, guid: 138a69f919a109b47a36ad4c7e794c1e, type: 3}
@@ -332,7 +332,7 @@ MonoBehaviour:
     audioClip: {fileID: 0}
     spacing: 0.5
     autoMoveSpeed: 1
-    originPosition: {x: -0.2, y: 1.1, z: 1.4}
+    originPosition: {x: -0.2, y: 0.98, z: 1.4}
     defaultComponents:
     - {fileID: 1396622047791104849, guid: 9e9f021fe7f865b44b1a614b86751d6d, type: 3}
     - {fileID: 2872388454102490671, guid: 138a69f919a109b47a36ad4c7e794c1e, type: 3}

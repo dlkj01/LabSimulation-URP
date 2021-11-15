@@ -122,7 +122,7 @@ namespace DLKJ
                 reDistance = Vector3.Distance(target.selfPort.transform.position, target.targetPort.transform.position);
                 //transform.position = Vector3.Lerp(transform.position, target.targetPosition, Time.deltaTime * target.speed);
                 Vector3 moveVector = target.targetPort.transform.position - target.selfPort.transform.position;
-                transform.Translate(moveVector * 1 * Time.deltaTime, Space.World);
+                transform.Translate(moveVector * 2 * Time.deltaTime, Space.World);
                 yield return new WaitForFixedUpdate();
             }
 
