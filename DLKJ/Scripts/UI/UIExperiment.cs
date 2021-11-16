@@ -53,8 +53,15 @@ namespace DLKJ
             group.blocksRaycasts = false;
             group.interactable = false;
             group.alpha = 0.5f;
-
-            experimentCountText.text = "分数:" + ProxyManager.saveProxy.map[titleText.text].score.ToString();
+            string score = ProxyManager.saveProxy.map[titleText.text].score.ToString();
+            if (ProxyManager.saveProxy.map[titleText.text].score.ToString().Contains("."))
+            {
+                experimentCountText.text = "分数:" + ProxyManager.saveProxy.map[titleText.text].score.ToString("#0.00");
+            }
+            else
+            {
+                experimentCountText.text = "分数:" + ProxyManager.saveProxy.map[titleText.text].score.ToString();
+            }
         }
 
         public void OnPointerEnter(PointerEventData eventData)

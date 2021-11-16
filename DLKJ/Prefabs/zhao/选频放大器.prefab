@@ -3204,6 +3204,7 @@ MonoBehaviour:
   onColor: {r: 1, g: 0, b: 0, a: 1}
   offColor: {r: 0.14901961, g: 0.14901961, b: 0.14901961, a: 1}
   numbers: []
+  numbersUV: []
   numberTextures: []
   rotationType: 1
   RotationSpeed: 2
@@ -3442,7 +3443,7 @@ MonoBehaviour:
     StartAngle: -33
     EndAngle: 38
     currentAngle: -33
-    uncontrolled: 0
+    uncontrolled: 1
     x: 0
   - CanInteractive: 1
     instrumentButton: {fileID: 6437791387953629520}

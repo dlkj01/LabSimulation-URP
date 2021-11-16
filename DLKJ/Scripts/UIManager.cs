@@ -192,29 +192,29 @@ namespace DLKJ
                 }
             }
 
-            if (labName == SceneManager.SECOND_EXPERIMENT_NAME)
-            {
-                if (currentStep == 4)
-                {
-                    EventManager.OnTips(TipsType.Snackbar, "是否开始第二组实验", () => { FindObjectOfType<UITips>().OnDisTips(); }, () =>
-                    {
-                        Debug.Log("刷新设备,重新给一组随机值");
-                        NextStep();
-                        if (SceneManager.loginUserData.userType == UserType.Teacher)
-                        {
-                            uiMainPanle.autoConnect.Interactable(true);
-                        }
-                        //记录第一组数据到word表格
-                        UILabReport2 report2 = UILabButton.uiLabReport as UILabReport2;
-                        report2.WriteInputText();
-                        //数据初始化
-                        MathTool.Init();
-                        //计算第二组数据正确答案
-                        MathTool.FixedCorrect2SecondGroupCalculate();
-                    });
-                    return;
-                }
-            }
+            //if (labName == SceneManager.SECOND_EXPERIMENT_NAME)
+            //{
+            //    if (currentStep == 4)
+            //    {
+            //        EventManager.OnTips(TipsType.Snackbar, "是否开始第二组实验", () => { FindObjectOfType<UITips>().OnDisTips(); }, () =>
+            //        {
+            //            Debug.Log("刷新设备,重新给一组随机值");
+            //            NextStep();
+            //            if (SceneManager.loginUserData.userType == UserType.Teacher)
+            //            {
+            //                uiMainPanle.autoConnect.Interactable(true);
+            //            }
+            //            //记录第一组数据到word表格
+            //            UILabReport2 report2 = UILabButton.uiLabReport as UILabReport2;
+            //            report2.WriteInputText();
+            //            //数据初始化
+            //            MathTool.Init();
+            //            //计算第二组数据正确答案
+            //            MathTool.FixedCorrect2SecondGroupCalculate();
+            //        });
+            //        return;
+            //    }
+            //}
 
             if (SceneManager.GetInstance().currentLab.currentStepIndex >= SceneManager.GetInstance().currentLab.steps.Count - 1)
             {
@@ -313,10 +313,10 @@ namespace DLKJ
         {
             startEquipment = true;
             startEquipmentButton.gameObject.SetActive(false);
-            if (SceneManager.GetInstance().GetInstrumentButton("选频放大器", "RotaryBtnVoltage") != null)
+            if (SceneManager.GetInstance().GetInstrumentButton("微波信号源", "FrequencyBtn2") != null)
             {
-                SceneManager.GetInstance().GetInstrumentButton("选频放大器", "RotaryBtnVoltage").RemoveListener();
-                SceneManager.GetInstance().GetInstrumentButton("选频放大器", "RotaryBtnVoltage").SetInteractiveState(false);
+                SceneManager.GetInstance().GetInstrumentButton("微波信号源", "FrequencyBtn2").RemoveListener();
+                SceneManager.GetInstance().GetInstrumentButton("微波信号源", "FrequencyBtn2").SetInteractiveState(false);
             }
             if (SceneManager.GetInstance().GetInstrumentButton("可变衰减器", "Kebianshaijianqi") != null)
             {

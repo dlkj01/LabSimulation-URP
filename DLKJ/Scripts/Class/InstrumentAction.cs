@@ -209,6 +209,15 @@ namespace DLKJ
                         //  MathTool.F = MathUtility.GetCurrentValue(tempInstrumentBtn);
                         Debug.Log(MathTool.F);
                         break;
+                    case "FrequencyBtn2":
+                        if (MathTest.Instance.isOpen == false)
+                            return;
+                        // 给电压赋值
+                        MathTool.A = MathUtility.GetCurrentValue(tempInstrumentBtn);
+                        UIManager.GetInstance().SetStartButton();
+                        UpdateUVNumber(MathTool.A);
+
+                        break;
                     #endregion
                     #region 频选放大器
                     case "RangeBtnX10":
@@ -252,12 +261,7 @@ namespace DLKJ
                         }
                         break;
                     case "RotaryBtnVoltage":
-                        if (MathTest.Instance.isOpen == false)
-                            return;
-                       // 给电压赋值
-                        MathTool.A = MathUtility.GetCurrentValue(tempInstrumentBtn);
-                        UIManager.GetInstance().SetStartButton();
-                        UpdateUVNumber(MathTool.A);
+                     
                        //transform.Find("电压Text").GetComponent<TextMesh>().text = MathTool.A.ToString("#0.00");
                         break;
                     case "RotaryBtnFrequency":

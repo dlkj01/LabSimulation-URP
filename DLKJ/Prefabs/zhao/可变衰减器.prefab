@@ -400,6 +400,7 @@ MonoBehaviour:
   onColor: {r: 0, g: 0, b: 0, a: 0}
   offColor: {r: 0, g: 0, b: 0, a: 0}
   numbers: []
+  numbersUV: []
   numberTextures: []
   rotationType: 0
   RotationSpeed: 2
@@ -415,8 +416,8 @@ MonoBehaviour:
     instrumentButtonType: 1
     rotary: 0
     rotatyDirection: 1
-    MaxValue: 1
-    MinValue: 0
+    MaxValue: 0
+    MinValue: 1
     EndMovePoint: 0.0171
     StartMovePoint: 0.0207
     StepLength: 81

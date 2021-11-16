@@ -28,7 +28,7 @@ namespace DLKJ
             mathInitValue = new InitValue();
             MathTool.Reset();
         }
-        private void Start() => MathTool.A = UnityEngine.Random.Range(2f, 1000f);
+        //private void Start() => MathTool.A = UnityEngine.Random.Range(2f, 1000f);
 
         private void Update() => OnUpdate();
 

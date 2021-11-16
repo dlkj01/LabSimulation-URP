@@ -921,7 +921,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4249890044101196751}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0.29, y: 1.1190004, z: 1.810176}
   m_LocalScale: {x: 1.2948068, y: 1.2948068, z: 1.2948068}
   m_Children:
@@ -936,7 +936,7 @@ Transform:
   - {fileID: 1595228646612860001}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &2872388454102490671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1086,6 +1086,24 @@ MonoBehaviour:
     StepLength: 45
     StartAngle: -33
     EndAngle: 12
+    currentAngle: -33
+    uncontrolled: 0
+    x: 0
+  - CanInteractive: 1
+    instrumentButton: {fileID: 8597641004320165775}
+    conbinationList: []
+    clickState: 1
+    btnRotationType: 1
+    instrumentButtonType: 1
+    rotary: 0
+    rotatyDirection: 1
+    MaxValue: 500
+    MinValue: 2
+    EndMovePoint: 0
+    StartMovePoint: 0
+    StepLength: 66
+    StartAngle: -33
+    EndAngle: 33
     currentAngle: -33
     uncontrolled: 0
     x: 0
@@ -1910,7 +1928,7 @@ GameObject:
   - component: {fileID: 2591264987370277952}
   - component: {fileID: 316938280537555315}
   m_Layer: 0
-  m_Name: FrequencyBtn
+  m_Name: FrequencyBtn2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
