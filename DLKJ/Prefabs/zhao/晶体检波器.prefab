@@ -913,7 +913,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4962538982183764508}
-  m_LocalRotation: {x: 0, y: -0.00000008742278, z: 0, w: -1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.081, y: 0.9430009, z: 0.739}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -940,7 +940,7 @@ MonoBehaviour:
   renderTexture: {fileID: 8400000, guid: 14abb32ef98c55c44a8978ed75ff12fb, type: 2}
   moveable: 1
   libraryType: 2
-  directionType: 1
+  directionType: 0
   ports:
   - {fileID: 2651607682009662910}
   - {fileID: 5538837970332449672}

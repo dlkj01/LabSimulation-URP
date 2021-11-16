@@ -152,9 +152,9 @@ namespace DLKJ
 
                     if (stepItems[i].itemName == "¾§Ìå¼ì²¨Æ÷")
                     {
-                        if (currentLab.currentStepIndex == 2)
+                        if (currentLab.currentStepIndex == 4)
                         {
-                            stepItems[i].RotationY();
+                            item.RotationY();
                         }
                         else
                         {

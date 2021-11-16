@@ -206,7 +206,7 @@ namespace DLKJ
 
         void OnSureCallBack()
         {
-            Debug.Log("点击");
+            Debug.Log("点击 分值："+ currentLab.currentStep.GetScore()+ "    scoreChecking:" + scoreChecking);
             if (currentLab.currentStep.GetScore() <= 0 && scoreChecking)
             {
                 ResetUI();
