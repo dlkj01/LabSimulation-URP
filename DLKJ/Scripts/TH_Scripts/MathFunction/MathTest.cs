@@ -79,16 +79,16 @@ namespace DLKJ
                 case SceneManager.FIRST_EXPERIMENT_NAME:
                     switch (SceneManager.GetInstance().currentLab.currentStepIndex)
                     {
-                        case 2:
+                        case 3:
                             U = MathTool.SLMCLXZDDLB(MathUtility.GetDistance(tempInstrumentBtn));
                             break;
-                        case 3:
+                        case 4:
                             U = MathTool.EDKTODLB(MathUtility.GetDistance(tempInstrumentBtn));
                             break;
-                        case 4:
+                        case 5:
                             U = MathTool.ErDuanKouKeBianDuanLuQi(MathUtility.GetDistance(keBianDuanLuQiBtn), MathUtility.GetDistance(tempInstrumentBtn));
                             break;
-                        case 5:
+                        case 6:
                             U = MathTool.EDKPPFZ(MathUtility.GetDistance(tempInstrumentBtn));
                             break;
                         default:
@@ -98,27 +98,27 @@ namespace DLKJ
                 case SceneManager.SECOND_EXPERIMENT_NAME:
                     switch (SceneManager.GetInstance().currentLab.currentStepIndex)
                     {
-                        case 2:
-                            U = MathTool.SLMCLXZDDLB(MathUtility.GetDistance(tempInstrumentBtn));
-                            break;
-
                         case 3:
-                            U = MathTool.FZZKCL_First(MathUtility.GetDistance(tempInstrumentBtn));
+                            U = MathTool.SLMCLXZDDLB(MathUtility.GetDistance(tempInstrumentBtn));
                             break;
 
                         case 4:
-                            U = MathTool.FZKZPP(MathUtility.GetDistance(instrumentPiPeiLuoDingL), MathUtility.GetDistance(instrumentPiPeiLuoDingD), MathUtility.GetDistance(tempInstrumentBtn));
-                            break;
-
-                        case 5:
-                            U = MathTool.SLMCLXZDDLB(MathUtility.GetDistance(tempInstrumentBtn));
-                            break;
-
-                        case 6:
                             U = MathTool.FZZKCL_First(MathUtility.GetDistance(tempInstrumentBtn));
                             break;
 
+                        case 5:
+                            U = MathTool.FZKZPP(MathUtility.GetDistance(instrumentPiPeiLuoDingL), MathUtility.GetDistance(instrumentPiPeiLuoDingD), MathUtility.GetDistance(tempInstrumentBtn));
+                            break;
+
+                        case 6:
+                            U = MathTool.SLMCLXZDDLB(MathUtility.GetDistance(tempInstrumentBtn));
+                            break;
+
                         case 7:
+                            U = MathTool.FZZKCL_First(MathUtility.GetDistance(tempInstrumentBtn));
+                            break;
+
+                        case 8:
                             U = MathTool.FZKZPP(MathUtility.GetDistance(instrumentPiPeiLuoDingL), MathUtility.GetDistance(instrumentPiPeiLuoDingD), MathUtility.GetDistance(tempInstrumentBtn));
                             break;
                         default:

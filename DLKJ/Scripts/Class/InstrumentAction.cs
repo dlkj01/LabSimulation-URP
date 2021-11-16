@@ -180,6 +180,9 @@ namespace DLKJ
                                     if (MathUtility.GetCurrentValue(buttonKaiGuan) == 0 && MathUtility.GetCurrentValue(powerKaiGuan) == 0)
                                     {
                                         MathTest.Instance.IsOpen(true);
+                                        Transform light = buttonKaiGuan.instrumentButton.transform.parent.Find("pSphere2");
+                                        light.GetComponent<MeshRenderer>().materials[0].color = Color.red;
+
                                     }
                                     for (int i = 0; i < powerMaterials.Count; i++)
                                     {
