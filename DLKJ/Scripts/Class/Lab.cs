@@ -146,6 +146,7 @@ namespace DLKJ
         public ValueType valueType = ValueType.Value;
         public CompletedState completedState = CompletedState.Unfinished;
         public List<Item> keyItems = new List<Item>();
+        public string gifFileName="";
 
         private float score = 0;
 

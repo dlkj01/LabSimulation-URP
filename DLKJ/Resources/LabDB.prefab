@@ -80,6 +80,7 @@ MonoBehaviour:
       - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
       - {fileID: 1396622047791104849, guid: 9e9f021fe7f865b44b1a614b86751d6d, type: 3}
       - {fileID: 2872388454102490671, guid: 138a69f919a109b47a36ad4c7e794c1e, type: 3}
+      gifFileName: 
     - ID: 2
       nextStepCanMove: 0
       points: 10
@@ -94,6 +95,16 @@ MonoBehaviour:
       - {fileID: 1667232460207234984, guid: 9310f18920ad2bb44a272d15a8934fe5, type: 3}
       - {fileID: 6160732753793878566, guid: 08bd461d317849348a7e283c0ea65675, type: 3}
       - {fileID: 422642413207688284, guid: 2eebec1e05c8ddf47b202726a2e0d16e, type: 3}
+      gifFileName: 
+    - ID: 7
+      nextStepCanMove: 0
+      points: 0
+      dropPoints: 0
+      stepName: "\u586B\u5199\u57FA\u7840\u6570\u636E"
+      valueType: 100
+      completedState: 0
+      keyItems: []
+      gifFileName: 
     - ID: 3
       nextStepCanMove: 1
       points: 20
@@ -109,6 +120,7 @@ MonoBehaviour:
       - {fileID: 3991816612479598473, guid: 2e3ee03a007b3f64ea48e50730084565, type: 3}
       - {fileID: 1667232460207234984, guid: 9310f18920ad2bb44a272d15a8934fe5, type: 3}
       - {fileID: 8066662230590069131, guid: 9c121467226dbbe4aa1c978552fb3d6d, type: 3}
+      gifFileName: 
     - ID: 4
       nextStepCanMove: 1
       points: 20
@@ -125,6 +137,7 @@ MonoBehaviour:
       - {fileID: 1667232460207234984, guid: 9310f18920ad2bb44a272d15a8934fe5, type: 3}
       - {fileID: 9096104713619213982, guid: 7fb131266e0fd84468ed5af27fb5bd1f, type: 3}
       - {fileID: 8066662230590069131, guid: 9c121467226dbbe4aa1c978552fb3d6d, type: 3}
+      gifFileName: "\u5B9E\u9A8C\u4E00 \u4E8C\u7AEF\u53E3\u7F51\u7EDC\u5B9E\u9A8C\uFF0C\u63A5\u77ED\u8DEF\u677F"
     - ID: 5
       nextStepCanMove: 1
       points: 20
@@ -141,6 +154,7 @@ MonoBehaviour:
       - {fileID: 1667232460207234984, guid: 9310f18920ad2bb44a272d15a8934fe5, type: 3}
       - {fileID: 9096104713619213982, guid: 7fb131266e0fd84468ed5af27fb5bd1f, type: 3}
       - {fileID: 2541731738071094316, guid: 4765c982d46142d4c8ec4441a4bc5460, type: 3}
+      gifFileName: "\u5B9E\u9A8C\u4E00 \u4E8C\u7AEF\u53E3\u7F51\u7EDC\u5B9E\u9A8C\uFF0C\u5F00\u8DEF\u72B6\u6001(\u53EF\u53D8\u77ED\u8DEF\u5668\u5DF2\u8C03\u81F3\u5F00\u8DEF\u65F6)"
     - ID: 6
       nextStepCanMove: 1
       points: 20
@@ -157,6 +171,7 @@ MonoBehaviour:
       - {fileID: 1667232460207234984, guid: 9310f18920ad2bb44a272d15a8934fe5, type: 3}
       - {fileID: 9096104713619213982, guid: 7fb131266e0fd84468ed5af27fb5bd1f, type: 3}
       - {fileID: 6215187212563577928, guid: 37d9002f115cadc4183454e2c1a992ee, type: 3}
+      gifFileName: "\u5B9E\u9A8C\u4E00 \u4E8C\u7AEF\u53E3\u7F51\u7EDC\u5B9E\u9A8C\uFF0C\u63A5\u5339\u914D\u8D1F\u8F7D"
     currentStepIndex: 0
     currentStep:
       ID: 1
@@ -172,6 +187,7 @@ MonoBehaviour:
       - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
       - {fileID: 1396622047791104849, guid: 9e9f021fe7f865b44b1a614b86751d6d, type: 3}
       - {fileID: 2872388454102490671, guid: 138a69f919a109b47a36ad4c7e794c1e, type: 3}
+      gifFileName: 
   - ID: 2
     icon: {fileID: 21300000, guid: 04f842b4df7d3754b8ca01b30fc49710, type: 3}
     labName: "\u8D1F\u8F7D\u963B\u6297\u6D4B\u91CF\u53CA\u963B\u6297\u5339\u914D"
@@ -205,6 +221,7 @@ MonoBehaviour:
       - {fileID: 4210527241192592495, guid: fbc33b357d60c894888967e6cf05f998, type: 3}
       - {fileID: 8066662230590069131, guid: 9c121467226dbbe4aa1c978552fb3d6d, type: 3}
       - {fileID: 5654983250800132003, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
+      gifFileName: 
     - ID: 2
       nextStepCanMove: 0
       points: 20
@@ -219,6 +236,16 @@ MonoBehaviour:
       - {fileID: 1667232460207234984, guid: 9310f18920ad2bb44a272d15a8934fe5, type: 3}
       - {fileID: 6160732753793878566, guid: 08bd461d317849348a7e283c0ea65675, type: 3}
       - {fileID: 422642413207688284, guid: 2eebec1e05c8ddf47b202726a2e0d16e, type: 3}
+      gifFileName: 
+    - ID: 6
+      nextStepCanMove: 0
+      points: 0
+      dropPoints: 0
+      stepName: "\u586B\u5199\u57FA\u7840\u6570\u636E"
+      valueType: 100
+      completedState: 0
+      keyItems: []
+      gifFileName: 
     - ID: 3
       nextStepCanMove: 1
       points: 20
@@ -234,6 +261,7 @@ MonoBehaviour:
       - {fileID: 3991816612479598473, guid: 2e3ee03a007b3f64ea48e50730084565, type: 3}
       - {fileID: 1667232460207234984, guid: 9310f18920ad2bb44a272d15a8934fe5, type: 3}
       - {fileID: 8066662230590069131, guid: 9c121467226dbbe4aa1c978552fb3d6d, type: 3}
+      gifFileName: 
     - ID: 4
       nextStepCanMove: 1
       points: 20
@@ -249,6 +277,7 @@ MonoBehaviour:
       - {fileID: 3991816612479598473, guid: 2e3ee03a007b3f64ea48e50730084565, type: 3}
       - {fileID: 1667232460207234984, guid: 9310f18920ad2bb44a272d15a8934fe5, type: 3}
       - {fileID: 4210527241192592495, guid: fbc33b357d60c894888967e6cf05f998, type: 3}
+      gifFileName: "\u5B9E\u9A8C\u4E8C\u8D1F\u8F7D\u963B\u6297\u6D4B\u91CF\u63A5\u53EF\u53D8\u8D1F\u8F7D\u65F6"
     - ID: 5
       nextStepCanMove: 1
       points: 20
@@ -265,6 +294,7 @@ MonoBehaviour:
       - {fileID: 1667232460207234984, guid: 9310f18920ad2bb44a272d15a8934fe5, type: 3}
       - {fileID: 5654983250800132003, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
       - {fileID: 4210527241192592495, guid: fbc33b357d60c894888967e6cf05f998, type: 3}
+      gifFileName: 
     currentStepIndex: 0
     currentStep:
       ID: 1
@@ -278,6 +308,7 @@ MonoBehaviour:
       - {fileID: 4210527241192592495, guid: fbc33b357d60c894888967e6cf05f998, type: 3}
       - {fileID: 8066662230590069131, guid: 9c121467226dbbe4aa1c978552fb3d6d, type: 3}
       - {fileID: 5654983250800132003, guid: 6d51978f3de26ed488c13d4ae5541083, type: 3}
+      gifFileName: 
   - ID: 3
     icon: {fileID: 21300000, guid: 04f842b4df7d3754b8ca01b30fc49710, type: 3}
     labName: "\u5B9A\u5411\u8026\u5408\u5668\u7279\u6027\u7684\u6D4B\u91CF"
@@ -309,6 +340,7 @@ MonoBehaviour:
       - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
       - {fileID: 3961344040403204859, guid: ce751bace04a6ee49825c20acbe12fc2, type: 3}
       - {fileID: 109652449371374668, guid: 2684e3842a58cac43a03981c7f4f7b44, type: 3}
+      gifFileName: 
     - ID: 2
       nextStepCanMove: 1
       points: 15
@@ -321,6 +353,7 @@ MonoBehaviour:
       - {fileID: 3961344040403204859, guid: ce751bace04a6ee49825c20acbe12fc2, type: 3}
       - {fileID: 6160732753793878566, guid: 08bd461d317849348a7e283c0ea65675, type: 3}
       - {fileID: 422642413207688284, guid: 2eebec1e05c8ddf47b202726a2e0d16e, type: 3}
+      gifFileName: 
     - ID: 3
       nextStepCanMove: 1
       points: 10
@@ -335,6 +368,7 @@ MonoBehaviour:
       - {fileID: 6215187212563577928, guid: 37d9002f115cadc4183454e2c1a992ee, type: 3}
       - {fileID: 6160732753793878566, guid: 08bd461d317849348a7e283c0ea65675, type: 3}
       - {fileID: 422642413207688284, guid: 2eebec1e05c8ddf47b202726a2e0d16e, type: 3}
+      gifFileName: "\u5B9E\u9A8C\u4E09\u5B9A\u5411\u8026\u5408\u5668\u7B2C\u4E8C\u79CD\u8FDE\u63A5\u72B6\u6001\u65F6"
     currentStepIndex: 0
     currentStep:
       ID: 1
@@ -349,3 +383,4 @@ MonoBehaviour:
       - {fileID: 8152959967452411484, guid: c74fc52ef31bb44479d0df5d8ed36e1a, type: 3}
       - {fileID: 3961344040403204859, guid: ce751bace04a6ee49825c20acbe12fc2, type: 3}
       - {fileID: 109652449371374668, guid: 2684e3842a58cac43a03981c7f4f7b44, type: 3}
+      gifFileName: 
