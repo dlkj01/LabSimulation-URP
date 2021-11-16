@@ -11,11 +11,8 @@ namespace DLKJ
         [SerializeField] RawImage rawImage;
         [SerializeField] VideoPlayer videoPlayer;
         [SerializeField] Button playOrPauseButton;
-        [SerializeField] Button loopModelButton;
         [SerializeField] Sprite playSprite;
         [SerializeField] Sprite pauseSprite;
-        [SerializeField] Sprite loopSprite;
-        [SerializeField] Text loopText;
         [SerializeField] Slider slider;
 
         private bool play = false;
@@ -24,12 +21,9 @@ namespace DLKJ
         // Start is called before the first frame update
         void Start()
         {
-            loopText.text = "";
             slider.value = 0;
-            loopModelButton.image.sprite = loopSprite;
             rawImage.texture = videoPlayer.texture;
             playOrPauseButton.onClick.AddListener(delegate { PlayOrPause(); });
-            loopModelButton.onClick.AddListener(delegate { Loop(); });
             totalFrame = (float)videoPlayer.clip.frameCount;
         }
 
@@ -47,6 +41,7 @@ namespace DLKJ
 
         public void Play()
         {
+            videoPlayer.clip = SceneManager.GetInstance().currentLab.currentStep.videoClip;
             videoPlayer.Play();
             play = true;
             rawImage.texture = videoPlayer.texture;
@@ -54,20 +49,6 @@ namespace DLKJ
 
         public void Reset() {
             videoPlayer.Stop();
-        }
-
-        void Loop()
-        {
-            if (videoPlayer.isLooping)
-            {
-                loopText.text = "";
-                videoPlayer.isLooping = false;
-            }
-            else
-            {
-                loopText.text = "1";
-                videoPlayer.isLooping = true;
-            }
         }
 
         void PlayOrPause()

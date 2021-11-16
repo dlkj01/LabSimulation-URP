@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Video;
 
 namespace DLKJ
 {
@@ -146,7 +147,7 @@ namespace DLKJ
         public ValueType valueType = ValueType.Value;
         public CompletedState completedState = CompletedState.Unfinished;
         public List<Item> keyItems = new List<Item>();
-        public string gifFileName="";
+        public VideoClip videoClip;
 
         private float score = 0;
 
@@ -175,9 +176,12 @@ namespace DLKJ
             newStep.points = points;
             newStep.dropPoints = dropPoints;
             newStep.stepName = stepName;
+            newStep.videoClip = videoClip;
             newStep.valueType = valueType;
             newStep.completedState = completedState;
             newStep.keyItems.AddRange(keyItems);
+            newStep.valueType = valueType;
+            newStep.completedState = completedState;
 
             return newStep;
         }

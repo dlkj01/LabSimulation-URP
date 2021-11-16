@@ -26,7 +26,7 @@ namespace DLKJ
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            if (highlight) button.image.sprite = highlight;
+            if (highlight&& button.interactable) button.image.sprite = highlight;
             if (buttonText != null)
                if(button.interactable) buttonText.color = textHiglightColor;
         }

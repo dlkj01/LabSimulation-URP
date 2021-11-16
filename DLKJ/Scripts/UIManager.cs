@@ -124,6 +124,15 @@ namespace DLKJ
             {
                 stepText.text = step.stepName;
             }
+
+            if (step.videoClip != null)
+            {
+                uiMainPanle.videoButton.Interactable(true);
+            }
+            else
+            {
+                uiMainPanle.videoButton.Interactable(false);
+            }
         }
 
         public void ShowExperimentSelectedPanel()

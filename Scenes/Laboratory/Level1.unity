@@ -2165,7 +2165,6 @@ MonoBehaviour:
   UILabReport3Prefab: {fileID: 2370431459471943611, guid: ed51c113b2c6412469bc18ed26f1a6a1, type: 3}
   UILabButton: {fileID: 1113850536}
   uiMainPanle: {fileID: 1507288923}
-  startEquipmentButton: {fileID: 541603019}
 --- !u!1 &333700414
 GameObject:
   m_ObjectHideFlags: 0
@@ -3129,13 +3128,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normal: {fileID: 21300000, guid: b45e4b0067accc54689f9f116510d179, type: 3}
   highlight: {fileID: 21300000, guid: 13d26e236cbc186438164556a91ac237, type: 3}
-  selected: {fileID: 21300000, guid: 13d26e236cbc186438164556a91ac237, type: 3}
+  selected: {fileID: 0}
   disable: {fileID: 0}
-  button: {fileID: 0}
-  textNormalColor: {r: 0, g: 0, b: 0, a: 0}
-  textHiglightColor: {r: 0, g: 0, b: 0, a: 0}
-  textInteractableColor: {r: 0, g: 0, b: 0, a: 0}
-  buttonText: {fileID: 0}
+  button: {fileID: 455474938}
+  textNormalColor: {r: 0, g: 0.8867924, b: 0.858862, a: 1}
+  textHiglightColor: {r: 0, g: 0.99607843, b: 0.9647059, a: 1}
+  textInteractableColor: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
+  buttonText: {fileID: 1687170368}
 --- !u!1 &464590899
 GameObject:
   m_ObjectHideFlags: 0
@@ -10319,6 +10318,7 @@ MonoBehaviour:
   arrow: {fileID: 658155347}
   controllerButton: {fileID: 2078373583}
   autoConnect: {fileID: 313795400}
+  videoButton: {fileID: 455474941}
 --- !u!1 &1507533137
 GameObject:
   m_ObjectHideFlags: 0
@@ -12299,6 +12299,7 @@ MonoBehaviour:
       valueType: 100
       completedState: 0
       keyItems: []
+      videoClip: {fileID: 0}
   IsEntryScence: 0
 --- !u!1 &1727752864
 GameObject:
@@ -15887,11 +15888,8 @@ MonoBehaviour:
   rawImage: {fileID: 3115318983386587879}
   videoPlayer: {fileID: 3115318983386587873}
   playOrPauseButton: {fileID: 3115318983255761189}
-  loopModelButton: {fileID: 3115318983850067175}
   playSprite: {fileID: 21300000, guid: 356c7235fdecaae47aae4a1027e273c4, type: 3}
   pauseSprite: {fileID: 21300000, guid: 8b1f95c9c82d6ad4186c6d49f0b998f2, type: 3}
-  loopSprite: {fileID: 21300000, guid: 3c5f2425ab926a646a41dfef13f7dd60, type: 3}
-  loopText: {fileID: 3115318983373606718}
   slider: {fileID: 3115318984389293245}
 --- !u!328 &3115318983386587873
 VideoPlayer:
@@ -15901,7 +15899,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3115318983386587877}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 26ae3bfc04dc0644f8478620b9e69626, type: 3}
+  m_VideoClip: {fileID: 0}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -15922,7 +15920,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 0
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []

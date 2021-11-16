@@ -148,7 +148,7 @@ namespace DLKJ
                 {
 
                     Item item = GetLabItemByID(stepItems[i].ID);
-                    if (item.libraryType == LibraryType.Wires || item.linkPort != null) continue;
+                    if (item.libraryType == LibraryType.Wires) continue;
 
                     if (stepItems[i].itemName == "¾§Ìå¼ì²¨Æ÷")
                     {
@@ -171,6 +171,7 @@ namespace DLKJ
                     }
                     else
                     {
+                        if (item.linkPort != null) continue;
                         item.transform.position = new Vector3(currentLab.originPosition.x, currentLab.originPosition.y, currentLab.originPosition.z - currentLab.spacing * 1.5f);
                     }
                 }

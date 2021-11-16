@@ -18,6 +18,8 @@ namespace DLKJ
         private bool isHide;// «∑Ò“˛≤ÿ¡À
         RectTransform rectTF;
         public UIButton autoConnect;
+        public UIButton videoButton;
+
         private void Awake()
         {
             rectTF = transform as RectTransform;
