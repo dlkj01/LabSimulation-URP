@@ -28,7 +28,7 @@ namespace DLKJ
             mathInitValue = new InitValue();
             MathTool.Reset();
         }
-        //private void Start() => MathTool.A = UnityEngine.Random.Range(2f, 1000f);
+        private void Start() => MathTool.¦Ä = 1;
 
         private void Update() => OnUpdate();
 
@@ -187,11 +187,11 @@ namespace DLKJ
         {
             if (SceneManager.GetInstance().currentLab.labName == SceneManager.THIRD_EXPERIMENT_NAME)
             {
-                return mathInitValue.initF == true;
+                return mathInitValue.initF == true && mathInitValue.initA;
             }
             else
             {
-                return mathInitValue.initF == true && mathInitValue.init¦Ä == true;
+                return mathInitValue.initF == true && mathInitValue.init¦Ä == true && mathInitValue.initA;
             }
         }
     }

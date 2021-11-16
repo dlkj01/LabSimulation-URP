@@ -103,8 +103,12 @@ namespace DLKJ
                         instrumentButton.localRotation = Quaternion.Euler(0, 0, 0);
                         break;
                     case InstrumentButtonType.Rotary:
-                        if (instrumentButton.name == "FrequencyBtn" || instrumentButton.name == "RotaryBtnVoltage")
-                            if (MathTest.Instance.isOpen == false) return;
+                        InstrumentButton powerKaiGuan = SceneManager.GetInstance().GetInstrumentButton("微波信号源", "PowerBtn");
+                        if (MathUtility.GetCurrentValue(powerKaiGuan) != 0)
+                        {
+                            if (instrumentButton.name == "FrequencyBtn" || instrumentButton.name == "RotaryBtnVoltage")
+                                return;
+                        }
                         if (Input.GetKey(KeyCode.LeftControl))
                         {
                             if (Mathf.Approximately(currentAngle, StartAngle) || currentAngle - 0.001f <= StartAngle)

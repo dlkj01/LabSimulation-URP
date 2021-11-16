@@ -157,6 +157,7 @@ namespace DLKJ
         {
             //     Debug.Log(buttonName + "-------------");
             InstrumentButton tempInstrumentBtn = instrumentButton.Find(x => x.instrumentButton.name == buttonName);
+            InstrumentButton powerKaiGuan = SceneManager.GetInstance().GetInstrumentButton("微波信号源", "PowerBtn");
             if (tempInstrumentBtn != null)
             {
                 TempMaxStep = tempInstrumentBtn.StepLength;
@@ -175,7 +176,11 @@ namespace DLKJ
                                 if (SceneManager.GetInstance().CurrentStepVerify())
                                 {
                                     MathTest.Instance.FormulaInit();
-                                    MathTest.Instance.IsOpen(true);
+                                    InstrumentButton buttonKaiGuan = SceneManager.GetInstance().GetInstrumentButton("选频放大器", "FrequencySelectiveAmplifierPowerBtn");
+                                    if (MathUtility.GetCurrentValue(buttonKaiGuan) == 0 && MathUtility.GetCurrentValue(powerKaiGuan) == 0)
+                                    {
+                                        MathTest.Instance.IsOpen(true);
+                                    }
                                     for (int i = 0; i < powerMaterials.Count; i++)
                                     {
                                         powerMaterials[i].color = onColor;
@@ -189,8 +194,10 @@ namespace DLKJ
                                     powerMaterials[i].color = offColor;
                                 }
                                 MathTest.Instance.IsOpen(false);
-                                if (pointer != null)
-                                    pointer.SetAngle(0);
+                                Item itemXuanPin = SceneManager.GetInstance().GetItemByName("选频放大器");
+                                itemXuanPin.GetComponentInChildren<Pointer>().SetAngle(0);
+                                Transform light = itemXuanPin.transform.Find("pSphere2");
+                                light.GetComponent<MeshRenderer>().materials[0].color = Color.black;
                             }
                         }
 
@@ -200,20 +207,25 @@ namespace DLKJ
                     case "VoltageBtn":
                         break;
                     case "FrequencyBtn":
-                        if (MathTest.Instance.isOpen == false) return;
+                        if (MathUtility.GetCurrentValue(powerKaiGuan) != 0)
+                        {
+                            return;
+                        }
                         //给频率赋值
                         MathTool.F = MathUtility.GetCurrentValue(tempInstrumentBtn);
                         MathTest.Instance.mathInitValue.initF = true;
                         UIManager.GetInstance().SetStartButton();
                         UpdateHZNumber(MathTool.F);
-                        //  MathTool.F = MathUtility.GetCurrentValue(tempInstrumentBtn);
                         Debug.Log(MathTool.F);
                         break;
                     case "FrequencyBtn2":
-                        if (MathTest.Instance.isOpen == false)
+                        if (MathUtility.GetCurrentValue(powerKaiGuan) != 0)
+                        {
                             return;
+                        }
                         // 给电压赋值
                         MathTool.A = MathUtility.GetCurrentValue(tempInstrumentBtn);
+                        MathTest.Instance.mathInitValue.initA = true;
                         UIManager.GetInstance().SetStartButton();
                         UpdateUVNumber(MathTool.A);
 
@@ -246,9 +258,20 @@ namespace DLKJ
                         {
                             if (MathUtility.GetCurrentValue(tempInstrumentBtn) == 0)
                             {
-                                for (int i = 0; i < powerMaterials.Count; i++)
+                                //校验是否正确
+                                if (SceneManager.GetInstance().CurrentStepVerify())
                                 {
-                                    powerMaterials[i].color = onColor;
+                                    Transform light = tempInstrumentBtn.instrumentButton.transform.parent.Find("pSphere2");
+                                    light.GetComponent<MeshRenderer>().materials[0].color = Color.red;
+                                    for (int i = 0; i < powerMaterials.Count; i++)
+                                    {
+                                        powerMaterials[i].color = onColor;
+                                    }
+                                    InstrumentButton buttonKaiGuan = SceneManager.GetInstance().GetInstrumentButton("选频放大器", "FrequencySelectiveAmplifierPowerBtn");
+                                    if (MathUtility.GetCurrentValue(buttonKaiGuan) == 0 && MathUtility.GetCurrentValue(powerKaiGuan) == 0)
+                                    {
+                                        MathTest.Instance.IsOpen(true);
+                                    }
                                 }
                             }
                             else
@@ -257,12 +280,17 @@ namespace DLKJ
                                 {
                                     powerMaterials[i].color = offColor;
                                 }
+                                MathTest.Instance.IsOpen(false);
+                                Transform light = tempInstrumentBtn.instrumentButton.transform.parent.Find("pSphere2");
+                                light.GetComponent<MeshRenderer>().materials[0].color = Color.black;
+                                Item itemXuanPin = SceneManager.GetInstance().GetItemByName("选频放大器");
+                                itemXuanPin.GetComponentInChildren<Pointer>().SetAngle(0);
                             }
                         }
                         break;
                     case "RotaryBtnVoltage":
-                     
-                       //transform.Find("电压Text").GetComponent<TextMesh>().text = MathTool.A.ToString("#0.00");
+
+                        //transform.Find("电压Text").GetComponent<TextMesh>().text = MathTool.A.ToString("#0.00");
                         break;
                     case "RotaryBtnFrequency":
                         break;

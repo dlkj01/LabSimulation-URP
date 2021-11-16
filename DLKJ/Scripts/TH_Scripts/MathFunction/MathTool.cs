@@ -9,6 +9,7 @@ namespace DLKJ
     {
         public bool initF;
         public bool initδ;
+        public bool initA;
     }
     /// <summary>
     /// 公式数据
@@ -64,7 +65,7 @@ namespace DLKJ
         {
             //F = UnityEngine.Random.Range(8.2f, 12.5f);
             //A = UnityEngine.Random.Range(2f, 2000f);
-            //δ = UnityEngine.Random.Range(0f, 1f); //Random(0.00f, 1.00f);
+            // δ = 1; //Random(0.00f, 1.00f);
 
 
             //方案一
