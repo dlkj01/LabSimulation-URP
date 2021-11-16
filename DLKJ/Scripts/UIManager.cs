@@ -5,6 +5,8 @@ using System.Collections;
 using DG.Tweening;
 using System.Collections.Generic;
 using Common;
+using static DLKJ.InstrumentAction;
+
 namespace DLKJ
 {
     public class UIManager : MonoBehaviour
@@ -264,6 +266,12 @@ namespace DLKJ
             if (MathTest.Instance.CheckValueIsInit() == false)
             {
                 EventManager.OnTips(TipsType.Toast, "请完成实验基本数据设置");
+                return;
+            }
+            InstrumentButton buttonKaiGuan = SceneManager.GetInstance().GetInstrumentButton("选频放大器", "FrequencySelectiveAmplifierPowerBtn");
+            if (MathUtility.GetCurrentValue(buttonKaiGuan) != 0)
+            {
+                EventManager.OnTips(TipsType.Toast, "请打开选频放大器开关");
                 return;
             }
             EventManager.OnTips(TipsType.Snackbar, tipMessage, () => { FindObjectOfType<UITips>().OnDisTips(); }, () =>
