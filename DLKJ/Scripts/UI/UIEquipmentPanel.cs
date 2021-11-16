@@ -206,7 +206,6 @@ namespace DLKJ
 
         void OnSureCallBack()
         {
-            Debug.Log("µã»÷ ·ÖÖµ£º"+ currentLab.currentStep.GetScore()+ "    scoreChecking:" + scoreChecking);
             if (currentLab.currentStep.GetScore() <= 0 && scoreChecking)
             {
                 ResetUI();
