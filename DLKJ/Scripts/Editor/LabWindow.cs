@@ -276,6 +276,12 @@ namespace DLKJ
             {
                 selectedLab.steps.Remove(step);
             }
+            if (GUILayout.Button("Insert", new GUILayoutOption[] { GUILayout.Width(50), GUILayout.Height(20) }))
+            {
+                Step newStep = new Step();
+                newStep.ID = GererateStepID(selectedLab);
+                selectedLab.steps.Insert(index + 1, newStep);
+            }
             step.stepName = EditorGUILayout.TextField(step.stepName, new GUILayoutOption[] { GUILayout.Width(100) });
             step.points = EditorGUILayout.FloatField(step.points, new GUILayoutOption[] { GUILayout.Width(50) });
             step.valueType = (ValueType)EditorGUILayout.EnumPopup(step.valueType, new GUILayoutOption[] { GUILayout.Width(120) });
