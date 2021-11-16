@@ -329,11 +329,8 @@ namespace DLKJ
                     switch (currentLab.currentStepIndex)
                     {
                         case 2:
-                            return VerifyBasicLink();
                         case 3:
-                            return VerifyBasicLink();
                         case 4:
-                            return VerifyBasicLink();
                         case 5:
                             return VerifyBasicLink();
                         default:
@@ -344,15 +341,10 @@ namespace DLKJ
                     switch (currentLab.currentStepIndex)
                     {
                         case 2:
-                            return VerifyBasicLink();
                         case 3:
-                            return VerifyBasicLink();
                         case 4:
-                            return VerifyBasicLink();
                         case 5:
-                            return VerifyBasicLink();
                         case 6:
-                            return VerifyBasicLink();
                         case 7:
                             return VerifyBasicLink();
                         default:
@@ -364,6 +356,9 @@ namespace DLKJ
                     switch (currentLab.currentStepIndex)
                     {
                         case 1:
+                        case 2:
+                        case 3:
+                        case 4:
                             return VerifyBasicLink();
                         default:
                             break;

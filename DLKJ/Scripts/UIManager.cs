@@ -49,10 +49,6 @@ namespace DLKJ
         private UIExperimentSelectedPanel experimentSelectedPanel = null;
 
         private Camera voltmeterCamera;
-
-        public Button startEquipmentButton;
-        bool startEquipment = false;
-
         private void Awake()
         {
             //Debug.unityLogger.logEnabled = false;
@@ -60,29 +56,11 @@ namespace DLKJ
             // videoShowButton.gameObject.SetActive(false);
             uIVideoPlayer.gameObject.SetActive(false);
             videoShowButton.onClick.AddListener(delegate { ShowVideoButton(); });
-            startEquipmentButton.onClick.AddListener(() =>
-            {
-                string tipString = "电压、衰减器、频率设置后不可更改";
-                switch (SceneManager.GetInstance().currentLab.labName)
-                {
-                    case SceneManager.THIRD_EXPERIMENT_NAME:
-                        tipString = "电压、频率设置后不可更改";
-                        break;
-                    default:
-                        break;
-                }
-
-                EventManager.OnTips(TipsType.Snackbar, tipString, () => { FindObjectOfType<UITips>().OnDisTips(); }, () =>
-                    {
-                        SetFixDataCallBack();
-                        FindObjectOfType<UITips>().OnDisTips();
-                    });
-            });
         }
         public void SetStartButton()
         {
-            if (MathTest.Instance.CheckValueIsInit() && startEquipment == false)
-                startEquipmentButton.gameObject.SetActive(true);
+            //if (MathTest.Instance.CheckValueIsInit() && startEquipment == false)
+            //    startEquipmentButton.gameObject.SetActive(true);
 
         }
 
@@ -182,15 +160,7 @@ namespace DLKJ
             //是否可以检查连接完成状态的前提条件,为true才可以继续
             if (!VerifyBackLinkIsComplete(currentStep, labName))
                 return;
-            //检查当前步骤是否有没填写的InputText
-            if (ProxyManager.experimentInputProxy.experimentStepInputMap.ContainsKey(currentStep))
-            {
-                if (!UILabButton.uiLabReport.FinishedStepInput(ProxyManager.experimentInputProxy.experimentStepInputMap[currentStep]))
-                {
-                    UILabButton.uiLabReport.ShowPanle(false);
-                    return;
-                }
-            }
+
 
             //if (labName == SceneManager.SECOND_EXPERIMENT_NAME)
             //{
@@ -216,25 +186,31 @@ namespace DLKJ
             //    }
             //}
 
-            if (SceneManager.GetInstance().currentLab.currentStepIndex >= SceneManager.GetInstance().currentLab.steps.Count - 1)
-            {
-                EventManager.OnTips(TipsType.Toast, "实验完成,请提交实验报告");
-                return;
-            }
+
 
             if (SceneManager.GetInstance().VerifyBasicLink() == false)
             {
                 Debug.Log("连接有误 请仔细检查，扣分");
+                EventManager.OnTips(TipsType.Toast, "连接有误,请检查设备连接");
                 SceneManager.GetInstance().currentLab.TriggerScore();
-                if (SceneManager.GetInstance().currentLab.currentStep.GetScore() <= 0)
-                {
-                    //Debug.Log("分数扣没，直接给出正确答案");
-                    //verifyButton.interactable = false;
-                    //SceneManager.GetInstance().SetBasicItemsLink();
-                }
+                return;
             }
             else
             {
+                //检查当前步骤是否有没填写的InputText
+                if (ProxyManager.experimentInputProxy.experimentStepInputMap.ContainsKey(currentStep))
+                {
+                    if (!UILabButton.uiLabReport.FinishedStepInput(ProxyManager.experimentInputProxy.experimentStepInputMap[currentStep]))
+                    {
+                        UILabButton.uiLabReport.ShowPanle(false);
+                        return;
+                    }
+                }
+                if (SceneManager.GetInstance().currentLab.currentStepIndex >= SceneManager.GetInstance().currentLab.steps.Count - 1)
+                {
+                    EventManager.OnTips(TipsType.Toast, "实验完成,请提交实验报告");
+                    return;
+                }
                 EventManager.OnTips(TipsType.Snackbar, "确定进行下一步操作", () => { FindObjectOfType<UITips>().OnDisTips(); }, () =>
                 {
                     NextStep();
@@ -254,45 +230,39 @@ namespace DLKJ
 
             if (labName == SceneManager.FIRST_EXPERIMENT_NAME || labName == SceneManager.SECOND_EXPERIMENT_NAME)
             {
-                if (currentStep == 2)
+                if (currentStep == 3)
                 {
-                    if (startEquipment == false)
-                    {
-                        if (SceneManager.GetInstance().VerifyBasicLink() == false)
-                        {
-                            EventManager.OnTips(TipsType.Toast, "请检查设备连接");
-                        }
-                        else
-                        {
-                            EventManager.OnTips(TipsType.Toast, "请完成实验基本数据设置");
-                        }
-                        return false;
-                    }
+                    DataCheck("电压、衰减器、频率设置后不可更改");
+                    return false;
                 }
             }
 
 
             if (labName == SceneManager.THIRD_EXPERIMENT_NAME)
             {
-                if (startEquipment == false)
+                if (currentStep == 2)
                 {
-                    if (currentStep == 1)
-                    {
-                        if (SceneManager.GetInstance().VerifyBasicLink() == false)
-                        {
-                            EventManager.OnTips(TipsType.Toast, "请检查设备连接");
-                        }
-                        else
-                        {
-                            EventManager.OnTips(TipsType.Toast, "请完成实验基本数据设置");
-                        }
-                        return false;
-                    }
+                    DataCheck("电压、频率设置后不可更改");
+                    return false;
                 }
             }
 
 
             return true;
+        }
+        private void DataCheck(string tipMessage)
+        {
+            if (MathTest.Instance.CheckValueIsInit() == false)
+            {
+                EventManager.OnTips(TipsType.Toast, "请完成实验基本数据设置");
+                return;
+            }
+            EventManager.OnTips(TipsType.Snackbar, tipMessage, () => { FindObjectOfType<UITips>().OnDisTips(); }, () =>
+            {
+                SetFixDataCallBack();
+                FindObjectOfType<UITips>().OnDisTips();
+            });
+            return;
         }
         private void NextStep()
         {
@@ -311,8 +281,6 @@ namespace DLKJ
         /// </summary>
         private void SetFixDataCallBack()
         {
-            startEquipment = true;
-            startEquipmentButton.gameObject.SetActive(false);
             if (SceneManager.GetInstance().GetInstrumentButton("微波信号源", "FrequencyBtn2") != null)
             {
                 SceneManager.GetInstance().GetInstrumentButton("微波信号源", "FrequencyBtn2").RemoveListener();
@@ -342,6 +310,11 @@ namespace DLKJ
                     break;
                 default:
                     break;
+            }
+            NextStep();
+            if (SceneManager.loginUserData.userType == UserType.Teacher)
+            {
+                uiMainPanle.autoConnect.Interactable(true);
             }
         }
 

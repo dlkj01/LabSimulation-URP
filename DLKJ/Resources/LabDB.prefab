@@ -246,20 +246,11 @@ MonoBehaviour:
       - {fileID: 6160732753793878566, guid: 08bd461d317849348a7e283c0ea65675, type: 3}
       - {fileID: 422642413207688284, guid: 2eebec1e05c8ddf47b202726a2e0d16e, type: 3}
       gifFileName: 
-    - ID: 6
-      nextStepCanMove: 0
-      points: 0
-      dropPoints: 0
-      stepName: "\u586B\u5199\u57FA\u7840\u6570\u636E"
-      valueType: 100
-      completedState: 0
-      keyItems: []
-      gifFileName: 
     - ID: 3
       nextStepCanMove: 1
       points: 20
       dropPoints: -2
-      stepName: "\u627E\u7B49\u6548\u622A\u9762"
+      stepName: "\u8FDE\u63A5\u77ED\u8DEF\u7248"
       valueType: 100
       completedState: 0
       keyItems:
@@ -270,6 +261,24 @@ MonoBehaviour:
       - {fileID: 3991816612479598473, guid: 2e3ee03a007b3f64ea48e50730084565, type: 3}
       - {fileID: 1667232460207234984, guid: 9310f18920ad2bb44a272d15a8934fe5, type: 3}
       - {fileID: 8066662230590069131, guid: 9c121467226dbbe4aa1c978552fb3d6d, type: 3}
+      gifFileName: 
+    - ID: 6
+      nextStepCanMove: 0
+      points: 0
+      dropPoints: 0
+      stepName: "\u8C03\u8282\u57FA\u7840\u6570\u636E"
+      valueType: 100
+      completedState: 0
+      keyItems: []
+      gifFileName: 
+    - ID: 7
+      nextStepCanMove: 0
+      points: 0
+      dropPoints: 0
+      stepName: "\u5BFB\u627E\u7B49\u6548\u622A\u9762\u548C\u6C42\u6CE2\u957F"
+      valueType: 100
+      completedState: 0
+      keyItems: []
       gifFileName: 
     - ID: 4
       nextStepCanMove: 1
@@ -354,7 +363,7 @@ MonoBehaviour:
       nextStepCanMove: 1
       points: 15
       dropPoints: -2
-      stepName: "\u4E00\u7AEF\u53E3\u7535\u538B\u6D4B\u91CF"
+      stepName: "\u4E00\u7AEF\u53E3\u8BBE\u5907\u8FDE\u63A5"
       valueType: 100
       completedState: 0
       keyItems:
@@ -362,6 +371,24 @@ MonoBehaviour:
       - {fileID: 3961344040403204859, guid: ce751bace04a6ee49825c20acbe12fc2, type: 3}
       - {fileID: 6160732753793878566, guid: 08bd461d317849348a7e283c0ea65675, type: 3}
       - {fileID: 422642413207688284, guid: 2eebec1e05c8ddf47b202726a2e0d16e, type: 3}
+      gifFileName: 
+    - ID: 4
+      nextStepCanMove: 0
+      points: 0
+      dropPoints: 0
+      stepName: "\u57FA\u672C\u6570\u636E\u8BBE\u7F6E"
+      valueType: 100
+      completedState: 0
+      keyItems: []
+      gifFileName: 
+    - ID: 5
+      nextStepCanMove: 0
+      points: 0
+      dropPoints: 0
+      stepName: "\u4E00\u7AEF\u53E3\u7535\u538B\u6D4B\u91CF"
+      valueType: 100
+      completedState: 0
+      keyItems: []
       gifFileName: 
     - ID: 3
       nextStepCanMove: 1

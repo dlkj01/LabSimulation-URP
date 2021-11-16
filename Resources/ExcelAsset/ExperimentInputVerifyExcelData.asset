@@ -15,7 +15,7 @@ MonoBehaviour:
   items:
   - id: 1
     ExperimentalType: "\u5B9E\u9A8C\u4E00"
-    ExperimentalStep: 2
+    ExperimentalStep: 4
     InputTextName:
     - SourceFrequency
     - Attenuator
@@ -24,13 +24,13 @@ MonoBehaviour:
     - SourceVoltage
   - id: 2
     ExperimentalType: "\u5B9E\u9A8C\u4E00"
-    ExperimentalStep: 3
+    ExperimentalStep: 5
     InputTextName:
     - WaveNodePosShortCircuit
     - StandingWaveRatioCircuit
   - id: 3
     ExperimentalType: "\u5B9E\u9A8C\u4E00"
-    ExperimentalStep: 4
+    ExperimentalStep: 6
     InputTextName:
     - VariableShortCircuitFirstPos
     - VariableShortCircuitSecondPos
@@ -40,13 +40,13 @@ MonoBehaviour:
     - StandingWaveRatioTerminal
   - id: 4
     ExperimentalType: "\u5B9E\u9A8C\u4E00"
-    ExperimentalStep: 5
+    ExperimentalStep: 7
     InputTextName:
     - WaveNodePosShortMatching
     - StandingWaveRatioMatching
   - id: 5
     ExperimentalType: "\u5B9E\u9A8C\u4E8C"
-    ExperimentalStep: 2
+    ExperimentalStep: 4
     InputTextName:
     - WaveguideWavelengthFirst
     - EquivalentSectionPositionFirst
@@ -55,19 +55,19 @@ MonoBehaviour:
     - inputAttenuatorSetupFirst
   - id: 6
     ExperimentalType: "\u5B9E\u9A8C\u4E8C"
-    ExperimentalStep: 3
+    ExperimentalStep: 5
     InputTextName:
     - SWRFirst
     - WaveNodePositionFirst
   - id: 7
     ExperimentalType: "\u5B9E\u9A8C\u4E8C"
-    ExperimentalStep: 4
+    ExperimentalStep: 6
     InputTextName:
     - MinimumVoltageAfterMatchingFirst
     - MaximumVoltageAfterMatchingFirst
   - id: 8
     ExperimentalType: "\u5B9E\u9A8C\u4E8C"
-    ExperimentalStep: 5
+    ExperimentalStep: 7
     InputTextName:
     - WaveguideWavelengthSecond
     - EquivalentSectionPositionSecond
@@ -76,24 +76,24 @@ MonoBehaviour:
     - inputAttenuatorSetupSecond
   - id: 9
     ExperimentalType: "\u5B9E\u9A8C\u4E8C"
-    ExperimentalStep: 6
+    ExperimentalStep: 8
     InputTextName:
     - SWRSecond
     - WaveNodePositionSecond
   - id: 10
     ExperimentalType: "\u5B9E\u9A8C\u4E8C"
-    ExperimentalStep: 7
+    ExperimentalStep: 9
     InputTextName:
     - MinimumVoltageAfterMatchingSecond
     - MaximumVoltageAfterMatchingSecond
   - id: 11
     ExperimentalType: "\u5B9E\u9A8C\u4E09"
-    ExperimentalStep: 1
+    ExperimentalStep: 3
     InputTextName:
     - OnePortVoltage
   - id: 12
     ExperimentalType: "\u5B9E\u9A8C\u4E09"
-    ExperimentalStep: 2
+    ExperimentalStep: 4
     InputTextName:
     - ThreePortVoltage
     - CouplingFactor

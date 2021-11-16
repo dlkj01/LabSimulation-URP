@@ -1083,7 +1083,7 @@ MonoBehaviour:
     MinValue: 8.2
     EndMovePoint: 0
     StartMovePoint: 0
-    StepLength: 45
+    StepLength: 225
     StartAngle: -33
     EndAngle: 12
     currentAngle: -33
@@ -1101,7 +1101,7 @@ MonoBehaviour:
     MinValue: 2
     EndMovePoint: 0
     StartMovePoint: 0
-    StepLength: 66
+    StepLength: 330
     StartAngle: -33
     EndAngle: 33
     currentAngle: -33
