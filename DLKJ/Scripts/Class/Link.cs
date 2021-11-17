@@ -91,7 +91,7 @@ namespace DLKJ
                         //float distance = Mathf.Abs(targetPosition.z) - portCollider.bounds.size.z;//0.005243f;碰撞体和网格大小打印均为零；
                         //targetPosition = new Vector3(targetPosition.x, targetPosition.y, distance);
 
-                        //***注意当打印的向量值比较小的时候打印值和实际值是有误差的，不能参考打印的数值***//
+                        //***注意当打印的向量值比较小的时候打印值和实际值是有误差的，不能参考打印的数值,Debug的是小数点后几位的值***//
                         //根据子物体的世界坐标算父物体的移动目标点目前计算不算准确，后期有精确的算法可以替换//
 
                         Link target = colliders[i].transform.GetComponent<Link>();
@@ -104,20 +104,6 @@ namespace DLKJ
                             EventManager.OnTips(TipsType.Toast,"当前步骤不允许连接该器件！");
                             ParentItem.Revert();
                         }
-
-                        //AutoConnect(target, moveSpeed);
-                      
-                        //Vector3 targetPosition = colliders[i].transform.position - transform.localPosition;
-
-                        //TargetPort targetPort = new TargetPort();
-                        //targetPort.targetPosition = targetPosition;
-                        //targetPort.targetPort = colliders[i].transform.GetComponent<Link>();
-                        //targetPort.selfPort = transform;
-                        //targetPort.distance = portCollider.bounds.size.z;
-                        //targetPort.speed = moveSpeed;
-
-                        ////此消息只有父物体能接收
-                        //SendMessageUpwards("OnAttach", targetPort, SendMessageOptions.RequireReceiver);
                     }
                 }
                 yield return waitForFixedUpdate;

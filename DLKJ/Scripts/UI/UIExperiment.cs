@@ -16,6 +16,7 @@ namespace DLKJ
         [SerializeField] Button button;
         [SerializeField] Image image;
         [SerializeField] Image selected;
+        [SerializeField] Image scoreBackground;
         CanvasGroup group;
         private Lab lab;
         private float targetScale = 1.05f;
@@ -29,6 +30,7 @@ namespace DLKJ
 
         public void Awake()
         {
+            scoreBackground.gameObject.SetActive(false);
             group = GetComponent<CanvasGroup>();
             selected.gameObject.SetActive(false);
             if (button) button.onClick.AddListener(delegate
@@ -56,12 +58,13 @@ namespace DLKJ
             string score = ProxyManager.saveProxy.map[titleText.text].score.ToString();
             if (ProxyManager.saveProxy.map[titleText.text].score.ToString().Contains("."))
             {
-                experimentCountText.text = "分数:" + ProxyManager.saveProxy.map[titleText.text].score.ToString("#0.00");
+                experimentCountText.text = ProxyManager.saveProxy.map[titleText.text].score.ToString("#0.00");
             }
             else
             {
-                experimentCountText.text = "分数:" + ProxyManager.saveProxy.map[titleText.text].score.ToString();
+                experimentCountText.text = ProxyManager.saveProxy.map[titleText.text].score.ToString();
             }
+            scoreBackground.gameObject.SetActive(true);
         }
 
         public void OnPointerEnter(PointerEventData eventData)
