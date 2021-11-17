@@ -124,7 +124,7 @@ namespace DLKJ
             report1CorrectAnswer.SourceFrequency = F;//信号源频率
             report1CorrectAnswer.SourceVoltage = A;//电压
             report1CorrectAnswer.Attenuator = δ;//衰减器
-            report1CorrectAnswer.EquivalentSectionPosition = GetDT(SLMCL_Start_Value, 0);//第一个等效截面的位置
+            report1CorrectAnswer.EquivalentSectionPosition = GetDT(SLMCL_Start_Value, 0)*1000;//第一个等效截面的位置
             report1CorrectAnswer.InputWavelength = Calculateλp1();//输入端波长
             report1CorrectAnswer.WaveNodePosShortCircuit = GetMinZUpperDTEDKDLB();//波节点位置终端短路
 
@@ -191,7 +191,7 @@ namespace DLKJ
             report2CorrectAnswer.inputAttenuatorSetupFirst = δ;//衰减器
             report2CorrectAnswer.SWRFirst = SWRFZZKCL();
             report2CorrectAnswer.WaveguideWavelengthFirst = Calculateλp1();
-            report2CorrectAnswer.EquivalentSectionPositionFirst = GetDT(SLMCL_Start_Value, 0);//第一个等效截面的位置
+            report2CorrectAnswer.EquivalentSectionPositionFirst = GetDT(SLMCL_Start_Value, 0)*1000;//第一个等效截面的位置
             report2CorrectAnswer.WaveNodePositionFirst = GetMinZUpperDTFZZKCL();
             report2CorrectAnswer.NormalizedLoadImpedanceFirst = NormalizedLoadImpedance();
             report2CorrectAnswer.LoadImpedanceFirst = ZL;
