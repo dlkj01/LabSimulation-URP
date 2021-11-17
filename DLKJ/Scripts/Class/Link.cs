@@ -95,8 +95,18 @@ namespace DLKJ
                         //根据子物体的世界坐标算父物体的移动目标点目前计算不算准确，后期有精确的算法可以替换//
 
                         Link target = colliders[i].transform.GetComponent<Link>();
+                        if (SceneManager.GetInstance().currentLab.currentStep.Contains(ParentItem.ID))
+                        {
+                            StartCoroutine(stay(target, moveSpeed));
+                        }
+                        else
+                        {
+                            EventManager.OnTips(TipsType.Toast,"当前步骤不允许连接该器件！");
+                            ParentItem.Revert();
+                        }
+
                         //AutoConnect(target, moveSpeed);
-                        StartCoroutine(stay(target, moveSpeed));
+                      
                         //Vector3 targetPosition = colliders[i].transform.position - transform.localPosition;
 
                         //TargetPort targetPort = new TargetPort();

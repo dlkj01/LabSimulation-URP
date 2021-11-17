@@ -285,7 +285,7 @@ namespace DLKJ
                 selectedLab.steps.Insert(index + 1, newStep);
             }
             step.stepName = EditorGUILayout.TextField(step.stepName, new GUILayoutOption[] { GUILayout.Width(100) });
-            step.videoClip = EditorGUILayout.ObjectField("", step.videoClip, typeof(VideoClip), true) as VideoClip;
+            step.videoClip = EditorGUILayout.ObjectField("", step.videoClip, typeof(VideoClip), true, new GUILayoutOption[] { GUILayout.Width(100) }) as VideoClip;
             step.points = EditorGUILayout.FloatField(step.points, new GUILayoutOption[] { GUILayout.Width(50) });
             step.valueType = (ValueType)EditorGUILayout.EnumPopup(step.valueType, new GUILayoutOption[] { GUILayout.Width(60) });
             step.dropPoints = EditorGUILayout.FloatField(step.dropPoints, new GUILayoutOption[] { GUILayout.Width(20) });

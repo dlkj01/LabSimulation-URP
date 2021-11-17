@@ -292,7 +292,7 @@ namespace DLKJ
             }
         }
 
-        void Revert()
+       public void Revert()
         {
             linkPort = null;
             ItemDB itemDB = DBManager.GetInstance().GetDB<ItemDB>();

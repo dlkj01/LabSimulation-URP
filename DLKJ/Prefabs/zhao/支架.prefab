@@ -92,6 +92,7 @@ MonoBehaviour:
   onColor: {r: 0, g: 0, b: 0, a: 0}
   offColor: {r: 0, g: 0, b: 0, a: 0}
   numbers: []
+  numbersUV: []
   numberTextures: []
   rotationType: 2
   RotationSpeed: 2

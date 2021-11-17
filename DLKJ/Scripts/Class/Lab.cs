@@ -226,7 +226,22 @@ namespace DLKJ
             return completed;
         }
 
-       
+        public bool Contains(int itemID)
+        {
+            Debug.Log("---itemID--->:" + itemID);
+            for (int i = 0; i < keyItems.Count; i++)
+            {
+                if (keyItems[i].ID == itemID)
+                {
+                    Debug.Log("°üº¬");
+                    return true;
+                }
+            }
+            Debug.Log("²»°üº¬");
+            return false;
+        }
+
+
 
     }
 }
