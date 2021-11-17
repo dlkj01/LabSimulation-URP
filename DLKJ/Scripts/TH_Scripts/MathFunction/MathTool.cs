@@ -851,17 +851,17 @@ namespace DLKJ
         /// <returns></returns>
         private static double CalculateShan(double TFirst, double TSecond)
         {
-            if (TFirst >= 0 && TSecond >= 0)
+            //if (TFirst >= 0 && TSecond >= 0)
                 return Math.Atan(Math.Abs(TSecond) / Math.Abs(TFirst));
 
-            if (TFirst < 0 && TSecond >= 0)
-                return Math.Atan(Math.Abs(TSecond) / Math.Abs(TFirst)) + Math.PI / 2;
+            //if (TFirst < 0 && TSecond >= 0)
+            //    return Math.Atan(Math.Abs(TSecond) / Math.Abs(TFirst)) + Math.PI / 2;
 
-            if (TFirst < 0 && TSecond < 0)
-                return Math.Atan(Math.Abs(TSecond) / Math.Abs(TFirst)) + Math.PI;
+            //if (TFirst < 0 && TSecond < 0)
+            //    return Math.Atan(Math.Abs(TSecond) / Math.Abs(TFirst)) + Math.PI;
 
-            if (TFirst >= 0 && TSecond < 0)
-                return Math.Atan(Math.Abs(TSecond) / Math.Abs(TFirst)) + 3 * Math.PI / 2;
+            //if (TFirst >= 0 && TSecond < 0)
+            //    return Math.Atan(Math.Abs(TSecond) / Math.Abs(TFirst)) + 3 * Math.PI / 2;
             return 0;
         }
 
