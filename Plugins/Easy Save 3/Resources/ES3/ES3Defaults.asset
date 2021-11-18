@@ -32,6 +32,7 @@ MonoBehaviour:
     - Obi
     - Assembly-CSharp-firstpass
     - Assembly-CSharp
+    - BestHTTP
     - Obi.Editor
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
