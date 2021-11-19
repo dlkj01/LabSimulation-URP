@@ -213,7 +213,7 @@ namespace DLKJ
                 {
                     if (!UILabButton.uiLabReport.FinishedStepInput(ProxyManager.experimentInputProxy.experimentStepInputMap[currentStep]))
                     {
-                        UILabButton.uiLabReport.ShowPanle(false);
+                        UILabButton.uiLabReport.ShowPanle(UILabButton.uiLabReport.InputIndex);
                         return;
                     }
                 }

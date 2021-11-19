@@ -3091,6 +3091,9 @@ MonoBehaviour:
   teacherInputField: {fileID: 2250535419403034025}
   page1: {fileID: 4039115030523485841}
   page2: {fileID: 5244248289904560580}
+  pages:
+  - {fileID: 4039115030523485841}
+  - {fileID: 5244248289904560580}
   inputSourceFrequencyFirst: {fileID: 5251210354221851230}
   inputSourceVoltageFirst: {fileID: 3864786159854364819}
   inputAttenuatorSetupFirst: {fileID: 8451299872291759386}
@@ -7821,7 +7824,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3657275634365689203
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12428,7 +12431,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 697222064376210181, guid: c223486eac3d15949aaa5cdc44ab1b95, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3358370804398847943, guid: c223486eac3d15949aaa5cdc44ab1b95, type: 3}
       propertyPath: m_FontData.m_Font

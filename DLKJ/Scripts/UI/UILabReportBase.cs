@@ -150,6 +150,27 @@ public class LabReport3Data : LabReportData
 
 public class UILabReportBase : MonoBehaviour
 {
+    public int InputIndex
+    {
+        get
+        {
+            int index = 0;
+            switch (SceneManager.GetInstance().GetCurrentLabName())
+            {
+                case SceneManager.FIRST_EXPERIMENT_NAME:
+                    index = 1;
+                    break;
+                case SceneManager.SECOND_EXPERIMENT_NAME:
+                    index = 1;
+                    break;
+                case SceneManager.THIRD_EXPERIMENT_NAME:
+                    index = 1;
+                    break;
+            }
+            return index;
+        }
+    }
+    int startIndex = 0;
     private InputField[] inputFields;
     public string filePath;
     public string outFilePath;
@@ -169,7 +190,7 @@ public class UILabReportBase : MonoBehaviour
     [SerializeField] protected InputField idInputField;
     [SerializeField] protected InputField teacherInputField;
     public UserDate userData = new UserDate();
-    [SerializeField] GameObject page1, page2;
+    [SerializeField] GameObject[] pages;
     protected CanvasGroup canvasGroup;
     private Coroutine coroutine;
     bool isPlaying = false;
@@ -190,15 +211,18 @@ public class UILabReportBase : MonoBehaviour
         UIEventListener.GetUIEventListener(CloseButton).PointerClick += (P) => { SetVisibale(false); };
         UIEventListener.GetUIEventListener(ChangePageButton).PointerClick += (P) =>
         {
-            ChangePage(P);
+            NextPage(P);
         };
         inputFields = GetComponentsInChildren<InputField>(true);
         foreach (var item in inputFields)
         {
             UIEffect uiEffect = item.gameObject.AddComponent<UIEffect>();
         }
-        page2.SetActive(true);
-        page2.SetActive(false);
+        foreach (var item in pages)
+        {
+            item.SetActive(true);
+            item.SetActive(false);
+        }
     }
     List<UIEffect> cacheEffect = new List<UIEffect>();
     public bool FinishedStepInput(string[] inputFieldName)
@@ -227,48 +251,41 @@ public class UILabReportBase : MonoBehaviour
 
         return isInput;
     }
+    public int index = 0;
 
-    public void ShowPanle(bool isInput, bool secondPage = true)
+    private void NextPage(PointerEventData data)
     {
-        if (isInput == false)
+        pages[index].SetActive(false);
+        index++;
+        if (index % pages.Length == 0)
+            index = 0;
+        pages[index].SetActive(true);
+    }
+
+    public void ShowPageByIndex(int page)
+    {
+        //关闭上一个
+        pages[index].SetActive(false);
+        index = page;
+        //打开索引的page
+        pages[index].gameObject.SetActive(true);
+    }
+    public void ShowPanle(int pageIndex)
+    {
+        for (int i = 0; i < cacheEffect.Count; i++)
         {
-            for (int i = 0; i < cacheEffect.Count; i++)
-            {
-                cacheEffect[i].StartFlashing();
-            }
-            OpenSecondPage(secondPage);
+            cacheEffect[i].StartFlashing();
         }
+        SetVisibale(true);
+        ShowPageByIndex(pageIndex);
     }
     public void SetVisibale(bool state)
     {
+        ShowPageByIndex(index);
         canvasGroup.alpha = state == false ? 0 : 1;
         canvasGroup.blocksRaycasts = state;
     }
-    public void ChangePage(PointerEventData data)
-    {
-        bool state = page1.activeSelf;
-        if (state == true)
-            data.pointerPress.transform.localEulerAngles = new Vector3(0, 0, 180);
-        else
-            data.pointerPress.transform.localEulerAngles = new Vector3(0, 0, 0);
-        page1.SetActive(!state);
-        page2.SetActive(state);
-    }
-    private void OpenSecondPage(bool secondPage = true)
-    {
-        SetVisibale(true);
-        ChangePageButton.transform.localEulerAngles = new Vector3(0, 0, 180);
-        if (secondPage)
-        {
-            page1.SetActive(false);
-            page2.SetActive(true);
-        }
-        else
-        {
-            page1.SetActive(true);
-            page2.SetActive(false);
-        }
-    }
+
 
     public virtual void SaveData()
     {
