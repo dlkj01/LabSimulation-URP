@@ -66,7 +66,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 7b4e09a2f6943a44087d712220dfefe5, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
@@ -608,6 +608,10 @@ MonoBehaviour:
   selected: {fileID: 21300000, guid: cccde6f6b4919174ea42829572fb688f, type: 3}
   disable: {fileID: 0}
   button: {fileID: 9012564406025630447}
+  textNormalColor: {r: 0, g: 0, b: 0, a: 0}
+  textHiglightColor: {r: 0, g: 0, b: 0, a: 0}
+  textInteractableColor: {r: 0, g: 0, b: 0, a: 0}
+  buttonText: {fileID: 0}
 --- !u!1 &3117863890856797373
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,7 +678,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6443d2e94df93374a94ec310341af52d, type: 3}
+    m_Font: {fileID: 12800000, guid: 7b4e09a2f6943a44087d712220dfefe5, type: 3}
     m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
@@ -1090,7 +1094,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6443d2e94df93374a94ec310341af52d, type: 3}
+    m_Font: {fileID: 12800000, guid: 7b4e09a2f6943a44087d712220dfefe5, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
@@ -1319,7 +1323,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6443d2e94df93374a94ec310341af52d, type: 3}
+    m_Font: {fileID: 12800000, guid: 7b4e09a2f6943a44087d712220dfefe5, type: 3}
     m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
@@ -1931,7 +1935,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6443d2e94df93374a94ec310341af52d, type: 3}
+    m_Font: {fileID: 12800000, guid: 7b4e09a2f6943a44087d712220dfefe5, type: 3}
     m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
@@ -2162,7 +2166,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6443d2e94df93374a94ec310341af52d, type: 3}
+    m_Font: {fileID: 12800000, guid: 7b4e09a2f6943a44087d712220dfefe5, type: 3}
     m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
@@ -2395,6 +2399,7 @@ MonoBehaviour:
   t_scrollbar: {fileID: 6143476036105307576}
   t_layoutGroup: {fileID: 3100743797385552719}
   sureButton: {fileID: 9012564406025630447}
+  uIItems: []
 --- !u!1 &6812879852364637297
 GameObject:
   m_ObjectHideFlags: 0

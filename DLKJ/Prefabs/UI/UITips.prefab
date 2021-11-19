@@ -218,6 +218,7 @@ MonoBehaviour:
   button: {fileID: 5994106624539181003}
   textNormalColor: {r: 0, g: 1, b: 0.96862745, a: 1}
   textHiglightColor: {r: 0, g: 0, b: 0, a: 1}
+  textInteractableColor: {r: 0, g: 0, b: 0, a: 0}
   buttonText: {fileID: 5994106626030779961}
 --- !u!1 &5994106624714783080
 GameObject:
@@ -464,6 +465,7 @@ MonoBehaviour:
   button: {fileID: 5994106625366953811}
   textNormalColor: {r: 0, g: 1, b: 0.96862745, a: 1}
   textHiglightColor: {r: 0, g: 0, b: 0, a: 1}
+  textInteractableColor: {r: 0, g: 0, b: 0, a: 0}
   buttonText: {fileID: 5994106626314500612}
 --- !u!1 &5994106626030779959
 GameObject:
@@ -531,7 +533,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6443d2e94df93374a94ec310341af52d, type: 3}
+    m_Font: {fileID: 12800000, guid: 7b4e09a2f6943a44087d712220dfefe5, type: 3}
     m_FontSize: 22
     m_FontStyle: 0
     m_BestFit: 0
@@ -610,7 +612,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6443d2e94df93374a94ec310341af52d, type: 3}
+    m_Font: {fileID: 12800000, guid: 7b4e09a2f6943a44087d712220dfefe5, type: 3}
     m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
@@ -689,7 +691,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6443d2e94df93374a94ec310341af52d, type: 3}
+    m_Font: {fileID: 12800000, guid: 7b4e09a2f6943a44087d712220dfefe5, type: 3}
     m_FontSize: 22
     m_FontStyle: 0
     m_BestFit: 0
