@@ -28,7 +28,6 @@ namespace DLKJ
     }
     public class MathTool
     {
-        public static float score = 0;//一个题1.724分
         public const float SLMCL_Start_Value = 0.055f;
 
         public static LabReportCorrect1Data report1CorrectAnswer = new LabReportCorrect1Data();
