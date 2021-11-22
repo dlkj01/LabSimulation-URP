@@ -91,6 +91,8 @@ MonoBehaviour:
     ExperimentalStep: 3
     InputTextName:
     - OnePortVoltage
+    - inputSourceFrequency
+    - inputSourceVoltage
   - id: 12
     ExperimentalType: "\u5B9E\u9A8C\u4E09"
     ExperimentalStep: 4

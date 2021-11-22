@@ -86,6 +86,8 @@ public class LabReport2Data : LabReportData
     public double SWRFirst;//驻波比
     public double WaveguideWavelengthFirst;//波导波长
     public double EquivalentSectionPositionFirst;//等效截面位置
+    public double MinimumVoltage;
+    public double MaximumVoltage;
     public double WaveNodePositionFirst;//第一波节点位置
     public double NormalizedLoadImpedanceFirst;//归一化负载阻抗
     public double LoadImpedanceFirst;//负载阻抗
@@ -94,20 +96,6 @@ public class LabReport2Data : LabReportData
     public double MinimumVoltageAfterMatchingFirst;//匹配后最小电压
     public double MaximumVoltageAfterMatchingFirst;//匹配后最大电压
     public double SWRAfterMatchingFirst;//匹配后驻波比
-    public double inputSourceFrequencySecond;//信号源频率
-    public double inputSourceVoltageSecond;//信号源电压
-    public double inputAttenuatorSetupSecond;//衰减器设置
-    public double SWRSecond;//驻波比
-    public double WaveguideWavelengthSecond;//波导波长
-    public double EquivalentSectionPositionSecond;//等效截面位置
-    public double WaveNodePositionSecond;//第一波节点位置
-    public double NormalizedLoadImpedanceSecond;//归一化负载阻抗
-    public double LoadImpedanceSecond;//负载阻抗
-    public double ScrewPositionSecond;//螺钉位置
-    public double ScrewDepthSecond;//螺钉深度
-    public double MinimumVoltageAfterMatchingSecond;//匹配后最小电压
-    public double MaximumVoltageAfterMatchingSecond;//匹配后最大电压
-    public double SWRAfterMatchingSecond;//匹配后驻波比
 }
 public class LabReportCorrect2Data : LabReportData
 {
@@ -117,6 +105,8 @@ public class LabReportCorrect2Data : LabReportData
     public double SWRFirst;//驻波比
     public double WaveguideWavelengthFirst;//波导波长
     public double EquivalentSectionPositionFirst;//等效截面位置
+    public double MinimumVoltage;
+    public double MaximumVoltage;
     public double WaveNodePositionFirst;//第一波节点位置
     public double NormalizedLoadImpedanceFirst;//归一化负载阻抗
     public double LoadImpedanceFirst;//负载阻抗
@@ -143,6 +133,8 @@ public class LabReportCorrect2Data : LabReportData
 
 public class LabReport3Data : LabReportData
 {
+    public double inputSourceFrequency;
+    public double inputSourceVoltage;
     public double OnePortVoltage;//一端口电压
     public double ThreePortVoltage;//三端口电压
     public double CouplingFactor;//耦合度C
@@ -150,78 +142,30 @@ public class LabReport3Data : LabReportData
 
 public class UILabReportBase : MonoBehaviour
 {
-    public int InputIndex
-    {
-        get
-        {
-            int index = 0;
-            switch (SceneManager.GetInstance().GetCurrentLabName())
-            {
-                case SceneManager.FIRST_EXPERIMENT_NAME:
-                    index = 1;
-                    break;
-                case SceneManager.SECOND_EXPERIMENT_NAME:
-                    index = 1;
-                    break;
-                case SceneManager.THIRD_EXPERIMENT_NAME:
-                    index = 1;
-                    break;
-            }
-            return index;
-        }
-    }
-    int startIndex = 0;
     private InputField[] inputFields;
     public string filePath;
     public string outFilePath;
     protected Dictionary<string, object> map = new Dictionary<string, object>();
-    [Header("实验名称")] public string ExperimentItem;
-    [Header("实验类型")] public string ExperimentType;
-    [Header("实验学时")] public string ExperimentTime;
-    [SerializeField] GameObject SaveButton;
     [SerializeField] GameObject CloseButton;
-    [SerializeField] GameObject ChangePageButton;
-    [SerializeField] Text ExperimentItemText;
-    [SerializeField] Text ExperimentTypeText;
-    [SerializeField] Text ExperimentTimeText;
     [SerializeField] protected InputField nameInputField;
     [SerializeField] protected InputField classInputField;
     [SerializeField] protected InputField timeInputField;
     [SerializeField] protected InputField idInputField;
     [SerializeField] protected InputField teacherInputField;
     public UserDate userData = new UserDate();
-    [SerializeField] GameObject[] pages;
     protected CanvasGroup canvasGroup;
-    private Coroutine coroutine;
-    bool isPlaying = false;
-    private float fadeSpeed = 5;
     protected virtual void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
         if (canvasGroup == null)
-        {
             canvasGroup = gameObject.AddComponent<CanvasGroup>();
-        }
         canvasGroup.alpha = 0;
         canvasGroup.blocksRaycasts = false;
-        ExperimentItemText.text = ExperimentItem;
-        ExperimentTypeText.text = ExperimentType;
-        ExperimentTimeText.text = ExperimentTime;
-        UIEventListener.GetUIEventListener(SaveButton).PointerClick += (P) => { SaveData(); };
         UIEventListener.GetUIEventListener(CloseButton).PointerClick += (P) => { SetVisibale(false); };
-        UIEventListener.GetUIEventListener(ChangePageButton).PointerClick += (P) =>
-        {
-            NextPage(P);
-        };
         inputFields = GetComponentsInChildren<InputField>(true);
         foreach (var item in inputFields)
         {
             UIEffect uiEffect = item.gameObject.AddComponent<UIEffect>();
-        }
-        foreach (var item in pages)
-        {
-            item.SetActive(true);
-            item.SetActive(false);
         }
     }
     List<UIEffect> cacheEffect = new List<UIEffect>();
@@ -248,40 +192,39 @@ public class UILabReportBase : MonoBehaviour
                 }
             }
         }
-
         return isInput;
     }
-    public int index = 0;
-
-    private void NextPage(PointerEventData data)
+    public RectTransform ContentTF;//内容变换组件
+    private float pageHeight = 1684f;//每一页的高度
+    private void SetContentPosition(int index)
     {
-        pages[index].SetActive(false);
-        index++;
-        if (index % pages.Length == 0)
-            index = 0;
-        pages[index].SetActive(true);
+        ContentTF.anchoredPosition = new Vector2(0, index * pageHeight);
     }
-
-    public void ShowPageByIndex(int page)
-    {
-        //关闭上一个
-        pages[index].SetActive(false);
-        index = page;
-        //打开索引的page
-        pages[index].gameObject.SetActive(true);
-    }
-    public void ShowPanle(int pageIndex)
+    public int GetPagesLenght { get { return ContentTF.childCount; } }
+    public void ShowFlashingImage(int pageIndex)
     {
         for (int i = 0; i < cacheEffect.Count; i++)
         {
             cacheEffect[i].StartFlashing();
         }
-        SetVisibale(true);
-        ShowPageByIndex(pageIndex);
+        SetVisibale(true, false, pageIndex);
     }
-    public void SetVisibale(bool state)
+    /// <summary>
+    /// 设置页面开启关闭。
+    /// </summary>
+    /// <param name="state">开关</param>
+    /// <param name="init">是否为初始值,如果为true，默认打开第一页</param>
+    /// <param name="index">翻到第几页</param>
+    public void SetVisibale(bool state, bool init = true, int index = 0)
     {
-        ShowPageByIndex(index);
+        if (init)
+        {
+            SetContentPosition(0);
+        }
+        else
+        {
+            SetContentPosition(index);
+        }
         canvasGroup.alpha = state == false ? 0 : 1;
         canvasGroup.blocksRaycasts = state;
     }

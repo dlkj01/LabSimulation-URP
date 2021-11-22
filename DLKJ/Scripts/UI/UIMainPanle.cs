@@ -157,7 +157,7 @@ namespace DLKJ
                 }
                 if (!UIManager.GetInstance().UILabButton.uiLabReport.FinishedStepInput(new string[] { "IDInputField", "NameInputField", "ClassInputField" }))
                 {
-                    UIManager.GetInstance().UILabButton.uiLabReport.ShowPanle(0);
+                    UIManager.GetInstance().UILabButton.uiLabReport.ShowFlashingImage(0);
                     return;
                 }
             }

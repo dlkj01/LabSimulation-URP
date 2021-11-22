@@ -22,6 +22,9 @@ namespace DLKJ
                 EventManager.OnTips(TipsType.Toast, "请输入姓名");
             }
         }
+
+        [Space()]
+        [Header("无情分割线---------------------------------------------------")]
         [SerializeField] InputField SourceFrequency;//信号源频率
         [SerializeField] InputField SourceVoltage;//信号源电压设置
         [SerializeField] InputField Attenuator;//衰减器设置
