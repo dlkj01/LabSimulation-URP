@@ -6,6 +6,10 @@ namespace DLKJ
 {
     public class StartGame : MonoSingleton<StartGame>
     {
+        private void Start()
+        {
+            WordHelper.resultMap.Clear();
+        }
         private void OnApplicationQuit()
         {
             if (ProxyManager.saveProxy.IsFinishedAll() == true)
@@ -21,6 +25,14 @@ namespace DLKJ
                 SceneManager.didExperiment = false;
                 UnityEngine.SceneManagement.SceneManager.LoadScene("Level1");
             }
+
+#if UNITY_WEBGL||UNITY_EDITOR
+            if (Input.GetKeyDown(KeyCode.Alpha0))
+            {
+                WordHelper.resultMap.Clear();
+                UIManager.GetInstance().UILabButton.uiLabReport.SaveData();
+            }
+#endif
         }
     }
 }

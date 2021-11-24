@@ -36,6 +36,7 @@ public static class WordHelper
     }
     private static string streamingPath = Application.streamingAssetsPath + "/DocTemplate";
     static Document doc;
+    public static Dictionary<string, string> resultMap = new Dictionary<string, string>();
     /// <summary>
     /// 根据标签写入数据
     /// </summary>
@@ -43,6 +44,26 @@ public static class WordHelper
     /// <param name="CNName"></param>
     public static void HandleGuaranteeDoc(string fileName, Dictionary<string, object> map, string outPath)
     {
+
+#if UNITY_WEBGL
+        foreach (var key in map.Keys)   //循环键值对
+        {
+            if (map[key] != null)
+            {
+                if (map[key] is AnswerCheck answerCheck)
+                {
+                    string result = string.Empty;
+                    if (answerCheck.isRight == false)
+                        result = answerCheck.answer.ToString() + "(Wrong)";
+                    else
+                        result = answerCheck.answer.ToString();
+                    resultMap.Add(key, result);
+                }
+                else
+                    resultMap.Add(key, map[key].ToString());
+            }
+        }
+#else
         if (!Directory.Exists(streamingPath))
         {
             Directory.CreateDirectory(streamingPath);
@@ -58,7 +79,7 @@ public static class WordHelper
             {
                 if (map[key] is AnswerCheck answerCheck)
                 {
-                    string result;
+                    string result = string.Empty;
                     if (answerCheck.isRight == false)
                     {
                         result = answerCheck.answer.ToString() + "(Wrong)";
@@ -86,7 +107,12 @@ public static class WordHelper
         doc.Save(savePath + "/" + studentID /*SceneManager.loginUserData.accountNumber*/ + "-" + DateTime.Now.ToString("yyyy-MM-dd") + outPath); //保存word
         ProxyManager.saveProxy.Save();
         stream.Close();
+#endif
     }
+
+
+
+
 
     public static Stream FileToStream(string fileName)
     {

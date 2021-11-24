@@ -59,7 +59,7 @@ namespace DLKJ
 
             webSocket.Open();
             Debug.Log("Opening Web Socket...\n");
-}
+        }
 
         void OnOpen(WebSocket ws)
         {
@@ -113,7 +113,7 @@ namespace DLKJ
                 totalTimes--;
             }
 
-           //超时后的逻辑
+            //超时后的逻辑
         }
 
         void OnDestroy()
@@ -138,7 +138,7 @@ namespace DLKJ
             stepsDic.Add("steps", stepsJson);
 
             string stepStr = BestHTTP.JSON.Json.Encode(stepsDic);
-            Debug.Log("实验步骤:"+ stepStr);
+            Debug.Log("实验步骤:" + stepStr);
 
             //发送实验步骤
             SendReportToWeb(stepStr);
@@ -146,8 +146,14 @@ namespace DLKJ
             //发送得分
             SendScoreToWeb(99);
 
+            //发送报告
+            Dictionary<string, string> dic1 = Report1();
+            string jsonKey1 = BestHTTP.JSON.Json.Encode(dic1);
+            Debug.Log("报告String:"+jsonKey1);
+            SendReportToWeb(jsonKey1);
+
             //获取用户信息
-            getUserInfo();
+            //getUserInfo();
         }
 
         int i = 0;
@@ -193,9 +199,22 @@ namespace DLKJ
             Application.ExternalCall("ReportEdit", jsonReslut);
         }
 
-        public void getUserInfo()
+        Dictionary<string, string> Report1()
         {
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            Dictionary<string, string> keyValuePairs = WordHelper.resultMap;
 
+            string key;
+            string value;
+            //foreach (var item in keyValuePairs)
+            //{
+            //    key = item.Key.ToString();
+            //    value = item.Value.ToString();
+            //    dic.Add(key,value);
+            //}
+            dic.Add("SourceFrequency", "16.5");
+            dic.Add("EquivalentSectionPosition","11.2");
+            return dic;
         }
 
     }
