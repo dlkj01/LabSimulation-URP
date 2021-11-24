@@ -167,7 +167,7 @@ public class UILabReportBase : MonoBehaviour
     private InputField[] inputFields;
     public string filePath;
     public string outFilePath;
-    protected Dictionary<string, object> map = new Dictionary<string, object>();
+    public Dictionary<string, object> map = new Dictionary<string, object>();
     [SerializeField] GameObject CloseButton;
     [SerializeField] protected InputField nameInputField;
     [SerializeField] protected InputField classInputField;
@@ -343,6 +343,7 @@ public class UILabReportBase : MonoBehaviour
         }
         return result;
     }
+
     protected void AddResult(LabReportData labReportData, LabReportData rightAnswer)
     {
         Dictionary<string, object> addMap = WordHelper.GetFields(labReportData);
@@ -369,7 +370,7 @@ public class UILabReportBase : MonoBehaviour
             }
             this.map[item2.Key] = answerCheck;
         }
-
         WordHelper.HandleGuaranteeDoc(filePath, map, outFilePath);
     }
+
 }

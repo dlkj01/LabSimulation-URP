@@ -1,5 +1,6 @@
 using BestHTTP;
 using BestHTTP.WebSocket;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.Information;
 using System;
 using System.Collections;
@@ -35,7 +36,7 @@ namespace DLKJ
             {
                 instance = this;
             }
-            OpenWebSocket();
+            //OpenWebSocket();
         }
 
         void OpenWebSocket()
@@ -47,8 +48,8 @@ namespace DLKJ
 
 
 #if !BESTHTTP_DISABLE_PROXY
-            if (HTTPManager.Proxy != null)
-                webSocket.InternalRequest.Proxy = new HTTPProxy(HTTPManager.Proxy.Address, HTTPManager.Proxy.Credentials, false);
+            //if (HTTPManager.Proxy != null)
+            //    webSocket.OnInternalRequestCreated = (ws, internalRequest) => internalRequest.Proxy = new HTTPProxy(HTTPManager.Proxy.Address, HTTPManager.Proxy.Credentials, false);
 #endif
 
             webSocket.OnOpen += OnOpen;
@@ -58,7 +59,7 @@ namespace DLKJ
 
             webSocket.Open();
             Debug.Log("Opening Web Socket...\n");
-}
+        }
 
         void OnOpen(WebSocket ws)
         {
@@ -112,7 +113,7 @@ namespace DLKJ
                 totalTimes--;
             }
 
-           //超时后的逻辑
+            //超时后的逻辑
         }
 
         void OnDestroy()
@@ -123,6 +124,98 @@ namespace DLKJ
             }
         }
 
+        public void Test()
+        {
+            Dictionary<string, List<string>> stepsDic = new Dictionary<string, List<string>>();
+
+            List<string> stepsJson = new List<string>();
+            for (int i = 0; i < 3; i++)
+            {
+                Dictionary<string, string> dic = ReturnStep();
+                string jsonKey = BestHTTP.JSON.Json.Encode(dic);
+                stepsJson.Add(jsonKey);
+            }
+            stepsDic.Add("steps", stepsJson);
+
+            string stepStr = BestHTTP.JSON.Json.Encode(stepsDic);
+            Debug.Log("实验步骤:" + stepStr);
+
+            //发送实验步骤
+            SendReportToWeb(stepStr);
+
+            //发送得分
+            SendScoreToWeb(99);
+
+            //发送报告
+            Dictionary<string, string> dic1 = Report1();
+            string jsonKey1 = BestHTTP.JSON.Json.Encode(dic1);
+            Debug.Log("报告String:"+jsonKey1);
+            SendReportToWeb(jsonKey1);
+
+            //获取用户信息
+            //getUserInfo();
+        }
+
+        int i = 0;
+        Dictionary<string, string> ReturnStep()
+        {
+            i++;
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+
+            dic["seq"] = i.ToString();
+            dic["title"] = "虚拟仿真实验";
+            dic["startTime"] = "2021-11-19 09:30:48";
+            dic["endTime"] = "2021-11-19 09:35:48";
+            dic["expectTime"] = "1000";
+            dic["maxScore"] = "100";
+            dic["score"] = "60";
+            dic["repeatCount"] = "3";
+            dic["evaluation"] = "暂无";
+            dic["scoringModel"] = "暂无";
+            dic["remarks"] = "暂无";
+            return dic;
+        }
+
+        /// <summary>
+        /// webgl端成绩上传
+        /// </summary>
+        /// <param name="score">实验成绩</param>
+        public void SendScoreToWeb(int score)
+        {
+            string[] moduleFlag = { "实验成绩" };
+            string[] questionNumber = { "1" };
+            string[] questionStem = { "学生实验操作成绩" };
+            string[] scores = { score.ToString() };
+            string[] isTrue = { "True" };
+            Application.ExternalCall("ReciveData", moduleFlag, questionNumber, questionStem, scores, isTrue);
+        }
+
+        /// <summary>
+        /// webgl提交实验报告
+        /// </summary>
+        /// <param name="jsonReslut">json格式报告字符串</param>
+        public void SendReportToWeb(string jsonReslut)
+        {
+            Application.ExternalCall("ReportEdit", jsonReslut);
+        }
+
+        Dictionary<string, string> Report1()
+        {
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            Dictionary<string, string> keyValuePairs = WordHelper.resultMap;
+
+            string key;
+            string value;
+            //foreach (var item in keyValuePairs)
+            //{
+            //    key = item.Key.ToString();
+            //    value = item.Value.ToString();
+            //    dic.Add(key,value);
+            //}
+            dic.Add("SourceFrequency", "16.5");
+            dic.Add("EquivalentSectionPosition","11.2");
+            return dic;
+        }
 
     }
 }
