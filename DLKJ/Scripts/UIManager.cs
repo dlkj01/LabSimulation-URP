@@ -213,7 +213,7 @@ namespace DLKJ
                 {
                     if (!UILabButton.uiLabReport.FinishedStepInput(ProxyManager.experimentInputProxy.experimentStepInputMap[currentStep]))
                     {
-                        UILabButton.uiLabReport.ShowFlashingImage(UILabButton.uiLabReport.GetPagesLenght - 1);
+                        UILabButton.uiLabReport.ShowFlashingImage(UILabButton.uiLabReport.GetHeight);
                         return;
                     }
                 }

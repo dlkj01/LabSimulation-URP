@@ -142,6 +142,28 @@ public class LabReport3Data : LabReportData
 
 public class UILabReportBase : MonoBehaviour
 {
+    public float GetHeight
+    {
+        get
+        {
+            float height = 0;
+            switch (SceneManager.GetInstance().GetCurrentLabName())
+            {
+                case SceneManager.FIRST_EXPERIMENT_NAME:
+                    height = 5071.191f;
+                    break;
+                case SceneManager.SECOND_EXPERIMENT_NAME:
+                    height = 4024.353f;
+                    break;
+                case SceneManager.THIRD_EXPERIMENT_NAME:
+                    height = 1962.912f;
+                    break;
+                default:
+                    break;
+            }
+            return height;
+        }
+    }
     private InputField[] inputFields;
     public string filePath;
     public string outFilePath;
@@ -196,18 +218,18 @@ public class UILabReportBase : MonoBehaviour
     }
     public RectTransform ContentTF;//内容变换组件
     private float pageHeight = 1684f;//每一页的高度
-    private void SetContentPosition(int index)
+    private void SetContentPosition(float height)
     {
-        ContentTF.anchoredPosition = new Vector2(0, index * pageHeight);
+        ContentTF.anchoredPosition = new Vector2(0, height);
     }
     public int GetPagesLenght { get { return ContentTF.childCount; } }
-    public void ShowFlashingImage(int pageIndex)
+    public void ShowFlashingImage(float height)
     {
         for (int i = 0; i < cacheEffect.Count; i++)
         {
             cacheEffect[i].StartFlashing();
         }
-        SetVisibale(true, false, pageIndex);
+        SetVisibale(true, false, height);
     }
     /// <summary>
     /// 设置页面开启关闭。
@@ -215,7 +237,7 @@ public class UILabReportBase : MonoBehaviour
     /// <param name="state">开关</param>
     /// <param name="init">是否为初始值,如果为true，默认打开第一页</param>
     /// <param name="index">翻到第几页</param>
-    public void SetVisibale(bool state, bool init = true, int index = 0)
+    public void SetVisibale(bool state, bool init = true, float height = 0)
     {
         if (init)
         {
@@ -223,7 +245,7 @@ public class UILabReportBase : MonoBehaviour
         }
         else
         {
-            SetContentPosition(index);
+            SetContentPosition(GetHeight);
         }
         canvasGroup.alpha = state == false ? 0 : 1;
         canvasGroup.blocksRaycasts = state;
