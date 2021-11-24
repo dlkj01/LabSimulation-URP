@@ -52,6 +52,9 @@ namespace DLKJ
             {
                 ports[i].ParentItem = this;
             }
+#if UNITY_WEBGL
+
+#endif
         }
 
         private void OnEnable()

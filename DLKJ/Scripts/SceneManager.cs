@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using static DLKJ.InstrumentAction;
-
+using T_Common;
 namespace DLKJ
 {
     public class SceneManager : MonoBehaviour
@@ -68,7 +68,29 @@ namespace DLKJ
 
                 if (defaultItem.libraryType == LibraryType.Wires) //线缆的特殊处理
                 {
-                    labItems[i].transform.GetChild(0).gameObject.SetActive(true);
+#if UNITY_WEBGL || UNITY_EDITOR
+                    WebLine[] webLines = FindObjectsOfType<WebLine>(true);
+                    for (int j = 0; j < webLines.Length; j++)
+                    {
+                        Transform EndPos = null;
+                        Transform startPos = null;
+                        if (webLines[j].Name == "频选-三厘米线Line")
+                        {
+                            EndPos = webLines[j].transform.FindChildByName("选频EndPos");
+                            startPos = GetItemByName("选频放大器").transform.FindChildByName("Input位置");
+                        }
+                        if (webLines[j].Name == "微波-波导Line")
+                        {
+                            EndPos = webLines[j].transform.FindChildByName("End波导");
+                            startPos = GetItemByName("微波信号源").transform.FindChildByName("微波StartPos");
+                        }
+                        EndPos.parent.SetParent(webLines[j].transform);
+                        webLines[j].SetLineRender(startPos, EndPos);
+                    }
+#else
+                     labItems[i].transform.GetChild(0).gameObject.SetActive(true);
+#endif
+
                     Item targetItem = GetLabItemByID(labItems[i].linkConditions[0].data.itemID);
                     Link selfPort = labItems[i].ports[0];
                     Link targetPort = targetItem.GetPortByPortsID(labItems[i].linkConditions[0].data.portsID);
@@ -139,11 +161,11 @@ namespace DLKJ
 
             UIManager.GetInstance().uiMainPanle.autoConnect.Interactable(false);
             List<Item> stepItems = currentLab.currentStep.keyItems;
-           
+
             if (currentLab.currentStepIndex > 1)
             {
                 int basicLinkItemsSize = currentLab.steps[1].keyItems.Count;
-               
+
                 for (int i = 0; i < stepItems.Count; i++)
                 {
 
