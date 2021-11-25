@@ -126,6 +126,10 @@ namespace DLKJ
 
         public void Test()
         {
+            WordHelper.resultMap.Clear();
+            UIManager.GetInstance().UILabButton.uiLabReport.SaveData();
+
+
             Dictionary<string, List<string>> stepsDic = new Dictionary<string, List<string>>();
 
             List<string> stepsJson = new List<string>();
@@ -147,9 +151,10 @@ namespace DLKJ
             SendScoreToWeb(99);
 
             //发送报告
-            Dictionary<string, string> dic1 = Report1();
+            Dictionary<string, List<Dictionary<string, string>>> dic1 = Report1();
             string jsonKey1 = BestHTTP.JSON.Json.Encode(dic1);
-            Debug.Log("报告String:"+jsonKey1);
+          
+            Debug.Log("报告String:"+ jsonKey1);
             SendReportToWeb(jsonKey1);
 
             //获取用户信息
@@ -199,21 +204,48 @@ namespace DLKJ
             Application.ExternalCall("ReportEdit", jsonReslut);
         }
 
-        Dictionary<string, string> Report1()
+        Dictionary<string, List<Dictionary<string, string>>> Report1()
         {
-            Dictionary<string, string> dic = new Dictionary<string, string>();
+            Dictionary<string, List<Dictionary<string, string>>> dic = new Dictionary<string, List<Dictionary<string, string>>>();
             Dictionary<string, string> keyValuePairs = WordHelper.resultMap;
 
+            string identifier = "text";
             string key;
             string value;
-            //foreach (var item in keyValuePairs)
-            //{
-            //    key = item.Key.ToString();
-            //    value = item.Value.ToString();
-            //    dic.Add(key,value);
-            //}
-            dic.Add("SourceFrequency", "16.5");
-            dic.Add("EquivalentSectionPosition","11.2");
+            string[] keysArry = { "text", "color" };
+            string[] valueArry = new string[2];
+
+            int index = 0;
+            foreach (var item in keyValuePairs)
+            {
+                index++;
+                // key = item.Key.ToString();
+                key = identifier + index.ToString();
+                value = item.Value.ToString();
+                List<Dictionary<string,string>> contentValueList = new List<Dictionary<string,string>>();
+                Dictionary<string, string> contentDic = new Dictionary<string, string>();
+                for (int i = 0; i < 2; i++)
+                {
+                    switch (i)
+                    {
+                        case 0:
+                            {
+                                valueArry[0] = value;
+                            }
+                            break;
+                        case 1:
+                            {
+                                valueArry[1] = "red";
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    contentDic.Add(keysArry[i], valueArry[i]);
+                }
+                contentValueList.Add(contentDic);
+                dic.Add(key, contentValueList);
+            }
             return dic;
         }
 

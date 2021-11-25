@@ -30,6 +30,14 @@ namespace DLKJ
 
         private int originIndex = -1;
 
+        private void Awake()
+        {
+#if UNITY_WEBGL
+            UserData data = new UserData() { accountNumber = "student1", password = "password1", userType = UserType.Student };
+            loginUserData = data;
+#endif
+        }
+
         public static SceneManager GetInstance()
         {
             if (null == instance)
