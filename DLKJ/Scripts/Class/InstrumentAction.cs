@@ -173,7 +173,7 @@ namespace DLKJ
                             if (MathUtility.GetCurrentValue(tempInstrumentBtn) == 0)
                             {
                                 //校验是否正确
-                                if (SceneManager.GetInstance().CurrentStepVerify())
+                                if (SceneManager.GetInstance().CurrentStepVerify() && CanSetValue())
                                 {
                                     MathTest.Instance.FormulaInit();
                                     InstrumentButton buttonKaiGuan = SceneManager.GetInstance().GetInstrumentButton("选频放大器", "FrequencySelectiveAmplifierPowerBtn");
@@ -210,6 +210,8 @@ namespace DLKJ
                     case "VoltageBtn":
                         break;
                     case "FrequencyBtn":
+                        if (!CanSetValue() || !SceneManager.GetInstance().CurrentStepVerify())
+                            return;
                         if (MathUtility.GetCurrentValue(powerKaiGuan) != 0)
                         {
                             return;
@@ -222,6 +224,8 @@ namespace DLKJ
                         Debug.Log(MathTool.F);
                         break;
                     case "FrequencyBtn2":
+                        if (!CanSetValue() || !SceneManager.GetInstance().CurrentStepVerify())
+                            return;
                         if (MathUtility.GetCurrentValue(powerKaiGuan) != 0)
                         {
                             return;
@@ -355,6 +359,22 @@ namespace DLKJ
                 }
                 Debug.Log(buttonName.Trim() + "仪器的当前值为" + MathUtility.GetCurrentValue(tempInstrumentBtn));
             }
+        }
+
+        private bool CanSetValue()
+        {
+            bool canNext = true;
+            switch (SceneManager.GetInstance().GetCurrentLabName())
+            {
+                case SceneManager.FIRST_EXPERIMENT_NAME:
+                case SceneManager.SECOND_EXPERIMENT_NAME:
+                    if (SceneManager.GetInstance().GetCurrentStep() < 2)
+                        canNext = false;
+                    break;
+                default:
+                    break;
+            }
+            return canNext;
         }
 
         #region 支架
