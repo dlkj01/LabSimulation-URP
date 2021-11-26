@@ -132,7 +132,7 @@ namespace DLKJ
 
         public void SubmitTest()
         {
-
+#if !UNITY_EDITOR
             if (SceneManager.GetInstance().GetCurrentStep() < SceneManager.GetInstance().currentLab.steps.Count - 1)
             {
                 EventManager.OnTips(TipsType.Toast, "请完成实验所有操作步骤", () => { FindObjectOfType<UITips>().OnDisTips(); }, () =>
@@ -162,7 +162,7 @@ namespace DLKJ
                     return;
                 }
             }
-
+#endif
             string tipString = "提交实验报告";
             EventManager.OnTips(TipsType.Snackbar, tipString, () => { FindObjectOfType<UITips>().OnDisTips(); },
                () =>

@@ -358,6 +358,51 @@ public class UILabReportBase : MonoBehaviour
                     {
                         result = double.Parse(item2.Value.ToString());
                     }
+                    switch (item2.Key)
+                    {
+                        case "WaveguideWavelengthFirst":
+                            {
+                                result = result * 0.001f;
+                            }
+                            break;
+                        case "EquivalentSectionPositionFirst":
+                            {
+                                result = result * 0.001f; ;
+                            }
+                            break;
+                        case "ScrewPositionFirst":
+                            {
+                                result = result * 0.001f; ;
+                            }
+                            break;
+                        case "EquivalentSectionPosition":
+                            {
+                                result = result * 0.001f; ;
+                            }
+                            break;
+                        case "InputWavelength":
+                            {
+                                result = result * 0.001f; ;
+                            }
+                            break;
+                        case "VariableShortCircuitFirstPos":
+                            {
+                                result = result * 0.001f; ;
+                            }
+                            break;
+                        case "VariableWavelengthInShortCircuit":
+                            {
+                                result = result * 0.001f; ;
+                            }
+                            break;
+                        case "OpenLoadPosition":
+                            {
+                                result = result * 0.001f; ;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
                     answerCheck.isRight = DataFormatParsing(result, fields[i].GetValue(rightAnswer));
                 }
             }
