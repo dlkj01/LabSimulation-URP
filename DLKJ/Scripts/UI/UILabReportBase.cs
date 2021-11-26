@@ -258,7 +258,7 @@ public class UILabReportBase : MonoBehaviour
     }
     protected double StringToDouble(string value)
     {
-        double result = -9999;
+        double result = -99999999;
         if (string.IsNullOrEmpty(value))
         {
             return result;
@@ -352,7 +352,7 @@ public class UILabReportBase : MonoBehaviour
                     double result;
                     if (String.IsNullOrEmpty(item2.Value.ToString()))
                     {
-                        result = -9999;
+                        result = -99999999;
                     }
                     else
                     {

@@ -25,7 +25,7 @@ public static class WordHelper
         {
             string name = item.Name; //Ãû³Æ
             object value = item.GetValue(t);  //Öµ
-            if (value.ToString() == "-9999")
+            if (value.ToString() == "-9999" || value.ToString() == "-99999999")
             {
                 map.Add(name, "");
                 continue;
