@@ -322,16 +322,12 @@ public class UILabReportBase : MonoBehaviour
                     SceneManager.GetInstance().currentLabScore += 100f / 27f * 0.4f;
                     break;
                 case SceneManager.SECOND_EXPERIMENT_NAME:
-                    SceneManager.GetInstance().currentLabScore += 100f / 30f * 0.5f;
+                    SceneManager.GetInstance().currentLabScore += 100f / 15f * 0.5f;
                     break;
                 case SceneManager.THIRD_EXPERIMENT_NAME:
-                    SceneManager.GetInstance().currentLabScore += 100f / 3f * 0.1f;
-                    break;
-                default:
-                    SceneManager.GetInstance().currentLabScore = 0;
+                    SceneManager.GetInstance().currentLabScore += 100f / 5f * 0.1f;
                     break;
             }
-            // MathTool.score += 1.724f;
             Debug.Log("´ð°¸ÕýÈ·" + inputValue + rightAnswer);
         }
         return result;
@@ -367,37 +363,37 @@ public class UILabReportBase : MonoBehaviour
                             break;
                         case "EquivalentSectionPositionFirst":
                             {
-                                result = result * 0.001f; ;
+                                result = result * 0.001f;
                             }
                             break;
                         case "ScrewPositionFirst":
                             {
-                                result = result * 0.001f; ;
+                                result = result * 0.001f;
                             }
                             break;
                         case "EquivalentSectionPosition":
                             {
-                                result = result * 0.001f; ;
+                                result = result * 0.001f;
                             }
                             break;
                         case "InputWavelength":
                             {
-                                result = result * 0.001f; ;
+                                result = result * 0.001f;
                             }
                             break;
                         case "VariableShortCircuitFirstPos":
                             {
-                                result = result * 0.001f; ;
+                                result = result * 0.001f;
                             }
                             break;
                         case "VariableWavelengthInShortCircuit":
                             {
-                                result = result * 0.001f; ;
+                                result = result * 0.001f;
                             }
                             break;
                         case "OpenLoadPosition":
                             {
-                                result = result * 0.001f; ;
+                                result = result * 0.001f;
                             }
                             break;
                         default:

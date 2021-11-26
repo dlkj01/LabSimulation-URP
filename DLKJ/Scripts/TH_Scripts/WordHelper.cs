@@ -34,8 +34,32 @@ public static class WordHelper
             {
                 if (d.ToString().Contains('.'))
                 {
-                    map.Add(name, d.ToString("#0.00"));
-                    continue;
+                    string[] result = d.ToString().Split('.');
+                    if (result.Length <= 1)
+                    {
+                        map.Add(name, d.ToString("#0"));
+                        continue;
+                    }
+                    if (result[1].Length == 1)
+                    {
+                        map.Add(name, d.ToString("#0.0")); continue;
+                    }
+                    if (result[1].Length == 2)
+                    {
+                        map.Add(name, d.ToString("#0.00")); continue;
+                    }
+                    if (result[1].Length == 3)
+                    {
+                        map.Add(name, d.ToString("#0.000")); continue;
+                    }
+                    if (result[1].Length == 4)
+                    {
+                        map.Add(name, d.ToString("#0.0000")); continue;
+                    }
+                    if (result[1].Length >= 5)
+                    {
+                        map.Add(name, d.ToString("#0.00000")); continue;
+                    }
                 }
             }
             map.Add(name, value);
@@ -53,7 +77,7 @@ public static class WordHelper
     public static void HandleGuaranteeDoc(string fileName, Dictionary<string, object> map, string outPath)
     {
 
-#if UNITY_WEBGL
+#if !UNITY_WEBGL
         foreach (var key in map.Keys)   //Ñ­»·¼üÖµ¶Ô
         {
             if (map[key] != null)
