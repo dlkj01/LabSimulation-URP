@@ -354,51 +354,32 @@ namespace DLKJ
 
         public bool CurrentStepVerify()
         {
+            bool state = false;
             switch (currentLab.labName)
             {
                 case FIRST_EXPERIMENT_NAME:
-                    switch (currentLab.currentStepIndex)
+                    if (currentLab.currentStepIndex>1)
                     {
-                        case 2:
-                        case 3:
-                        case 4:
-                        case 5:
-                            return VerifyBasicLink();
-                        default:
-                            break;
+                        state = VerifyBasicLink();
                     }
                     break;
                 case SECOND_EXPERIMENT_NAME:
-                    switch (currentLab.currentStepIndex)
+                    if (currentLab.currentStepIndex > 1)
                     {
-                        case 2:
-                        case 3:
-                        case 4:
-                        case 5:
-                        case 6:
-                        case 7:
-                            return VerifyBasicLink();
-                        default:
-                            break;
+                        state = VerifyBasicLink();
                     }
                     break;
                 case THIRD_EXPERIMENT_NAME:
 
-                    switch (currentLab.currentStepIndex)
+                    if (currentLab.currentStepIndex > 0)
                     {
-                        case 1:
-                        case 2:
-                        case 3:
-                        case 4:
-                            return VerifyBasicLink();
-                        default:
-                            break;
+                        state = VerifyBasicLink();
                     }
                     break;
                 default:
                     break;
             }
-            return false;
+            return state;
         }
         public InstrumentButton GetInstrumentButton(string deviceName, string buttonName)
         {
