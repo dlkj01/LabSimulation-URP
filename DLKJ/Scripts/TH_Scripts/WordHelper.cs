@@ -77,7 +77,7 @@ public static class WordHelper
     public static void HandleGuaranteeDoc(string fileName, Dictionary<string, object> map, string outPath)
     {
 
-#if !UNITY_WEBGL
+#if UNITY_WEBGL
         foreach (var key in map.Keys)   //Ñ­»·¼üÖµ¶Ô
         {
             if (map[key] != null)
