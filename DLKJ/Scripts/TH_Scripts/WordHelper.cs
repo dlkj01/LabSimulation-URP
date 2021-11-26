@@ -30,6 +30,14 @@ public static class WordHelper
                 map.Add(name, "");
                 continue;
             }
+            if (value is double d)
+            {
+                if (d.ToString().Contains('.'))
+                {
+                    map.Add(name, d.ToString("#0.00"));
+                    continue;
+                }
+            }
             map.Add(name, value);
         }
         return map;

@@ -229,7 +229,7 @@ public class UILabReportBase : MonoBehaviour
         {
             cacheEffect[i].StartFlashing();
         }
-        SetVisibale(true, false, height);
+        SetVisibale(true, height);
     }
     /// <summary>
     /// 设置页面开启关闭。
@@ -237,16 +237,9 @@ public class UILabReportBase : MonoBehaviour
     /// <param name="state">开关</param>
     /// <param name="init">是否为初始值,如果为true，默认打开第一页</param>
     /// <param name="index">翻到第几页</param>
-    public void SetVisibale(bool state, bool init = true, float height = 0)
+    public void SetVisibale(bool state, float height = 0)
     {
-        if (init)
-        {
-            SetContentPosition(0);
-        }
-        else
-        {
-            SetContentPosition(GetHeight);
-        }
+        SetContentPosition(height);
         canvasGroup.alpha = state == false ? 0 : 1;
         canvasGroup.blocksRaycasts = state;
     }
@@ -363,7 +356,7 @@ public class UILabReportBase : MonoBehaviour
                     }
                     else
                     {
-                        result = (double)item2.Value;
+                        result = double.Parse(item2.Value.ToString());
                     }
                     answerCheck.isRight = DataFormatParsing(result, fields[i].GetValue(rightAnswer));
                 }
