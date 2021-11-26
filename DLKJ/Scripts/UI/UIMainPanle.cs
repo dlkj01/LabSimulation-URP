@@ -9,11 +9,13 @@ namespace DLKJ
 {
     public class UIMainPanle : MonoBehaviour
     {
+        public bool interfaceTest = false;
         [SerializeField] private float duration = 0.3f;
         [SerializeField] private float normalX;
         [SerializeField] private float targetX;
         [SerializeField] private Transform arrow;
         [SerializeField] private Image controllerButton;
+        [SerializeField] Button interfaceButton;
         private bool isMoving;//正在移动？
         private bool isHide;//是否隐藏了
         RectTransform rectTF;
@@ -22,6 +24,11 @@ namespace DLKJ
 
         private void Awake()
         {
+            if (interfaceTest)
+            {
+                if (interfaceButton) interfaceButton.gameObject.SetActive(true);
+                else interfaceButton.gameObject.SetActive(false);
+            }
             rectTF = transform as RectTransform;
             UIEventListener.GetUIEventListener(controllerButton.gameObject).PointerClick += (p) =>
               {
