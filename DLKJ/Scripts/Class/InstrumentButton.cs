@@ -214,7 +214,7 @@ namespace DLKJ
                         break;
                     case InstrumentButtonType.Click:
                         if (instrumentButton.name == "PowerBtn")
-                            if (!SceneManager.GetInstance().VerifyBasicLink()) return;
+                            if (!SceneManager.GetInstance().CurrentStepVerify()) return;
                         if (uncontrolled) return;
                         instrumentButton.localPosition = new Vector3(instrumentButton.localPosition.x - instrumentButton.GetComponent<MeshCollider>().bounds.size.x / 3,
                                                                      instrumentButton.localPosition.y,
