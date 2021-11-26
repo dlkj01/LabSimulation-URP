@@ -119,7 +119,7 @@ namespace DLKJ
         {
             BroadcastMessage("StopDetection", SendMessageOptions.RequireReceiver);
             double reDistance = Vector3.Distance(target.selfPort.transform.position, target.targetPort.transform.position);
-
+            //Debug.LogError("reDistance:" + reDistance + "    target.distance:" + target.distance);
             while (reDistance > target.distance)// 0.005243f
             {
                 reDistance = Vector3.Distance(target.selfPort.transform.position, target.targetPort.transform.position);
@@ -248,15 +248,16 @@ namespace DLKJ
                             if (targetItem.itemName == "¾§Ìå¼ì²¨Æ÷")
                             {
                                 ports[a].transform.localPosition = targetItem.portDefaultPosition;
+                                ports[a].transform.localRotation = Quaternion.Euler(targetItem.portDefaultEuler);
                             }
                             else
                             {
                                 ports[a].transform.localPosition = Vector3.zero + ports[a].offset;
+                                ports[a].transform.localRotation = Quaternion.Euler(targetItem.portDefaultEuler);
                             }
 
                             linkPort = _targetPort;
                             targetItem.linkPort = ports[a];
-                            ports[a].transform.localRotation = Quaternion.Euler(targetItem.portDefaultEuler);
                             ports[a].dragAble = false;
                             break;
                         }
@@ -273,13 +274,15 @@ namespace DLKJ
                     targetPort.selfPort = ports[0];
                     if (itemName == "¾§Ìå¼ì²¨Æ÷")
                     {
-                        if (SceneManager.GetInstance().currentLab.currentStepIndex == 2)
+                        if (SceneManager.GetInstance().currentLab.currentStepIndex == 4)
                         {
-                            RotationY();
+                            //RotationY();
+                            //Debug.LogError("ºñ¶È1£º"+ _targetPort.portCollider.bounds.size.x);
                             targetPort.distance = _targetPort.portCollider.bounds.size.x;
                         }
                         else
                         {
+                            //Debug.LogError("ºñ¶È2£º" + _targetPort.portCollider.bounds.size.z);
                             targetPort.distance = _targetPort.portCollider.bounds.size.z;
                         }
                     }
