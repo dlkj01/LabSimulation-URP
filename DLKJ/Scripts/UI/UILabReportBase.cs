@@ -396,6 +396,11 @@ public class UILabReportBase : MonoBehaviour
                                 result = result * 0.001f;
                             }
                             break;
+                        case "WaveNodePositionFirst":
+                            {
+                                result = result * 0.001f;
+                            }
+                            break;
                         default:
                             break;
                     }
