@@ -225,7 +225,6 @@ public class UILabReportBase : MonoBehaviour
         return isInput;
     }
     public RectTransform ContentTF;//内容变换组件
-    private float pageHeight = 1684f;//每一页的高度
     private void SetContentPosition(float height)
     {
         ContentTF.anchoredPosition = new Vector2(0, height);

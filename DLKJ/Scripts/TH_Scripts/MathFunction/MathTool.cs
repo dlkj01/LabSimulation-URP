@@ -873,7 +873,7 @@ namespace DLKJ
 
             //if (TFirst >= 0 && TSecond < 0)
             //    return Math.Atan(Math.Abs(TSecond) / Math.Abs(TFirst)) + 3 * Math.PI / 2;
-            return 0;
+            //  return 0;
         }
 
 

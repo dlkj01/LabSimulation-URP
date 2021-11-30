@@ -375,9 +375,6 @@ namespace DLKJ
                 uIVideoPlayer.gameObject.SetActive(true);
             }
         }
-
-        private Coroutine systolic = null;
-        private Coroutine flexible = null;
         public void PinXuanView()
         {
             voltmeterRect.DOKill();
