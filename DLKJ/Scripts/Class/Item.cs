@@ -119,11 +119,15 @@ namespace DLKJ
         {
             BroadcastMessage("StopDetection", SendMessageOptions.RequireReceiver);
             double reDistance = Vector3.Distance(target.selfPort.transform.position, target.targetPort.transform.position);
-            //Debug.LogError("reDistance:" + reDistance + "    target.distance:" + target.distance);
+            
+            //Vector3 startPos = transform.position; //插值使用
+            //float timer = 0;
+
             while (reDistance > target.distance)// 0.005243f
             {
+                //timer += Time.deltaTime*0.5f;//插值使用
                 reDistance = Vector3.Distance(target.selfPort.transform.position, target.targetPort.transform.position);
-                //transform.position = Vector3.Lerp(transform.position, target.targetPosition, Time.deltaTime * target.speed);
+                //transform.position = Vector3.Lerp(startPos, target.targetPosition, timer);
                 Vector3 moveVector = target.targetPort.transform.position - target.selfPort.transform.position;
                 transform.Translate(moveVector * 2 * Time.deltaTime, Space.World);
                 yield return new WaitForFixedUpdate();
