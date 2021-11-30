@@ -30,7 +30,9 @@ public class UILabReport2 : UILabReportBase
 
     [Tooltip("¹éÒ»»¯¸ºÔØ×è¿¹")] public InputField NormalizedLoadImpedanceFirst;//¹éÒ»»¯¸ºÔØ×è¿¹
 
-    [Tooltip("¸ºÔØ×è¿¹")] public InputField LoadImpedanceFirst;//¸ºÔØ×è¿¹
+    [Tooltip("¸ºÔØ×è¿¹")] public InputField LoadImpedanceFirstReal;//¸ºÔØ×è¿¹µç×è
+
+    [Tooltip("¸ºÔØ×è¿¹")] public InputField LoadImpedanceFirstImaginary;//¸ºÔØ×è¿¹µç¿¹
 
     [Tooltip("ÂÝ¶¤Î»ÖÃ")] public InputField ScrewPositionFirst;//ÂÝ¶¤Î»ÖÃ
 
@@ -55,7 +57,8 @@ public class UILabReport2 : UILabReportBase
         labReport2Data.EquivalentSectionPositionFirst = StringToDouble(EquivalentSectionPositionFirst.text);
         labReport2Data.WaveNodePositionFirst = StringToDouble(WaveNodePositionFirst.text);
         labReport2Data.NormalizedLoadImpedanceFirst = StringToDouble(NormalizedLoadImpedanceFirst.text);
-        labReport2Data.LoadImpedanceFirst = StringToDouble(LoadImpedanceFirst.text);
+        labReport2Data.LoadImpedanceFirstReal = StringToDouble(LoadImpedanceFirstReal.text);
+        labReport2Data.LoadImpedanceFirstImaginary = StringToDouble(LoadImpedanceFirstImaginary.text);
         labReport2Data.ScrewPositionFirst = StringToDouble(ScrewPositionFirst.text);
         labReport2Data.ScrewDepthFirst = StringToDouble(ScrewDepthFirst.text);
         labReport2Data.MinimumVoltageAfterMatchingFirst = StringToDouble(MinimumVoltageAfterMatchingFirst.text);

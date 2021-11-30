@@ -44,9 +44,12 @@ public class LabReport1Data : LabReportData
     public double ReflectionCoefficientΓ1S;//反射系数短路
     public double ReflectionCoefficientΓ10;//反射系数终端
     public double ReflectionCoefficientΓ1L;//反射系数匹配
-    public double inputS11;
-    public double inputS12S21;
-    public double inputS22;
+    public double inputS11Real;
+    public double inputS11Imaginary;
+    public double inputS12S21Real;
+    public double inputS12S21Imaginary;
+    public double inputS22Real;
+    public double inputS22Imaginary;
 }
 public class LabReportCorrect1Data : LabReportData
 {
@@ -74,9 +77,12 @@ public class LabReportCorrect1Data : LabReportData
     public double ReflectionCoefficientΓ1S;//反射系数短路
     public double ReflectionCoefficientΓ10;//反射系数终端
     public double ReflectionCoefficientΓ1L;//反射系数匹配
-    public double inputS11;
-    public double inputS12S21;
-    public double inputS22;
+    public double inputS11Real;
+    public double inputS11Imaginary;
+    public double inputS12S21Real;
+    public double inputS12S21Imaginary;
+    public double inputS22Real;
+    public double inputS22Imaginary;
 }
 public class LabReport2Data : LabReportData
 {
@@ -90,7 +96,8 @@ public class LabReport2Data : LabReportData
     public double MaximumVoltage;
     public double WaveNodePositionFirst;//第一波节点位置
     public double NormalizedLoadImpedanceFirst;//归一化负载阻抗
-    public double LoadImpedanceFirst;//负载阻抗
+    public double LoadImpedanceFirstReal;//负载阻抗实部
+    public double LoadImpedanceFirstImaginary;//负载阻抗虚部
     public double ScrewPositionFirst;//螺钉位置
     public double ScrewDepthFirst;//螺钉深度
     public double MinimumVoltageAfterMatchingFirst;//匹配后最小电压
@@ -109,7 +116,8 @@ public class LabReportCorrect2Data : LabReportData
     public double MaximumVoltage;
     public double WaveNodePositionFirst;//第一波节点位置
     public double NormalizedLoadImpedanceFirst;//归一化负载阻抗
-    public double LoadImpedanceFirst;//负载阻抗
+    public double LoadImpedanceFirstReal;//负载阻抗实部
+    public double LoadImpedanceFirstImaginary;//负载阻抗虚部
     public List<double> ScrewPositionFirst;//螺钉位置
     public List<double> ScrewDepthFirst;//螺钉深度
     public double MinimumVoltageAfterMatchingFirst;//匹配后最小电压

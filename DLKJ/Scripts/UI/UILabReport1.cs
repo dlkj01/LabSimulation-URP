@@ -49,9 +49,12 @@ namespace DLKJ
         [SerializeField] InputField ReflectionCoefficientΓ1S;//反射系数短路
         [SerializeField] InputField ReflectionCoefficientΓ10;//反射系数终端
         [SerializeField] InputField ReflectionCoefficientΓ1L;//反射系数匹配
-        [SerializeField] InputField inputS11;
-        [SerializeField] InputField inputS12S21;
-        [SerializeField] InputField inputS22;
+        [SerializeField] InputField inputS11Real;
+        [SerializeField] InputField inputS11Imaginary;
+        [SerializeField] InputField inputS12S21Real;
+        [SerializeField] InputField inputS12S21Imaginary;
+        [SerializeField] InputField inputS22Real;
+        [SerializeField] InputField inputS22Imaginary;
 
         public override void SaveData()
         {
@@ -62,7 +65,7 @@ namespace DLKJ
             labReport1Data.EquivalentSectionPosition = StringToDouble(EquivalentSectionPosition.text);//等效截面位置
             labReport1Data.InputWavelength = StringToDouble(InputWavelength.text);//输入端波长
             labReport1Data.VariableShortCircuitFirstPos = StringToDouble(VariableShortCircuitFirstPos.text);//可变短路器第一波节点位置
-            labReport1Data.VariableShortCircuitSecondPos = StringToDouble(VariableShortCircuitSecondPos.text) ;//可变短路器第二波节点位置
+            labReport1Data.VariableShortCircuitSecondPos = StringToDouble(VariableShortCircuitSecondPos.text);//可变短路器第二波节点位置
             labReport1Data.VariableWavelengthInShortCircuit = StringToDouble(VariableWavelengthInShortCircuit.text);//可变短路器中波长 
             labReport1Data.OpenLoadPosition = StringToDouble(OpenLoadPosition.text);//开路负载位置
             labReport1Data.WaveNodePosShortCircuit = StringToDouble(WaveNodePosShortCircuit.text);//波节点位置短路
@@ -80,9 +83,12 @@ namespace DLKJ
             labReport1Data.ReflectionCoefficientΓ1S = StringToDouble(ReflectionCoefficientΓ1S.text);//反射系数短路
             labReport1Data.ReflectionCoefficientΓ10 = StringToDouble(ReflectionCoefficientΓ10.text);//反射系数终端
             labReport1Data.ReflectionCoefficientΓ1L = StringToDouble(ReflectionCoefficientΓ1L.text);//反射系数匹配
-            labReport1Data.inputS11 = StringToDouble(inputS11.text);
-            labReport1Data.inputS12S21 = StringToDouble(inputS12S21.text);
-            labReport1Data.inputS22 = StringToDouble(inputS22.text);
+            labReport1Data.inputS11Real = StringToDouble(inputS11Real.text);
+            labReport1Data.inputS11Imaginary = StringToDouble(inputS11Imaginary.text);
+            labReport1Data.inputS12S21Real = StringToDouble(inputS12S21Real.text);
+            labReport1Data.inputS12S21Imaginary = StringToDouble(inputS12S21Imaginary.text);
+            labReport1Data.inputS22Real = StringToDouble(inputS22Real.text);
+            labReport1Data.inputS22Imaginary = StringToDouble(inputS22Imaginary.text);
             AddResult(labReport1Data, MathTool.report1CorrectAnswer);
         }
     }

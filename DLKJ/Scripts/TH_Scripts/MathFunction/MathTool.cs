@@ -60,6 +60,10 @@ namespace DLKJ
             //distanceZ = data.distanceZ;
             RandomDataInit();
         }
+        static Complex S11Com;
+        static Complex S12Com;
+        static Complex S22Com;
+        static Complex ZLCom;
         public static void RandomDataInit()
         {
             //F = UnityEngine.Random.Range(8.2f, 12.5f);
@@ -92,9 +96,9 @@ namespace DLKJ
             //ShanB = 0.5f * (ShanA + ShanC + Math.PI);
 
             EDKKBDLQβ = GetEDKKBDLQβ();
-            Complex S11Com = new Complex(FA * Math.Cos(ShanA), FA * Math.Sin(ShanA));
-            Complex S12Com = new Complex(FB * Math.Cos(ShanB), FB * Math.Sin(ShanB));
-            Complex S22Com = new Complex(FC * Math.Cos(ShanC), FC * Math.Sin(ShanC));
+            S11Com = new Complex(FA * Math.Cos(ShanA), FA * Math.Sin(ShanA));
+            S12Com = new Complex(FB * Math.Cos(ShanB), FB * Math.Sin(ShanB));
+            S22Com = new Complex(FC * Math.Cos(ShanC), FC * Math.Sin(ShanC));
 
             S11 = S11Com.Real + S11Com.Imaginary;
             S12 = S12Com.Real + S12Com.Imaginary;
@@ -113,7 +117,7 @@ namespace DLKJ
                 }
                 verify = Math.Pow(2 * X * XRPow * Y0, 2) - 4 * XRPow * (1 - R * Y0) * (Math.Pow(Y0, 2) * Math.Pow(XRPow, 4) - Math.Pow(R, 3) * Y0 - R * Y0 * Math.Pow(X, 2));
             }
-            Complex ZLCom = new Complex(R, X);
+            ZLCom = new Complex(R, X);
             ZL = ZLCom.Real + ZLCom.Imaginary;
             couplingFactorC = UnityEngine.Random.Range(5, 20);
         }
@@ -176,9 +180,12 @@ namespace DLKJ
             report1CorrectAnswer.ReflectionCoefficientΓ10 = S11 + Math.Pow(S12, 2) / (1 - S22);//反射系数T10
             report1CorrectAnswer.ReflectionCoefficientΓ1L = S11;//反射系数T1L
 
-            report1CorrectAnswer.inputS11 = S11;
-            report1CorrectAnswer.inputS12S21 = S12;
-            report1CorrectAnswer.inputS22 = S22;
+            report1CorrectAnswer.inputS11Real = S11Com.Real;
+            report1CorrectAnswer.inputS11Imaginary = S11Com.Imaginary;
+            report1CorrectAnswer.inputS12S21Real = S12Com.Real;
+            report1CorrectAnswer.inputS12S21Imaginary = S12Com.Imaginary;
+            report1CorrectAnswer.inputS22Real = S22Com.Real;
+            report1CorrectAnswer.inputS22Imaginary = S22Com.Imaginary;
 
         }
         #endregion
@@ -195,7 +202,8 @@ namespace DLKJ
             report2CorrectAnswer.MaximumVoltage = GetMaxRead_FZZKCL();
             report2CorrectAnswer.WaveNodePositionFirst = GetMinZUpperDTFZZKCL();
             report2CorrectAnswer.NormalizedLoadImpedanceFirst = NormalizedLoadImpedance();
-            report2CorrectAnswer.LoadImpedanceFirst = ZL;
+            report2CorrectAnswer.LoadImpedanceFirstReal = ZLCom.Real;
+            report2CorrectAnswer.LoadImpedanceFirstImaginary = ZLCom.Imaginary;
             report2CorrectAnswer.ScrewPositionFirst = CalculateL();
             report2CorrectAnswer.ScrewDepthFirst = CalculateD();
             report2CorrectAnswer.MinimumVoltageAfterMatchingFirst = GetMinReadFZKZPP(float.Parse(report2CorrectAnswer.ScrewPositionFirst[0].ToString()), float.Parse(report2CorrectAnswer.ScrewDepthFirst[0].ToString()));
