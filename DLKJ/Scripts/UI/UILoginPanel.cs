@@ -69,7 +69,7 @@ namespace DLKJ
 
         void ExitCallBack()
         {
-            Application.Quit();
+            //Application.Quit();
         }
 
     }
