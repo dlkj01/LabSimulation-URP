@@ -27,7 +27,7 @@ namespace DLKJ
 
         private void Awake()
         {
-            Application.targetFrameRate = 120;
+            Application.targetFrameRate =-1;
             m_camera = GetComponent<Camera>();
         }
 
