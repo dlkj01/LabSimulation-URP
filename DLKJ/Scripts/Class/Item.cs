@@ -52,6 +52,23 @@ namespace DLKJ
             {
                 ports[i].ParentItem = this;
             }
+
+#if UNITY_WEBGL
+            Obi.ObiRigidbody[] rig = GetComponentsInChildren<Obi.ObiRigidbody>(true);
+            Obi.ObiCollider[] col = GetComponentsInChildren<Obi.ObiCollider>(true);
+
+            for (int i = 0; i < rig.Length; i++)
+            {
+                DestroyImmediate(rig[i]);
+            }
+            for (int i = 0; i < col.Length; i++)
+            {
+                DestroyImmediate(col[i]);
+            }
+#endif
+
+
+
 #if UNITY_WEBGL
 
 #endif
@@ -119,7 +136,7 @@ namespace DLKJ
         {
             BroadcastMessage("StopDetection", SendMessageOptions.RequireReceiver);
             double reDistance = Vector3.Distance(target.selfPort.transform.position, target.targetPort.transform.position);
-            
+
             //Vector3 startPos = transform.position; //²åÖµÊ¹ÓÃ
             //float timer = 0;
 
@@ -152,13 +169,16 @@ namespace DLKJ
             if (wires)
             {
                 Condition correctCondition = null;
-                for (int i = 0; i < linkConditions.Count; i++) {
-                    if (linkConditions[i].data.correct) {
+                for (int i = 0; i < linkConditions.Count; i++)
+                {
+                    if (linkConditions[i].data.correct)
+                    {
 
                         correctCondition = linkConditions[i];
                         if (correctCondition == null) return false;
 
-                        if (correctCondition.data.itemID == targetPort.ParentItem.ID) {
+                        if (correctCondition.data.itemID == targetPort.ParentItem.ID)
+                        {
                             if (correctCondition.data.portsID == targetPort.ID)
                             {
                                 return true;
@@ -203,7 +223,8 @@ namespace DLKJ
             return false;
         }
 
-        bool ContainsPort(Link port) {
+        bool ContainsPort(Link port)
+        {
             bool contains = false;
             for (int i = 0; i < ports.Count; i++)
             {
@@ -302,7 +323,7 @@ namespace DLKJ
             }
         }
 
-       public void Revert()
+        public void Revert()
         {
             linkPort = null;
             ItemDB itemDB = DBManager.GetInstance().GetDB<ItemDB>();
@@ -347,7 +368,7 @@ namespace DLKJ
         {
             if (EventSystem.current.IsPointerOverGameObject() == true)
                 return;
-            if (dragAble && moveable&& !usingItem)
+            if (dragAble && moveable && !usingItem)
             {
                 if (!startDetection)
                 {
