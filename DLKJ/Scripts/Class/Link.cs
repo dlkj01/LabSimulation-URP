@@ -101,7 +101,7 @@ namespace DLKJ
                         }
                         else
                         {
-                            EventManager.OnTips(TipsType.Toast,"当前步骤不允许连接该器件！");
+                            EventManager.OnTips(TipsType.Toast, "当前步骤不允许连接该器件！");
                             ParentItem.Revert();
                         }
                     }
