@@ -95,7 +95,7 @@ namespace DLKJ
                         //根据子物体的世界坐标算父物体的移动目标点目前计算不算准确，后期有精确的算法可以替换//
 
                         Link target = colliders[i].transform.GetComponent<Link>();
-                        Debug.Log("连接的目标："+target.ParentItem.itemName);
+                        Debug.Log("连接的目标：" + target.ParentItem.itemName);
                         if (SceneManager.GetInstance().currentLab.currentStep.Contains(ParentItem.ID))
                         {
                             StartCoroutine(stay(target, moveSpeed));
@@ -113,8 +113,8 @@ namespace DLKJ
 
         public void AutoConnect(Link target, float speed)
         {
-            Debug.Log(parent.itemName+"的连接对象：" + target.ParentItem.itemName);
-            Vector3 targetPosition = target.transform.position - transform.localPosition;
+            Debug.Log(parent.itemName + "的连接对象：" + target.ParentItem.itemName);
+            Vector3 targetPosition = target.transform.position - (parent.transform.position - transform.position);
             TargetPort targetPort = new TargetPort();
             targetPort.targetPosition = targetPosition;
             targetPort.targetPort = target;

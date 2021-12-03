@@ -116,11 +116,12 @@ namespace DLKJ
             {
                 case DirectionType.Horizontal:
                     {
-                        if(itemName != "¾§Ìå¼ì²¨Æ÷") transform.position = new Vector3(target.targetPosition.x, target.targetPosition.y, transform.position.z);
-                        else
-                        {
-                            transform.position = new Vector3(target.selfPort.ParentItem.transform.position.x, target.selfPort.ParentItem.transform.position.y, transform.position.z);
-                        }
+                        //if(itemName != "¾§Ìå¼ì²¨Æ÷") transform.position = new Vector3(target.targetPosition.x, target.targetPosition.y, transform.position.z);
+                        //else
+                        //{
+                        //    transform.position = new Vector3(target.selfPort.ParentItem.transform.position.x, target.selfPort.ParentItem.transform.position.y, transform.position.z);
+                        //}
+                        transform.position = new Vector3(target.targetPosition.x, target.targetPosition.y, transform.position.z);
                     }
                     break;
                 case DirectionType.Vertical:
