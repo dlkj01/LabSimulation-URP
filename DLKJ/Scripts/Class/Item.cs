@@ -116,7 +116,7 @@ namespace DLKJ
             {
                 case DirectionType.Horizontal:
                     {
-                        transform.position = new Vector3(target.targetPosition.x, target.targetPosition.y, transform.position.z);
+                        if(itemName != "¾§Ìå¼ì²¨Æ÷") transform.position = new Vector3(target.targetPosition.x, target.targetPosition.y, transform.position.z);
                     }
                     break;
                 case DirectionType.Vertical:
