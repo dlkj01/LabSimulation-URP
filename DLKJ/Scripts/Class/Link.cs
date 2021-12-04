@@ -114,7 +114,7 @@ namespace DLKJ
         public void AutoConnect(Link target, float speed)
         {
             Debug.Log(parent.itemName + "的连接对象：" + target.ParentItem.itemName);
-            Vector3 targetPosition = target.transform.position - (parent.transform.position - transform.position);
+            Vector3 targetPosition = target.transform.position + (parent.transform.position - transform.position);
             TargetPort targetPort = new TargetPort();
             targetPort.targetPosition = targetPosition;
             targetPort.targetPort = target;
