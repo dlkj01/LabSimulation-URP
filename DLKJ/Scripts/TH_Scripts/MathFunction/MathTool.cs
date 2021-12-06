@@ -610,9 +610,10 @@ namespace DLKJ
         {
             List<double> result = new List<double>();
             int k = 0;
-            while (((2 * k + 1) * Math.PI - Shan0) / (2 * GetEDKKBDLQ¦Â()) <= 0.1f)
+            while (((2 * k + 1) * Math.PI - Shan0) / (GetEDKKBDLQ¦Â()) <= 0.1f)
             {
-                double value = ((2 * k + 1) * Math.PI - Shan0) / (2 * GetEDKKBDLQ¦Â());
+
+                double value = ((2 * k + 1) * Math.PI - Shan0) / (GetEDKKBDLQ¦Â());
                 if (value >= 0f)
                     result.Add(value);
                 k++;
@@ -863,7 +864,7 @@ namespace DLKJ
         private static double CalculateShan(double TFirst, double TSecond)
         {
             //if (TFirst >= 0 && TSecond >= 0)
-            return Math.Atan(Math.Abs(TSecond) / Math.Abs(TFirst));
+            return Math.Atan(TSecond / TFirst);
 
             //if (TFirst < 0 && TSecond >= 0)
             //    return Math.Atan(Math.Abs(TSecond) / Math.Abs(TFirst)) + Math.PI / 2;
@@ -888,7 +889,7 @@ namespace DLKJ
         /// <returns></returns>
         private static double GetTl_a_EDKKBDLQ(float zd)
         {
-            double shanD = 2 * GetEDKKBDLQ¦Â() * zd + Shan0;
+            double shanD = GetEDKKBDLQ¦Â() * zd + Shan0;
             double addLeft = FA * Math.Cos(ShanA);
             double topLeft = Math.Pow(FB, 2) * Math.Cos(2 * ShanB + shanD) * (1 - FC * Math.Cos(ShanC + shanD));
             double topRight = Math.Pow(FB, 2) * FC * Math.Sin(2 * ShanB + shanD) * Math.Sin(ShanC + shanD);
@@ -903,7 +904,7 @@ namespace DLKJ
         /// <returns></returns>
         private static double GetTl_b_EDKKBDLQ(float zd)
         {
-            double shanD = 2 * GetEDKKBDLQ¦Â() * zd + Shan0;
+            double shanD = GetEDKKBDLQ¦Â() * zd + Shan0;
             double addLeft = FA * Math.Sin(ShanA);
             double topLeft = Math.Pow(FB, 2) * Math.Sin(2 * ShanB + shanD) * (1 - FC * Math.Cos(ShanC + shanD));
             double topRight = Math.Pow(FB, 2) * FC * Math.Cos(2 * ShanB + shanD) * Math.Sin(ShanC + shanD);

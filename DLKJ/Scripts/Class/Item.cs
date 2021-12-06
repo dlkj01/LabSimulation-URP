@@ -126,7 +126,7 @@ namespace DLKJ
                     break;
                 case DirectionType.Vertical:
                     {
-                        transform.position = new Vector3(transform.position.x - 0.25f, target.targetPort.transform.position.y, target.targetPort.transform.position.z);
+                        transform.position = new Vector3(transform.position.x, target.targetPort.transform.position.y, target.targetPort.transform.position.z);
                     }
                     break;
                 default:
