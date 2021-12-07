@@ -67,7 +67,6 @@ public static class WordHelper
         return map;
     }
     private static string streamingPath = Application.streamingAssetsPath + "/DocTemplate";
-    static Document doc;
     public static Dictionary<string, string> resultMap = new Dictionary<string, string>();
     /// <summary>
     /// 根据标签写入数据
@@ -102,7 +101,7 @@ public static class WordHelper
         }
         string filePath = streamingPath + "/" + fileName;
         Stream stream = FileToStream(filePath);
-        doc = new Document(stream/*tempFile*/);
+        Document doc = new Document(filePath);
         DocumentBuilder builder = new DocumentBuilder(doc);   //操作word
         foreach (var key in map.Keys)   //循环键值对
         {
@@ -138,7 +137,7 @@ public static class WordHelper
             studentID = "学号有误";
         doc.Save(savePath + "/" + studentID /*SceneManager.loginUserData.accountNumber*/ + "-" + DateTime.Now.ToString("yyyy-MM-dd") + outPath); //保存word
         ProxyManager.saveProxy.Save();
-        stream.Close();
+        // stream.Close();
 #endif
     }
 

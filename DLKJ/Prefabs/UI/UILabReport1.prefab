@@ -2278,8 +2278,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 297f0669866ce984386598ae66432336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filePath: LabReport1.doc
-  outFilePath: "\u4E8C\u7AEF\u53E3\u5FAE\u6CE2\u7F51\u7EDC\u53C2\u91CF\u6D4B\u91CF.doc"
+  filePath: LabReport1.docx
+  outFilePath: "\u4E8C\u7AEF\u53E3\u5FAE\u6CE2\u7F51\u7EDC\u53C2\u91CF\u6D4B\u91CF.docx"
   CloseButton: {fileID: 4322099997143278946}
   nameInputField: {fileID: 1569863356309933929}
   classInputField: {fileID: 4064165023403744499}
