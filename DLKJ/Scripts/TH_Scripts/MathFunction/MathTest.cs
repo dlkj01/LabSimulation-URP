@@ -32,6 +32,14 @@ namespace DLKJ
 
         private void Update() => OnUpdate();
 
+        private void LateUpdate()
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                MathTool.FixedCorrect1Calculate();
+            }
+        }
+
         /// <summary>
         /// 公示数据初始化
         /// </summary>

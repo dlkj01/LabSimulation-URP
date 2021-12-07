@@ -225,25 +225,25 @@ namespace DLKJ
             report2CorrectAnswer.SWRAfterMatchingFirst = report2CorrectAnswer.MaximumVoltageAfterMatchingFirst / report2CorrectAnswer.MinimumVoltageAfterMatchingFirst;
         }
         #endregion
-        #region 第二个实验第二组正确答案
-        public static void FixedCorrect2SecondGroupCalculate()
-        {
-            report2CorrectAnswer.inputSourceFrequencySecond = F;//信号源频率
-            report2CorrectAnswer.inputSourceVoltageSecond = A;//电压
-            report2CorrectAnswer.inputAttenuatorSetupSecond = δ;//衰减器
-            report2CorrectAnswer.SWRSecond = SWRFZZKCL();
-            report2CorrectAnswer.WaveguideWavelengthSecond = Calculateλp1();
-            report2CorrectAnswer.EquivalentSectionPositionSecond = GetDT(SLMCL_Start_Value, 0);//第一个等效截面的位置
-            report2CorrectAnswer.WaveNodePositionSecond = GetMinZUpperDTFZZKCL();//第一个波节点位置
-            report2CorrectAnswer.NormalizedLoadImpedanceSecond = NormalizedLoadImpedance();//负载阻抗归一化
-            report2CorrectAnswer.LoadImpedanceSecond = ZL;//负载阻抗
-            report2CorrectAnswer.ScrewPositionSecond = CalculateL();//螺钉位置
-            report2CorrectAnswer.ScrewDepthSecond = CalculateD();//螺钉深度
-            report2CorrectAnswer.MinimumVoltageAfterMatchingSecond = GetMinReadFZKZPP(float.Parse(report2CorrectAnswer.ScrewPositionFirst[0].ToString()), float.Parse(report2CorrectAnswer.ScrewDepthFirst[0].ToString()));
-            report2CorrectAnswer.MinimumVoltageAfterMatchingSecond = GetMaxReadFZKZPP(float.Parse(report2CorrectAnswer.ScrewPositionFirst[0].ToString()), float.Parse(report2CorrectAnswer.ScrewDepthFirst[0].ToString()));
-            report2CorrectAnswer.SWRAfterMatchingSecond = report2CorrectAnswer.MaximumVoltageAfterMatchingFirst / report2CorrectAnswer.MinimumVoltageAfterMatchingFirst;
-        }
-        #endregion
+        //#region 第二个实验第二组正确答案
+        //public static void FixedCorrect2SecondGroupCalculate()
+        //{
+        //    report2CorrectAnswer.inputSourceFrequencySecond = F;//信号源频率
+        //    report2CorrectAnswer.inputSourceVoltageSecond = A;//电压
+        //    report2CorrectAnswer.inputAttenuatorSetupSecond = δ;//衰减器
+        //    report2CorrectAnswer.SWRSecond = SWRFZZKCL();
+        //    report2CorrectAnswer.WaveguideWavelengthSecond = Calculateλp1();
+        //    report2CorrectAnswer.EquivalentSectionPositionSecond = GetDT(SLMCL_Start_Value, 0);//第一个等效截面的位置
+        //    report2CorrectAnswer.WaveNodePositionSecond = GetMinZUpperDTFZZKCL();//第一个波节点位置
+        //    report2CorrectAnswer.NormalizedLoadImpedanceSecond = NormalizedLoadImpedance();//负载阻抗归一化
+        //    report2CorrectAnswer.LoadImpedanceSecond = ZL;//负载阻抗
+        //    report2CorrectAnswer.ScrewPositionSecond = CalculateL();//螺钉位置
+        //    report2CorrectAnswer.ScrewDepthSecond = CalculateD();//螺钉深度
+        //    report2CorrectAnswer.MinimumVoltageAfterMatchingSecond = GetMinReadFZKZPP(float.Parse(report2CorrectAnswer.ScrewPositionFirst[0].ToString()), float.Parse(report2CorrectAnswer.ScrewDepthFirst[0].ToString()));
+        //    report2CorrectAnswer.MinimumVoltageAfterMatchingSecond = GetMaxReadFZKZPP(float.Parse(report2CorrectAnswer.ScrewPositionFirst[0].ToString()), float.Parse(report2CorrectAnswer.ScrewDepthFirst[0].ToString()));
+        //    report2CorrectAnswer.SWRAfterMatchingSecond = report2CorrectAnswer.MaximumVoltageAfterMatchingFirst / report2CorrectAnswer.MinimumVoltageAfterMatchingFirst;
+        //}
+        //#endregion
 
         #region 第三个实验正确答案计算
         public static void FixedCorrect3Calculate()
@@ -915,13 +915,25 @@ namespace DLKJ
         private static double GetTl_a_EDKKBDLQ(float zd)
         {
             // double shanD = 2 * GetEDKKBDLQβ() * zd + Shan0;
-            float index = zd / (RuDuanLuQi * 0.5f);
+            //float index = zd / (RuDuanLuQi * 0.5f);
+            //if (index > 1)
+            //{
+            //    zd = zd % (RuDuanLuQi * 0.5f);
+            //}
+            //double shanD = zd / RuDuanLuQi + Shan0;
+            float zdNew = zd;
+            int k = -2;
+            while (RuDuanLuQi * ((Math.PI - Shan0) / (4 * Math.PI)) + k * 0.5f * RuDuanLuQi < 0)
+            {
+                k++;
+            }
+            zdNew = float.Parse((RuDuanLuQi * ((Math.PI - Shan0) / (4 * Math.PI)) + k * 0.5f * RuDuanLuQi).ToString());
+            float index = zdNew / (RuDuanLuQi * 0.5f);
             if (index > 1)
             {
-                zd = zd % (RuDuanLuQi * 0.5f);
+                zdNew = zdNew % (RuDuanLuQi * 0.5f);
             }
-            double shanD = zd / RuDuanLuQi + Shan0;
-
+            double shanD = 4 * Math.PI * (zdNew / RuDuanLuQi) + Shan0;
             double addLeft = FA * Math.Cos(ShanA);
             double topLeft = Math.Pow(FB, 2) * Math.Cos(2 * ShanB + shanD) * (1 - FC * Math.Cos(ShanC + shanD));
             double topRight = Math.Pow(FB, 2) * FC * Math.Sin(2 * ShanB + shanD) * Math.Sin(ShanC + shanD);
@@ -937,12 +949,25 @@ namespace DLKJ
         private static double GetTl_b_EDKKBDLQ(float zd)
         {
             //double shanD = 2 * GetEDKKBDLQβ() * zd + Shan0;
-            float index = zd / (RuDuanLuQi * 0.5f);
+            //float index = zd / (RuDuanLuQi * 0.5f);
+            //if (index > 1)
+            //{
+            //    zd = zd % (RuDuanLuQi * 0.5f);
+            //}
+            //double shanD = zd / RuDuanLuQi + Shan0;
+            float zdNew = zd;
+            int k = -2;
+            while (RuDuanLuQi * ((Math.PI - Shan0) / (4 * Math.PI)) + k * 0.5f * RuDuanLuQi < 0)
+            {
+                k++;
+            }
+            zdNew = float.Parse((RuDuanLuQi * ((Math.PI - Shan0) / (4 * Math.PI)) + k * 0.5f * RuDuanLuQi).ToString());
+            float index = zdNew / (RuDuanLuQi * 0.5f);
             if (index > 1)
             {
-                zd = zd % (RuDuanLuQi * 0.5f);
+                zdNew = zdNew % (RuDuanLuQi * 0.5f);
             }
-            double shanD = zd / RuDuanLuQi + Shan0;
+            double shanD = 4 * Math.PI * (zdNew / RuDuanLuQi) + Shan0;
             double addLeft = FA * Math.Sin(ShanA);
             double topLeft = Math.Pow(FB, 2) * Math.Sin(2 * ShanB + shanD) * (1 - FC * Math.Cos(ShanC + shanD));
             double topRight = Math.Pow(FB, 2) * FC * Math.Cos(2 * ShanB + shanD) * Math.Sin(ShanC + shanD);
