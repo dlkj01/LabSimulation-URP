@@ -600,6 +600,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
+  parent: {fileID: 0}
   ItemName: 
 --- !u!1 &2065129709720343154
 GameObject:
@@ -1129,7 +1130,7 @@ MonoBehaviour:
     rotary: 0
     rotatyDirection: 1
     MaxValue: 500
-    MinValue: 2
+    MinValue: 50
     EndMovePoint: 0
     StartMovePoint: 0
     StepLength: 480

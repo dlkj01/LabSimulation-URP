@@ -195,7 +195,7 @@ MonoBehaviour:
     StartMovePoint: 0.0007
     StepLength: 1000
     StartAngle: 90
-    EndAngle: 414
+    EndAngle: 3690
     currentAngle: 90
     uncontrolled: 0
     x: 0
@@ -601,4 +601,5 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
+  parent: {fileID: 0}
   ItemName: 

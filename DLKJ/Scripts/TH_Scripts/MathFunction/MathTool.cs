@@ -71,7 +71,7 @@ namespace DLKJ
             // δ = 1; //Random(0.00f, 1.00f);
 
 
-            //方案一
+            // 方案一
             FB = UnityEngine.Random.Range(0f, 1f);
             FA = UnityEngine.Random.Range(0f, Mathf.Sqrt(1 - Mathf.Pow(float.Parse(FB.ToString()), 2)));
             FC = UnityEngine.Random.Range(0f, Mathf.Sqrt(1 - Mathf.Pow(float.Parse(FB.ToString()), 2)));
@@ -81,15 +81,15 @@ namespace DLKJ
             //FB = Math.Sqrt(1 - Math.Pow(FA, 2));
             do
             {
-                Shan0 = UnityEngine.Random.Range(0f, 0.5f * Mathf.PI);
-            } while (Shan0 <= 0 || Shan0 > 0.5f * Mathf.PI);
-
+                Shan0 = UnityEngine.Random.Range(0f, 0.25f * Mathf.PI);
+            } while (Shan0 <= 0 || Shan0 > 0.25f * Mathf.PI);
             //FD = Math.Abs(Math.Cos(2 * GetEDKKBDLQβ() * zd - (Math.PI - Shan0)));
             RuDuanLuQi = UnityEngine.Random.Range(0.024f, 0.0365f);
             //方案一
-            ShanA = UnityEngine.Random.Range(0, 2 * Mathf.PI);
-            ShanC = UnityEngine.Random.Range(0, 2 * Mathf.PI);
-            ShanB = UnityEngine.Random.Range(0, 2 * Mathf.PI);
+            ShanA = UnityEngine.Random.Range(0, 0.25f * Mathf.PI);
+            ShanC = UnityEngine.Random.Range(0, 0.25f * Mathf.PI);
+            ShanB = UnityEngine.Random.Range(0, 0.25f * Mathf.PI);
+
             //方案二
             //ShanA = UnityEngine.Random.Range(0, 2 * Mathf.PI);
             //ShanC = ShanA;
@@ -180,12 +180,16 @@ namespace DLKJ
             //report1CorrectAnswer.ReflectionCoefficientΓ10 = S11 + Math.Pow(S12, 2) / (1 - S22);//反射系数T10
             //report1CorrectAnswer.ReflectionCoefficientΓ1L = S11;//反射系数T1L
 
-            report1CorrectAnswer.ReflectionCoefficientΓ1SReal = 0;
-            report1CorrectAnswer.ReflectionCoefficientΓ10Real = 0;
-            report1CorrectAnswer.ReflectionCoefficientΓ1LReal = 0;
-            report1CorrectAnswer.ReflectionCoefficientΓ1SImaginary = 0;
-            report1CorrectAnswer.ReflectionCoefficientΓ10Imaginary = 0;
-            report1CorrectAnswer.ReflectionCoefficientΓ1LImaginary = 0;
+
+            Complex Γ1S = S11Com - Complex.Pow(S11Com, 2) / (1 + S22Com);//反射系数T1S
+            Complex Γ10 = S11Com + Complex.Pow(S11Com, 2) / (1 - S22Com);//反射系数T1S
+            Complex Γ1L = S11Com;//反射系数T1S
+            report1CorrectAnswer.ReflectionCoefficientΓ1SReal = Γ1S.Real;
+            report1CorrectAnswer.ReflectionCoefficientΓ10Real = Γ10.Real;
+            report1CorrectAnswer.ReflectionCoefficientΓ1LReal = Γ1L.Real;
+            report1CorrectAnswer.ReflectionCoefficientΓ1SImaginary = Γ1S.Imaginary;
+            report1CorrectAnswer.ReflectionCoefficientΓ10Imaginary = Γ10.Imaginary;
+            report1CorrectAnswer.ReflectionCoefficientΓ1LImaginary = Γ1L.Imaginary;
 
             report1CorrectAnswer.inputS11Real = S11Com.Real;
             report1CorrectAnswer.inputS11Imaginary = S11Com.Imaginary;
@@ -209,8 +213,9 @@ namespace DLKJ
             report2CorrectAnswer.MaximumVoltage = GetMaxRead_FZZKCL();
             report2CorrectAnswer.WaveNodePositionFirst = GetMinZUpperDTFZZKCL();
             //report2CorrectAnswer.NormalizedLoadImpedanceFirst = NormalizedLoadImpedance();
-            report2CorrectAnswer.NormalizedLoadImpedanceFirstReal = 0;
-            report2CorrectAnswer.NormalizedLoadImpedanceFirstImaginary = 0;
+            Complex com = ZLCom / Z0;
+            report2CorrectAnswer.NormalizedLoadImpedanceFirstReal = com.Real;
+            report2CorrectAnswer.NormalizedLoadImpedanceFirstImaginary = com.Imaginary;
             report2CorrectAnswer.LoadImpedanceFirstReal = ZLCom.Real;
             report2CorrectAnswer.LoadImpedanceFirstImaginary = ZLCom.Imaginary;
             report2CorrectAnswer.ScrewPositionFirst = CalculateL();
@@ -619,14 +624,23 @@ namespace DLKJ
         {
             List<double> result = new List<double>();
             int k = 0;
-            while (((2 * k + 1) * Math.PI - Shan0) / (GetEDKKBDLQβ()) <= 0.1f)
+            while (((2 * k + 1) * Math.PI - Shan0) / (2 * GetEDKKBDLQβ()) <= 0.1f)
             {
-
-                double value = ((2 * k + 1) * Math.PI - Shan0) / (GetEDKKBDLQβ());
+                double value = ((2 * k + 1) * Math.PI - Shan0) / (2 * GetEDKKBDLQβ());
                 if (value >= 0f)
                     result.Add(value);
                 k++;
             }
+
+            //while ((Math.PI - Shan0) / (2 * GetEDKKBDLQβ()) + k * RuDuanLuQi * 0.5f <= 0.1f)
+            //{
+            //    double value = (Math.PI - Shan0) / (2 * GetEDKKBDLQβ()) + k * RuDuanLuQi * 0.5f;
+            //    if (value >= 0f)
+            //        result.Add(value);
+            //    k++;
+            //}
+
+
             return result;
         }
 
@@ -872,8 +886,10 @@ namespace DLKJ
         /// <returns></returns>
         private static double CalculateShan(double TFirst, double TSecond)
         {
-            //if (TFirst >= 0 && TSecond >= 0)
             return Math.Atan(TSecond / TFirst);
+
+            //if (TFirst >= 0 && TSecond >= 0)
+            //    return Math.Atan(Math.Abs(TSecond) / Math.Abs(TFirst));
 
             //if (TFirst < 0 && TSecond >= 0)
             //    return Math.Atan(Math.Abs(TSecond) / Math.Abs(TFirst)) + Math.PI / 2;
@@ -883,7 +899,7 @@ namespace DLKJ
 
             //if (TFirst >= 0 && TSecond < 0)
             //    return Math.Atan(Math.Abs(TSecond) / Math.Abs(TFirst)) + 3 * Math.PI / 2;
-            //  return 0;
+            //return 0;
         }
 
 
@@ -898,7 +914,7 @@ namespace DLKJ
         /// <returns></returns>
         private static double GetTl_a_EDKKBDLQ(float zd)
         {
-            double shanD = GetEDKKBDLQβ() * zd + Shan0;
+            double shanD = 2 * GetEDKKBDLQβ() * zd + Shan0;
             double addLeft = FA * Math.Cos(ShanA);
             double topLeft = Math.Pow(FB, 2) * Math.Cos(2 * ShanB + shanD) * (1 - FC * Math.Cos(ShanC + shanD));
             double topRight = Math.Pow(FB, 2) * FC * Math.Sin(2 * ShanB + shanD) * Math.Sin(ShanC + shanD);
@@ -913,7 +929,7 @@ namespace DLKJ
         /// <returns></returns>
         private static double GetTl_b_EDKKBDLQ(float zd)
         {
-            double shanD = GetEDKKBDLQβ() * zd + Shan0;
+            double shanD = 2 * GetEDKKBDLQβ() * zd + Shan0;
             double addLeft = FA * Math.Sin(ShanA);
             double topLeft = Math.Pow(FB, 2) * Math.Sin(2 * ShanB + shanD) * (1 - FC * Math.Cos(ShanC + shanD));
             double topRight = Math.Pow(FB, 2) * FC * Math.Cos(2 * ShanB + shanD) * Math.Sin(ShanC + shanD);
@@ -933,6 +949,7 @@ namespace DLKJ
         {
             double ruc = 2 * a;
             double β = 2 * Math.PI / RuDuanLuQi * Math.Sqrt(1 - RuDuanLuQi / ruc);
+            //double β = 2 * Math.PI / RuDuanLuQi;
             return β;
         }
 
