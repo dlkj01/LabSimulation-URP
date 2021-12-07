@@ -46,9 +46,12 @@ namespace DLKJ
         [SerializeField] InputField inputΓ1S;
         [SerializeField] InputField inputΓ10;
         [SerializeField] InputField inputΓ1L;
-        [SerializeField] InputField ReflectionCoefficientΓ1S;//反射系数短路
-        [SerializeField] InputField ReflectionCoefficientΓ10;//反射系数终端
-        [SerializeField] InputField ReflectionCoefficientΓ1L;//反射系数匹配
+        [SerializeField] InputField ReflectionCoefficientΓ1SReal;//反射系数短路
+        [SerializeField] InputField ReflectionCoefficientΓ10Real;//反射系数终端
+        [SerializeField] InputField ReflectionCoefficientΓ1LReal;//反射系数匹配
+        [SerializeField] InputField ReflectionCoefficientΓ1SImaginary;//反射系数短路
+        [SerializeField] InputField ReflectionCoefficientΓ10Imaginary;//反射系数终端
+        [SerializeField] InputField ReflectionCoefficientΓ1LImaginary;//反射系数匹配
         [SerializeField] InputField inputS11Real;
         [SerializeField] InputField inputS11Imaginary;
         [SerializeField] InputField inputS12S21Real;
@@ -80,9 +83,12 @@ namespace DLKJ
             labReport1Data.inputΓ1S = StringToDouble(inputΓ1S.text);
             labReport1Data.inputΓ10 = StringToDouble(inputΓ10.text);
             labReport1Data.inputΓ1L = StringToDouble(inputΓ1L.text);
-            labReport1Data.ReflectionCoefficientΓ1S = StringToDouble(ReflectionCoefficientΓ1S.text);//反射系数短路
-            labReport1Data.ReflectionCoefficientΓ10 = StringToDouble(ReflectionCoefficientΓ10.text);//反射系数终端
-            labReport1Data.ReflectionCoefficientΓ1L = StringToDouble(ReflectionCoefficientΓ1L.text);//反射系数匹配
+            labReport1Data.ReflectionCoefficientΓ1SReal = StringToDouble(ReflectionCoefficientΓ1SReal.text);//反射系数短路
+            labReport1Data.ReflectionCoefficientΓ10Real = StringToDouble(ReflectionCoefficientΓ10Real.text);//反射系数终端
+            labReport1Data.ReflectionCoefficientΓ1LReal = StringToDouble(ReflectionCoefficientΓ1LReal.text);//反射系数匹配
+            labReport1Data.ReflectionCoefficientΓ1SImaginary = StringToDouble(ReflectionCoefficientΓ1SImaginary.text);//反射系数短路
+            labReport1Data.ReflectionCoefficientΓ10Imaginary = StringToDouble(ReflectionCoefficientΓ10Imaginary.text);//反射系数终端
+            labReport1Data.ReflectionCoefficientΓ1LImaginary = StringToDouble(ReflectionCoefficientΓ1LImaginary.text);//反射系数匹配
             labReport1Data.inputS11Real = StringToDouble(inputS11Real.text);
             labReport1Data.inputS11Imaginary = StringToDouble(inputS11Imaginary.text);
             labReport1Data.inputS12S21Real = StringToDouble(inputS12S21Real.text);

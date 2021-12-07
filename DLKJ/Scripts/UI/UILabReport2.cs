@@ -28,7 +28,9 @@ public class UILabReport2 : UILabReportBase
 
     [Tooltip("第一波节点位置")] public InputField WaveNodePositionFirst;//第一波节点位置
 
-    [Tooltip("归一化负载阻抗")] public InputField NormalizedLoadImpedanceFirst;//归一化负载阻抗
+    [Tooltip("归一化负载阻抗")] public InputField NormalizedLoadImpedanceFirstReal;//归一化负载阻抗电阻
+
+    [Tooltip("归一化负载阻抗")] public InputField NormalizedLoadImpedanceFirstImaginary;//归一化负载阻抗电抗
 
     [Tooltip("负载阻抗")] public InputField LoadImpedanceFirstReal;//负载阻抗电阻
 
@@ -56,7 +58,8 @@ public class UILabReport2 : UILabReportBase
         labReport2Data.MaximumVoltage = StringToDouble(MaximumVoltageInput.text);
         labReport2Data.EquivalentSectionPositionFirst = StringToDouble(EquivalentSectionPositionFirst.text);
         labReport2Data.WaveNodePositionFirst = StringToDouble(WaveNodePositionFirst.text);
-        labReport2Data.NormalizedLoadImpedanceFirst = StringToDouble(NormalizedLoadImpedanceFirst.text);
+        labReport2Data.NormalizedLoadImpedanceFirstReal = StringToDouble(NormalizedLoadImpedanceFirstReal.text);
+        labReport2Data.NormalizedLoadImpedanceFirstImaginary = StringToDouble(NormalizedLoadImpedanceFirstImaginary.text);
         labReport2Data.LoadImpedanceFirstReal = StringToDouble(LoadImpedanceFirstReal.text);
         labReport2Data.LoadImpedanceFirstImaginary = StringToDouble(LoadImpedanceFirstImaginary.text);
         labReport2Data.ScrewPositionFirst = StringToDouble(ScrewPositionFirst.text);

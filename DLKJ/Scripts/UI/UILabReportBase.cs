@@ -41,9 +41,12 @@ public class LabReport1Data : LabReportData
     public double inputΓ1S;
     public double inputΓ10;
     public double inputΓ1L;
-    public double ReflectionCoefficientΓ1S;//反射系数短路
-    public double ReflectionCoefficientΓ10;//反射系数终端
-    public double ReflectionCoefficientΓ1L;//反射系数匹配
+    public double ReflectionCoefficientΓ1SReal;
+    public double ReflectionCoefficientΓ10Real;
+    public double ReflectionCoefficientΓ1LReal;
+    public double ReflectionCoefficientΓ1SImaginary;
+    public double ReflectionCoefficientΓ10Imaginary;
+    public double ReflectionCoefficientΓ1LImaginary;
     public double inputS11Real;
     public double inputS11Imaginary;
     public double inputS12S21Real;
@@ -74,9 +77,12 @@ public class LabReportCorrect1Data : LabReportData
     public double inputΓ1S;
     public double inputΓ10;
     public double inputΓ1L;
-    public double ReflectionCoefficientΓ1S;//反射系数短路
-    public double ReflectionCoefficientΓ10;//反射系数终端
-    public double ReflectionCoefficientΓ1L;//反射系数匹配
+    public double ReflectionCoefficientΓ1SReal;
+    public double ReflectionCoefficientΓ10Real;
+    public double ReflectionCoefficientΓ1LReal;
+    public double ReflectionCoefficientΓ1SImaginary;
+    public double ReflectionCoefficientΓ10Imaginary;
+    public double ReflectionCoefficientΓ1LImaginary;
     public double inputS11Real;
     public double inputS11Imaginary;
     public double inputS12S21Real;
@@ -95,7 +101,8 @@ public class LabReport2Data : LabReportData
     public double MinimumVoltage;
     public double MaximumVoltage;
     public double WaveNodePositionFirst;//第一波节点位置
-    public double NormalizedLoadImpedanceFirst;//归一化负载阻抗
+    public double NormalizedLoadImpedanceFirstReal;//归一化负载阻抗
+    public double NormalizedLoadImpedanceFirstImaginary;
     public double LoadImpedanceFirstReal;//负载阻抗实部
     public double LoadImpedanceFirstImaginary;//负载阻抗虚部
     public double ScrewPositionFirst;//螺钉位置
@@ -115,7 +122,8 @@ public class LabReportCorrect2Data : LabReportData
     public double MinimumVoltage;
     public double MaximumVoltage;
     public double WaveNodePositionFirst;//第一波节点位置
-    public double NormalizedLoadImpedanceFirst;//归一化负载阻抗
+    public double NormalizedLoadImpedanceFirstReal;//归一化负载阻抗
+    public double NormalizedLoadImpedanceFirstImaginary;
     public double LoadImpedanceFirstReal;//负载阻抗实部
     public double LoadImpedanceFirstImaginary;//负载阻抗虚部
     public List<double> ScrewPositionFirst;//螺钉位置
@@ -404,6 +412,21 @@ public class UILabReportBase : MonoBehaviour
                             }
                             break;
                         case "WaveNodePositionFirst":
+                            {
+                                result = result * 0.001f;
+                            }
+                            break;
+                        case "WaveNodePosShortCircuit":
+                            {
+                                result = result * 0.001f;
+                            }
+                            break;
+                        case "WaveNodePosShortTerminal":
+                            {
+                                result = result * 0.001f;
+                            }
+                            break;
+                        case "WaveNodePosShortMatching":
                             {
                                 result = result * 0.001f;
                             }

@@ -176,9 +176,16 @@ namespace DLKJ
             report1CorrectAnswer.inputΓ10 = GetT1_EDKKBDLQ(float.Parse(report1CorrectAnswer.VariableShortCircuitFirstPos[0].ToString()));
             report1CorrectAnswer.inputΓ1L = FA;
 
-            report1CorrectAnswer.ReflectionCoefficientΓ1S = S11 - (Math.Pow(S12, 2) / (1 + S22));//反射系数T1S
-            report1CorrectAnswer.ReflectionCoefficientΓ10 = S11 + Math.Pow(S12, 2) / (1 - S22);//反射系数T10
-            report1CorrectAnswer.ReflectionCoefficientΓ1L = S11;//反射系数T1L
+            //report1CorrectAnswer.ReflectionCoefficientΓ1S = S11 - (Math.Pow(S12, 2) / (1 + S22));//反射系数T1S
+            //report1CorrectAnswer.ReflectionCoefficientΓ10 = S11 + Math.Pow(S12, 2) / (1 - S22);//反射系数T10
+            //report1CorrectAnswer.ReflectionCoefficientΓ1L = S11;//反射系数T1L
+
+            report1CorrectAnswer.ReflectionCoefficientΓ1SReal = 0;
+            report1CorrectAnswer.ReflectionCoefficientΓ10Real = 0;
+            report1CorrectAnswer.ReflectionCoefficientΓ1LReal = 0;
+            report1CorrectAnswer.ReflectionCoefficientΓ1SImaginary = 0;
+            report1CorrectAnswer.ReflectionCoefficientΓ10Imaginary = 0;
+            report1CorrectAnswer.ReflectionCoefficientΓ1LImaginary = 0;
 
             report1CorrectAnswer.inputS11Real = S11Com.Real;
             report1CorrectAnswer.inputS11Imaginary = S11Com.Imaginary;
@@ -201,7 +208,9 @@ namespace DLKJ
             report2CorrectAnswer.MinimumVoltage = GetMinRead_FZZKCL();
             report2CorrectAnswer.MaximumVoltage = GetMaxRead_FZZKCL();
             report2CorrectAnswer.WaveNodePositionFirst = GetMinZUpperDTFZZKCL();
-            report2CorrectAnswer.NormalizedLoadImpedanceFirst = NormalizedLoadImpedance();
+            //report2CorrectAnswer.NormalizedLoadImpedanceFirst = NormalizedLoadImpedance();
+            report2CorrectAnswer.NormalizedLoadImpedanceFirstReal = 0;
+            report2CorrectAnswer.NormalizedLoadImpedanceFirstImaginary = 0;
             report2CorrectAnswer.LoadImpedanceFirstReal = ZLCom.Real;
             report2CorrectAnswer.LoadImpedanceFirstImaginary = ZLCom.Imaginary;
             report2CorrectAnswer.ScrewPositionFirst = CalculateL();
