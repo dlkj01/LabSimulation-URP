@@ -34,10 +34,10 @@ namespace DLKJ
 
         private void LateUpdate()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                MathTool.FixedCorrect1Calculate();
-            }
+            //if (Input.GetKeyDown(KeyCode.Alpha1))
+            //{
+            //    MathTool.FixedCorrect1Calculate();
+            //}
         }
 
         /// <summary>

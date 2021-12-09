@@ -62,9 +62,6 @@ namespace DLKJ
         public override void SaveData()
         {
             base.SaveData();
-            labReport1Data.SourceFrequency = StringToDouble(SourceFrequency.text);//信号源频率
-            labReport1Data.SourceVoltage = StringToDouble(SourceVoltage.text);//信号源电压设置
-            labReport1Data.Attenuator = StringToDouble(Attenuator.text);//衰减器设置
             labReport1Data.EquivalentSectionPosition = StringToDouble(EquivalentSectionPosition.text);//等效截面位置
             labReport1Data.InputWavelength = StringToDouble(InputWavelength.text);//输入端波长
             labReport1Data.VariableShortCircuitFirstPos = StringToDouble(VariableShortCircuitFirstPos.text);//可变短路器第一波节点位置
@@ -96,6 +93,9 @@ namespace DLKJ
             labReport1Data.inputS22Real = StringToDouble(inputS22Real.text);
             labReport1Data.inputS22Imaginary = StringToDouble(inputS22Imaginary.text);
             AddResult(labReport1Data, MathTool.report1CorrectAnswer);
+            labReport1Data.SourceFrequency = StringToDouble(SourceFrequency.text);//信号源频率
+            labReport1Data.SourceVoltage = StringToDouble(SourceVoltage.text);//信号源电压设置
+            labReport1Data.Attenuator = StringToDouble(Attenuator.text);//衰减器设置
         }
 
         public override void SetInputTextReadOnly()

@@ -19,12 +19,12 @@ public class UILabReport3 : UILabReportBase
     public override void SaveData()
     {
         base.SaveData();
-        labReportData.inputSourceFrequency = StringToDouble(inputSourceFrequency.text);
-        labReportData.inputSourceVoltage = StringToDouble(inputSourceVoltage.text);
         labReportData.OnePortVoltage = StringToDouble(OnePortVoltage.text);
         labReportData.ThreePortVoltage = StringToDouble(ThreePortVoltage.text);
         labReportData.CouplingFactor = StringToDouble(CouplingFactor.text);
         AddResult(labReportData, MathTool.report3CorrectAnswer);
+        labReportData.inputSourceFrequency = StringToDouble(inputSourceFrequency.text);
+        labReportData.inputSourceVoltage = StringToDouble(inputSourceVoltage.text);
     }
     public override void SetInputTextReadOnly()
     {

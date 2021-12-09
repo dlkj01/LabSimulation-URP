@@ -38,13 +38,13 @@ public class SaveProxy : BaseProxy
         switch (SceneManager.GetInstance().GetCurrentLabName())
         {
             case SceneManager.FIRST_EXPERIMENT_NAME:
-                score = allExperimentSaveData.Experiment1SaveData.score;
+                score = SceneManager.GetInstance().currentLabScore;
                 break;
             case SceneManager.SECOND_EXPERIMENT_NAME:
-                score = allExperimentSaveData.Experiment2SaveData.score;
+                score = SceneManager.GetInstance().currentLabScore;
                 break;
             case SceneManager.THIRD_EXPERIMENT_NAME:
-                score = allExperimentSaveData.Experiment3SaveData.score;
+                score = SceneManager.GetInstance().currentLabScore;
                 break;
         }
         score *= SceneManager.GetInstance().GetScoreRate;
