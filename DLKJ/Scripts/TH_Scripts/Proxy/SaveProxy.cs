@@ -28,9 +28,32 @@ public class SaveProxy : BaseProxy
         map.Add(SceneManager.SECOND_EXPERIMENT_NAME, allExperimentSaveData.Experiment2SaveData);
         map.Add(SceneManager.THIRD_EXPERIMENT_NAME, allExperimentSaveData.Experiment3SaveData);
     }
+    /// <summary>
+    /// 根据实验返回得分
+    /// </summary>
+    /// <returns></returns>
+    public float GetScoreBySceneAfterConversion()
+    {
+        float score = 0;
+        switch (SceneManager.GetInstance().GetCurrentLabName())
+        {
+            case SceneManager.FIRST_EXPERIMENT_NAME:
+                score = allExperimentSaveData.Experiment1SaveData.score;
+                break;
+            case SceneManager.SECOND_EXPERIMENT_NAME:
+                score = allExperimentSaveData.Experiment2SaveData.score;
+                break;
+            case SceneManager.THIRD_EXPERIMENT_NAME:
+                score = allExperimentSaveData.Experiment3SaveData.score;
+                break;
+        }
+        score *= SceneManager.GetInstance().GetScoreRate;
+        return score;
+    }
+
     public float GetAllScore()
     {
-        return allExperimentSaveData.Experiment1SaveData.score + allExperimentSaveData.Experiment2SaveData.score + allExperimentSaveData.Experiment3SaveData.score;
+        return allExperimentSaveData.Experiment1SaveData.score * 0.4f + allExperimentSaveData.Experiment2SaveData.score * 0.5f + allExperimentSaveData.Experiment3SaveData.score * 0.1f;
     }
 
     public bool IsFinishedAll()

@@ -335,13 +335,13 @@ public class UILabReportBase : MonoBehaviour
             switch (labName)
             {
                 case SceneManager.FIRST_EXPERIMENT_NAME:
-                    SceneManager.GetInstance().currentLabScore += 100f / 30f * 0.4f;
+                    SceneManager.GetInstance().currentLabScore += 100f / 30f ;
                     break;
                 case SceneManager.SECOND_EXPERIMENT_NAME:
-                    SceneManager.GetInstance().currentLabScore += 100f / 15f * 0.5f;
+                    SceneManager.GetInstance().currentLabScore += 100f / 15f ;
                     break;
                 case SceneManager.THIRD_EXPERIMENT_NAME:
-                    SceneManager.GetInstance().currentLabScore += 100f / 5f * 0.1f;
+                    SceneManager.GetInstance().currentLabScore += 100f / 5f ;
                     break;
             }
             Debug.Log("´ð°¸ÕýÈ·" + inputValue + rightAnswer);

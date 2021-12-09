@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Common;
-
+using T_Common;
 namespace DLKJ
 {
     public class UIExperiment : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -25,7 +25,7 @@ namespace DLKJ
         private Coroutine toNormal;
         private void OnEnable()
         {
-
+         
         }
 
         public void Awake()
@@ -39,7 +39,21 @@ namespace DLKJ
                 button.interactable = false;
             });
         }
-
+        private void Start()
+        {
+            switch (transform.FindChildByName("Text").GetComponent<Text>().text)
+            {
+                case SceneManager.FIRST_EXPERIMENT_NAME:
+                    transform.FindChildByName("ScoreRate").GetComponent<Text>().text = "总分占比:40%";
+                    break;
+                case SceneManager.SECOND_EXPERIMENT_NAME:
+                    transform.FindChildByName("ScoreRate").GetComponent<Text>().text = "总分占比:50%";
+                    break;
+                case SceneManager.THIRD_EXPERIMENT_NAME:
+                    transform.FindChildByName("ScoreRate").GetComponent<Text>().text = "总分占比:10%";
+                    break;
+            }
+        }
 
         public void Initialized(Lab lab)
         {
@@ -113,6 +127,7 @@ namespace DLKJ
         {
             lab.Initialized();
             UIManager.GetInstance().ShowEquipmentPanel(lab.ID);
+         
             ProxyManager.InitProxy(new ExperimentInputVerifyProxy("ExperimentInputVerify"));
         }
 

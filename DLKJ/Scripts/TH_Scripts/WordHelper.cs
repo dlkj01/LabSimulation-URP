@@ -113,7 +113,10 @@ public static class WordHelper
                     string result = string.Empty;
                     if (answerCheck.isRight == false)
                     {
-                        result = answerCheck.answer.ToString() + "(Wrong)";
+                        if (answerCheck.answer == "inputAttenuatorSetupFirst" || answerCheck.answer == "Attenuator")
+                            result = answerCheck.answer.ToString();
+                        else
+                            result = answerCheck.answer.ToString() + "(Wrong)";
                     }
                     else
                     {
@@ -127,6 +130,10 @@ public static class WordHelper
                 }
             }
         }
+        //Ð´Èë·ÖÊý
+        builder.MoveToBookmark("Score");
+        builder.StartBookmark("Score").Bookmark.Text = ProxyManager.saveProxy.GetScoreBySceneAfterConversion().ToString();
+        Debug.Log(ProxyManager.saveProxy.GetScoreBySceneAfterConversion().ToString());
         string savePath = Application.streamingAssetsPath + "/Save";
         if (!Directory.Exists(savePath))
         {

@@ -27,7 +27,26 @@ namespace DLKJ
         public Lab currentLab;
         public bool IsEntryScence = false;
 
-
+        public float GetScoreRate
+        {
+            get
+            {
+                float rate = 0;
+                switch (currentLab.labName)
+                {
+                    case FIRST_EXPERIMENT_NAME:
+                        rate = 0.4f;
+                        break;
+                    case SECOND_EXPERIMENT_NAME:
+                        rate = 0.5f;
+                        break;
+                    case THIRD_EXPERIMENT_NAME:
+                        rate = 0.1f;
+                        break;
+                }
+                return rate;
+            }
+        }
         private int originIndex = -1;
 
         private void Awake()
