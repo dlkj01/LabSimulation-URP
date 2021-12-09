@@ -504,6 +504,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
+  parent: {fileID: 0}
   ItemName: 
 --- !u!1 &1985180437276455124
 GameObject:
@@ -703,6 +704,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   meshRenderer: {fileID: 0}
   blidingObject: {fileID: 0}
+  parent: {fileID: 0}
   ItemName: 
 --- !u!1 &5654983250800132002
 GameObject:
@@ -794,7 +796,7 @@ MonoBehaviour:
     StartMovePoint: 0.06592
     StepLength: 1000
     StartAngle: 20
-    EndAngle: 344
+    EndAngle: 3620
     currentAngle: 20
     uncontrolled: 0
     x: 0
