@@ -11,6 +11,9 @@ public class WebLine : MonoBehaviour
     public string Name { get { return GetComponent<Item>().itemName; } }
     private void Awake()
     {
+        line = GetComponent<LineRenderer>();
+        if (line == null)
+            line = gameObject.AddComponent<LineRenderer>();
         //禁用原来的线，用现在的Line
 #if UNITY_WEBGL || UNITY_EDITOR
         ChangeLine();

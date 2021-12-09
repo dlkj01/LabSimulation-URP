@@ -2,12 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using System;
 using System.Reflection;
-using System.Linq;
 using DLKJ;
-using Common;
 
 public struct UserDate
 {
@@ -335,13 +332,13 @@ public class UILabReportBase : MonoBehaviour
             switch (labName)
             {
                 case SceneManager.FIRST_EXPERIMENT_NAME:
-                    SceneManager.GetInstance().currentLabScore += 100f / 30f ;
+                    SceneManager.GetInstance().currentLabScore += 100f / 30f;
                     break;
                 case SceneManager.SECOND_EXPERIMENT_NAME:
-                    SceneManager.GetInstance().currentLabScore += 100f / 15f ;
+                    SceneManager.GetInstance().currentLabScore += 100f / 15f;
                     break;
                 case SceneManager.THIRD_EXPERIMENT_NAME:
-                    SceneManager.GetInstance().currentLabScore += 100f / 5f ;
+                    SceneManager.GetInstance().currentLabScore += 100f / 5f;
                     break;
             }
             Debug.Log("´ð°¸ÕýÈ·" + inputValue + rightAnswer);
@@ -434,6 +431,13 @@ public class UILabReportBase : MonoBehaviour
                             break;
                         default:
                             break;
+                    }
+                    if (item2.Key == "SourceFrequency" || item2.Key == "SourceVoltage" || item2.Key == "Attenuator"
+                        || item2.Key == "inputSourceFrequencyFirst" || item2.Key == "inputSourceVoltageFirst" || item2.Key == "inputAttenuatorSetupFirst"
+                        || item2.Key == "inputSourceFrequency" || item2.Key == "inputSourceVoltage")
+                    {
+                        answerCheck.isRight = true;
+                        continue;
                     }
                     answerCheck.isRight = DataFormatParsing(result, fields[i].GetValue(rightAnswer));
                 }

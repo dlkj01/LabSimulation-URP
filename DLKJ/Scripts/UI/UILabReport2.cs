@@ -1,8 +1,4 @@
 using DLKJ;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 public class UILabReport2 : UILabReportBase
@@ -49,6 +45,9 @@ public class UILabReport2 : UILabReportBase
     public override void SaveData()
     {
         base.SaveData();
+        labReport2Data.inputSourceFrequencyFirst = StringToDouble(inputSourceFrequencyFirst.text);
+        labReport2Data.inputSourceVoltageFirst = StringToDouble(inputSourceVoltageFirst.text);
+        labReport2Data.inputAttenuatorSetupFirst = StringToDouble(inputAttenuatorSetupFirst.text);
         labReport2Data.SWRFirst = StringToDouble(SWRFirst.text);
         labReport2Data.WaveguideWavelengthFirst = StringToDouble(WaveguideWavelengthFirst.text);
         labReport2Data.MinimumVoltage = StringToDouble(MinimumVoltageInput.text);
@@ -65,9 +64,6 @@ public class UILabReport2 : UILabReportBase
         labReport2Data.MaximumVoltageAfterMatchingFirst = StringToDouble(MaximumVoltageAfterMatchingFirst.text);
         labReport2Data.SWRAfterMatchingFirst = StringToDouble(SWRAfterMatchingFirst.text);
         AddResult(labReport2Data, MathTool.report2CorrectAnswer);
-        labReport2Data.inputSourceFrequencyFirst = StringToDouble(inputSourceFrequencyFirst.text);
-        labReport2Data.inputSourceVoltageFirst = StringToDouble(inputSourceVoltageFirst.text);
-        labReport2Data.inputAttenuatorSetupFirst = StringToDouble(inputAttenuatorSetupFirst.text);
     }
 
     public override void SetInputTextReadOnly()
