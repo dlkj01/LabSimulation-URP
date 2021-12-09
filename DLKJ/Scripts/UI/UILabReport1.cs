@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -93,7 +92,6 @@ namespace DLKJ
             labReport1Data.inputS22Real = StringToDouble(inputS22Real.text);
             labReport1Data.inputS22Imaginary = StringToDouble(inputS22Imaginary.text);
             AddResult(labReport1Data, MathTool.report1CorrectAnswer);
-            
         }
 
         public override void SetInputTextReadOnly()

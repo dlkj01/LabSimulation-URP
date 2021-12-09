@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -163,13 +162,13 @@ public class UILabReportBase : MonoBehaviour
             switch (SceneManager.GetInstance().GetCurrentLabName())
             {
                 case SceneManager.FIRST_EXPERIMENT_NAME:
-                    height = 5071.191f;
+                    height = 5455.81f;
                     break;
                 case SceneManager.SECOND_EXPERIMENT_NAME:
-                    height = 4024.353f;
+                    height = 4500;
                     break;
                 case SceneManager.THIRD_EXPERIMENT_NAME:
-                    height = 1962.912f;
+                    height = 2651.801f;
                     break;
                 default:
                     break;

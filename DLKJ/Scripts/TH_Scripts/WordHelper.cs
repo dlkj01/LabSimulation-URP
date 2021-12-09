@@ -1,10 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
 using Aspose.Words;
-using Aspose.Words.Tables;
 using System.Linq;
 using System.Reflection;
 using DLKJ;

@@ -1,9 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System;
-using System.Collections;
 using DG.Tweening;
-using System.Collections.Generic;
 using Common;
 using static DLKJ.InstrumentAction;
 
