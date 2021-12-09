@@ -69,4 +69,15 @@ public class UILabReport2 : UILabReportBase
         labReport2Data.SWRAfterMatchingFirst = StringToDouble(SWRAfterMatchingFirst.text);
         AddResult(labReport2Data, MathTool.report2CorrectAnswer);
     }
+
+    public override void SetInputTextReadOnly()
+    {
+        base.SetInputTextReadOnly();
+        inputSourceFrequencyFirst.text = MathTool.F.ToString("#0.00");
+        inputSourceVoltageFirst.text = MathTool.A.ToString("#0.00");
+        inputAttenuatorSetupFirst.text = (1 - MathTool.¦Ä).ToString("#0.00");
+        inputSourceFrequencyFirst.readOnly = true;
+        inputSourceVoltageFirst.readOnly = true;
+        inputAttenuatorSetupFirst.readOnly = true;
+    }
 }

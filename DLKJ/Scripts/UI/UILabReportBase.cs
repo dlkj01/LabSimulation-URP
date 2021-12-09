@@ -180,6 +180,7 @@ public class UILabReportBase : MonoBehaviour
             return height;
         }
     }
+    public virtual void SetInputTextReadOnly() { }
     private InputField[] inputFields;
     public string filePath;
     public string outFilePath;
@@ -334,7 +335,7 @@ public class UILabReportBase : MonoBehaviour
             switch (labName)
             {
                 case SceneManager.FIRST_EXPERIMENT_NAME:
-                    SceneManager.GetInstance().currentLabScore += 100f / 27f * 0.4f;
+                    SceneManager.GetInstance().currentLabScore += 100f / 30f * 0.4f;
                     break;
                 case SceneManager.SECOND_EXPERIMENT_NAME:
                     SceneManager.GetInstance().currentLabScore += 100f / 15f * 0.5f;

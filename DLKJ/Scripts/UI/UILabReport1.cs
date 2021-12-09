@@ -97,5 +97,16 @@ namespace DLKJ
             labReport1Data.inputS22Imaginary = StringToDouble(inputS22Imaginary.text);
             AddResult(labReport1Data, MathTool.report1CorrectAnswer);
         }
+
+        public override void SetInputTextReadOnly()
+        {
+            base.SetInputTextReadOnly();
+            SourceFrequency.text = MathTool.F.ToString("#0.00");
+            SourceVoltage.text = MathTool.A.ToString("#0.00");
+            Attenuator.text = (1 - MathTool.¦Ä).ToString("#0.00");
+            SourceFrequency.readOnly = true;
+            SourceVoltage.readOnly = true;
+            Attenuator.readOnly = true;
+        }
     }
 }

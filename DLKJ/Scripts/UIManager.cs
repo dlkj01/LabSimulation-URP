@@ -298,6 +298,7 @@ namespace DLKJ
         /// </summary>
         private void SetFixDataCallBack()
         {
+            //关闭这些设备可交互
             if (SceneManager.GetInstance().GetInstrumentButton("微波信号源", "FrequencyBtn2") != null)
             {
                 SceneManager.GetInstance().GetInstrumentButton("微波信号源", "FrequencyBtn2").RemoveListener();
@@ -313,6 +314,7 @@ namespace DLKJ
                 SceneManager.GetInstance().GetInstrumentButton("微波信号源", "FrequencyBtn").RemoveListener();
                 SceneManager.GetInstance().GetInstrumentButton("微波信号源", "FrequencyBtn").SetInteractiveState(false);
             }
+            //计算正确答案
             MathTool.Init();
             switch (SceneManager.GetInstance().currentLab.labName)
             {
@@ -328,6 +330,8 @@ namespace DLKJ
                 default:
                     break;
             }
+            //写入固定的Input用户不可更改
+            UILabButton.uiLabReport.SetInputTextReadOnly();
             NextStep();
             if (SceneManager.loginUserData.userType == UserType.Teacher)
             {

@@ -79,12 +79,14 @@ namespace DLKJ
             //FA = UnityEngine.Random.Range(0f, 1f);
             //FC = FA;
             //FB = Math.Sqrt(1 - Math.Pow(FA, 2));
-            do
-            {
-                Shan0 = UnityEngine.Random.Range(0f, 0.25f * Mathf.PI);
-            } while (Shan0 <= 0 || Shan0 > 0.25f * Mathf.PI);
+            //do
+            //{
+            //    Shan0 = UnityEngine.Random.Range(0f, 0.25f * Mathf.PI);
+            //} while (Shan0 <= 0 || Shan0 > 0.25f * Mathf.PI);
+            Shan0 = 0;
             //FD = Math.Abs(Math.Cos(2 * GetEDKKBDLQβ() * zd - (Math.PI - Shan0)));
             RuDuanLuQi = UnityEngine.Random.Range(0.024f, 0.0365f);
+            //   RuDuanLuQi = 0.024f;
             //方案一
             ShanA = UnityEngine.Random.Range(0, 0.25f * Mathf.PI);
             ShanC = UnityEngine.Random.Range(0, 0.25f * Mathf.PI);
@@ -567,6 +569,17 @@ namespace DLKJ
             return FuZaiZuLiangKangHengFormula(GetT1_EDKKBDLQ(zd), CalculateShan(GetTl_a_EDKKBDLQ(zd), GetTl_b_EDKKBDLQ(zd)), z); ;
         }
         /// <summary>
+        /// 二端口可变短路器读数测试
+        /// </summary>
+        /// <param name="zd"></param>
+        /// <param name="z"></param>
+        /// <returns></returns>
+        public static double ErDuanKouKeBianDuanLuQiNew(float zd, float z)
+        {
+            return KeBianDuanLuQiX(GetT1_EDKKBDLQ(zd), CalculateShan(GetTl_a_EDKKBDLQ(zd), GetTl_b_EDKKBDLQ(zd)), zd, z);
+        }
+
+        /// <summary>
         /// 获取二端口和可变短路器的最大读数
         /// </summary>
         /// <returns></returns>
@@ -623,24 +636,41 @@ namespace DLKJ
         public static List<double> GetFirstMinBoundKBDLQ()
         {
             List<double> result = new List<double>();
-            int k = 0;
-            //while (((2 * k + 1) * Math.PI - Shan0) / (2 * GetEDKKBDLQβ()) <= 0.1f)
+            //int k = 0;
+            //while (((2 * k + 1) * Math.PI - Shan0) * (RuDuanLuQi / (4 * Math.PI)) <= 0.1f)
             //{
-            //    double value = ((2 * k + 1) * Math.PI - Shan0) / (2 * GetEDKKBDLQβ());
+            //    double value = ((2 * k + 1) * Math.PI - Shan0) * (RuDuanLuQi / (4 * Math.PI));
             //    if (value >= 0f)
             //        result.Add(value);
             //    k++;
             //}
 
-            while ((Math.PI - Shan0) * RuDuanLuQi + k * RuDuanLuQi * 0.5f <= 0.1f)
+            int k = 0;
+            while (k * RuDuanLuQi / 2 <= 0.1f)
             {
-                double value = (Math.PI - Shan0) * RuDuanLuQi + k * RuDuanLuQi * 0.5f;
-                if (value >= 0f)
+                double value = k * RuDuanLuQi / 2;
+                if (value > 0f)
                     result.Add(value);
                 k++;
             }
 
-
+            //while ((Math.PI - Shan0) * RuDuanLuQi + k * RuDuanLuQi * 0.5f <= 0.1f)
+            //{
+            //    double value = (Math.PI - Shan0) * RuDuanLuQi + k * RuDuanLuQi * 0.5f;
+            //    if (value >= 0f)
+            //        result.Add(value);
+            //    k++;
+            //}
+            //int k = -2;
+            //while (RuDuanLuQi * ((Math.PI - Shan0) / (4 * Math.PI)) + k * 0.5f * RuDuanLuQi <= 0.1f)
+            //{
+            //    float value = float.Parse((RuDuanLuQi * ((Math.PI - Shan0) / (4 * Math.PI)) + k * 0.5f * RuDuanLuQi).ToString());
+            //    if (value > 0)
+            //    {
+            //        result.Add(value);
+            //    }
+            //    k++;
+            //}
             return result;
         }
 
@@ -877,6 +907,11 @@ namespace DLKJ
             return U;
         }
 
+        private static double KeBianDuanLuQiX(double resultT, double resultShan, float zd, float z)
+        {
+            double U = δ * Math.Abs(A) * Math.Sqrt(1 + Math.Pow(Math.Abs(resultT), 2) + 2 * Math.Abs(resultT) * Math.Cos(2 * Getβ() * z - resultShan + (4 * Math.PI * zd) / RuDuanLuQi));
+            return U;
+        }
 
         /// <summary>
         /// 像横着的山的符号的算法
@@ -915,25 +950,14 @@ namespace DLKJ
         private static double GetTl_a_EDKKBDLQ(float zd)
         {
             // double shanD = 2 * GetEDKKBDLQβ() * zd + Shan0;
-            //float index = zd / (RuDuanLuQi * 0.5f);
+            //float index = zd / (RuDuanLuQi * 0.25f);
             //if (index > 1)
             //{
-            //    zd = zd % (RuDuanLuQi * 0.5f);
+            //    zd = zd % (RuDuanLuQi * 0.25f);
             //}
-            //double shanD = zd / RuDuanLuQi + Shan0;
-            float zdNew = zd;
-            int k = -2;
-            while (RuDuanLuQi * ((Math.PI - Shan0) / (4 * Math.PI)) + k * 0.5f * RuDuanLuQi < 0)
-            {
-                k++;
-            }
-            zdNew = float.Parse((RuDuanLuQi * ((Math.PI - Shan0) / (4 * Math.PI)) + k * 0.5f * RuDuanLuQi).ToString());
-            float index = zdNew / (RuDuanLuQi * 0.5f);
-            if (index > 1)
-            {
-                zdNew = zdNew % (RuDuanLuQi * 0.5f);
-            }
-            double shanD = 4 * Math.PI * (zdNew / RuDuanLuQi) + Shan0;
+            //double shanD = 4 * Math.PI * (zd / RuDuanLuQi) + Shan0;
+
+            double shanD = Math.PI;
             double addLeft = FA * Math.Cos(ShanA);
             double topLeft = Math.Pow(FB, 2) * Math.Cos(2 * ShanB + shanD) * (1 - FC * Math.Cos(ShanC + shanD));
             double topRight = Math.Pow(FB, 2) * FC * Math.Sin(2 * ShanB + shanD) * Math.Sin(ShanC + shanD);
@@ -943,31 +967,21 @@ namespace DLKJ
             return result;
         }
         /// <summary>
-        /// 二端口可变断路器T1_b算法
+        /// 二端口可变短路器T1_b算法
         /// </summary>
         /// <returns></returns>
         private static double GetTl_b_EDKKBDLQ(float zd)
         {
             //double shanD = 2 * GetEDKKBDLQβ() * zd + Shan0;
-            //float index = zd / (RuDuanLuQi * 0.5f);
+            //float index = zd / (RuDuanLuQi * 0.25f);
             //if (index > 1)
             //{
-            //    zd = zd % (RuDuanLuQi * 0.5f);
+            //    zd = zd % (RuDuanLuQi * 0.25f);
             //}
-            //double shanD = zd / RuDuanLuQi + Shan0;
-            float zdNew = zd;
-            int k = -2;
-            while (RuDuanLuQi * ((Math.PI - Shan0) / (4 * Math.PI)) + k * 0.5f * RuDuanLuQi < 0)
-            {
-                k++;
-            }
-            zdNew = float.Parse((RuDuanLuQi * ((Math.PI - Shan0) / (4 * Math.PI)) + k * 0.5f * RuDuanLuQi).ToString());
-            float index = zdNew / (RuDuanLuQi * 0.5f);
-            if (index > 1)
-            {
-                zdNew = zdNew % (RuDuanLuQi * 0.5f);
-            }
-            double shanD = 4 * Math.PI * (zdNew / RuDuanLuQi) + Shan0;
+            //double shanD = 4 * Math.PI * (zd / RuDuanLuQi) + Shan0;
+
+            double shanD = Math.PI;
+
             double addLeft = FA * Math.Sin(ShanA);
             double topLeft = Math.Pow(FB, 2) * Math.Sin(2 * ShanB + shanD) * (1 - FC * Math.Cos(ShanC + shanD));
             double topRight = Math.Pow(FB, 2) * FC * Math.Cos(2 * ShanB + shanD) * Math.Sin(ShanC + shanD);

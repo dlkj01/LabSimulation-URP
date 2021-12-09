@@ -17,11 +17,8 @@ MonoBehaviour:
     ExperimentalType: "\u5B9E\u9A8C\u4E00"
     ExperimentalStep: 4
     InputTextName:
-    - SourceFrequency
-    - Attenuator
     - EquivalentSectionPosition
     - InputWavelength
-    - SourceVoltage
   - id: 2
     ExperimentalType: "\u5B9E\u9A8C\u4E00"
     ExperimentalStep: 5
@@ -50,9 +47,6 @@ MonoBehaviour:
     InputTextName:
     - WaveguideWavelengthFirst
     - EquivalentSectionPositionFirst
-    - inputSourceFrequencyFirst
-    - inputSourceVoltageFirst
-    - inputAttenuatorSetupFirst
   - id: 6
     ExperimentalType: "\u5B9E\u9A8C\u4E8C"
     ExperimentalStep: 5
@@ -91,8 +85,6 @@ MonoBehaviour:
     ExperimentalStep: 3
     InputTextName:
     - OnePortVoltage
-    - inputSourceFrequency
-    - inputSourceVoltage
   - id: 12
     ExperimentalType: "\u5B9E\u9A8C\u4E09"
     ExperimentalStep: 4

@@ -26,4 +26,12 @@ public class UILabReport3 : UILabReportBase
         labReportData.CouplingFactor = StringToDouble(CouplingFactor.text);
         AddResult(labReportData, MathTool.report3CorrectAnswer);
     }
+    public override void SetInputTextReadOnly()
+    {
+        base.SetInputTextReadOnly();
+        inputSourceFrequency.text = MathTool.F.ToString("#0.00");
+        inputSourceVoltage.text = MathTool.A.ToString("#0.00");
+        inputSourceFrequency.readOnly = true;
+        inputSourceVoltage.readOnly = true;
+    }
 }
