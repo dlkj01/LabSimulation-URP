@@ -71,7 +71,7 @@ public static class WordHelper
     /// </summary>
     /// <param name="fileName"></param>
     /// <param name="CNName"></param>
-    public static void HandleGuaranteeDoc(string fileName, Dictionary<string, object> map, string outPath)
+    public static Document HandleGuaranteeDoc(string fileName, Dictionary<string, object> map, string outPath)
     {
 
 #if UNITY_WEBGL
@@ -140,6 +140,7 @@ public static class WordHelper
         doc.Save(savePath + "/" + studentID /*SceneManager.loginUserData.accountNumber*/ + "-" + DateTime.Now.ToString("yyyy-MM-dd") + outPath); //±£´æword
         ProxyManager.saveProxy.Save();
         // stream.Close();
+        return doc;
 #endif
     }
 
