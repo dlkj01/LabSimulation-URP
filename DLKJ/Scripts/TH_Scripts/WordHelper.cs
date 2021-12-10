@@ -104,19 +104,21 @@ public static class WordHelper
         foreach (var key in map.Keys)   //循环键值对
         {
             builder.MoveToBookmark(key);  //将光标移入书签的位置
+            builder.Font.Color = System.Drawing.Color.Black;
+            builder.CellFormat.Shading.BackgroundPatternColor = System.Drawing.Color.White;
             if (map[key] != null)
             {
                 if (map[key] is AnswerCheck answerCheck)
                 {
                     string result = string.Empty;
+                    builder.Font.Color = System.Drawing.Color.Green;
                     if (answerCheck.isRight == false)
                     {
-                        result = answerCheck.answer.ToString() + "(Wrong)";
+                        if (string.IsNullOrEmpty(answerCheck.answer))
+                            answerCheck.answer = "未填";
+                        builder.Font.Color = System.Drawing.Color.Red;
                     }
-                    else
-                    {
-                        result = answerCheck.answer.ToString();
-                    }
+                    result = answerCheck.answer.ToString();
                     builder.StartBookmark(key).Bookmark.Text = result;
                 }
                 else
