@@ -13,6 +13,7 @@ public static class WordHelper
 
     public static Dictionary<string, object> GetFields<T>(T t)
     {
+        float a = 0;
         Dictionary<string, object> map = new Dictionary<string, object>();
         System.Reflection.FieldInfo[] fields = t.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
         if (fields.Length <= 0)
@@ -104,21 +105,18 @@ public static class WordHelper
         foreach (var key in map.Keys)   //循环键值对
         {
             builder.MoveToBookmark(key);  //将光标移入书签的位置
-            builder.Font.Color = System.Drawing.Color.Black;
-            builder.CellFormat.Shading.BackgroundPatternColor = System.Drawing.Color.White;
+            //builder.Font.Color = System.Drawing.Color.Black;
+            //builder.CellFormat.Shading.BackgroundPatternColor = System.Drawing.Color.White;
             if (map[key] != null)
             {
                 if (map[key] is AnswerCheck answerCheck)
                 {
                     string result = string.Empty;
-                    builder.Font.Color = System.Drawing.Color.Green;
+                    //  builder.Font.Color = System.Drawing.Color.Green;
                     if (answerCheck.isRight == false)
-                    {
-                        if (string.IsNullOrEmpty(answerCheck.answer))
-                            answerCheck.answer = "未填";
-                        builder.Font.Color = System.Drawing.Color.Red;
-                    }
-                    result = answerCheck.answer.ToString();
+                        result = answerCheck.answer.ToString() + "(Wrong)";
+                    else
+                        result = answerCheck.answer.ToString();
                     builder.StartBookmark(key).Bookmark.Text = result;
                 }
                 else

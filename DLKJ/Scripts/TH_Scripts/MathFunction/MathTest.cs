@@ -27,15 +27,17 @@ namespace DLKJ
         private void Start() => MathTool.δ = 1;
 
         private void Update() => OnUpdate();
-
+#if UNITY_EDITOR
         private void LateUpdate()
         {
-            //if (Input.GetKeyDown(KeyCode.Alpha1))
-            //{
-            //    MathTool.FixedCorrect1Calculate();
-            //}
-        }
 
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                MathTool.FixedCorrect1Calculate();
+            }
+
+        }
+#endif
         /// <summary>
         /// 公示数据初始化
         /// </summary>
