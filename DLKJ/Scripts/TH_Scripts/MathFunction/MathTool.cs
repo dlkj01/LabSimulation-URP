@@ -172,7 +172,7 @@ namespace DLKJ
 
             report1CorrectAnswer.StandingWaveRatioCircuit = SWREDKTODLB();//×¤²¨±ÈÖÕ¶Ë¶ÌÂ·
             report1CorrectAnswer.StandingWaveRatioTerminal = SWREDKKBDLQ(float.Parse(report1CorrectAnswer.OpenLoadPosition[0].ToString("#0.0000000")));//×¤²¨±ÈÖÕ¶Ë¿ªÂ·
-            report1CorrectAnswer.PhaseAngleMatching = SWREDKPPFZ();//×¤²¨±ÈÖÕ¶ËÆ¥Åä
+            report1CorrectAnswer.StandingWaveRatioMatching = SWREDKPPFZ();//×¤²¨±ÈÖÕ¶ËÆ¥Åä
 
             report1CorrectAnswer.input¦£1S = GetTl();
             report1CorrectAnswer.input¦£10 = GetT1_EDKKBDLQ(float.Parse(report1CorrectAnswer.VariableShortCircuitFirstPos[0].ToString()));
