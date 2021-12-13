@@ -322,7 +322,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 442.974, y: -95.19989}
+  m_AnchoredPosition: {x: 442.974, y: -87}
   m_SizeDelta: {x: 147.622, y: 36.9198}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1531457990980354497
@@ -372,7 +372,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 865976994573591790}
   m_TextComponent: {fileID: 865976994573591790}
   m_Placeholder: {fileID: 5698532812891556002}
@@ -1020,7 +1020,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u8BF7\u8F93\u5165..."
+  m_Text: 
 --- !u!1 &2467452046426391091
 GameObject:
   m_ObjectHideFlags: 0
@@ -2270,7 +2270,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 442.974, y: -159}
+  m_AnchoredPosition: {x: 442.974, y: -148.6}
   m_SizeDelta: {x: 147.622, y: 36.9198}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3161507705203422024
@@ -2320,7 +2320,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 3616791205511649926}
   m_TextComponent: {fileID: 3616791205511649926}
   m_Placeholder: {fileID: 7439931676342594196}
@@ -2613,7 +2613,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u8BF7\u8F93\u5165..."
+  m_Text: 
 --- !u!1 &5613877910840362024
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,11 +24,8 @@ namespace DLKJ
 
         private void Awake()
         {
-            if (interfaceTest)
-            {
-                if (interfaceButton) interfaceButton.gameObject.SetActive(true);
-                else interfaceButton.gameObject.SetActive(false);
-            }
+            if (interfaceButton)
+                interfaceButton.gameObject.SetActive(interfaceTest);
             rectTF = transform as RectTransform;
             UIEventListener.GetUIEventListener(controllerButton.gameObject).PointerClick += (p) =>
               {

@@ -403,6 +403,11 @@ public class UILabReportBase : MonoBehaviour
                                 result = result * 0.001f;
                             }
                             break;
+                        case "VariableShortCircuitSecondPos":
+                            {
+                                result = result * 0.001f;
+                            }
+                            break;
                         case "OpenLoadPosition":
                             {
                                 result = result * 0.001f;
@@ -428,6 +433,7 @@ public class UILabReportBase : MonoBehaviour
                                 result = result * 0.001f;
                             }
                             break;
+
                         default:
                             break;
                     }

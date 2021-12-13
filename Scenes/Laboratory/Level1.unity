@@ -6352,7 +6352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5621a73f8a9e44e489c3b98b60699a8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interfaceTest: 1
+  interfaceTest: 0
   duration: 0.3
   normalX: 162
   targetX: -148
