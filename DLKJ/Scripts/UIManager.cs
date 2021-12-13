@@ -3,6 +3,9 @@ using UnityEngine.UI;
 using DG.Tweening;
 using Common;
 using static DLKJ.InstrumentAction;
+using System.Collections;
+using System.IO;
+using UnityEngine.Networking;
 
 namespace DLKJ
 {
@@ -384,6 +387,38 @@ namespace DLKJ
                  voltmeterRect.DOFade(1, 4f).OnComplete(() => { voltmeterRect.DOFade(0, 2f); });
 
              });
+        }
+
+        public void DownloadFile(string path, string fileName)
+        {
+            // 如 path = Application.streamingAssetsPath;
+            // fileName = "LabReport3.docx"；
+#if UNITY_WEBGL
+            StartCoroutine(DownLoadDoc(path, fileName));
+#endif
+        }
+
+
+        /// <summary>
+        /// 实验报告下载
+        /// </summary>
+        /// <param name="path">截止到文件名称的文件所在路径</param> 如 Application.streamingAssetsPath
+        /// <param name="fileName">带文件格式的完整文件名称</param> 如 LabReport3.docx
+        /// <returns></returns>
+        IEnumerator DownLoadDoc(string path, string fileName)
+        {
+            System.Uri uri = new System.Uri(Path.Combine(path, fileName));
+            UnityWebRequest request = UnityWebRequest.Get(uri);
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.Log(request.error);
+            }
+            else
+            {
+                WebGLDownloadHelper.DownloadDocx(request.downloadHandler.data, fileName);
+            }
         }
 
     }
