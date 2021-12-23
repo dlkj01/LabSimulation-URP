@@ -75,7 +75,7 @@ namespace DLKJ
             FB = UnityEngine.Random.Range(0f, 1f);
             FA = UnityEngine.Random.Range(0f, Mathf.Sqrt(1 - Mathf.Pow(float.Parse(FB.ToString()), 2)));
             FC = UnityEngine.Random.Range(0f, Mathf.Sqrt(1 - Mathf.Pow(float.Parse(FB.ToString()), 2)));
-            //方案二
+            // 方案二
             //FA = UnityEngine.Random.Range(0f, 1f);
             //FC = FA;
             //FB = Math.Sqrt(1 - Math.Pow(FA, 2));
@@ -92,15 +92,17 @@ namespace DLKJ
             ShanC = UnityEngine.Random.Range(0, 0.25f * Mathf.PI);
             ShanB = UnityEngine.Random.Range(0, 0.25f * Mathf.PI);
 
-            //方案二
-            //ShanA = UnityEngine.Random.Range(0, 2 * Mathf.PI);
-            //ShanC = ShanA;
+            // 方案二
+            //ShanA = UnityEngine.Random.Range(0, 0.5f * Mathf.PI);
+            //ShanC = UnityEngine.Random.Range(0, 0.5f * Mathf.PI);
             //ShanB = 0.5f * (ShanA + ShanC + Math.PI);
 
             EDKKBDLQβ = GetEDKKBDLQβ();
             S11Com = new Complex(FA * Math.Cos(ShanA), FA * Math.Sin(ShanA));
             S12Com = new Complex(FB * Math.Cos(ShanB), FB * Math.Sin(ShanB));
             S22Com = new Complex(FC * Math.Cos(ShanC), FC * Math.Sin(ShanC));
+
+
 
             S11 = S11Com.Real + S11Com.Imaginary;
             S12 = S12Com.Real + S12Com.Imaginary;
@@ -178,13 +180,35 @@ namespace DLKJ
             report1CorrectAnswer.inputΓ10 = GetT1_EDKKBDLQ(float.Parse(report1CorrectAnswer.VariableShortCircuitFirstPos[0].ToString()));
             report1CorrectAnswer.inputΓ1L = FA;
 
+
+
             //report1CorrectAnswer.ReflectionCoefficientΓ1S = S11 - (Math.Pow(S12, 2) / (1 + S22));//反射系数T1S
             //report1CorrectAnswer.ReflectionCoefficientΓ10 = S11 + Math.Pow(S12, 2) / (1 - S22);//反射系数T10
             //report1CorrectAnswer.ReflectionCoefficientΓ1L = S11;//反射系数T1L
 
+            //学生算的反射系数
+            //double shanD = 0;
+            //double addLeft = FA * Math.Cos(ShanA);
+            //double topLeft = Math.Pow(FB, 2) * Math.Cos(2 * ShanB + shanD) * (1 - FC * Math.Cos(ShanC + shanD));
+            //double topRight = Math.Pow(FB, 2) * FC * Math.Sin(2 * ShanB + shanD) * Math.Sin(ShanC + shanD);
+            //double downLeft = Math.Pow((1 - FC * Math.Cos(ShanC + shanD)), 2);
+            //double downRight = Math.Pow(FC, 2) * Math.Pow(Math.Sin(ShanC + shanD), 2);
+            //double result = addLeft + (topLeft - topRight) / (downLeft + downRight);
 
-            Complex Γ1S = S11Com - Complex.Pow(S11Com, 2) / (1 + S22Com);//反射系数T1S
-            Complex Γ10 = S11Com + Complex.Pow(S11Com, 2) / (1 - S22Com);//反射系数T1S
+            //double shanD2 = 0;
+            //double addLeft2 = FA * Math.Sin(ShanA);
+            //double topLeft2 = Math.Pow(FB, 2) * Math.Sin(2 * ShanB + shanD) * (1 - FC * Math.Cos(ShanC + shanD));
+            //double topRight2 = Math.Pow(FB, 2) * FC * Math.Cos(2 * ShanB + shanD) * Math.Sin(ShanC + shanD);
+            //double downLeft2 = Math.Pow((1 - FC * Math.Cos(ShanC + shanD)), 2);
+            //double downRight2 = Math.Pow(FC, 2) * Math.Pow(Math.Sin(ShanC + shanD), 2);
+            //double result2 = addLeft2 + (topLeft2 + topRight2) / (downLeft2 + downRight2);
+
+            //Complex Student1S = new Complex(GetTl_a(), GetTl_b());
+            //Complex Student10 = new Complex(result, result2);
+            //Complex Student1L = S11Com;
+
+            Complex Γ1S = S11Com - Complex.Pow(S12Com, 2) / (1 + S22Com);//反射系数T1S
+            Complex Γ10 = S11Com + Complex.Pow(S12Com, 2) / (1 - S22Com);//反射系数T1S
             Complex Γ1L = S11Com;//反射系数T1S
             report1CorrectAnswer.ReflectionCoefficientΓ1SReal = Γ1S.Real;
             report1CorrectAnswer.ReflectionCoefficientΓ10Real = Γ10.Real;
@@ -193,6 +217,15 @@ namespace DLKJ
             report1CorrectAnswer.ReflectionCoefficientΓ10Imaginary = Γ10.Imaginary;
             report1CorrectAnswer.ReflectionCoefficientΓ1LImaginary = Γ1L.Imaginary;
 
+            //Debug.Log("实部的值是" + S11Com.Real + "虚部的值是:" + S11Com.Imaginary);
+            //Complex S11 = Γ1L/*(Γ10 + Γ1S) / (2 + Γ10 - Γ1S)*/;
+            //Debug.Log("实部的值是" + S22Com.Real + "虚部的值是:" + S22Com.Imaginary);
+            //Complex S22 = (2 * Γ1L - Γ1S - Γ10) / (Γ1S - Γ10);
+            //Complex S12ComPow = Complex.Pow(S12Com, 2);
+            //Complex S12SQRT = Complex.Sqrt(S12ComPow);
+            //Debug.Log("实部的值是" + S12ComPow.Real + "虚部的值是:" + S12ComPow.Imaginary);
+            //Complex S12Pow = (S22Com + 1) * (Γ1L - Γ1S);
+            //Complex S12PowThird = Complex.Sqrt((1 - S22Com) * (Γ10 - Γ1L));
             report1CorrectAnswer.inputS11Real = S11Com.Real;
             report1CorrectAnswer.inputS11Imaginary = S11Com.Imaginary;
             report1CorrectAnswer.inputS12S21Real = S12Com.Real;
@@ -964,6 +997,7 @@ namespace DLKJ
             double downLeft = Math.Pow((1 - FC * Math.Cos(ShanC + shanD)), 2);
             double downRight = Math.Pow(FC, 2) * Math.Pow(Math.Sin(ShanC + shanD), 2);
             double result = addLeft + (topLeft - topRight) / (downLeft + downRight);
+
             return result;
         }
         /// <summary>
