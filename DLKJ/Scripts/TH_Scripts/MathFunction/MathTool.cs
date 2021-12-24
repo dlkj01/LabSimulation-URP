@@ -29,7 +29,6 @@ namespace DLKJ
     public class MathTool
     {
         public const float SLMCL_Start_Value = 0.055f;
-
         public static LabReportCorrect1Data report1CorrectAnswer = new LabReportCorrect1Data();
         public static LabReportCorrect2Data report2CorrectAnswer = new LabReportCorrect2Data();
         public static LabReport3Data report3CorrectAnswer = new LabReport3Data();
@@ -44,11 +43,7 @@ namespace DLKJ
         private static float X = 0;//取值范围[-200,200] 初始化后不变
         private static float R = 0;//取值范围[0,200] 初始化后不变
         private static double ZL = 0;//ZL=R+jX
-        private static float j = 1;
         private static float Z0 = 100;//100欧姆
-        private static double S11 = 0;
-        private static double S12 = 0;
-        private static double S22 = 0;
         public static float couplingFactorA;//耦合度输入端电压模A
         public static float couplingFactorC;//耦合度C
 
@@ -72,9 +67,9 @@ namespace DLKJ
 
 
             // 方案一
-            FB = UnityEngine.Random.Range(0f, 1f);
-            FA = UnityEngine.Random.Range(0f, Mathf.Sqrt(1 - Mathf.Pow(float.Parse(FB.ToString()), 2)));
-            FC = UnityEngine.Random.Range(0f, Mathf.Sqrt(1 - Mathf.Pow(float.Parse(FB.ToString()), 2)));
+            FB = 0.4f /*UnityEngine.Random.Range(0f, 1f)*/;
+            FA = 0.2f/* UnityEngine.Random.Range(0f, Mathf.Sqrt(1 - Mathf.Pow(float.Parse(FB.ToString()), 2)))*/;
+            FC = 0.1f /*UnityEngine.Random.Range(0f, Mathf.Sqrt(1 - Mathf.Pow(float.Parse(FB.ToString()), 2)))*/;
             // 方案二
             //FA = UnityEngine.Random.Range(0f, 1f);
             //FC = FA;
@@ -85,12 +80,12 @@ namespace DLKJ
             //} while (Shan0 <= 0 || Shan0 > 0.25f * Mathf.PI);
             Shan0 = 0;
             //FD = Math.Abs(Math.Cos(2 * GetEDKKBDLQβ() * zd - (Math.PI - Shan0)));
-            RuDuanLuQi = UnityEngine.Random.Range(0.024f, 0.0365f);
+            RuDuanLuQi = 0.03f /*UnityEngine.Random.Range(0.024f, 0.0365f)*/;
             //   RuDuanLuQi = 0.024f;
             //方案一
-            ShanA = UnityEngine.Random.Range(0, 0.25f * Mathf.PI);
-            ShanC = UnityEngine.Random.Range(0, 0.25f * Mathf.PI);
-            ShanB = UnityEngine.Random.Range(0, 0.25f * Mathf.PI);
+            ShanA = 0.5f /*UnityEngine.Random.Range(0, 0.25f * Mathf.PI)*/;
+            ShanC = 0.4f /*UnityEngine.Random.Range(0, 0.25f * Mathf.PI)*/;
+            ShanB = 0.3f /*UnityEngine.Random.Range(0, 0.25f * Mathf.PI)*/;
 
             // 方案二
             //ShanA = UnityEngine.Random.Range(0, 0.5f * Mathf.PI);
@@ -102,11 +97,6 @@ namespace DLKJ
             S12Com = new Complex(FB * Math.Cos(ShanB), FB * Math.Sin(ShanB));
             S22Com = new Complex(FC * Math.Cos(ShanC), FC * Math.Sin(ShanC));
 
-
-
-            S11 = S11Com.Real + S11Com.Imaginary;
-            S12 = S12Com.Real + S12Com.Imaginary;
-            S22 = S22Com.Real + S22Com.Imaginary;
             X = UnityEngine.Random.Range(-200f, 200f);
             R = UnityEngine.Random.Range(0f, 200f);
             double XRPow = Math.Pow(R, 2) + Math.Pow(X, 2);
@@ -657,8 +647,9 @@ namespace DLKJ
         public static double GetMinReadUpperDTEDKKEDLQ(float zd)
         {
             double shan = CalculateShan(GetTl_a_EDKKBDLQ(zd), GetTl_b_EDKKBDLQ(zd));
-            double z = GetMinRead(shan);
-            double min = δ * Math.Abs(A) * Math.Abs((1 - GetT1_EDKKBDLQ(zd)));
+            double z = GetMinReadEDKKBDLQ(shan, zd);
+            //double z = GetMinRead(shan);
+            double min = δ * Math.Abs(A) * Math.Abs(1 - GetT1_EDKKBDLQ(zd));
             return z;
         }
 
@@ -1184,6 +1175,30 @@ namespace DLKJ
             }
             return 0;
         }
+        /// <summary>
+        /// 二端口可变短路器最小值获取
+        /// </summary>
+        /// <param name="shan"></param>
+        /// <returns></returns>
+        public static double GetMinReadEDKKBDLQ(double shan, double zd)
+        {
+            int index = 0;
+            double z = (shan - (4 * Math.PI * zd) / RuDuanLuQi) * Calculateλp1() / (4 * Math.PI) + (2 * index + 1) * (Calculateλp1() / 4);
+            double DT = GetDT(SLMCL_Start_Value, 0);
+            while (z < DT)
+            {
+                index++;
+                z = (shan - (4 * Math.PI * zd) / RuDuanLuQi) * Calculateλp1() / (4 * Math.PI) + (2 * index + 1) * (Calculateλp1() / 4);
+            }
+            double result = Math.Cos(2 * Getβ() * z - shan);
+            if (result == -1)
+            {
+                return z;
+            }
+            return 0;
+        }
+
+
         public static double GetMin(List<double> result)
         {
             double min = result[0];
