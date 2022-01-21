@@ -40,8 +40,8 @@ namespace DLKJ
         public static float δ { get; set; }//控制衰减器取值[0,1] 初始化后不变
         public static float distanceZ { get; set; }//z的位置距离三厘米测量线最后侧距离
         private static double EDKKBDLQβ;//二端口+可变断路器的贝特
-        private static float X = 0;//取值范围[-200,200] 初始化后不变
-        private static float R = 0;//取值范围[0,200] 初始化后不变
+        private static float X = 0;//电抗 取值范围[-200,200] 初始化后不变
+        private static float R = 0;//电阻 取值范围[0,200] 初始化后不变
         private static double ZL = 0;//ZL=R+jX
         private static float Z0 = 100;//100欧姆
         public static float couplingFactorA;//耦合度输入端电压模A
@@ -103,11 +103,11 @@ namespace DLKJ
             double verify = Math.Pow(2 * X * XRPow * Y0, 2) - 4 * XRPow * (1 - R * Y0) * (Math.Pow(Y0, 2) * Math.Pow(XRPow, 4) - Math.Pow(R, 3) * Y0 - R * Y0 * Math.Pow(X, 2));
             while (verify < 0)
             {
-                X = UnityEngine.Random.Range(-200f, 200f);
-                R = UnityEngine.Random.Range(0f, 200f);
-                while (R * Y0 == 1)
+                List<double> lList = CalculateL();
+                //List0是最大值，条件为小于 匹配螺钉l的最大值
+                while (R * Y0 == 1 || lList[1] < 2.68f || lList[0] > 15.38f)
                 {
-                    R = UnityEngine.Random.Range(0f, 200f);
+                    X = UnityEngine.Random.Range(0f, 200f);
                 }
                 verify = Math.Pow(2 * X * XRPow * Y0, 2) - 4 * XRPow * (1 - R * Y0) * (Math.Pow(Y0, 2) * Math.Pow(XRPow, 4) - Math.Pow(R, 3) * Y0 - R * Y0 * Math.Pow(X, 2));
             }
@@ -223,7 +223,7 @@ namespace DLKJ
 
         }
         #endregion
-        #region 第二个实验第一组正确计算的答案
+        #region 第二个实验第一组正确计算的答案 负载阻抗测量
         public static void FixedCorrect2FirstGroupCalculate()
         {
             report2CorrectAnswer.inputSourceFrequencyFirst = F;//信号源频率
@@ -237,8 +237,8 @@ namespace DLKJ
             report2CorrectAnswer.WaveNodePositionFirst = GetMinZUpperDTFZZKCL();
             //report2CorrectAnswer.NormalizedLoadImpedanceFirst = NormalizedLoadImpedance();
             Complex com = ZLCom / Z0;
-            report2CorrectAnswer.NormalizedLoadImpedanceFirstReal = com.Real;
-            report2CorrectAnswer.NormalizedLoadImpedanceFirstImaginary = com.Imaginary;
+            report2CorrectAnswer.NormalizedLoadImpedanceFirstReal = com.Real;//负载阻抗实部
+            report2CorrectAnswer.NormalizedLoadImpedanceFirstImaginary = com.Imaginary;//负载阻抗虚部
             report2CorrectAnswer.LoadImpedanceFirstReal = ZLCom.Real;
             report2CorrectAnswer.LoadImpedanceFirstImaginary = ZLCom.Imaginary;
             report2CorrectAnswer.ScrewPositionFirst = CalculateL();

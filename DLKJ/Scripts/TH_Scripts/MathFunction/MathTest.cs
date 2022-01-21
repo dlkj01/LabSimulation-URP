@@ -33,7 +33,8 @@ namespace DLKJ
 
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                MathTool.FixedCorrect1Calculate();
+                //MathTool.FixedCorrect1Calculate();
+                MathTool.FixedCorrect2FirstGroupCalculate();
             }
 
         }
@@ -171,6 +172,20 @@ namespace DLKJ
         private InstrumentButton keBianDuanLuQiBtn;//¿É±ä¶ÏÂ·Æ÷
         private InstrumentButton instrumentPiPeiLuoDingD;//Æ¥ÅäÂÝ¶¤D
         private InstrumentButton instrumentPiPeiLuoDingL;//Æ¥ÅäÂÝ¶¤L
+
+
+        public InstrumentAction InstrumentActionPinXuan
+        {
+            get
+            {
+                if (instrumentActionPinXuan == null)
+                {
+                    Item itemPinXuan = SceneManager.GetInstance().GetItemByName("Ñ¡Æµ·Å´óÆ÷");
+                    instrumentActionPinXuan = itemPinXuan.GetComponent<InstrumentAction>();
+                }
+                return instrumentActionPinXuan;
+            }
+        }
         private void GetDevice()
         {
             if (tempInstrumentBtn == null)
