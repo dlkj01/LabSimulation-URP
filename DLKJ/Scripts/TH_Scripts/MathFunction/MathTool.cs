@@ -105,7 +105,7 @@ namespace DLKJ
             {
                 List<double> lList = CalculateL();
                 //List0是最大值，条件为小于 匹配螺钉l的最大值
-                while (R * Y0 == 1 || lList[1] < 2.68f || lList[0] > 15.38f)
+                while (R * Y0 == 1 || lList[1] < 2.1f || lList[0] > 14.8f)
                 {
                     X = UnityEngine.Random.Range(0f, 200f);
                 }

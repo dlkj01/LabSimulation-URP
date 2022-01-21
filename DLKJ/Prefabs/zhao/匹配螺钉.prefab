@@ -449,7 +449,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4533593937698149125, guid: fe84c9462b572f042873b0060e32d9ac, type: 3}
+  - {fileID: 2100000, guid: 0926f820ed141e247963eb70a6b634f1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -565,8 +565,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8612975695535684231, guid: fe84c9462b572f042873b0060e32d9ac, type: 3}
-  - {fileID: 4533593937698149125, guid: fe84c9462b572f042873b0060e32d9ac, type: 3}
+  - {fileID: -8612975695535684231, guid: 10ace5d11ec5c444386c4bdfd8278fce, type: 3}
+  - {fileID: 2100000, guid: 20850cb1a1e572346a2a8664442356d3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -649,7 +649,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4533593937698149125, guid: fe84c9462b572f042873b0060e32d9ac, type: 3}
+  - {fileID: 2100000, guid: 0926f820ed141e247963eb70a6b634f1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -809,8 +809,8 @@ MonoBehaviour:
     instrumentButtonType: 1
     rotary: 50
     rotatyDirection: 1
-    MaxValue: 15.38
-    MinValue: 2.68
+    MaxValue: 14.8
+    MinValue: 2.1
     EndMovePoint: 0.0568
     StartMovePoint: -0.0575
     StepLength: 1000
