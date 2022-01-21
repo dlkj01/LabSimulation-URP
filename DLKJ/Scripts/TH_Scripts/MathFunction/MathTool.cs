@@ -67,9 +67,9 @@ namespace DLKJ
 
 
             // 方案一
-            FB = 0.4f /*UnityEngine.Random.Range(0f, 1f)*/;
-            FA = 0.2f/* UnityEngine.Random.Range(0f, Mathf.Sqrt(1 - Mathf.Pow(float.Parse(FB.ToString()), 2)))*/;
-            FC = 0.1f /*UnityEngine.Random.Range(0f, Mathf.Sqrt(1 - Mathf.Pow(float.Parse(FB.ToString()), 2)))*/;
+            FB =/* 0.4f*/ UnityEngine.Random.Range(0f, 1f);
+            FA =/* 0.2f*/ UnityEngine.Random.Range(0f, Mathf.Sqrt(1 - Mathf.Pow(float.Parse(FB.ToString()), 2)));
+            FC =/* 0.1f*/ UnityEngine.Random.Range(0f, Mathf.Sqrt(1 - Mathf.Pow(float.Parse(FB.ToString()), 2)));
             // 方案二
             //FA = UnityEngine.Random.Range(0f, 1f);
             //FC = FA;
@@ -80,12 +80,12 @@ namespace DLKJ
             //} while (Shan0 <= 0 || Shan0 > 0.25f * Mathf.PI);
             Shan0 = 0;
             //FD = Math.Abs(Math.Cos(2 * GetEDKKBDLQβ() * zd - (Math.PI - Shan0)));
-            RuDuanLuQi = 0.03f /*UnityEngine.Random.Range(0.024f, 0.0365f)*/;
+            RuDuanLuQi = /*0.03f*/ UnityEngine.Random.Range(0.024f, 0.0365f);
             //   RuDuanLuQi = 0.024f;
             //方案一
-            ShanA = 0.5f /*UnityEngine.Random.Range(0, 0.25f * Mathf.PI)*/;
-            ShanC = 0.4f /*UnityEngine.Random.Range(0, 0.25f * Mathf.PI)*/;
-            ShanB = 0.3f /*UnityEngine.Random.Range(0, 0.25f * Mathf.PI)*/;
+            ShanA =/* 0.5f*/ UnityEngine.Random.Range(0, 0.25f * Mathf.PI);
+            ShanC = /*0.4f*/ UnityEngine.Random.Range(0, 0.25f * Mathf.PI);
+            ShanB = /*0.3f*/ UnityEngine.Random.Range(0, 0.25f * Mathf.PI);
 
             // 方案二
             //ShanA = UnityEngine.Random.Range(0, 0.5f * Mathf.PI);
@@ -155,8 +155,6 @@ namespace DLKJ
             //波节点位置终端开路
             report1CorrectAnswer.WaveNodePosShortTerminal = GetMinReadUpperDTEDKKEDLQ(float.Parse(report1CorrectAnswer.OpenLoadPosition[0].ToString()));
             report1CorrectAnswer.WaveNodePosShortMatching = GetMinZUpperDTEDKPPFZ();//波节点位置终端匹配
-
-
             report1CorrectAnswer.PhaseAngleCircuit = CalculateShan(GetTl_a(), GetTl_b());//相角终端短路
             report1CorrectAnswer.PhaseAngleTerminal = CalculateShan(GetTl_a_EDKKBDLQ(float.Parse(report1CorrectAnswer.OpenLoadPosition[0].ToString()))
                 , GetTl_b_EDKKBDLQ(float.Parse(report1CorrectAnswer.OpenLoadPosition[0].ToString())));//相角终端开路
