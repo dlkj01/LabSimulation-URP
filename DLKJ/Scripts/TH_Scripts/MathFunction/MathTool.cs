@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Numerics;
 using Common;
+using Excel.Log;
+using UnityEditor;
+
 namespace DLKJ
 {
     public struct InitValue
@@ -40,8 +43,9 @@ namespace DLKJ
         public static float δ { get; set; }//控制衰减器取值[0,1] 初始化后不变
         public static float distanceZ { get; set; }//z的位置距离三厘米测量线最后侧距离
         private static double EDKKBDLQβ;//二端口+可变断路器的贝特
-        private static float X = 0;//电抗 取值范围[-200,200] 初始化后不变
-        private static float R = 0;//电阻 取值范围[0,200] 初始化后不变
+        public static float X = 0;//电抗 取值范围[-200,200] 初始化后不变
+        public static float R = 0;//电阻 取值范围[0,200] 初始化后不变
+        public static double verify = 0;
         private static double ZL = 0;//ZL=R+jX
         private static float Z0 = 100;//100欧姆
         public static float couplingFactorA;//耦合度输入端电压模A
@@ -55,6 +59,7 @@ namespace DLKJ
             //distanceZ = data.distanceZ;
             RandomDataInit();
         }
+
         static Complex S11Com;
         static Complex S12Com;
         static Complex S22Com;
@@ -97,24 +102,40 @@ namespace DLKJ
             S12Com = new Complex(FB * Math.Cos(ShanB), FB * Math.Sin(ShanB));
             S22Com = new Complex(FC * Math.Cos(ShanC), FC * Math.Sin(ShanC));
 
-            X = UnityEngine.Random.Range(-200f, 200f);
-            R = UnityEngine.Random.Range(0f, 200f);
+            List<double> lList = CalculateL();
+            while (lList[1] < 2.1f || lList[0] > 14.8f)
+            {
+                CalculateL();
+            }
+            Debug.Log("R:" + R + "  X:" + X);
             double XRPow = Math.Pow(R, 2) + Math.Pow(X, 2);
-            double verify = Math.Pow(2 * X * XRPow * Y0, 2) - 4 * XRPow * (1 - R * Y0) * (Math.Pow(Y0, 2) * Math.Pow(XRPow, 4) - Math.Pow(R, 3) * Y0 - R * Y0 * Math.Pow(X, 2));
+            verify = GetVerify(XRPow);
+
             while (verify < 0)
             {
-                List<double> lList = CalculateL();
-                //List0是最大值，条件为小于 匹配螺钉l的最大值
-                while (R * Y0 == 1 || lList[1] < 2.1f || lList[0] > 14.8f)
-                {
-                    X = UnityEngine.Random.Range(0f, 200f);
-                }
-                verify = Math.Pow(2 * X * XRPow * Y0, 2) - 4 * XRPow * (1 - R * Y0) * (Math.Pow(Y0, 2) * Math.Pow(XRPow, 4) - Math.Pow(R, 3) * Y0 - R * Y0 * Math.Pow(X, 2));
+                verify = GetVerify(XRPow);
             }
+
             ZLCom = new Complex(R, X);
             ZL = ZLCom.Real + ZLCom.Imaginary;
             couplingFactorC = UnityEngine.Random.Range(5, 20);
         }
+
+        static double GetVerify(double XRPow)
+        {
+            double targetValue = Math.Pow(2 * X * XRPow * Y0, 2) - 4 * XRPow * (1 - R * Y0) * (Math.Pow(Y0, 2) * Math.Pow(XRPow, 4) - Math.Pow(R, 3) * Y0 - R * Y0 * Math.Pow(X, 2));
+
+            List<double> lList = CalculateL();
+            //List0是最大值，条件为小于 匹配螺钉l的最大值
+            while (R * Y0 == 1 || lList[1] < 2.1f || lList[0] > 14.8f)
+            {
+
+                X = UnityEngine.Random.Range(-200f, 200f);
+                R = UnityEngine.Random.Range(0f, 200f);
+            }
+            return targetValue;
+        }
+
         #region 第一个实验正确计算的答案
         public static void FixedCorrect1Calculate()
         {
@@ -800,6 +821,9 @@ namespace DLKJ
         /// <returns></returns>
         public static List<double> CalculateL()
         {
+            X = UnityEngine.Random.Range(-200f, 200f);
+            R = UnityEngine.Random.Range(0f, 200f);
+
             double RX2 = Math.Pow(R, 2) + Math.Pow(X, 2);
             double topLeft = -2 * X * RX2 * Y0;
             double topRight = Math.Sqrt(Math.Pow(2 * X * RX2 * Y0, 2) - 4 * RX2 * (1 - R * Y0) * (Math.Pow(Y0, 2) * Math.Pow(RX2, 2) - Math.Pow(R, 3) * Y0 - R * Y0 * Math.Pow(X, 2)));

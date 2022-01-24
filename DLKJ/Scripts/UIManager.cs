@@ -315,7 +315,7 @@ namespace DLKJ
                 SceneManager.GetInstance().GetInstrumentButton("微波信号源", "FrequencyBtn").SetInteractiveState(false);
             }
             //计算正确答案
-            MathTool.Init();
+            //MathTool.Init();
             switch (SceneManager.GetInstance().currentLab.labName)
             {
                 case SceneManager.FIRST_EXPERIMENT_NAME:

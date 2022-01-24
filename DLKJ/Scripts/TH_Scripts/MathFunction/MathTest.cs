@@ -1,4 +1,6 @@
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static DLKJ.InstrumentAction;
 
 namespace DLKJ
@@ -19,8 +21,12 @@ namespace DLKJ
                 return instance;
             }
         }
+
+        GUIStyle gUIStyle = new GUIStyle();
         private void Awake()
         {
+            gUIStyle.fontSize = 32;
+
             mathInitValue = new InitValue();
             MathTool.Reset();
         }
@@ -39,6 +45,15 @@ namespace DLKJ
 
         }
 #endif
+
+        private void OnGUI()
+        {
+            GUILayout.BeginHorizontal();
+            GUILayout.Label("<color=#0300ff>R：" + MathTool.R + "        X:" + MathTool.X + "        Verify:" + MathTool.verify+ "</color>  ", gUIStyle, new GUILayoutOption[] { GUILayout.Width(500) });
+            GUILayout.EndHorizontal();
+        }
+
+
         /// <summary>
         /// 公示数据初始化
         /// </summary>
@@ -164,7 +179,7 @@ namespace DLKJ
             }
             instrumentActionPinXuan.pointer.SetAngle(float.Parse(U.ToString()));
             instrumentActionPinXuan.pointer.PointerRotate();
-            Debug.Log(U);
+            //Debug.Log(U);
         }
 
         private InstrumentAction instrumentActionPinXuan;//频选放大器
