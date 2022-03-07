@@ -48,9 +48,33 @@ namespace DLKJ
 
         private void OnGUI()
         {
-            GUILayout.BeginHorizontal();
-            GUILayout.Label("<color=#0300ff>R：" + MathTool.R + "        X:" + MathTool.X + "        Verify:" + MathTool.verify+ "</color>  ", gUIStyle, new GUILayoutOption[] { GUILayout.Width(500) });
-            GUILayout.EndHorizontal();
+            //GUILayout.BeginHorizontal();
+            //GUILayout.Label("<color=#0300ff>R：" + MathTool.R + "        X:" + MathTool.X + "        Verify:" + MathTool.verify+ "</color>  ", gUIStyle, new GUILayoutOption[] { GUILayout.Width(500) });
+            //GUILayout.EndHorizontal();
+            UIManager.GetInstance().UIShowDatas.UpdateDatas("电阻：", MathTool.R);
+            UIManager.GetInstance().UIShowDatas.UpdateDatas("电抗：", MathTool.X);
+            UIManager.GetInstance().UIShowDatas.UpdateDatas("满足条件的结果：", MathTool.verify);
+
+            UIManager.GetInstance().UIShowDatas.UpdateDatas("等效截面：", MathTool.report2CorrectAnswer.EquivalentSectionPositionFirst);
+
+            UIManager.GetInstance().UIShowDatas.UpdateDatas("最小电压：", MathTool.report2CorrectAnswer.MinimumVoltage);
+            UIManager.GetInstance().UIShowDatas.UpdateDatas("最大电压：", MathTool.report2CorrectAnswer.MaximumVoltage);
+
+            UIManager.GetInstance().UIShowDatas.UpdateDatas("驻波比：", MathTool.report2CorrectAnswer.SWRFirst);
+            UIManager.GetInstance().UIShowDatas.UpdateDatas("第一波节点：", MathTool.report2CorrectAnswer.WaveNodePositionFirst);
+
+            UIManager.GetInstance().UIShowDatas.UpdateDatas("归一电抗：", MathTool.report2CorrectAnswer.NormalizedLoadImpedanceFirstImaginary);
+            UIManager.GetInstance().UIShowDatas.UpdateDatas("归一电阻：", MathTool.report2CorrectAnswer.NormalizedLoadImpedanceFirstReal);
+
+            UIManager.GetInstance().UIShowDatas.UpdateDatas("负载电阻：", MathTool.report2CorrectAnswer.LoadImpedanceFirstReal);
+            UIManager.GetInstance().UIShowDatas.UpdateDatas("负载电抗：", MathTool.report2CorrectAnswer.LoadImpedanceFirstImaginary);
+
+            if(MathTool.report2CorrectAnswer.ScrewPositionFirst != null) UIManager.GetInstance().UIShowDatas.UpdateDatas("匹配螺钉位置：", MathTool.report2CorrectAnswer.ScrewPositionFirst[0]);
+           if(MathTool.report2CorrectAnswer.ScrewDepthFirst != null) UIManager.GetInstance().UIShowDatas.UpdateDatas("匹配螺钉深度：", MathTool.report2CorrectAnswer.ScrewDepthFirst[0]);
+            UIManager.GetInstance().UIShowDatas.UpdateDatas("匹配最小电压：", MathTool.report2CorrectAnswer.MinimumVoltageAfterMatchingFirst);
+
+            UIManager.GetInstance().UIShowDatas.UpdateDatas("匹配最大电压：", MathTool.report2CorrectAnswer.MaximumVoltageAfterMatchingSecond);
+            UIManager.GetInstance().UIShowDatas.UpdateDatas("匹配驻波比：", MathTool.report2CorrectAnswer.SWRAfterMatchingSecond);
         }
 
 

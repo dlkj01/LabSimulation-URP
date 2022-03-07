@@ -115,8 +115,8 @@ public class LabReportCorrect2Data : LabReportData
     public double SWRFirst;//驻波比
     public double WaveguideWavelengthFirst;//波导波长
     public double EquivalentSectionPositionFirst;//等效截面位置
-    public double MinimumVoltage;
-    public double MaximumVoltage;
+    public double MinimumVoltage;           //最小电压
+    public double MaximumVoltage;           //最大电压
     public double WaveNodePositionFirst;//第一波节点位置
     public double NormalizedLoadImpedanceFirstReal;//归一化负载阻抗
     public double NormalizedLoadImpedanceFirstImaginary;
@@ -366,77 +366,77 @@ public class UILabReportBase : MonoBehaviour
                     {
                         result = double.Parse(item2.Value.ToString());
                     }
-                    switch (item2.Key)
-                    {
-                        case "WaveguideWavelengthFirst":
-                            {
-                                result = result * 0.001f;
-                            }
-                            break;
-                        case "EquivalentSectionPositionFirst":
-                            {
-                                result = result * 0.001f;
-                            }
-                            break;
-                        case "ScrewPositionFirst":
-                            {
-                                result = result * 0.001f;
-                            }
-                            break;
-                        case "EquivalentSectionPosition":
-                            {
-                                result = result * 0.001f;
-                            }
-                            break;
-                        case "InputWavelength":
-                            {
-                                result = result * 0.001f;
-                            }
-                            break;
-                        case "VariableShortCircuitFirstPos":
-                            {
-                                result = result * 0.001f;
-                            }
-                            break;
-                        case "VariableWavelengthInShortCircuit":
-                            {
-                                result = result * 0.001f;
-                            }
-                            break;
-                        case "VariableShortCircuitSecondPos":
-                            {
-                                result = result * 0.001f;
-                            }
-                            break;
-                        case "OpenLoadPosition":
-                            {
-                                result = result * 0.001f;
-                            }
-                            break;
-                        case "WaveNodePositionFirst":
-                            {
-                                result = result * 0.001f;
-                            }
-                            break;
-                        case "WaveNodePosShortCircuit":
-                            {
-                                result = result * 0.001f;
-                            }
-                            break;
-                        case "WaveNodePosShortTerminal":
-                            {
-                                result = result * 0.001f;
-                            }
-                            break;
-                        case "WaveNodePosShortMatching":
-                            {
-                                result = result * 0.001f;
-                            }
-                            break;
+                    //switch (item2.Key)
+                    //{
+                    //    case "WaveguideWavelengthFirst":
+                    //        {
+                    //            result = result * 0.001f;
+                    //        }
+                    //        break;
+                    //    case "EquivalentSectionPositionFirst":
+                    //        {
+                    //            result = result * 0.001f;
+                    //        }
+                    //        break;
+                    //    case "ScrewPositionFirst":
+                    //        {
+                    //            result = result * 0.001f;
+                    //        }
+                    //        break;
+                    //    case "EquivalentSectionPosition":
+                    //        {
+                    //            result = result * 0.001f;
+                    //        }
+                    //        break;
+                    //    case "InputWavelength":
+                    //        {
+                    //            result = result * 0.001f;
+                    //        }
+                    //        break;
+                    //    case "VariableShortCircuitFirstPos":
+                    //        {
+                    //            result = result * 0.001f;
+                    //        }
+                    //        break;
+                    //    case "VariableWavelengthInShortCircuit":
+                    //        {
+                    //            result = result * 0.001f;
+                    //        }
+                    //        break;
+                    //    case "VariableShortCircuitSecondPos":
+                    //        {
+                    //            result = result * 0.001f;
+                    //        }
+                    //        break;
+                    //    case "OpenLoadPosition":
+                    //        {
+                    //            result = result * 0.001f;
+                    //        }
+                    //        break;
+                    //    case "WaveNodePositionFirst":
+                    //        {
+                    //            result = result * 0.001f;
+                    //        }
+                    //        break;
+                    //    case "WaveNodePosShortCircuit":
+                    //        {
+                    //            result = result * 0.001f;
+                    //        }
+                    //        break;
+                    //    case "WaveNodePosShortTerminal":
+                    //        {
+                    //            result = result * 0.001f;
+                    //        }
+                    //        break;
+                    //    case "WaveNodePosShortMatching":
+                    //        {
+                    //            result = result * 0.001f;
+                    //        }
+                    //        break;
 
-                        default:
-                            break;
-                    }
+                    //    default:
+                    //        break;
+                    //}
                     if (item2.Key == "SourceFrequency" || item2.Key == "SourceVoltage" || item2.Key == "Attenuator"
                         || item2.Key == "inputSourceFrequencyFirst" || item2.Key == "inputSourceVoltageFirst" || item2.Key == "inputAttenuatorSetupFirst"
                         || item2.Key == "inputSourceFrequency" || item2.Key == "inputSourceVoltage")

@@ -10,7 +10,7 @@ namespace DLKJ
     public class UIExperiment : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] Text titleText;
-        [SerializeField] Text experimentCountText;//第几组实验?
+        [SerializeField] Text experimentCountText;//实验得分
         [SerializeField] Color defaultColor;
         [SerializeField] Color selectedColor;
         [SerializeField] Button button;
@@ -70,7 +70,8 @@ namespace DLKJ
             group.interactable = false;
             group.alpha = 0.5f;
             string score = ProxyManager.saveProxy.map[titleText.text].score.ToString();
-            if (ProxyManager.saveProxy.map[titleText.text].score.ToString().Contains("."))
+            Debug.Log(titleText.text + "得分："+score);
+            if (score.Contains("."))
             {
                 experimentCountText.text = ProxyManager.saveProxy.map[titleText.text].score.ToString("#0.00");
             }

@@ -11,6 +11,9 @@ namespace DLKJ
 {
     public class UIManager : MonoBehaviour
     {
+        [Header("Show Datas")]
+        public UIShowDatas UIShowDatas;
+
         private static UIManager instance;
         [Header("SceneObject")]
         [SerializeField] GameObject sceneObject;
@@ -53,7 +56,7 @@ namespace DLKJ
         private Camera voltmeterCamera;
         private void Awake()
         {
-            //Debug.unityLogger.logEnabled = false;
+            Debug.unityLogger.logEnabled = false;
             if (sceneObject) sceneObject.SetActive(false);
             // videoShowButton.gameObject.SetActive(false);
             uIVideoPlayer.gameObject.SetActive(false);

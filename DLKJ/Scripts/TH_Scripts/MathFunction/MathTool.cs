@@ -53,11 +53,11 @@ namespace DLKJ
 
         public static void Init(/*FormulaData data*/)
         {
-            //A = data.A;
-            //F = data.F;
-            //δ = data.δ;
-            //distanceZ = data.distanceZ;
-            RandomDataInit();
+            Debug.Log("数据初始化:");
+
+            //RandomDataInit();
+
+            InitData();
         }
 
         static Complex S11Com;
@@ -102,17 +102,62 @@ namespace DLKJ
             S12Com = new Complex(FB * Math.Cos(ShanB), FB * Math.Sin(ShanB));
             S22Com = new Complex(FC * Math.Cos(ShanC), FC * Math.Sin(ShanC));
 
+            X = UnityEngine.Random.Range(-200f, 200f);
+            R = UnityEngine.Random.Range(0f, 200f);
+
             List<double> lList = CalculateL();
             while (lList[1] < 2.1f || lList[0] > 14.8f)
             {
+                X = UnityEngine.Random.Range(-200f, 200f);
+                R = UnityEngine.Random.Range(0f, 200f);
                 CalculateL();
             }
-            Debug.Log("R:" + R + "  X:" + X);
+
             double XRPow = Math.Pow(R, 2) + Math.Pow(X, 2);
             verify = GetVerify(XRPow);
 
             while (verify < 0)
             {
+                verify = GetVerify(XRPow);
+            }
+            Debug.Log("R:" + R + "  X:" + X);
+            ZLCom = new Complex(R, X);
+            ZL = ZLCom.Real + ZLCom.Imaginary;
+            couplingFactorC = UnityEngine.Random.Range(5, 20);
+        }
+
+       
+       static void InitData()
+        {
+            // 方案一
+            FB =/* 0.4f*/ UnityEngine.Random.Range(0f, 1f);
+            FA =/* 0.2f*/ UnityEngine.Random.Range(0f, Mathf.Sqrt(1 - Mathf.Pow(float.Parse(FB.ToString()), 2)));
+            FC =/* 0.1f*/ UnityEngine.Random.Range(0f, Mathf.Sqrt(1 - Mathf.Pow(float.Parse(FB.ToString()), 2)));
+            Shan0 = 0;
+            RuDuanLuQi = /*0.03f*/ UnityEngine.Random.Range(0.024f, 0.0365f);
+
+            //方案一
+            ShanA =/* 0.5f*/ UnityEngine.Random.Range(0, 0.25f * Mathf.PI);
+            ShanC = /*0.4f*/ UnityEngine.Random.Range(0, 0.25f * Mathf.PI);
+            ShanB = /*0.3f*/ UnityEngine.Random.Range(0, 0.25f * Mathf.PI);
+
+            EDKKBDLQβ = GetEDKKBDLQβ();
+            S11Com = new Complex(FA * Math.Cos(ShanA), FA * Math.Sin(ShanA));
+            S12Com = new Complex(FB * Math.Cos(ShanB), FB * Math.Sin(ShanB));
+            S22Com = new Complex(FC * Math.Cos(ShanC), FC * Math.Sin(ShanC));
+
+            X = UnityEngine.Random.Range(-200f, 200f);
+            R = UnityEngine.Random.Range(0f, 200f);
+
+            double XRPow = Math.Pow(R, 2) + Math.Pow(X, 2);
+            verify = Math.Pow(2 * X * XRPow * Y0, 2) - 4 * XRPow * (1 - R * Y0) * (Math.Pow(Y0, 2) * Math.Pow(XRPow, 4) - Math.Pow(R, 3) * Y0 - R * Y0 * Math.Pow(X, 2));
+
+            List<double> lList = CalculateL();
+            while (lList[1] < 2.1f || lList[0] > 14.8f|| verify < 0)
+            {
+                X = UnityEngine.Random.Range(-200f, 200f);
+                R = UnityEngine.Random.Range(0f, 200f);
+                CalculateL();
                 verify = GetVerify(XRPow);
             }
 
@@ -123,8 +168,6 @@ namespace DLKJ
 
         static double GetVerify(double XRPow)
         {
-            double targetValue = Math.Pow(2 * X * XRPow * Y0, 2) - 4 * XRPow * (1 - R * Y0) * (Math.Pow(Y0, 2) * Math.Pow(XRPow, 4) - Math.Pow(R, 3) * Y0 - R * Y0 * Math.Pow(X, 2));
-
             List<double> lList = CalculateL();
             //List0是最大值，条件为小于 匹配螺钉l的最大值
             while (R * Y0 == 1 || lList[1] < 2.1f || lList[0] > 14.8f)
@@ -133,17 +176,21 @@ namespace DLKJ
                 X = UnityEngine.Random.Range(-200f, 200f);
                 R = UnityEngine.Random.Range(0f, 200f);
             }
+
+            double targetValue = Math.Pow(2 * X * XRPow * Y0, 2) - 4 * XRPow * (1 - R * Y0) * (Math.Pow(Y0, 2) * Math.Pow(XRPow, 4) - Math.Pow(R, 3) * Y0 - R * Y0 * Math.Pow(X, 2));
             return targetValue;
         }
+
 
         #region 第一个实验正确计算的答案
         public static void FixedCorrect1Calculate()
         {
+            //将米换算成毫米
             report1CorrectAnswer.SourceFrequency = F;//信号源频率
             report1CorrectAnswer.SourceVoltage = A;//电压
             report1CorrectAnswer.Attenuator = δ;//衰减器
-            report1CorrectAnswer.EquivalentSectionPosition = GetDT(SLMCL_Start_Value, 0);//第一个等效截面的位置
-            report1CorrectAnswer.InputWavelength = Calculateλp1();//输入端波长
+            report1CorrectAnswer.EquivalentSectionPosition = GetDT(SLMCL_Start_Value, 0)*1000f;//第一个等效截面的位置
+            report1CorrectAnswer.InputWavelength = Calculateλp1()*1000f;//输入端波长
             report1CorrectAnswer.WaveNodePosShortCircuit = GetMinZUpperDTEDKDLB();//波节点位置终端短路
 
             report1CorrectAnswer.VariableShortCircuitFirstPos = GetFirstMinBoundKBDLQ();//可变短路器第一波节点最小值位置
@@ -159,23 +206,23 @@ namespace DLKJ
             report1CorrectAnswer.VariableShortCircuitSecondPos = new List<double>();
             for (int i = 0; i < report1CorrectAnswer.VariableShortCircuitFirstPos.Count; i++)
             {
-                report1CorrectAnswer.VariableShortCircuitSecondPos.Add(report1CorrectAnswer.VariableShortCircuitFirstPos[i] + 0.5f * RuDuanLuQi);
+                report1CorrectAnswer.VariableShortCircuitSecondPos.Add((report1CorrectAnswer.VariableShortCircuitFirstPos[i] + 0.5f * RuDuanLuQi)*1000f);
             }
 
-            report1CorrectAnswer.VariableWavelengthInShortCircuit = RuDuanLuQi;//可变短路器中波长λp2
+            report1CorrectAnswer.VariableWavelengthInShortCircuit = RuDuanLuQi*1000f;//可变短路器中波长λp2
 
             //开路负载位置
             report1CorrectAnswer.OpenLoadPosition = new List<double>();
             for (int i = 0; i < report1CorrectAnswer.VariableShortCircuitFirstPos.Count; i++)
             {
-                report1CorrectAnswer.OpenLoadPosition.Add(report1CorrectAnswer.VariableShortCircuitFirstPos[i] + RuDuanLuQi * 0.25f);
-                report1CorrectAnswer.OpenLoadPosition.Add(report1CorrectAnswer.VariableShortCircuitSecondPos[i] + RuDuanLuQi * 0.25f);
+                report1CorrectAnswer.OpenLoadPosition.Add((report1CorrectAnswer.VariableShortCircuitFirstPos[i] + RuDuanLuQi * 0.25f)*1000);
+                report1CorrectAnswer.OpenLoadPosition.Add((report1CorrectAnswer.VariableShortCircuitSecondPos[i] + RuDuanLuQi * 0.25f)*1000);
             }
 
 
             //波节点位置终端开路
-            report1CorrectAnswer.WaveNodePosShortTerminal = GetMinReadUpperDTEDKKEDLQ(float.Parse(report1CorrectAnswer.OpenLoadPosition[0].ToString()));
-            report1CorrectAnswer.WaveNodePosShortMatching = GetMinZUpperDTEDKPPFZ();//波节点位置终端匹配
+            report1CorrectAnswer.WaveNodePosShortTerminal = GetMinReadUpperDTEDKKEDLQ(float.Parse(report1CorrectAnswer.OpenLoadPosition[0].ToString()))*1000f;
+            report1CorrectAnswer.WaveNodePosShortMatching = GetMinZUpperDTEDKPPFZ()*1000f;//波节点位置终端匹配
             report1CorrectAnswer.PhaseAngleCircuit = CalculateShan(GetTl_a(), GetTl_b());//相角终端短路
             report1CorrectAnswer.PhaseAngleTerminal = CalculateShan(GetTl_a_EDKKBDLQ(float.Parse(report1CorrectAnswer.OpenLoadPosition[0].ToString()))
                 , GetTl_b_EDKKBDLQ(float.Parse(report1CorrectAnswer.OpenLoadPosition[0].ToString())));//相角终端开路
@@ -246,16 +293,17 @@ namespace DLKJ
         #endregion
         #region 第二个实验第一组正确计算的答案 负载阻抗测量
         public static void FixedCorrect2FirstGroupCalculate()
-        {
+        {  
+            //单位统一换算成毫米（mm）
             report2CorrectAnswer.inputSourceFrequencyFirst = F;//信号源频率
             report2CorrectAnswer.inputSourceVoltageFirst = A;//电压
             report2CorrectAnswer.inputAttenuatorSetupFirst = δ;//衰减器
             report2CorrectAnswer.SWRFirst = SWRFZZKCL();
             report2CorrectAnswer.WaveguideWavelengthFirst = Calculateλp1();
-            report2CorrectAnswer.EquivalentSectionPositionFirst = GetDT(SLMCL_Start_Value, 0);//第一个等效截面的位置
+            report2CorrectAnswer.EquivalentSectionPositionFirst = GetDT(SLMCL_Start_Value, 0)*1000f;//第一个等效截面的位置
             report2CorrectAnswer.MinimumVoltage = GetMinRead_FZZKCL();
             report2CorrectAnswer.MaximumVoltage = GetMaxRead_FZZKCL();
-            report2CorrectAnswer.WaveNodePositionFirst = GetMinZUpperDTFZZKCL();
+            report2CorrectAnswer.WaveNodePositionFirst = GetMinZUpperDTFZZKCL()*1000;
             //report2CorrectAnswer.NormalizedLoadImpedanceFirst = NormalizedLoadImpedance();
             Complex com = ZLCom / Z0;
             report2CorrectAnswer.NormalizedLoadImpedanceFirstReal = com.Real;//负载阻抗实部
@@ -333,7 +381,7 @@ namespace DLKJ
                 index++;
             }
             // int startBandCount = (int)((startValue + offect) / everyBandLength) + 1;
-            double result = everyBandLength + (everyBandLength * 0.5f) * index;
+            double result = everyBandLength + (everyBandLength * 0.5f) * index;  //将米换算成毫米
             return result;
             // Debug.Log(SLMCLXZDDLB(float.Parse(result.ToString("#0.0000000"))));
 
@@ -421,10 +469,10 @@ namespace DLKJ
         private static float ShanD;
         #endregion
 
-        #region 实验一、接二端口和短路版
+        #region 实验一、接二端口和短路板
         /// <summary>
         /// 公式一、(3)
-        /// 接二端口和短路版
+        /// 接二端口和短路板
         /// </summary>
         /// <param name="z">旋转3厘米测量线的旋钮就是调节z的数值</param>
         /// <returns></returns>
@@ -436,7 +484,7 @@ namespace DLKJ
             return FuZaiZuLiangKangHengFormula(GetTl(), CalculateShan(GetTl_a(), GetTl_b()), z);
         }
         /// <summary>
-        /// 获取二端口和短路版的最大读数
+        /// 获取二端口和短路板的最大读数
         /// </summary>
         /// <returns></returns>
         public static double GetMaxReadEDKDLB()
@@ -452,7 +500,7 @@ namespace DLKJ
             return 0;
         }
         /// <summary>
-        /// 获取二端口和短路版的最小读数
+        /// 获取二端口和短路板的最小读数
         /// </summary>
         /// <returns></returns>
         public static double GetMinReadEDKDLB()
@@ -483,7 +531,7 @@ namespace DLKJ
             return z;
         }
         /// <summary>
-        /// 相角二端口连短路版
+        /// 相角二端口连短路板
         /// </summary>
         /// <returns></returns>
         public static double PhaseAngleEDKTODLB()
@@ -693,7 +741,7 @@ namespace DLKJ
             {
                 double value = k * RuDuanLuQi / 2;
                 if (value > 0f)
-                    result.Add(value);
+                    result.Add(value*1000); //将米换算成毫米
                 k++;
             }
 
@@ -821,8 +869,8 @@ namespace DLKJ
         /// <returns></returns>
         public static List<double> CalculateL()
         {
-            X = UnityEngine.Random.Range(-200f, 200f);
-            R = UnityEngine.Random.Range(0f, 200f);
+            //X = UnityEngine.Random.Range(-200f, 200f);
+            //R = UnityEngine.Random.Range(0f, 200f);
 
             double RX2 = Math.Pow(R, 2) + Math.Pow(X, 2);
             double topLeft = -2 * X * RX2 * Y0;
@@ -845,8 +893,8 @@ namespace DLKJ
                 resultSub += 0.5f * p * Calculateλp1();
             }
             List<double> result = new List<double>();
-            result.Add(resultAdd);
-            result.Add(resultSub);
+            result.Add(resultAdd*1000); //将米换算成毫米
+            result.Add(resultSub*1000);
             return result;
         }
 
@@ -868,7 +916,7 @@ namespace DLKJ
                 double downRight = Math.Pow(R, 2) * Math.Pow(Math.Tan(Getβ() * L[i]), 2);
                 double leftResult = (topLeft * topMiddle - topRight) / (downLeft + downRight);
                 double acot = 0.5 * Math.PI - Math.Atan(leftResult);
-                result.Add(acot / Getβ());
+                result.Add(acot / Getβ()*1000); //将米换算成毫米
             }
             return result;
         }
@@ -1157,16 +1205,24 @@ namespace DLKJ
 
         private static double GetTL_a()
         {
-            double Tl_aDivisionTop = Math.Pow(R, 2) + (Math.Pow(X, 2) - 1);
-            double T1_aDivisionDown = Math.Pow(R + 1, 2) + Math.Pow(X, 2);
+            //double Tl_aDivisionTop = Math.Pow(R, 2) + (Math.Pow(X, 2) - 1);  //Z0
+            //double T1_aDivisionDown = Math.Pow(R + 1, 2) + Math.Pow(X, 2);
+            //double T1_a = Tl_aDivisionTop / T1_aDivisionDown;
+
+            double Tl_aDivisionTop = Math.Pow(R, 2) + (Math.Pow(X, 2) - Z0); 
+            double T1_aDivisionDown = Math.Pow(R + Z0, 2) + Math.Pow(X, 2);
             double T1_a = Tl_aDivisionTop / T1_aDivisionDown;
             return T1_a;
         }
 
         private static double GetTL_b()
         {
+            //double Tl_baDivisionTop = 2 * R * X;
+            //double T1_bDivisionDown = Math.Pow(R + 1, 2) + Math.Pow(X, 2);
+            //double T1_b = Tl_baDivisionTop / T1_bDivisionDown;
+
             double Tl_baDivisionTop = 2 * R * X;
-            double T1_bDivisionDown = Math.Pow(R + 1, 2) + Math.Pow(X, 2);
+            double T1_bDivisionDown = Math.Pow(R + Z0, 2) + Math.Pow(X, 2);
             double T1_b = Tl_baDivisionTop / T1_bDivisionDown;
             return T1_b;
         }
