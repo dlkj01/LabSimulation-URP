@@ -70,10 +70,10 @@ public class LabReportCorrect1Data : LabReportData
     public double StandingWaveRatioCircuit;//驻波比短路
     public double StandingWaveRatioTerminal;//驻波比终端
     public double StandingWaveRatioMatching;//驻波比匹配
-    public double inputΓ1S;
-    public double inputΓ10;
-    public double inputΓ1L;
-    public double ReflectionCoefficientΓ1SReal;
+    public double inputΓ1S;                 //短路反射系数
+    public double inputΓ10;                 //开路反射系数
+    public double inputΓ1L;                 //匹配反射系数
+    public double ReflectionCoefficientΓ1SReal;     //短路系数实部
     public double ReflectionCoefficientΓ10Real;
     public double ReflectionCoefficientΓ1LReal;
     public double ReflectionCoefficientΓ1SImaginary;

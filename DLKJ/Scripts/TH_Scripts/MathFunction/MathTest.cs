@@ -1,6 +1,6 @@
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
 using static DLKJ.InstrumentAction;
 
 namespace DLKJ
@@ -48,9 +48,68 @@ namespace DLKJ
 
         private void OnGUI()
         {
-            //GUILayout.BeginHorizontal();
-            //GUILayout.Label("<color=#0300ff>R：" + MathTool.R + "        X:" + MathTool.X + "        Verify:" + MathTool.verify+ "</color>  ", gUIStyle, new GUILayoutOption[] { GUILayout.Width(500) });
-            //GUILayout.EndHorizontal();
+            if (UIManager.GetInstance().showUIData)
+            {
+                switch (SceneManager.GetInstance().currentLab.labName)
+                {
+                    case SceneManager.FIRST_EXPERIMENT_NAME:
+                        {
+                            UIManager.GetInstance().UIshowDatas1.gameObject.SetActive(true);
+                            UIManager.GetInstance().UIShowDatas.gameObject.SetActive(false);
+                            UIManager.GetInstance().UIshowDatas3.gameObject.SetActive(false);
+                            UIFirst();
+                        }
+                        break;
+                    case SceneManager.SECOND_EXPERIMENT_NAME:
+                        {
+                            UIManager.GetInstance().UIshowDatas1.gameObject.SetActive(false);
+                            UIManager.GetInstance().UIShowDatas.gameObject.SetActive(true);
+                            UIManager.GetInstance().UIshowDatas3.gameObject.SetActive(false);
+                            UISecond();
+                        }
+                        break;
+                    case SceneManager.THIRD_EXPERIMENT_NAME:
+                        {
+                            UIManager.GetInstance().UIshowDatas1.gameObject.SetActive(false);
+                            UIManager.GetInstance().UIShowDatas.gameObject.SetActive(false);
+                            UIManager.GetInstance().UIshowDatas3.gameObject.SetActive(true);
+                            UIThird();
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        void UIFirst()
+        {
+            UIManager.GetInstance().UIshowDatas1.UpdateDatas("相角短路：", MathTool.report1CorrectAnswer.PhaseAngleCircuit);
+            UIManager.GetInstance().UIshowDatas1.UpdateDatas("相角终端：", MathTool.report1CorrectAnswer.PhaseAngleTerminal);
+            UIManager.GetInstance().UIshowDatas1.UpdateDatas("相角匹配：", MathTool.report1CorrectAnswer.PhaseAngleMatching);
+
+            UIManager.GetInstance().UIshowDatas1.UpdateDatas("驻波比短路：", MathTool.report1CorrectAnswer.StandingWaveRatioCircuit);
+            UIManager.GetInstance().UIshowDatas1.UpdateDatas("驻波比终端：", MathTool.report1CorrectAnswer.StandingWaveRatioTerminal);
+            UIManager.GetInstance().UIshowDatas1.UpdateDatas("驻波比匹配：", MathTool.report1CorrectAnswer.StandingWaveRatioMatching);
+
+            UIManager.GetInstance().UIshowDatas1.UpdateDatas("1SReal：", MathTool.report1CorrectAnswer.ReflectionCoefficientΓ1SReal);
+            UIManager.GetInstance().UIshowDatas1.UpdateDatas("1SImaginary：", MathTool.report1CorrectAnswer.ReflectionCoefficientΓ1SImaginary);
+            UIManager.GetInstance().UIshowDatas1.UpdateDatas("10Real：", MathTool.report1CorrectAnswer.ReflectionCoefficientΓ10Real);
+            UIManager.GetInstance().UIshowDatas1.UpdateDatas("10Imaginary：", MathTool.report1CorrectAnswer.ReflectionCoefficientΓ10Imaginary);
+            UIManager.GetInstance().UIshowDatas1.UpdateDatas("1LReal：", MathTool.report1CorrectAnswer.ReflectionCoefficientΓ1LReal);
+            UIManager.GetInstance().UIshowDatas1.UpdateDatas("1LImaginary：", MathTool.report1CorrectAnswer.ReflectionCoefficientΓ1LImaginary);
+
+            UIManager.GetInstance().UIshowDatas1.UpdateDatas("S11Real：", MathTool.report1CorrectAnswer.inputS11Real);
+            UIManager.GetInstance().UIshowDatas1.UpdateDatas("S11Imaginary：", MathTool.report1CorrectAnswer.inputS11Imaginary);
+
+            UIManager.GetInstance().UIshowDatas1.UpdateDatas("S21Real：", MathTool.report1CorrectAnswer.inputS12S21Real);
+            UIManager.GetInstance().UIshowDatas1.UpdateDatas("S21Imaginary：", MathTool.report1CorrectAnswer.inputS12S21Imaginary);
+            UIManager.GetInstance().UIshowDatas1.UpdateDatas("S22Real：", MathTool.report1CorrectAnswer.inputS22Real);
+            UIManager.GetInstance().UIshowDatas1.UpdateDatas("S22Imaginary：", MathTool.report1CorrectAnswer.inputS22Imaginary);
+        }
+
+        void UISecond()
+        {
             UIManager.GetInstance().UIShowDatas.UpdateDatas("电阻：", MathTool.R);
             UIManager.GetInstance().UIShowDatas.UpdateDatas("电抗：", MathTool.X);
             UIManager.GetInstance().UIShowDatas.UpdateDatas("满足条件的结果：", MathTool.verify);
@@ -69,12 +128,20 @@ namespace DLKJ
             UIManager.GetInstance().UIShowDatas.UpdateDatas("负载电阻：", MathTool.report2CorrectAnswer.LoadImpedanceFirstReal);
             UIManager.GetInstance().UIShowDatas.UpdateDatas("负载电抗：", MathTool.report2CorrectAnswer.LoadImpedanceFirstImaginary);
 
-            if(MathTool.report2CorrectAnswer.ScrewPositionFirst != null) UIManager.GetInstance().UIShowDatas.UpdateDatas("匹配螺钉位置：", MathTool.report2CorrectAnswer.ScrewPositionFirst[0]);
-           if(MathTool.report2CorrectAnswer.ScrewDepthFirst != null) UIManager.GetInstance().UIShowDatas.UpdateDatas("匹配螺钉深度：", MathTool.report2CorrectAnswer.ScrewDepthFirst[0]);
+            if (MathTool.report2CorrectAnswer.ScrewPositionFirst != null && MathTool.report2CorrectAnswer.ScrewPositionFirst.Count > 0) UIManager.GetInstance().UIShowDatas.UpdateDatas("匹配螺钉位置：", MathTool.report2CorrectAnswer.ScrewPositionFirst[0]);
+            if (MathTool.report2CorrectAnswer.ScrewDepthFirst != null && MathTool.report2CorrectAnswer.ScrewDepthFirst.Count > 0) UIManager.GetInstance().UIShowDatas.UpdateDatas("匹配螺钉深度：", MathTool.report2CorrectAnswer.ScrewDepthFirst[0]);
             UIManager.GetInstance().UIShowDatas.UpdateDatas("匹配最小电压：", MathTool.report2CorrectAnswer.MinimumVoltageAfterMatchingFirst);
 
-            UIManager.GetInstance().UIShowDatas.UpdateDatas("匹配最大电压：", MathTool.report2CorrectAnswer.MaximumVoltageAfterMatchingSecond);
-            UIManager.GetInstance().UIShowDatas.UpdateDatas("匹配驻波比：", MathTool.report2CorrectAnswer.SWRAfterMatchingSecond);
+            UIManager.GetInstance().UIShowDatas.UpdateDatas("匹配最大电压：", MathTool.report2CorrectAnswer.MaximumVoltageAfterMatchingFirst);
+            UIManager.GetInstance().UIShowDatas.UpdateDatas("匹配驻波比：", MathTool.report2CorrectAnswer.SWRAfterMatchingFirst);
+            UIManager.GetInstance().UIShowDatas.UpdateDatas("波导波长：", MathTool.report2CorrectAnswer.WaveguideWavelengthFirst);
+        }
+
+        void UIThird()
+        {
+            UIManager.GetInstance().UIshowDatas3.UpdateDatas("一端口电压：", MathTool.report3CorrectAnswer.OnePortVoltage);
+            UIManager.GetInstance().UIshowDatas3.UpdateDatas("三端口电压：", MathTool.report3CorrectAnswer.ThreePortVoltage);
+            UIManager.GetInstance().UIshowDatas3.UpdateDatas("耦合度C：", MathTool.report3CorrectAnswer.CouplingFactor);
         }
 
 
@@ -88,7 +155,6 @@ namespace DLKJ
                 GetDevice();
                 SceneManager.GetInstance().GetInstrumentButton("选频放大器", "RotaryBtnVoltage").RemoveListener();
                 SceneManager.GetInstance().GetInstrumentButton("选频放大器", "RotaryBtnVoltage").SetInteractiveState(false);
-                MathTool.Init();
                 InitA();
                 isFirstClick = true;
             }
@@ -103,7 +169,7 @@ namespace DLKJ
         /// </summary>
         private void InitA()
         {
-            instrumentActionPinXuan.pointer.SetAngle(MathTool.A);
+            InstrumentActionPinXuan.pointer.SetAngle(MathTool.A);
             Item item = SceneManager.GetInstance().GetItemByName("选频放大器");
             InstrumentAction instrumentAction = item.GetComponent<InstrumentAction>();
             instrumentAction.transform.Find("电压Text").GetComponent<TextMesh>().text = MathTool.A.ToString("#0.00");
@@ -132,9 +198,11 @@ namespace DLKJ
 
                             break;
                         case 5:
+                            Debug.Log("接二端口和短路板U:");
                             U = MathTool.EDKTODLB(MathUtility.GetDistance(tempInstrumentBtn));
                             break;
                         case 6:
+                            Debug.Log("接可变断路器U:");
                             //   U = MathTool.ErDuanKouKeBianDuanLuQi(MathUtility.GetDistance(keBianDuanLuQiBtn), MathUtility.GetDistance(tempInstrumentBtn));
                             U = MathTool.ErDuanKouKeBianDuanLuQiNew(MathUtility.GetDistance(keBianDuanLuQiBtn), MathUtility.GetDistance(tempInstrumentBtn));
                             break;
@@ -225,7 +293,7 @@ namespace DLKJ
                 return instrumentActionPinXuan;
             }
         }
-        private void GetDevice()
+        public void GetDevice()
         {
             if (tempInstrumentBtn == null)
             {

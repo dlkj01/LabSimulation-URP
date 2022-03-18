@@ -135,7 +135,7 @@ MonoBehaviour:
       nextStepCanMove: 1
       points: 20
       dropPoints: -2
-      stepName: "\u4E8C\u7AEF\u53E32\u77ED\u8DEF\u7248"
+      stepName: "\u4E8C\u7AEF\u53E32\u77ED\u8DEF\u677F"
       valueType: 100
       completedState: 0
       keyItems:

@@ -13,6 +13,9 @@ namespace DLKJ
     {
         [Header("Show Datas")]
         public UIShowDatas UIShowDatas;
+        public UIShowDatas UIshowDatas1;
+        public UIShowDatas UIshowDatas3;
+        public bool showUIData = false;
 
         private static UIManager instance;
         [Header("SceneObject")]
@@ -61,6 +64,7 @@ namespace DLKJ
             // videoShowButton.gameObject.SetActive(false);
             uIVideoPlayer.gameObject.SetActive(false);
             videoShowButton.onClick.AddListener(delegate { ShowVideoButton(); });
+            showUIData = false;
         }
         public void SetStartButton()
         {
@@ -279,8 +283,10 @@ namespace DLKJ
             }
             EventManager.OnTips(TipsType.Snackbar, tipMessage, () => { FindObjectOfType<UITips>().OnDisTips(); }, () =>
             {
-                SetFixDataCallBack();
                 FindObjectOfType<UITips>().OnDisTips();
+                MathTool.Init();
+                SetFixDataCallBack();
+                showUIData = true;
             });
             return;
         }

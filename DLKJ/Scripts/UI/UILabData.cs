@@ -8,12 +8,12 @@ public class UILabData : MonoBehaviour
     [SerializeField] Text title;  //数据名
     [SerializeField] Text value;  //数据值
 
-    public string Key { get { return title.text; } }
+    public string Key { get { return title.text.ToString(); } }
  
-    // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Log("title.text.ToString():" + title.text.ToString());
+
     }
 
     public void SetValue(double targetValue)

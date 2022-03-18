@@ -39,7 +39,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 197862431882204846}
-  m_Mesh: {fileID: 787864804009666828, guid: b32471b87aa7c3747bc7234465307774, type: 3}
+  m_Mesh: {fileID: -1505225121762444811, guid: e5f05da053024964bbcd3311731bacce, type: 3}
 --- !u!23 &8000309440903676120
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 284193014f336fc409400c8d29770a0e, type: 2}
+  - {fileID: 2100000, guid: 61743ad866aba7e429065d5fe92b294a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -252,7 +252,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2850232029905219042}
-  m_Mesh: {fileID: -8863047106019562442, guid: b32471b87aa7c3747bc7234465307774, type: 3}
+  m_Mesh: {fileID: 8729468343704960039, guid: e5f05da053024964bbcd3311731bacce, type: 3}
 --- !u!23 &7537971290230706160
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -272,7 +272,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0926f820ed141e247963eb70a6b634f1, type: 2}
+  - {fileID: 2100000, guid: 61743ad866aba7e429065d5fe92b294a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -334,7 +334,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4923478521572925816}
-  m_Mesh: {fileID: 1818040703786173448, guid: b32471b87aa7c3747bc7234465307774, type: 3}
+  m_Mesh: {fileID: -3598399809094261574, guid: e5f05da053024964bbcd3311731bacce, type: 3}
 --- !u!23 &2284130139800033426
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -354,7 +354,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 284193014f336fc409400c8d29770a0e, type: 2}
+  - {fileID: 2100000, guid: 61743ad866aba7e429065d5fe92b294a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -407,7 +407,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6752491526057787800
 Transform:
   m_ObjectHideFlags: 0

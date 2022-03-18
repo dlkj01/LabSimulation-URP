@@ -49,12 +49,22 @@ namespace DLKJ
                 }
                 else
                 {
+                    //int n = SaveManager.GetInstance().GetInt("n_Login", 0, "User");
+                    //Debug.Log("已经登录次数:" + n);
+                    //if (n>5)
+                    //{
+                    //    EventManager.OnTips(TipsType.Toast,"登录次数已用完！");
+                    //    return;
+                    //}
+
+                    //n++;
+                    //SaveManager.GetInstance().SetInt("n_Login", n, "User");
+
                     UserData data = ExcelRead.GetInstance.GetUserData(nameInputField.text);
                     SceneManager.loginUserData = data;
                     UIManager.GetInstance().uiMainPanle.Init(data.userType);
                     UIManager.GetInstance().ShowExperimentSelectedPanel();
                     gameObject.SetActive(false);
-
                 }
             }
             else

@@ -176,6 +176,7 @@ namespace DLKJ
                                 if (SceneManager.GetInstance().CurrentStepVerify() && CanSetValue())
                                 {
                                     MathTest.Instance.FormulaInit();
+                                    
                                     InstrumentButton buttonKaiGuan = SceneManager.GetInstance().GetInstrumentButton("选频放大器", "FrequencySelectiveAmplifierPowerBtn");
                                     if (MathUtility.GetCurrentValue(buttonKaiGuan) == 0 && MathUtility.GetCurrentValue(powerKaiGuan) == 0)
                                     {
@@ -357,7 +358,7 @@ namespace DLKJ
                         Debug.LogWarning("出现名称不符合，请查找名称:" + buttonName);
                         break;
                 }
-                Debug.Log(buttonName.Trim() + "仪器的当前值为" + MathUtility.GetCurrentValue(tempInstrumentBtn));
+                //Debug.Log(buttonName.Trim() + "仪器的当前值为" + MathUtility.GetCurrentValue(tempInstrumentBtn));
             }
         }
 

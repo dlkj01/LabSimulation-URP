@@ -37,11 +37,13 @@ public class CharacterInput : MonoBehaviour
         if (Input.GetKey(KeyCode.E))
             yDir = Vector3.up;
         Move((xDir + zDir + yDir) * speed * Time.deltaTime);
+       
     }
 
     private void Move(Vector3 dir)
     {
         character.Move(dir);
+        //character.SimpleMove(dir);
     }
 
     private void Rotate()
