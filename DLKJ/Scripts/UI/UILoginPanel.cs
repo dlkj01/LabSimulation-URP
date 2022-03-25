@@ -32,6 +32,12 @@ namespace DLKJ
             }
         }
 
+        public void SetEnableLogin(bool enable)
+        {
+
+            sureButton.interactable = enable;
+        }
+
         void SureCallBack()
         {
             if (nameInputField.text.Length > 0)
@@ -49,16 +55,10 @@ namespace DLKJ
                 }
                 else
                 {
-                    //int n = SaveManager.GetInstance().GetInt("n_Login", 0, "User");
-                    //Debug.Log("已经登录次数:" + n);
-                    //if (n>5)
-                    //{
-                    //    EventManager.OnTips(TipsType.Toast,"登录次数已用完！");
-                    //    return;
-                    //}
 
-                    //n++;
-                    //SaveManager.GetInstance().SetInt("n_Login", n, "User");
+                    int n = SaveManager.GetInstance().GetInt("n_Login", 0, "User");
+                    n++;
+                    SaveManager.GetInstance().SetInt("n_Login", n, "User");
 
                     UserData data = ExcelRead.GetInstance.GetUserData(nameInputField.text);
                     SceneManager.loginUserData = data;

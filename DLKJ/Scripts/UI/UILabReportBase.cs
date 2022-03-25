@@ -162,13 +162,13 @@ public class UILabReportBase : MonoBehaviour
             switch (SceneManager.GetInstance().GetCurrentLabName())
             {
                 case SceneManager.FIRST_EXPERIMENT_NAME:
-                    height = 5455.81f;
+                    height = 6850f;
                     break;
                 case SceneManager.SECOND_EXPERIMENT_NAME:
-                    height = 4500;
+                    height = 5664f;
                     break;
                 case SceneManager.THIRD_EXPERIMENT_NAME:
-                    height = 2651.801f;
+                    height = 3520f;
                     break;
                 default:
                     break;
@@ -323,6 +323,7 @@ public class UILabReportBase : MonoBehaviour
     /// <returns></returns>
     protected bool VerifyScore(double inputValue, double rightAnswer)
     {
+        Debug.Log("rightAnswer:" + rightAnswer+ "    inputValue:" + inputValue);
         double lerp = rightAnswer * 0.2f;
         bool result = inputValue < rightAnswer + lerp && inputValue > rightAnswer - lerp;
         if (result)
@@ -342,6 +343,7 @@ public class UILabReportBase : MonoBehaviour
             }
             Debug.Log("答案正确" + inputValue + rightAnswer);
         }
+        Debug.Log("当前实验得分：" + SceneManager.GetInstance().currentLabScore);
         return result;
     }
 

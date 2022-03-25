@@ -84,28 +84,48 @@ namespace DLKJ
 
         void UIFirst()
         {
-            UIManager.GetInstance().UIshowDatas1.UpdateDatas("相角短路：", MathTool.report1CorrectAnswer.PhaseAngleCircuit);
-            UIManager.GetInstance().UIshowDatas1.UpdateDatas("相角终端：", MathTool.report1CorrectAnswer.PhaseAngleTerminal);
-            UIManager.GetInstance().UIshowDatas1.UpdateDatas("相角匹配：", MathTool.report1CorrectAnswer.PhaseAngleMatching);
+            GUILayout.BeginVertical();
 
-            UIManager.GetInstance().UIshowDatas1.UpdateDatas("驻波比短路：", MathTool.report1CorrectAnswer.StandingWaveRatioCircuit);
-            UIManager.GetInstance().UIshowDatas1.UpdateDatas("驻波比终端：", MathTool.report1CorrectAnswer.StandingWaveRatioTerminal);
-            UIManager.GetInstance().UIshowDatas1.UpdateDatas("驻波比匹配：", MathTool.report1CorrectAnswer.StandingWaveRatioMatching);
+            GUILayout.BeginHorizontal();
+            GUILayout.Label("等效截面：");
+            GUILayout.Label(MathTool.report1CorrectAnswer.EquivalentSectionPosition.ToString());
+            GUILayout.EndHorizontal();
 
-            UIManager.GetInstance().UIshowDatas1.UpdateDatas("1SReal：", MathTool.report1CorrectAnswer.ReflectionCoefficientΓ1SReal);
-            UIManager.GetInstance().UIshowDatas1.UpdateDatas("1SImaginary：", MathTool.report1CorrectAnswer.ReflectionCoefficientΓ1SImaginary);
-            UIManager.GetInstance().UIshowDatas1.UpdateDatas("10Real：", MathTool.report1CorrectAnswer.ReflectionCoefficientΓ10Real);
-            UIManager.GetInstance().UIshowDatas1.UpdateDatas("10Imaginary：", MathTool.report1CorrectAnswer.ReflectionCoefficientΓ10Imaginary);
-            UIManager.GetInstance().UIshowDatas1.UpdateDatas("1LReal：", MathTool.report1CorrectAnswer.ReflectionCoefficientΓ1LReal);
-            UIManager.GetInstance().UIshowDatas1.UpdateDatas("1LImaginary：", MathTool.report1CorrectAnswer.ReflectionCoefficientΓ1LImaginary);
+            GUILayout.EndVertical();
 
-            UIManager.GetInstance().UIshowDatas1.UpdateDatas("S11Real：", MathTool.report1CorrectAnswer.inputS11Real);
-            UIManager.GetInstance().UIshowDatas1.UpdateDatas("S11Imaginary：", MathTool.report1CorrectAnswer.inputS11Imaginary);
+            //UIManager.GetInstance().UIshowDatas1.UpdateDatas("等效截面：", MathTool.report1CorrectAnswer.EquivalentSectionPosition);
+            //UIManager.GetInstance().UIshowDatas1.UpdateDatas("输入端波长：", MathTool.report1CorrectAnswer.InputWavelength);
+            //UIManager.GetInstance().UIshowDatas1.UpdateDatas("第一波节点：", MathTool.report1CorrectAnswer.VariableShortCircuitFirstPos[0]);
+            //UIManager.GetInstance().UIshowDatas1.UpdateDatas("第二波节点：", MathTool.report1CorrectAnswer.VariableShortCircuitSecondPos[0]);
+            //UIManager.GetInstance().UIshowDatas1.UpdateDatas("短路器波长：", MathTool.report1CorrectAnswer.VariableWavelengthInShortCircuit);
+            //UIManager.GetInstance().UIshowDatas1.UpdateDatas("开路负载：", MathTool.report1CorrectAnswer.OpenLoadPosition[0]);
 
-            UIManager.GetInstance().UIshowDatas1.UpdateDatas("S21Real：", MathTool.report1CorrectAnswer.inputS12S21Real);
-            UIManager.GetInstance().UIshowDatas1.UpdateDatas("S21Imaginary：", MathTool.report1CorrectAnswer.inputS12S21Imaginary);
-            UIManager.GetInstance().UIshowDatas1.UpdateDatas("S22Real：", MathTool.report1CorrectAnswer.inputS22Real);
-            UIManager.GetInstance().UIshowDatas1.UpdateDatas("S22Imaginary：", MathTool.report1CorrectAnswer.inputS22Imaginary);
+            //UIManager.GetInstance().UIshowDatas1.UpdateDatas("波节点短路：", MathTool.report1CorrectAnswer.WaveNodePosShortCircuit);
+            //UIManager.GetInstance().UIshowDatas1.UpdateDatas("波节点终端：", MathTool.report1CorrectAnswer.WaveNodePosShortTerminal);
+            //UIManager.GetInstance().UIshowDatas1.UpdateDatas("波节点匹配：", MathTool.report1CorrectAnswer.WaveNodePosShortMatching);
+
+            //UIManager.GetInstance().UIshowDatas1.UpdateDatas("相角短路：", MathTool.report1CorrectAnswer.PhaseAngleCircuit);
+            //UIManager.GetInstance().UIshowDatas1.UpdateDatas("相角终端：", MathTool.report1CorrectAnswer.PhaseAngleTerminal);
+            //UIManager.GetInstance().UIshowDatas1.UpdateDatas("相角匹配：", MathTool.report1CorrectAnswer.PhaseAngleMatching);
+
+            //UIManager.GetInstance().UIshowDatas1.UpdateDatas("驻波比短路：", MathTool.report1CorrectAnswer.StandingWaveRatioCircuit);
+            //UIManager.GetInstance().UIshowDatas1.UpdateDatas("驻波比终端：", MathTool.report1CorrectAnswer.StandingWaveRatioTerminal);
+            //UIManager.GetInstance().UIshowDatas1.UpdateDatas("驻波比匹配：", MathTool.report1CorrectAnswer.StandingWaveRatioMatching);
+
+            //UIManager.GetInstance().UIshowDatas1.UpdateDatas("1SReal：", MathTool.report1CorrectAnswer.ReflectionCoefficientΓ1SReal);
+            //UIManager.GetInstance().UIshowDatas1.UpdateDatas("1SImaginary：", MathTool.report1CorrectAnswer.ReflectionCoefficientΓ1SImaginary);
+            //UIManager.GetInstance().UIshowDatas1.UpdateDatas("10Real：", MathTool.report1CorrectAnswer.ReflectionCoefficientΓ10Real);
+            //UIManager.GetInstance().UIshowDatas1.UpdateDatas("10Imaginary：", MathTool.report1CorrectAnswer.ReflectionCoefficientΓ10Imaginary);
+            //UIManager.GetInstance().UIshowDatas1.UpdateDatas("1LReal：", MathTool.report1CorrectAnswer.ReflectionCoefficientΓ1LReal);
+            //UIManager.GetInstance().UIshowDatas1.UpdateDatas("1LImaginary：", MathTool.report1CorrectAnswer.ReflectionCoefficientΓ1LImaginary);
+
+            //UIManager.GetInstance().UIshowDatas1.UpdateDatas("S11Real：", MathTool.report1CorrectAnswer.inputS11Real);
+            //UIManager.GetInstance().UIshowDatas1.UpdateDatas("S11Imaginary：", MathTool.report1CorrectAnswer.inputS11Imaginary);
+
+            //UIManager.GetInstance().UIshowDatas1.UpdateDatas("S21Real：", MathTool.report1CorrectAnswer.inputS12S21Real);
+            //UIManager.GetInstance().UIshowDatas1.UpdateDatas("S21Imaginary：", MathTool.report1CorrectAnswer.inputS12S21Imaginary);
+            //UIManager.GetInstance().UIshowDatas1.UpdateDatas("S22Real：", MathTool.report1CorrectAnswer.inputS22Real);
+            //UIManager.GetInstance().UIshowDatas1.UpdateDatas("S22Imaginary：", MathTool.report1CorrectAnswer.inputS22Imaginary);
         }
 
         void UISecond()

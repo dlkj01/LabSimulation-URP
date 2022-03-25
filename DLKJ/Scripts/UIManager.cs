@@ -11,6 +11,7 @@ namespace DLKJ
 {
     public class UIManager : MonoBehaviour
     {
+        [SerializeField] bool applicationLogEnable = false;
         [Header("Show Datas")]
         public UIShowDatas UIShowDatas;
         public UIShowDatas UIshowDatas1;
@@ -52,6 +53,7 @@ namespace DLKJ
         public UILabReportController UILabButton;
 
         public UIMainPanle uiMainPanle;
+        public UILoginPanel loginPanel;
 
         private UIEquipmentPanel equipmentPanel = null;
         private UIExperimentSelectedPanel experimentSelectedPanel = null;
@@ -59,7 +61,7 @@ namespace DLKJ
         private Camera voltmeterCamera;
         private void Awake()
         {
-            Debug.unityLogger.logEnabled = false;
+            Debug.unityLogger.logEnabled = applicationLogEnable;
             if (sceneObject) sceneObject.SetActive(false);
             // videoShowButton.gameObject.SetActive(false);
             uIVideoPlayer.gameObject.SetActive(false);

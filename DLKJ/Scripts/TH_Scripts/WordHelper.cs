@@ -128,7 +128,7 @@ public static class WordHelper
         //写入分数
         builder.MoveToBookmark("Score");
         builder.StartBookmark("Score").Bookmark.Text = ProxyManager.saveProxy.GetScoreBySceneAfterConversion().ToString("#0.00");
-        Debug.Log(ProxyManager.saveProxy.GetScoreBySceneAfterConversion().ToString());
+        Debug.Log("当前实验得分："+ProxyManager.saveProxy.GetScoreBySceneAfterConversion().ToString());
         string savePath = Application.streamingAssetsPath + "/Save";
         if (!Directory.Exists(savePath))
         {
