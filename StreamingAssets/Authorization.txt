@@ -1,0 +1,38 @@
+##################################################
+#---------- General Information ----------
+# Informations : Time - 2022-03-25 22£º47£º33£º6231
+# Issued : January 28, 2022
+#---------- Requestor / Distributor Informations ----------
+# Distributor : DL China
+# VendorTel :
+# VendorAddress :
+# Function :
+# eMail :
+# Requestor :
+# last update :
+#---------- License Informations ----------
+# Version : 2022.1
+# Daemon :
+# Installation :
+# Product : DL
+#---------- Customer Informations ----------
+# Customer :
+# Installation : China
+# Identification : 9001
+# Group :
+# Country : China
+# Category :
+# Activity :
+# Contact :
+# Address :
+# Tel :
+# Fax :
+# License : Installed Base
+CA-E7-BA-F5-40-3F-51-9B-8C-4C-3A-F0-88-86-62-B6
+E4-1C-E0-BB-D7-11-DF-DA-7F-B3-0F-63-93-49-49-9F
+79-27-F5-FD-D8-31-E5-87-81-24-D4-65-44-40-CF-8C-9C-F0-31-1B-83-4E-2D-CF
+69-83-16-AC-A6-4E-9A-0A-83-5A-FA-49-15-52-3F-91
+ED-1E-9D-A9-37-27-53-13-51-4C-FB-93-A6-79-C8-4D
+C8-9D-2A-26-98-84-AF-87-29-04-9E-13-D5-72-2D-D5-31-7C-0B-15-92-7F-FA-91
+Kqx/IftR7rg=
+F7oIWz4ZcUI=

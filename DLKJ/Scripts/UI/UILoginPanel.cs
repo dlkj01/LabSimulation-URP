@@ -21,10 +21,10 @@ namespace DLKJ
         }
         private void Start()
         {
-#if UNITY_EDITOR
-            SceneManager.didExperiment = true;
-            SceneManager.loginUserData = new UserData() { accountNumber = "teacher1", password = "123", userType = UserType.Teacher };
-#endif
+//#if UNITY_EDITOR
+//            SceneManager.didExperiment = true;
+//            SceneManager.loginUserData = new UserData() { accountNumber = "teacher1", password = "123", userType = UserType.Teacher };
+//#endif
             if (SceneManager.didExperiment == true)
             {
                 UIManager.GetInstance().ShowExperimentSelectedPanel();
@@ -56,9 +56,9 @@ namespace DLKJ
                 else
                 {
 
-                    int n = SaveManager.GetInstance().GetInt("n_Login", 0, "User");
+                    int n = SaveManager.GetInstance().GetInt("n_l", 0, "User");
                     n++;
-                    SaveManager.GetInstance().SetInt("n_Login", n, "User");
+                    SaveManager.GetInstance().SetInt("n_l", n, "User");
 
                     UserData data = ExcelRead.GetInstance.GetUserData(nameInputField.text);
                     SceneManager.loginUserData = data;

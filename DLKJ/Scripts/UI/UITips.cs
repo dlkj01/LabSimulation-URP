@@ -108,6 +108,7 @@ namespace DLKJ
         {
             transform.localPosition = Vector3.zero;
             transform.SetAsLastSibling();
+            Debug.Log("置顶弹窗");
         }
 
         public void OnDisTips()

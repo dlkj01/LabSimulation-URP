@@ -2,10 +2,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using static DLKJ.InstrumentAction;
 using T_Common;
+using System.IO;
+using System.Security.Cryptography;
+using System.Text;
+using System;
+
 namespace DLKJ
 {
     public class SceneManager : MonoBehaviour
     {
+        public string md5Key = Int64.MaxValue.ToString();
         public float currentLabScore;
         public const string FIRST_EXPERIMENT_NAME = "二端口微波网络参量测量";
         public const string SECOND_EXPERIMENT_NAME = "负载阻抗测量及阻抗匹配";
@@ -55,6 +61,131 @@ namespace DLKJ
             UserData data = new UserData() { accountNumber = "student1", password = "password1", userType = UserType.Student };
             loginUserData = data;
 #endif
+
+            string filePath = Application.streamingAssetsPath + "/Authorization.txt";
+           
+            FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+            string lastString = GetLastLine(fs);
+           
+            int licenses = 0;
+            if (lastString.Length > 0)
+            {
+                string lastStr = MD5Decryption(lastString);
+                int.TryParse(lastStr, out licenses);
+            }
+            Debug.Log("licenses:" + licenses);
+            int n = SaveManager.GetInstance().GetInt("n_l", 0, "User");
+            int maxL = SaveManager.GetInstance().GetInt("max_l", 1, "User");
+            if (licenses != maxL)
+            {
+                maxL = licenses;
+                SaveManager.GetInstance().SetInt("max_l", licenses, "User");
+                SaveManager.GetInstance().SetInt("n_l", 0, "User");
+            }
+
+            if (n >= maxL)
+            {
+                UIManager.GetInstance().uITips.OnTips(TipsType.Toast, "使用次数已用完！", null, OnTipsSure);
+                UIManager.GetInstance().loginPanel.SetEnableLogin(false);
+            }
+            else
+            {
+
+                UIManager.GetInstance().loginPanel.SetEnableLogin(true);
+            }
+        }
+
+        string GetMD5Hash(int number)
+        {
+            // 创建一个MD5CryptoServiceProvider对象的新实例。
+            MD5 md5Hasher = MD5.Create();
+
+            // 将输入的字符串转换为一个字节数组并计算哈希值。
+
+            byte[] data = md5Hasher.ComputeHash(Encoding.Default.GetBytes(number.ToString()));
+
+            //创建一个StringBuilder对象，用来收集字节数组中的每一个字节，然后创建一个字符串。
+
+            StringBuilder sBuilder = new StringBuilder();
+
+            // 遍历字节数组，将每一个字节转换为十六进制字符串后，追加到StringBuilder实例的结尾
+
+            for (int i = 0; i < data.Length; i++)
+
+            {
+
+                sBuilder.Append(data[i].ToString("x2"));
+
+            }
+
+            // 返回一个十六进制字符串
+            return sBuilder.ToString();
+        }
+
+        //MD5 - Encription 
+        public string MD5Encryption(string inputData)
+        {
+            string hasKey = md5Key; 
+            byte[] bData = UTF8Encoding.UTF8.GetBytes(inputData);
+
+            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+            TripleDESCryptoServiceProvider tripalDES = new TripleDESCryptoServiceProvider();
+
+            tripalDES.Key = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(hasKey));
+            tripalDES.Mode = CipherMode.ECB;
+
+            ICryptoTransform trnsfrm = tripalDES.CreateEncryptor();
+            byte[] result = trnsfrm.TransformFinalBlock(bData, 0, bData.Length);
+
+            return Convert.ToBase64String(result);
+        }
+
+        //MD5 -  Decryption
+        public string MD5Decryption(string inputData)
+        {
+            string hasKey = md5Key; 
+            byte[] bData = Convert.FromBase64String(inputData);
+
+            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+            TripleDESCryptoServiceProvider tripalDES = new TripleDESCryptoServiceProvider();
+
+            tripalDES.Key = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(hasKey));
+            tripalDES.Mode = CipherMode.ECB;
+
+            ICryptoTransform trnsfrm = tripalDES.CreateDecryptor();
+            byte[] result = trnsfrm.TransformFinalBlock(bData, 0, bData.Length);
+
+            return UTF8Encoding.UTF8.GetString(result);
+        }
+
+        /// <summary>
+        /// 提取文本最后一行数据
+        /// </summary>
+        /// <param name="fs">文件流</param>
+        /// <returns>最后一行数据</returns>
+        private string GetLastLine(FileStream fs)
+        {
+            StreamReader streamReader = new StreamReader(fs);
+            string lastLine = "";
+            while (!streamReader.EndOfStream)
+            {
+                lastLine = streamReader.ReadLine();
+            }
+            //Debug.Log("fs.Length:" + fs.Length);
+            //int seekLength = (int)(fs.Length < 1024 ? fs.Length : 1024);  // 这里需要根据自己的数据长度进行调整，也可写成动态获取，可自己实现
+            //byte[] buffer = new byte[seekLength];
+            //fs.Seek(-buffer.Length, SeekOrigin.End);
+            //fs.Read(buffer, 0, buffer.Length);
+            //string multLine = System.Text.Encoding.UTF8.GetString(buffer);
+            //string[] lines = multLine.Split(new string[] { "\\n" }, StringSplitOptions.RemoveEmptyEntries);
+            //string line = lines[lines.Length - 1];
+
+            return lastLine;
+        }
+
+        void OnTipsSure()
+        {
+            Application.Quit();
         }
 
         public static SceneManager GetInstance()

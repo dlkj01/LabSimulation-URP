@@ -21,6 +21,7 @@ namespace DLKJ
         private static UIManager instance;
         [Header("SceneObject")]
         [SerializeField] GameObject sceneObject;
+        [SerializeField] public UITips uITips;
 
         [Header("ScrollCamera")]
         [SerializeField] public UI3DCamera _3dCamera;

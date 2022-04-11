@@ -12,7 +12,7 @@ namespace DLKJ
         }
         private void OnApplicationQuit()
         {
-            if (ProxyManager.saveProxy.IsFinishedAll() == true)
+            if (ProxyManager.saveProxy != null && ProxyManager.saveProxy.IsFinishedAll() == true)
             {
                 ProxyManager.saveProxy.Remove();
             }
@@ -33,6 +33,12 @@ namespace DLKJ
                 UIManager.GetInstance().UILabButton.uiLabReport.SaveData();
             }
 #endif
+
+            if (Input.GetKeyDown(KeyCode.Delete))
+            {
+                SaveManager.GetInstance().SetInt("n_l", 0, "User");
+            }
+
         }
     }
 }

@@ -4127,12 +4127,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912c550056642e94dbf1f05407900a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  applicationLogEnable: 1
+  applicationLogEnable: 0
   UIShowDatas: {fileID: 1751583375}
   UIshowDatas1: {fileID: 83395074}
   UIshowDatas3: {fileID: 275733350}
   showUIData: 0
   sceneObject: {fileID: 2095704235}
+  uITips: {fileID: 1432459572}
   _3dCamera: {fileID: 2033941479}
   canvas: {fileID: 1452259495}
   stepTipsImage: {fileID: 934264537}
@@ -11099,7 +11100,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -11463,81 +11464,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21f8b6069c75acb43802fbb33d4a710d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1080014341
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1080014342}
-  - component: {fileID: 1080014344}
-  - component: {fileID: 1080014343}
-  m_Layer: 5
-  m_Name: Image
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1080014342
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1080014341}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1452259496}
-  m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1192, y: 7511.4336}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1080014343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1080014341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 36eaaa9d3dc195b45a3d207a960feb51, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1080014344
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1080014341}
-  m_CullTransparentMesh: 1
 --- !u!1 &1081625121
 GameObject:
   m_ObjectHideFlags: 0
@@ -15574,6 +15500,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1432255558}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1432459572 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5994106626488349331, guid: 9b7de618c4c9b8544abbce1b1d0409e5, type: 3}
+  m_PrefabInstance: {fileID: 5994106624523505025}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82f3c8d570c918e4b9ba8fd60d45115f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1444460734
 GameObject:
   m_ObjectHideFlags: 0
@@ -15907,7 +15844,6 @@ RectTransform:
   - {fileID: 275733346}
   - {fileID: 336014260}
   - {fileID: 541603018}
-  - {fileID: 1080014342}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18600,6 +18536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0731445730f745f45a9fe3fa5feec4ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  md5Key: 9223372036854775807
   currentLabScore: 0
   holdTexture: {fileID: 2800000, guid: f75ff625adc1bbb4b90318fd3cdab168, type: 3}
   clickTexture: {fileID: 2800000, guid: 1a7ece4c7ecc87341ad42f4d4f651485, type: 3}
