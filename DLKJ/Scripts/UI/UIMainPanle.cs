@@ -173,10 +173,13 @@ namespace DLKJ
                {
                    //添加完成的实验名字的记录
                    string labName = SceneManager.GetInstance().currentLab.labName;
+                   Debug.Log("保存实验数据");
                    //保存word数据
                    UIManager.GetInstance().UILabButton.uiLabReport.SaveData();
+                   Debug.Log("标记实验状态");
                    //做过实验标记为True
                    SceneManager.didExperiment = true;
+                   Debug.Log("重载场景");
                    //返回选择实验场景
                    UnityEngine.SceneManagement.SceneManager.LoadScene("Level1");
                });

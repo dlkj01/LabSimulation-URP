@@ -33,6 +33,7 @@ MonoBehaviour:
     - Obi
     - Assembly-CSharp-firstpass
     - Assembly-CSharp
+    - Cinemachine
     - Obi.Editor
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0

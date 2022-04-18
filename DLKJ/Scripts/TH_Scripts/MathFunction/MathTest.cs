@@ -46,41 +46,41 @@ namespace DLKJ
         }
 #endif
 
-        private void OnGUI()
-        {
-            if (UIManager.GetInstance().showUIData)
-            {
-                switch (SceneManager.GetInstance().currentLab.labName)
-                {
-                    case SceneManager.FIRST_EXPERIMENT_NAME:
-                        {
-                            UIManager.GetInstance().UIshowDatas1.gameObject.SetActive(true);
-                            UIManager.GetInstance().UIShowDatas.gameObject.SetActive(false);
-                            UIManager.GetInstance().UIshowDatas3.gameObject.SetActive(false);
-                            UIFirst();
-                        }
-                        break;
-                    case SceneManager.SECOND_EXPERIMENT_NAME:
-                        {
-                            UIManager.GetInstance().UIshowDatas1.gameObject.SetActive(false);
-                            UIManager.GetInstance().UIShowDatas.gameObject.SetActive(true);
-                            UIManager.GetInstance().UIshowDatas3.gameObject.SetActive(false);
-                            UISecond();
-                        }
-                        break;
-                    case SceneManager.THIRD_EXPERIMENT_NAME:
-                        {
-                            UIManager.GetInstance().UIshowDatas1.gameObject.SetActive(false);
-                            UIManager.GetInstance().UIShowDatas.gameObject.SetActive(false);
-                            UIManager.GetInstance().UIshowDatas3.gameObject.SetActive(true);
-                            UIThird();
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
+        //private void OnGUI()
+        //{
+        //    if (UIManager.GetInstance().showUIData)
+        //    {
+        //        switch (SceneManager.GetInstance().currentLab.labName)
+        //        {
+        //            case SceneManager.FIRST_EXPERIMENT_NAME:
+        //                {
+        //                    UIManager.GetInstance().UIshowDatas1.gameObject.SetActive(true);
+        //                    UIManager.GetInstance().UIShowDatas.gameObject.SetActive(false);
+        //                    UIManager.GetInstance().UIshowDatas3.gameObject.SetActive(false);
+        //                    UIFirst();
+        //                }
+        //                break;
+        //            case SceneManager.SECOND_EXPERIMENT_NAME:
+        //                {
+        //                    UIManager.GetInstance().UIshowDatas1.gameObject.SetActive(false);
+        //                    UIManager.GetInstance().UIShowDatas.gameObject.SetActive(true);
+        //                    UIManager.GetInstance().UIshowDatas3.gameObject.SetActive(false);
+        //                    UISecond();
+        //                }
+        //                break;
+        //            case SceneManager.THIRD_EXPERIMENT_NAME:
+        //                {
+        //                    UIManager.GetInstance().UIshowDatas1.gameObject.SetActive(false);
+        //                    UIManager.GetInstance().UIShowDatas.gameObject.SetActive(false);
+        //                    UIManager.GetInstance().UIshowDatas3.gameObject.SetActive(true);
+        //                    UIThird();
+        //                }
+        //                break;
+        //            default:
+        //                break;
+        //        }
+        //    }
+        //}
 
         void UIFirst()
         {

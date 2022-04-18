@@ -99,7 +99,7 @@ public static class WordHelper
             Directory.CreateDirectory(streamingPath);
         }
         string filePath = streamingPath + "/" + fileName;
-        Stream stream = FileToStream(filePath);
+        //Stream stream = FileToStream(filePath);
         Document doc = new Document(filePath);
         DocumentBuilder builder = new DocumentBuilder(doc);   //操作word
         foreach (var key in map.Keys)   //循环键值对
@@ -139,7 +139,7 @@ public static class WordHelper
             studentID = "学号有误";
         doc.Save(savePath + "/" + studentID /*SceneManager.loginUserData.accountNumber*/ + "-" + DateTime.Now.ToString("yyyy-MM-dd") + outPath); //保存word
         ProxyManager.saveProxy.Save();
-        // stream.Close();
+        //stream.Close();
         return doc;
 #endif
     }
