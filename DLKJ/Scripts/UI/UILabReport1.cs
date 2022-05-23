@@ -17,6 +17,11 @@ namespace DLKJ
             {
                 EventManager.OnTips(TipsType.Toast, "请输入姓名");
             }
+
+            if (schoolInputField.text.Length <= 0)
+            {
+                EventManager.OnTips(TipsType.Toast, "请输入学校名称");
+            }
         }
 
         [Space()]

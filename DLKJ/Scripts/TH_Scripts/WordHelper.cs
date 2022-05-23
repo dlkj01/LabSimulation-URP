@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using DLKJ;
 using Common;
+using static UnityEngine.Networking.UnityWebRequest;
 
 public static class WordHelper
 {
@@ -117,10 +118,12 @@ public static class WordHelper
                         result = answerCheck.answer.ToString() + "(Wrong)";
                     else
                         result = answerCheck.answer.ToString();
+                    Debug.Log("AnswerCheck д�룺" + result);
                     builder.StartBookmark(key).Bookmark.Text = result;
-                }
-                else
+}
+else
                 {
+                    Debug.Log("Other д�룺" + map[key].ToString());
                     builder.StartBookmark(key).Bookmark.Text = map[key].ToString();
                 }
             }

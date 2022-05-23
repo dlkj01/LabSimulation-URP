@@ -7,6 +7,7 @@ using DLKJ;
 
 public struct UserDate
 {
+    public string schoolTitle;
     public string userName;
     public string className;
     public string time;
@@ -182,6 +183,7 @@ public class UILabReportBase : MonoBehaviour
     public string outFilePath;
     public Dictionary<string, object> map = new Dictionary<string, object>();
     [SerializeField] GameObject CloseButton;
+    [SerializeField] protected InputField schoolInputField;
     [SerializeField] protected InputField nameInputField;
     [SerializeField] protected InputField classInputField;
     [SerializeField] protected InputField timeInputField;
@@ -259,6 +261,7 @@ public class UILabReportBase : MonoBehaviour
 
     public virtual void SaveData()
     {
+        userData.schoolTitle = schoolInputField.text;
         userData.userName = nameInputField.text;
         userData.className = classInputField.text;
         userData.time = timeInputField.text;

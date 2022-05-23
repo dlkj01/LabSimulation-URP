@@ -4895,7 +4895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19cfd2d1f29c63b4c8013bb64b3f6044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bAutoWriteToFile: 0
+  bAutoWriteToFile: 1
   bWriteToFileWhenExit: 0
   bRecordAllStack: 0
   bRecordStackByError: 0
@@ -17794,7 +17794,6 @@ GameObject:
   - component: {fileID: 1663606360}
   - component: {fileID: 1663606359}
   - component: {fileID: 1663606358}
-  - component: {fileID: 1663606357}
   - component: {fileID: 1663606363}
   - component: {fileID: 1663606364}
   - component: {fileID: 1663606366}
@@ -17807,14 +17806,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1663606357
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1663606356}
-  m_Enabled: 1
 --- !u!124 &1663606358
 Behaviour:
   m_ObjectHideFlags: 0

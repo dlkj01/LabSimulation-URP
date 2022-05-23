@@ -34,16 +34,16 @@ namespace DLKJ
 
         private void Update() => OnUpdate();
 #if UNITY_EDITOR
-        private void LateUpdate()
-        {
+        //private void LateUpdate()
+        //{
 
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                //MathTool.FixedCorrect1Calculate();
-                MathTool.FixedCorrect2FirstGroupCalculate();
-            }
+        //    if (Input.GetKeyDown(KeyCode.Alpha1))
+        //    {
+        //        //MathTool.FixedCorrect1Calculate();
+        //        MathTool.FixedCorrect2FirstGroupCalculate();
+        //    }
 
-        }
+        //}
 #endif
 
         //private void OnGUI()
@@ -218,11 +218,11 @@ namespace DLKJ
 
                             break;
                         case 5:
-                            Debug.Log("接二端口和短路板U:");
+                            //Debug.Log("接二端口和短路板U:");
                             U = MathTool.EDKTODLB(MathUtility.GetDistance(tempInstrumentBtn));
                             break;
                         case 6:
-                            Debug.Log("接可变断路器U:");
+                            //Debug.Log("接可变断路器U:");
                             //   U = MathTool.ErDuanKouKeBianDuanLuQi(MathUtility.GetDistance(keBianDuanLuQiBtn), MathUtility.GetDistance(tempInstrumentBtn));
                             U = MathTool.ErDuanKouKeBianDuanLuQiNew(MathUtility.GetDistance(keBianDuanLuQiBtn), MathUtility.GetDistance(tempInstrumentBtn));
                             break;
